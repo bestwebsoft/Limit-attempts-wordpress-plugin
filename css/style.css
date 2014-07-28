@@ -1,0 +1,62 @@
+/*
+* styles for settings page
+*/
+#lmtttmpts_settings,
+#lmtttmpts_blocked,
+#lmtttmpts_blacklist,
+#lmtttmpts_whitelist,
+#lmtttmpts_log {
+	padding-top: 15px;
+}
+.bws-plugin-reviews {
+	margin-top: 45px;
+}
+.lmtttmpts_hidden {
+	display: none !important ; 
+}
+.lmtttmpts_settings label {
+	padding-bottom: 15px;
+}
+#lmtttmpts_lock_options {
+	padding-bottom: 15px;
+}
+#lmtttmpts_block_message_options,
+#lmtttmpts_email_message_options {
+	padding-bottom: 15px;
+}
+.lmtttmpts_little {
+	font-size: 10px;
+}
+.lmtttmpts_little * {
+	font-size: 10px;
+}
+.lmtttmpts_grey {
+	color: #888888;
+}
+td.lmtttmpts_align_top {
+	vertical-align: top;
+}
+.lmtttmpts_block_message_block th,
+.lmtttmpts_email_message_block th {
+	padding-left: 20px;
+}
+.lmtttmpts_block_message_block tr td:first-child,
+.lmtttmpts_email_message_block tr td:first-child {
+	width: 200px;
+}
+#lmtttmpts_notify_options {
+	padding-bottom: 15px;
+}
+#lmtttmpts_interaction_settings th {
+	max-width: 100%;
+	text-align: left;
+}
+tr.lmtttmpts_whitelist {
+	background-color: #CFFED6;
+}
+tr.lmtttmpts_blacklist {
+	background-color: #FFD7D7;
+}
+tr.lmtttmpts_blocked {
+	background-color: #FFFCDC;
+}
