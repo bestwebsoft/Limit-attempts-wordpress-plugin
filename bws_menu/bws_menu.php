@@ -1,7 +1,7 @@
 <?php
 /*
 * Function for displaying BestWebSoft menu
-* Version: 1.3.5
+* Version: 1.3.6
 */
 
 if ( ! function_exists( 'bws_add_menu_render' ) ) {
@@ -268,6 +268,14 @@ if ( ! function_exists( 'bws_add_menu_render' ) ) {
 				'wp_install'	=> '/wp-admin/plugin-install.php?tab=search&s=Limit+Attempts+BestWebSoft&plugin-search-input=Search+Plugins',
 				'settings'		=> 'admin.php?page=limit-attempts.php',
 				'pro_version'	=> 'limit-attempts-pro/limit-attempts-pro.php'
+			),
+			'job-board/job-board.php' => array(
+				'name'			=> 'Job board',
+				'description'	=> 'Allows to create a job-board page on your site.',
+				'link'			=> 'http://bestwebsoft.com/plugin/job-board/?k=b0c504c9ce6edd6692e04222af3fed6f&pn=' . $bws_plugin_info["id"] . '&v=' . $bws_plugin_info["version"] . '&wp_v=' . $wp_version,
+				'download'		=> 'http://bestwebsoft.com/plugin/job-board/?k=b0c504c9ce6edd6692e04222af3fed6f&pn=' . $bws_plugin_info["id"] . '&v=' . $bws_plugin_info["version"] . '&wp_v=' . $wp_version . '#download',
+				'wp_install'	=> '/wp-admin/plugin-install.php?tab=search&type=term&s=Job+board+BestWebSoft&plugin-search-input=Search+Plugins',
+				'settings'		=> 'admin.php?page=job-board.php'
 			)
 		);
 		$bws_plugins_pro	= array(

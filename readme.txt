@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: limit attempts, login, blacklist, whitelist, blocked ip, failed attempts, block, limited attempts, limit attempts plugin, lemet, limet, atempts, attemps, ettempts, etempts, block user, add to blackilist, add to whitelist, unblock, login attempt, block address, block automatically, limit of locks
 Requires at least: 3.6
-Tested up to: 3.9.1
-Stable tag: 1.0.2
+Tested up to: 4.0-beta2
+Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -131,6 +131,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.0.3 - 04.08.2014 =
+* Update : We updated all functionality for wordpress 4.0-beta2.
+* Budfix : Bug with Number of failed attempts is fixed.
+
 = V1.0.2  - 19.06.2014 = 
 * Bugfix : Added support for working with multisite.
 * NEW : Added the ability to customize error messages in login form.
@@ -147,6 +151,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.0.3 =
+We updated all functionality for wordpress 4.0-beta2. Bug with Number of failed attempts is fixed.
 
 = V1.0.2  = 
 Added support for working with multisite. Added the ability to customize error messages in login form. Added the ability to customize customize email messages. Java scripts was added.

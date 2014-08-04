@@ -3,7 +3,7 @@ Plugin Name: Limit Attempts
 Plugin URI: http://bestwebsoft.com/plugin/
 Description: The plugin Limit Attempts allows you to limit rate of login attempts by the ip, and create whitelist and blacklist.
 Author: BestWebSoft
-Version: 1.0.2
+Version: 1.0.3
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -1137,6 +1137,15 @@ if ( ! function_exists( 'lmtttmpts_error_message' ) ) {
 		if ( ( ( lmtttmpts_is_ip_blocked( $ip ) || ( $attempts >= $lmtttmpts_options['allowed_retries']-1 ) ) && ! lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) ) && ( ( function_exists( 'cptch_lmtttmpts_interaction' ) && 0 < count( preg_grep( '/captcha\/captcha.php/', $active_plugins ) ) && ! cptch_lmtttmpts_interaction() ) || ( function_exists( 'cptchpr_lmtttmpts_interaction' ) && 0 < count( preg_grep( '/captcha-pro\/captcha_pro.php/', $active_plugins ) ) && ! cptchpr_lmtttmpts_interaction() ) ) ) {
 			$error = str_replace( array( '%DATE%', '%MAIL%' ) , array( $when, $lmtttmpts_options['email_address'] ), $lmtttmpts_options['blocked_message'] );
 		}
+		if ( isset( $_POST['log'] ) ) {
+			$registered_user = get_user_by( 'login', $_POST['log'] );
+			if ( !$registered_user ) {
+				if ( ( lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) || ( ( $attempts >= $lmtttmpts_options['allowed_retries']-1 ) && $blocks >= $lmtttmpts_options['allowed_locks']-1 ) ) && ! lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) )
+					$error =  str_replace( '%MAIL%' , $lmtttmpts_options['email_address'], $lmtttmpts_options['blacklisted_message'] );
+				if ( ( ( lmtttmpts_is_ip_blocked( $ip ) || ( $attempts >= $lmtttmpts_options['allowed_retries']-1 ) ) && ! lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) ) )
+					$error = str_replace( array( '%DATE%', '%MAIL%' ) , array( $when, $lmtttmpts_options['email_address'] ), $lmtttmpts_options['blocked_message'] );
+			}
+		}
 	}
 }
 
@@ -1306,27 +1315,33 @@ if ( ! function_exists( 'lmtttmpts_authenticate_user' ) ) {
 			FROM `" . $prefix . "failed_attempts` 
 			WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
 		) ;
+		$attempts += 1;
 		$blocks = $wpdb->get_var ( /*quantity of blocks by current user*/
 			"SELECT `block_quantity` 
 			FROM `" . $prefix . "failed_attempts` 
 			WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
 		) ;
-		if ( is_wp_error($user) || ( ! lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) && ! lmtttmpts_is_ip_blocked( $ip ) && $attempts < $lmtttmpts_options['allowed_retries']-1 ) || lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) ) {
-			return $user;
-		}
+		$registered_user = get_user_by( 'login', $_POST['log'] );
 		$error = new WP_Error();
-		if ( ( lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) || ( ( $attempts >= $lmtttmpts_options['allowed_retries']-1 ) && $blocks >= $lmtttmpts_options['allowed_locks']-1 ) ) && ! lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) ) {
+		if ( ( lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) || ( $attempts >= $lmtttmpts_options['allowed_retries'] && $blocks >= $lmtttmpts_options['allowed_locks'] && ( !$registered_user || !wp_check_password($password, $user->user_pass, $user->ID) ) ) ) && ! lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) ) {
 			$error->add( 'lmtttmpts_blacklisted', str_replace( '%MAIL%' , $lmtttmpts_options['email_address'], $lmtttmpts_options['blacklisted_message'] ) );
 			return $error;  /*return error if address blacklisted */
 		}
-		if ( lmtttmpts_is_ip_blocked( $ip ) || ( $attempts >= $lmtttmpts_options['allowed_retries']-1 ) ) {
+		if ( ( lmtttmpts_is_ip_blocked( $ip ) || ( $attempts >= $lmtttmpts_options['allowed_retries'] && ( !$registered_user || !wp_check_password($password, $user->user_pass, $user->ID) ) ) ) && ! lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) ) {
 			$when = ( $wpdb->get_var ( 
 				"SELECT `block_till` 
 				FROM `" . $prefix . "failed_attempts` 
 				WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
 			) ) ;
+			if ( !$when ) {
+				$block_till = current_time( 'timestamp' ) + $lmtttmpts_options['minutes_of_lock'] * 60 + $lmtttmpts_options['hours_of_lock'] * 3600 + $lmtttmpts_options['days_of_lock'] * 86400 ;
+				$when = date ( 'Y-m-d H:i:s', $block_till ) ;
+			}
 			$error->add( 'lmtttmpts_blocked', str_replace( array( '%DATE%', '%MAIL%' ) , array( $when, $lmtttmpts_options['email_address'] ), $lmtttmpts_options['blocked_message'] ) ) ;
 			return $error; /* return error if address blocked */
+		}
+		if ( is_wp_error($user) || ( ! lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) && ! lmtttmpts_is_ip_blocked( $ip ) && ( $attempts <= $lmtttmpts_options['allowed_retries'] ) ) || lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) ) {
+			return $user;
 		}
 		return $error;
 	}
