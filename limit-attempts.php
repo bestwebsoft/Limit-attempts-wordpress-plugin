@@ -3,7 +3,7 @@ Plugin Name: Limit Attempts
 Plugin URI: http://bestwebsoft.com/plugin/
 Description: The plugin Limit Attempts allows you to limit rate of login attempts by the ip, and create whitelist and blacklist.
 Author: BestWebSoft
-Version: 1.0.3
+Version: 1.0.4
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -490,10 +490,10 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			}
 		}
 		/*Realization action in table with blocked addresses*/
-		if ( isset( $_GET['lmtttmpts_reset_block'] ) )
+		if ( isset( $_GET['lmtttmpts_reset_block'] ) && check_admin_referer( 'lmtttmpts_reset_block_' . $_GET['lmtttmpts_reset_block'], 'lmtttmpts_nonce_name' ) )
 			lmtttmpts_reset_block( $_GET['lmtttmpts_reset_block'] );
 		/*Realization bulk action in table with blocked addresses*/
-		if ( ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'reset_blocks' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'reset_blocks' ) ) && isset ( $_POST['ip'] ) ) {
+		if ( ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'reset_blocks' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'reset_blocks' ) ) && isset ( $_POST['ip'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' )	) {
 			$ips = ( $_POST['ip'] );
 			foreach ( $ips as $ip ) {
 				lmtttmpts_reset_block( $ip );
@@ -501,14 +501,14 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			unset( $ip );
 		}
 		/*Realization of added to blacklist*/
-		if ( isset( $_POST['lmtttmpts_add_to_blacklist'] ) 
+		if ( isset( $_POST['lmtttmpts_add_to_blacklist'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) 
 			&& ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$/', str_replace( " ", "", $_POST['lmtttmpts_add_to_blacklist'] ) ) ) )
 			lmtttmpts_add_ip_to_blacklist( str_replace( " ", "", $_POST['lmtttmpts_add_to_blacklist'] ) );
 		/*Realization action in blacklist table*/
-		if ( isset( $_GET['lmtttmpts_remove_from_blacklist'] ) )
+		if ( isset( $_GET['lmtttmpts_remove_from_blacklist'] ) && check_admin_referer( 'lmtttmpts_remove_from_blacklist_' . $_GET['lmtttmpts_remove_from_blacklist'], 'lmtttmpts_nonce_name' ) )
 			lmtttmpts_delete_ip_from_blacklist( $_GET['lmtttmpts_remove_from_blacklist'] );
 		/*Realization bulk action in blacklist table*/
-		if ( ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'remove_from_blacklist_ips' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_blacklist_ips' ) ) && isset ( $_POST['ip'] ) ) {
+		if ( ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'remove_from_blacklist_ips' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_blacklist_ips' ) ) && isset ( $_POST['ip'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) ) {
 			$ips = ( $_POST['ip'] );
 			foreach ( $ips as $ip ) {
 				lmtttmpts_delete_ip_from_blacklist( $ip );
@@ -516,14 +516,14 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			unset( $ip );
 		}
 		/*Realization of added to whitelist*/
-		if ( isset( $_POST['lmtttmpts_add_to_whitelist'] ) 
+		if ( isset( $_POST['lmtttmpts_add_to_whitelist'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) 
 			&& ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$/', str_replace( " ", "", $_POST['lmtttmpts_add_to_whitelist'] ) ) ) )
 			lmtttmpts_add_ip_to_whitelist( str_replace( " ", "", $_POST['lmtttmpts_add_to_whitelist'] ) );
 		/*Realization action in whitelist table*/
-		if ( isset( $_GET['lmtttmpts_remove_from_whitelist'] ) )
+		if ( isset( $_GET['lmtttmpts_remove_from_whitelist'] ) && check_admin_referer( 'lmtttmpts_remove_from_whitelist_' . $_GET['lmtttmpts_remove_from_whitelist'], 'lmtttmpts_nonce_name' ) )
 			lmtttmpts_delete_ip_from_whitelist( $_GET['lmtttmpts_remove_from_whitelist'] ); 
 		/*Realization bulk action in whitelist table*/
-		if ( ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'remove_from_whitelist_ips' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_whitelist_ips' ) ) && isset ( $_POST['ip'] ) ) {
+		if ( ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'remove_from_whitelist_ips' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_whitelist_ips' ) ) && isset ( $_POST['ip'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) ) {
 			$ips = ( $_POST['ip'] );
 			foreach ( $ips as $ip ) {
 				lmtttmpts_delete_ip_from_whitelist( $ip );
@@ -535,14 +535,14 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 		if ( isset( $_GET['tab'] ) && 'go_pro' == $_GET['tab'] ) {
 			global $bstwbsftwppdtplgns_options;
 			$error = $message = "";
-			$bws_license_key = ( isset( $_POST['bws_license_key'] ) ) ? trim( $_POST['bws_license_key'] ) : "";
+			$bws_license_key = ( isset( $_POST['bws_license_key'] ) ) ? trim( esc_html( $_POST['bws_license_key'] ) ) : "";
 
 			if ( isset( $_POST['bws_license_submit'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'bws_license_nonce_name' ) ) {
 				if ( '' != $bws_license_key ) { 
 					if ( strlen( $bws_license_key ) != 18 ) {
 						$error = __( "Wrong license key", 'lmtttmpts' );
 					} else {
-						$bws_license_plugin = trim( $_POST['bws_license_plugin'] );	
+						$bws_license_plugin = stripslashes( esc_html( $_POST['bws_license_plugin'] ) );
 						if ( isset( $bstwbsftwppdtplgns_options['go_pro'][ $bws_license_plugin ]['count'] ) && $bstwbsftwppdtplgns_options['go_pro'][ $bws_license_plugin ]['time'] < ( time() + (24 * 60 * 60) ) ) {
 							$bstwbsftwppdtplgns_options['go_pro'][ $bws_license_plugin ]['count'] = $bstwbsftwppdtplgns_options['go_pro'][ $bws_license_plugin ]['count'] + 1;
 						} else {
@@ -642,10 +642,10 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 		 	}
 		}
 		/* Clear Log */
-		if ( isset( $_POST['lmtttmpts_clear_log_complete_confirm'] ) ) {
+		if ( isset( $_POST['lmtttmpts_clear_log_complete_confirm'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) ) {
 			lmtttmpts_clear_log_completely();
 		} 
-		if ( ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'clear_log_for_ips' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'clear_log_for_ips' ) ) && isset ( $_POST['ip'] ) ) {
+		if ( ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'clear_log_for_ips' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'clear_log_for_ips' ) ) && isset ( $_POST['ip'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) ) {
 			$ips = ( $_POST['ip'] );
 			foreach ( $ips as $ip ) {
 				lmtttmpts_clear_log( $ip );
@@ -962,7 +962,8 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 						<input type="hidden" name="tab" value="blocked" />
 					</form>
 					<form method="post" action="admin.php?page=limit-attempts.php&amp;tab=blocked">
-						<?php $lmtttmpts_blocked_list->display(); ?>
+						<?php $lmtttmpts_blocked_list->display();
+						wp_nonce_field( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ); ?>
 					</form>
 				</div>
 			<?php } elseif ( 'blacklist' == $_GET['tab'] ) { /*Showing blacklist table using wp_list_table class*/ ?>
@@ -970,6 +971,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 					<form method="post" action="admin.php?page=limit-attempts.php&amp;tab=blacklist">
 						<td><input type="text" maxlength="31" name="lmtttmpts_add_to_blacklist" /></td>
 						<td><input type="submit" class="button-secondary" value="<?php _e( 'Add IP to blacklist', 'lmtttmpts' ) ?>" /></td>
+						<?php wp_nonce_field( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ); ?>
 					</form>
 					<span class="lmtttmpts_little lmtttmpts_grey"><?php _e( "Allowed formats:", 'lmtttmpts' ) ?> <code>192.168.0.1</code></span>
 					<?php $lmtttmpts_blacklist_table = new Lmtttmpts_Blacklist();
@@ -980,7 +982,8 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 						<input type="hidden" name="tab" value="blacklist" />
 					</form>
 					<form method="post" action="admin.php?page=limit-attempts.php&amp;tab=blacklist">
-						<?php $lmtttmpts_blacklist_table->display(); ?>
+						<?php $lmtttmpts_blacklist_table->display();
+						wp_nonce_field( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ); ?>
 					</form>
 				</div>
 			<?php } elseif ( 'whitelist' == $_GET['tab'] ) { /*Showing whitelist table using wp_list_table class*/ ?>
@@ -988,6 +991,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 					<form method="post" action="admin.php?page=limit-attempts.php&amp;tab=whitelist">
 						<td><input type="text" maxlength="31" name="lmtttmpts_add_to_whitelist" /></td>
 						<td><input type="submit" class="button-secondary" value="<?php _e( 'Add IP to whitelist', 'lmtttmpts' ) ?>" /></td>
+						<?php wp_nonce_field( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ); ?>
 					</form>
 					<span class="lmtttmpts_little lmtttmpts_grey"><?php _e( "Allowed formats:", 'lmtttmpts' ) ?> <code>192.168.0.1</code></span>
 					<?php $lmtttmpts_whitelist_table = new Lmtttmpts_Whitelist();
@@ -998,16 +1002,18 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 						<input type="hidden" name="tab" value="whitelist" />
 					</form>
 					<form method="post" action="admin.php?page=limit-attempts.php&amp;tab=whitelist">
-						<?php $lmtttmpts_whitelist_table->display(); ?>
+						<?php $lmtttmpts_whitelist_table->display();
+						wp_nonce_field( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ); ?>
 					</form>
 				</div>
 			<?php } elseif ( 'log' == $_GET['tab'] ) { /*Showing log table using wp_list_table class*/ 
-				if ( isset( $_POST['lmtttmpts_clear_log_complete'] ) ) { ?>
+				if ( isset( $_POST['lmtttmpts_clear_log_complete'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) ) { ?>
 					<div id="lmtttmpts_clear_log_confirm">
 						<p><?php _e( 'Are you sure you want to delete all log entries?', 'lmtttmpts' ) ?></p>
 						<form method="post" action="admin.php?page=limit-attempts.php&amp;tab=log">
 							<button class="button" name="lmtttmpts_clear_log_complete_confirm"><?php _e( 'Yes, delete these entries', 'lmtttmpts' ) ?></button>
 							<button class="button" name="lmtttmpts_clear_log_complete_deny"><?php _e( 'No, go back to the Log page', 'lmtttmpts' ) ?></button>
+							<?php wp_nonce_field( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ); ?>
 						</form>
 					</div>
 				<?php } else { ?>
@@ -1020,11 +1026,13 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 							<input type="hidden" name="tab" value="log" />
 						</form>
 						<form method="post" action="admin.php?page=limit-attempts.php&amp;tab=log">
-							<td><input type="hidden" name="lmtttmpts_clear_log_complete" /></td>
-							<td><input type="submit" class="button" value="<?php _e( 'Clear Log', 'lmtttmpts' ) ?>" /></td>
+							<input type="hidden" name="lmtttmpts_clear_log_complete" />
+							<input type="submit" class="button" value="<?php _e( 'Clear Log', 'lmtttmpts' ) ?>" />
+							<?php wp_nonce_field( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ); ?>
 						</form>
 						<form method="post" action="admin.php?page=limit-attempts.php&amp;tab=log">
-							<?php $lmtttmpts_log_list->display(); ?>
+							<?php $lmtttmpts_log_list->display(); 
+							wp_nonce_field( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ); ?>
 						</form>
 					</div>
 				<?php }
@@ -1497,7 +1505,7 @@ if ( ! function_exists( 'lmtttmpts_show_notices' ) ) {
 				</div>
 			<?php }
 		}
-		if ( isset( $_POST['lmtttmpts_add_to_blacklist'] ) ) { 
+		if ( isset( $_POST['lmtttmpts_add_to_blacklist'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) ) { 
 			if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$/', str_replace( " ", "", $_POST['lmtttmpts_add_to_blacklist'] ) ) ) { ?>
 				<div class="updated fade">
 					<?php if ( lmtttmpts_is_ip_in_table( str_replace( " ", "", $_POST['lmtttmpts_add_to_blacklist'] ), 'whitelist' ) ) { /* Show notice when address is in whitelist too*/?>
@@ -1522,12 +1530,13 @@ if ( ! function_exists( 'lmtttmpts_show_notices' ) ) {
 				<?php }
 			}
 		}
-		if ( isset( $_GET['lmtttmpts_remove_from_blacklist'] ) ) { /* Show notice when admin delete address from the blacklist*/?>
+		if ( isset( $_GET['lmtttmpts_remove_from_blacklist'] ) && check_admin_referer( 'lmtttmpts_remove_from_blacklist_' . $_GET['lmtttmpts_remove_from_blacklist'], 'lmtttmpts_nonce_name' ) ) { /* Show notice when admin delete address from the blacklist*/?>
 			<div class="updated fade">
 				<p><strong><?php echo $_GET['lmtttmpts_remove_from_blacklist'], '&nbsp;' ;_e( 'has been deleted from blacklist', 'lmtttmpts' ) ?></strong></p>
 			</div>
 		<?php }
-		if ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'remove_from_blacklist_ips' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_blacklist_ips' ) ) {
+		if ( ( ( isset ( $_POST['action'] ) && $_POST['action'] == 'remove_from_blacklist_ips' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_blacklist_ips' ) ) && 
+			check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) ) {
 			if ( isset( $_POST['ip'] ) ) { /* Show notice when admin delete multiple addresses from the blacklist using Bulk Action*/
 				$ips = implode( ', ', $_POST['ip'] ); ?>
 				<div class="updated fade">
@@ -1539,7 +1548,7 @@ if ( ! function_exists( 'lmtttmpts_show_notices' ) ) {
 				</div>
 			<?php }
 		}
-		if ( isset( $_POST['lmtttmpts_add_to_whitelist'] ) ) { 
+		if ( isset( $_POST['lmtttmpts_add_to_whitelist'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ) ) { 
 			if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$/', str_replace( " ", "", $_POST['lmtttmpts_add_to_whitelist'] ) ) ) { ?>
 				<div class="updated fade">
 				<?php 
@@ -1565,7 +1574,7 @@ if ( ! function_exists( 'lmtttmpts_show_notices' ) ) {
 				<?php }
 			}
 		}
-		if ( isset( $_GET['lmtttmpts_remove_from_whitelist'] ) ) {/* Show notice when admin delete address from the whitelist*/ ?>
+		if ( isset( $_GET['lmtttmpts_remove_from_whitelist'] ) && check_admin_referer( 'lmtttmpts_remove_from_whitelist_' . $_GET['lmtttmpts_remove_from_whitelist'], 'lmtttmpts_nonce_name' ) ) {/* Show notice when admin delete address from the whitelist*/ ?>
 			<div class="updated fade">
 				<p><strong><?php echo $_GET['lmtttmpts_remove_from_whitelist'], '&nbsp;' ;_e( 'has been deleted from whitelist', 'lmtttmpts' ) ?></strong></p>
 			</div>
@@ -1643,7 +1652,7 @@ class Lmtttmpts_Blocked_list extends WP_List_Table {
 
 	function column_ip( $item ) { /* adding action to 'ip' collumn */
 		$actions = array(
-			'reset_block'	=> sprintf('<a href="?page=%s&tab=%s&lmtttmpts_reset_block=%s">' . __( 'Reset block', 'lmtttmpts' ) ,$_GET['page'],$_GET['tab'], $item['ip'] ),
+			'reset_block'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&tab=%s&lmtttmpts_reset_block=%s' ,$_GET['page'],$_GET['tab'], $item['ip'] ) , 'lmtttmpts_reset_block_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Reset block', 'lmtttmpts' ),
 		);
 		return sprintf('%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 	}
@@ -1733,7 +1742,7 @@ class Lmtttmpts_Blacklist extends WP_List_Table {
 
 	function column_ip( $item ) {/* adding action to 'ip' collumn */
 		$actions = array(
-			'remove_from_blacklist'	=> sprintf('<a href="?page=%s&tab=%s&lmtttmpts_remove_from_blacklist=%s">' . __( 'Remove from blacklist', 'lmtttmpts' ) ,$_GET['page'],$_GET['tab'], $item['ip'] ),
+			'remove_from_blacklist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&tab=%s&lmtttmpts_remove_from_blacklist=%s' ,$_GET['page'],$_GET['tab'], $item['ip'] ) , 'lmtttmpts_remove_from_blacklist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Remove from blacklist', 'lmtttmpts' ),
 		);
 		return sprintf('%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 	}
@@ -1824,7 +1833,7 @@ class Lmtttmpts_Whitelist extends WP_List_Table {
 
 	function column_ip( $item ) { /* adding action to 'ip' collumn */
 		$actions = array(
-			'remove_from_whitelist'	=> sprintf('<a href="?page=%s&tab=%s&lmtttmpts_remove_from_whitelist=%s">' . __( 'Remove from whitelist', 'lmtttmpts' ) ,$_GET['page'],$_GET['tab'], $item['ip'] ),
+			'remove_from_whitelist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&tab=%s&lmtttmpts_remove_from_whitelist=%s' ,$_GET['page'],$_GET['tab'], $item['ip'] ) , 'lmtttmpts_remove_from_whitelist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Remove from whitelist', 'lmtttmpts' ),
 		);
 		return sprintf('%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 	}
@@ -1879,7 +1888,7 @@ class Lmtttmpts_Whitelist extends WP_List_Table {
 	}
 
 	function column_default( $item, $column_name ) { /* setting default view for collumn items */
-		switch( $column_name ) {
+		switch ( $column_name ) {
 			case 'ip':
 			case 'ip_from':
 			case 'ip_to':
@@ -2365,8 +2374,7 @@ if ( ! function_exists( 'lmtttmpts_clear_log_completely' ) ) {
 	function lmtttmpts_clear_log_completely() {
 		global $wpdb;
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
-		$sql = "DELETE FROM `" . $prefix . "all_failed_attempts`";
-		$wpdb->query( $sql );
+		$wpdb->query( "DELETE FROM `" . $prefix . "all_failed_attempts`" );
 	}
 }
 
