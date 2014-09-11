@@ -3,7 +3,7 @@ Plugin Name: Limit Attempts
 Plugin URI: http://bestwebsoft.com/plugin/
 Description: The plugin Limit Attempts allows you to limit rate of login attempts by the ip, and create whitelist and blacklist.
 Author: BestWebSoft
-Version: 1.0.4
+Version: 1.0.5
 Author URI: http://bestwebsoft.com/
 License: GPLv3 or later
 */
@@ -1191,7 +1191,7 @@ if ( ! function_exists( 'lmtttmpts_login_failed' ) ) {
 					array( '%s', '%s' )
 				);
 			}
-			$failed_attempts = ( $wpdb->get_var ( 
+			$failed_attempts = ( $wpdb->get_var( 
 				"SELECT `failed_attempts` 
 				FROM `" . $prefix . "failed_attempts` 
 				WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
@@ -1217,7 +1217,7 @@ if ( ! function_exists( 'lmtttmpts_login_failed' ) ) {
 					array( '%s', '%s' )
 				);
 			}
-			$all_failed_attempts = ( $wpdb->get_var ( 
+			$all_failed_attempts = ( $wpdb->get_var( 
 				"SELECT `failed_attempts` 
 				FROM `" . $prefix . "all_failed_attempts` 
 				WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
@@ -1231,7 +1231,7 @@ if ( ! function_exists( 'lmtttmpts_login_failed' ) ) {
 				array( '%s' )
 			);
 			if ( $failed_attempts +1 >= $lmtttmpts_options['allowed_retries'] ) { /*if user exceeded allow retries then reset number of failed attempts, set block to true and set time when block will be reset*/
-				$block_quantity = ( $wpdb->get_var ( 
+				$block_quantity = ( $wpdb->get_var( 
 					"SELECT `block_quantity` 
 					FROM `" . $prefix . "failed_attempts` 
 					WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
@@ -1259,7 +1259,7 @@ if ( ! function_exists( 'lmtttmpts_login_failed' ) ) {
 				if ( $block_quantity == 0 ) { /*if this first block (maybe after reset) then they will be reset after some time*/
 					wp_schedule_single_event( time() + $lmtttmpts_options['minutes_to_reset_block'] * 60 + $lmtttmpts_options['hours_to_reset_block'] * 3600 + $lmtttmpts_options['days_to_reset_block'] * 86400 , 'lmtttmpts_event_for_reset_block_quantity', array( $ip ) );
 				}
-				$all_block_quantity = ( $wpdb->get_var ( 
+				$all_block_quantity = ( $wpdb->get_var( 
 					"SELECT `block_quantity` 
 					FROM `" . $prefix . "all_failed_attempts` 
 					WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
@@ -1318,13 +1318,13 @@ if ( ! function_exists( 'lmtttmpts_authenticate_user' ) ) {
 		}
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
 		$ip = lmtttmpts_get_address();
-		$attempts = $wpdb->get_var (  /*quantity of attempts by current user*/
+		$attempts = $wpdb->get_var(  /*quantity of attempts by current user*/
 			"SELECT `failed_attempts` 
 			FROM `" . $prefix . "failed_attempts` 
 			WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
 		) ;
 		$attempts += 1;
-		$blocks = $wpdb->get_var ( /*quantity of blocks by current user*/
+		$blocks = $wpdb->get_var( /*quantity of blocks by current user*/
 			"SELECT `block_quantity` 
 			FROM `" . $prefix . "failed_attempts` 
 			WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
@@ -1336,19 +1336,19 @@ if ( ! function_exists( 'lmtttmpts_authenticate_user' ) ) {
 			return $error;  /*return error if address blacklisted */
 		}
 		if ( ( lmtttmpts_is_ip_blocked( $ip ) || ( $attempts >= $lmtttmpts_options['allowed_retries'] && ( !$registered_user || !wp_check_password($password, $user->user_pass, $user->ID) ) ) ) && ! lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) ) {
-			$when = ( $wpdb->get_var ( 
+			$when = ( $wpdb->get_var( 
 				"SELECT `block_till` 
 				FROM `" . $prefix . "failed_attempts` 
 				WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
 			) ) ;
-			if ( !$when ) {
+			if ( ! $when ) {
 				$block_till = current_time( 'timestamp' ) + $lmtttmpts_options['minutes_of_lock'] * 60 + $lmtttmpts_options['hours_of_lock'] * 3600 + $lmtttmpts_options['days_of_lock'] * 86400 ;
 				$when = date ( 'Y-m-d H:i:s', $block_till ) ;
 			}
 			$error->add( 'lmtttmpts_blocked', str_replace( array( '%DATE%', '%MAIL%' ) , array( $when, $lmtttmpts_options['email_address'] ), $lmtttmpts_options['blocked_message'] ) ) ;
 			return $error; /* return error if address blocked */
 		}
-		if ( is_wp_error($user) || ( ! lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) && ! lmtttmpts_is_ip_blocked( $ip ) && ( $attempts <= $lmtttmpts_options['allowed_retries'] ) ) || lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) ) {
+		if ( is_wp_error( $user ) || ( ! lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) && ! lmtttmpts_is_ip_blocked( $ip ) && ( $attempts <= $lmtttmpts_options['allowed_retries'] ) ) || lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) ) {
 			return $user;
 		}
 		return $error;
@@ -1652,7 +1652,7 @@ class Lmtttmpts_Blocked_list extends WP_List_Table {
 
 	function column_ip( $item ) { /* adding action to 'ip' collumn */
 		$actions = array(
-			'reset_block'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&tab=%s&lmtttmpts_reset_block=%s' ,$_GET['page'],$_GET['tab'], $item['ip'] ) , 'lmtttmpts_reset_block_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Reset block', 'lmtttmpts' ),
+			'reset_block'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&tab=%s&lmtttmpts_reset_block=%s' ,$_GET['page'],$_GET['tab'], $item['ip'] ) , 'lmtttmpts_reset_block_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Reset block', 'lmtttmpts' ) . '</a>'
 		);
 		return sprintf('%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 	}
@@ -1742,9 +1742,9 @@ class Lmtttmpts_Blacklist extends WP_List_Table {
 
 	function column_ip( $item ) {/* adding action to 'ip' collumn */
 		$actions = array(
-			'remove_from_blacklist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&tab=%s&lmtttmpts_remove_from_blacklist=%s' ,$_GET['page'],$_GET['tab'], $item['ip'] ) , 'lmtttmpts_remove_from_blacklist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Remove from blacklist', 'lmtttmpts' ),
+			'remove_from_blacklist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&tab=%s&lmtttmpts_remove_from_blacklist=%s' ,$_GET['page'],$_GET['tab'], $item['ip'] ) , 'lmtttmpts_remove_from_blacklist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Remove from blacklist', 'lmtttmpts' ) . '</a>'
 		);
-		return sprintf('%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
+		return sprintf( '%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 	}
 
 	function get_bulk_actions() {/* adding bulk action */
@@ -1755,9 +1755,7 @@ class Lmtttmpts_Blacklist extends WP_List_Table {
 	}
 
 	function column_cb( $item ) { /* customize displaying cb collumn */
-		return sprintf(
-			'<input type="checkbox" name="ip[]" value="%s" />', $item['ip']
-		);
+		return sprintf( '<input type="checkbox" name="ip[]" value="%s" />', $item['ip'] );
 	}
 
 	function prepare_items() { /* preparing table items */
@@ -1772,7 +1770,7 @@ class Lmtttmpts_Blacklist extends WP_List_Table {
 		}
 		$orderby = ( isset( $_GET['orderby'] ) && in_array( $_GET['orderby'], array_keys( $this->get_sortable_columns() ) ) ) ? $_GET['orderby'] : 'ip';
 		$order = ( isset( $_GET['order'] ) && in_array( $_GET['order'], array('asc', 'desc') ) ) ? $_GET['order'] : 'asc';
-		$query .= " ORDER BY `" . $orderby. "` " . $order;
+		$query .= " ORDER BY `" . $orderby . "` " . $order;
 		$totalitems = $wpdb->query( $query );
 		$perpage = $this->get_items_per_page( 'addresses_per_page', 20 );
 		$paged = ! empty( $_GET['paged'] ) ? $_GET['paged'] : '';
@@ -1833,7 +1831,7 @@ class Lmtttmpts_Whitelist extends WP_List_Table {
 
 	function column_ip( $item ) { /* adding action to 'ip' collumn */
 		$actions = array(
-			'remove_from_whitelist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&tab=%s&lmtttmpts_remove_from_whitelist=%s' ,$_GET['page'],$_GET['tab'], $item['ip'] ) , 'lmtttmpts_remove_from_whitelist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Remove from whitelist', 'lmtttmpts' ),
+			'remove_from_whitelist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&tab=%s&lmtttmpts_remove_from_whitelist=%s' ,$_GET['page'],$_GET['tab'], $item['ip'] ) , 'lmtttmpts_remove_from_whitelist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Remove from whitelist', 'lmtttmpts' ) . '</a>'
 		);
 		return sprintf('%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 	}
@@ -1872,7 +1870,7 @@ class Lmtttmpts_Whitelist extends WP_List_Table {
 		}
 		$totalpages = ceil( $totalitems / $perpage );
 		if ( ! empty( $paged ) && ! empty( $perpage ) ) {
-			$offset = ($paged - 1) * $perpage;
+			$offset = ( $paged - 1 ) * $perpage;
 			$query .= " LIMIT " . $offset . "," . $perpage;
 		}
 		 $this->set_pagination_args( array(
@@ -2080,7 +2078,7 @@ if ( !function_exists( 'lmtttmpts_is_ip_blocked' ) ) {
 	function lmtttmpts_is_ip_blocked( $ip ) {
 		global $wpdb;
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
-		$is_blocked = ( $wpdb->get_var ( 
+		$is_blocked = ( $wpdb->get_var( 
 			"SELECT `block` 
 			FROM `" . $prefix . "failed_attempts` 
 			WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
@@ -2530,7 +2528,7 @@ if ( ! function_exists( 'lmtttmpts_failed_with_captcha' ) ) {
 					array( '%s', '%s' )
 				);
 			}
-			$failed_attempts = ( $wpdb->get_var ( 
+			$failed_attempts = ( $wpdb->get_var( 
 				"SELECT `failed_attempts` 
 				FROM `" . $prefix . "failed_attempts` 
 				WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
@@ -2556,12 +2554,12 @@ if ( ! function_exists( 'lmtttmpts_failed_with_captcha' ) ) {
 					array( '%s', '%s' )
 				);
 			}
-			$all_failed_attempts = ( $wpdb->get_var ( 
+			$all_failed_attempts = ( $wpdb->get_var( 
 				"SELECT `failed_attempts` 
 				FROM `" . $prefix . "all_failed_attempts` 
 				WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
 			) );
-			$form_failed_attempts = ( $wpdb->get_var (
+			$form_failed_attempts = ( $wpdb->get_var(
 				"SELECT `invalid_captcha_from_" . $form . "` 
 				FROM `" . $prefix . "all_failed_attempts` 
 				WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'"
@@ -2575,7 +2573,7 @@ if ( ! function_exists( 'lmtttmpts_failed_with_captcha' ) ) {
 				array( '%s' )
 			);
 			if ( $failed_attempts +1 >= $lmtttmpts_options['allowed_retries'] ) { /*if user exceeded allow retries then reset number of failed attempts, set block to true and set time when block will be reset*/
-				$block_quantity = ( $wpdb->get_var ( 
+				$block_quantity = ( $wpdb->get_var( 
 					"SELECT `block_quantity` 
 					FROM `" . $prefix . "failed_attempts` 
 					WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 
@@ -2583,7 +2581,7 @@ if ( ! function_exists( 'lmtttmpts_failed_with_captcha' ) ) {
 				$block_till = current_time( 'timestamp' ) + $lmtttmpts_options['minutes_of_lock'] * 60 + $lmtttmpts_options['hours_of_lock'] * 3600 + $lmtttmpts_options['days_of_lock'] * 86400 ;
 				$wpdb->update(
 					$prefix . 'failed_attempts',
-					array( 'block' 		=> true, 
+					array( 'block' 			=> true, 
 						'failed_attempts' 	=> 0, 
 						'block_quantity' 	=> $block_quantity + 1, 
 						'block_till' 		=> date ( 'Y-m-d H:i:s', $block_till ) ),
@@ -2603,7 +2601,7 @@ if ( ! function_exists( 'lmtttmpts_failed_with_captcha' ) ) {
 				if ( $block_quantity == 0 ) { /*if this first block (maybe after reset) then they will be reset after some time*/
 					wp_schedule_single_event( time() + $lmtttmpts_options['minutes_to_reset_block'] * 60 + $lmtttmpts_options['hours_to_reset_block'] * 3600 + $lmtttmpts_options['days_to_reset_block'] * 86400 , 'lmtttmpts_event_for_reset_block_quantity', array( $ip ) );
 				}
-				$all_block_quantity = ( $wpdb->get_var ( 
+				$all_block_quantity = ( $wpdb->get_var( 
 					"SELECT `block_quantity` 
 					FROM `" . $prefix . "all_failed_attempts` 
 					WHERE `ip_int` = '" . sprintf( '%u', ip2long( $ip ) ) . "'" 

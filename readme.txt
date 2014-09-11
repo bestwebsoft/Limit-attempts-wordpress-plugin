@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: limit attempts, login, blacklist, whitelist, blocked ip, failed attempts, block, limited attempts, limit attempts plugin, lemet, limet, atempts, attemps, ettempts, etempts, block user, add to blackilist, add to whitelist, unblock, login attempt, block address, block automatically, limit of locks
 Requires at least: 3.6
-Tested up to: 4.0-beta3
-Stable tag: 1.0.4
+Tested up to: 4.0
+Stable tag: 1.0.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -131,6 +131,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.0.5 - 11.09.2014 =
+* Update : We updated all functionality for wordpress 4.0.
+* Bugfix : Added missing closing tags </a>.
+
 = V1.0.4 - 08.08.2014 =
 * Budfix : Security Exploit was fixed.
 
@@ -154,6 +158,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.0.5 =
+We updated all functionality for wordpress 4.0. Added missing closing tags </a>.
 
 = V1.0.4 =
 Security Exploit was fixed.
