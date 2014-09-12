@@ -14,6 +14,8 @@ The plugin Limit Attempts allows you to limit rate of login attempts by the ip, 
 
 Limit Attempts is a plugin developed by BestWebSoft, which was designed to manage the access to user's website. With this plugin, you can limit user's attempts to log in to your website and, consequently, block the user for a certain period of time. Apart from that, Limit Attempts allows users to create and edit black- and whitelists with the aim of controlling the access to the site and its content. Also, with this plugin, users will be able to specify the settings for adding an address to the blacklist, as well as be aware of everything that is going on your website by sending email notifications about blocking. Moreover, this plugin is compatible with htaccess, thus, you can minimize server workload by adding IP address blocking data to htaccess file. 
 
+http://www.youtube.com/watch?v=xZCTEjVfu4Q
+
 <a href="http://wordpress.org/plugins/limit-attempts/faq/" target="_blank">FAQ</a>
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
