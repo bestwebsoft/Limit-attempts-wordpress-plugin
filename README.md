@@ -5,12 +5,12 @@ Limit Attempts is a plugin developed by BestWebSoft, which was designed to manag
 
 <img src="http://bestwebsoft.com/wp-content/uploads/2014/07/limit-attempts-banner-website.jpg" />
 
-<a href="http://bestwebsoft.com/plugin/limit-attempts/#description" target=_blank>Description</a> | 
-<a href="http://bestwebsoft.com/plugin/limit-attempts/#installation" target=_blank>Installation</a> | 
-<a href="http://bestwebsoft.com/plugin/limit-attempts/#faq" target=_blank>FAQ</a> | 
-<a href="http://bestwebsoft.com/plugin/limit-attempts/#screenshots" target=_blank>Screenshots</a> | 
-<a href="http://bestwebsoft.com/plugin/limit-attempts/#changelog" target=_blank>Changelog</a> | 
-<a href="http://bestwebsoft.com/plugin/limit-attempts/#download" target=_blank>Download</a>
+<a href="http://bestwebsoft.com/products/limit-attempts/description" target=_blank>Description</a> | 
+<a href="http://bestwebsoft.com/products/limit-attempts/installation" target=_blank>Installation</a> | 
+<a href="http://bestwebsoft.com/products/limit-attempts/faq" target=_blank>FAQ</a> | 
+<a href="http://bestwebsoft.com/products/limit-attempts/screenshots" target=_blank>Screenshots</a> | 
+<a href="http://bestwebsoft.com/products/limit-attempts/changelog" target=_blank>Changelog</a> | 
+<a href="http://bestwebsoft.com/products/limit-attempts/download" target=_blank>Download</a>
 
 
 Features
