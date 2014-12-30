@@ -5,7 +5,8 @@
 #lmtttmpts_blocked,
 #lmtttmpts_blacklist,
 #lmtttmpts_whitelist,
-#lmtttmpts_log {
+#lmtttmpts_log,
+#lmtttmpts_statistics {
 	padding-top: 15px;
 }
 .bws-plugin-reviews {
@@ -20,10 +21,7 @@
 #lmtttmpts_lock_options {
 	padding-bottom: 15px;
 }
-#lmtttmpts_block_message_options,
-#lmtttmpts_email_message_options {
-	padding-bottom: 15px;
-}
+
 .lmtttmpts_little {
 	font-size: 10px;
 }
@@ -44,6 +42,11 @@ td.lmtttmpts_align_top {
 .lmtttmpts_email_message_block tr td:first-child {
 	width: 200px;
 }
+
+.lmtttmpts_block_message_block td ul {
+	margin: 0px;
+}
+
 #lmtttmpts_notify_options {
 	padding-bottom: 15px;
 }
@@ -59,4 +62,24 @@ tr.lmtttmpts_blacklist {
 }
 tr.lmtttmpts_blocked {
 	background-color: #FFFCDC;
+}
+
+.lmtttmpts_options_table input,
+.lmtttmpts_options_table_demo input {
+	text-align: right;
+}
+
+.lmtttmpts-unit-measure {
+	margin-left: 2px;
+	font-weight: 900;
+}
+
+.lmtttmpts-edit {
+	cursor: pointer;
+	color: #0074a2;
+	margin-left: 5px;
+}
+.lmtttmpts_options_table input[type='number'],
+.lmtttmpts_options_table_demo input[type='number'] {
+	width: 5em;
 }

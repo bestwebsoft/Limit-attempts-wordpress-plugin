@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
 Tags: limit attempts, login, blacklist, whitelist, blocked ip, failed attempts, block, limited attempts, limit attempts plugin, lemet, limet, atempts, attemps, ettempts, etempts, block user, add to blackilist, add to whitelist, unblock, login attempt, block address, block automatically, limit of locks
 Requires at least: 3.6
-Tested up to: 4.0
-Stable tag: 1.0.5
+Tested up to: 4.1
+Stable tag: 1.0.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,14 +12,14 @@ The plugin Limit Attempts allows you to limit rate of login attempts by the ip, 
 
 == Description ==
 
-Limit Attempts is a plugin developed by BestWebSoft, which was designed to manage the access to user's website. With this plugin, you can limit user's attempts to log in to your website and, consequently, block the user for a certain period of time. Apart from that, Limit Attempts allows users to create and edit black- and whitelists with the aim of controlling the access to the site and its content. Also, with this plugin, users will be able to specify the settings for adding an address to the blacklist, as well as be aware of everything that is going on your website by sending email notifications about blocking. Moreover, this plugin is compatible with htaccess, thus, you can minimize server workload by adding IP address blocking data to htaccess file. 
+Limit Attempts - This plugin allows you to limit users' attempts to log in to your website, as well as create and edit black- and whitelists. This way, you will be able to manage access to your website and its content and protect it from spam and unwanted visitors. There is also a premium version of Limit Attempts plugin - Limit Attempts Pro, with more useful features available. With the pro version, you recieve a possibility to add ranges of IP addresses or IP masks to black- and whitelists. Also, it is compatible with Captcha Pro plugin, so all functionality of Limit Attempts Pro can be applied to all forms when Captcha Pro is activated.
 
 http://www.youtube.com/watch?v=xZCTEjVfu4Q
 
 <a href="http://wordpress.org/plugins/limit-attempts/faq/" target="_blank">FAQ</a>
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
-<a href="http://bestwebsoft.com/plugin/limit-attempts-pro/?k=cb8137a688618f00aad733d4b0b2d014" target="_blank">Upgrade to Pro Version</a>
+<a href="http://bestwebsoft.com/products/limit-attempts/?k=cb8137a688618f00aad733d4b0b2d014" target="_blank">Upgrade to Pro Version</a>
 
 = Features = 
 
@@ -126,12 +126,17 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 4. Tab with Blocked adresses.
 5. Tab with Blacklist settings.
 6. Tab with Whitelist settings.
-7. Tab with Log.
+7. Tab with Statistics.
 8. Message with allowed retries.
 9. Message with error when user has been blocked.
 10. Message with error when user has been added to the blacklist.
 
 == Changelog ==
+
+= V1.0.6 - 30.12.2014 =
+* Update : Settings tab on plugin settings page was updated (interactivity was improved).
+* Update : The name of the 'Log' tab on the plugin settings page was changed to 'Statistics'.
+* Bugfix : Performance issue on 'Statistics' page was fixed.
 
 = V1.0.5 - 11.09.2014 =
 * Update : We updated all functionality for wordpress 4.0.
@@ -160,6 +165,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.0.6 =
+Settings tab on plugin settings page was updated (interactivity was improved). The name of the 'Log' tab on the plugin settings page was changed to 'Statistics'. Performance issue on 'Statistics' page was fixed.
 
 = V1.0.5 =
 We updated all functionality for wordpress 4.0. Added missing closing tags </a>.
