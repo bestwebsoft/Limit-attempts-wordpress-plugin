@@ -4,7 +4,7 @@ Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&
 Tags: limit attempts, login, blacklist, whitelist, blocked ip, failed attempts, block, limited attempts, limit attempts plugin, lemet, limet, atempts, attemps, ettempts, etempts, block user, add to blackilist, add to whitelist, unblock, login attempt, block address, block automatically, limit of locks
 Requires at least: 3.6
 Tested up to: 4.1
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -133,6 +133,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.0.7 - 30.01.2015 =
+* Update : Compatibility with new Htaccess was added.
+* Update : The work of IP unblocking function was improved.
+
 = V1.0.6 - 30.12.2014 =
 * Update : Settings tab on plugin settings page was updated (interactivity was improved).
 * Update : The name of the 'Log' tab on the plugin settings page was changed to 'Statistics'.
@@ -165,6 +169,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.0.7 =
+Compatibility with new Htaccess was added. The work of IP unblocking function was improved.
 
 = V1.0.6 =
 Settings tab on plugin settings page was updated (interactivity was improved). The name of the 'Log' tab on the plugin settings page was changed to 'Statistics'. Performance issue on 'Statistics' page was fixed.
