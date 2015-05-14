@@ -1,10 +1,10 @@
-=== Limit Attempts ===
+=== Limit Attempts by BestWebSoft ===
 Contributors: bestwebsoft
-Donate link: https://www.2checkout.com/checkout/purchase?sid=1430388&quantity=1&product_id=94
+Donate link: http://bestwebsoft.com/donate/
 Tags: limit attempts, login, blacklist, whitelist, blocked ip, failed attempts, block, limited attempts, limit attempts plugin, lemet, limet, atempts, attemps, ettempts, etempts, block user, add to blackilist, add to whitelist, unblock, login attempt, block address, block automatically, limit of locks
 Requires at least: 3.6
-Tested up to: 4.1
-Stable tag: 1.0.7
+Tested up to: 4.2.2
+Stable tag: 1.0.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,19 +23,20 @@ http://www.youtube.com/watch?v=xZCTEjVfu4Q
 
 = Features = 
 
-* Actions: Blocks IP addresses when the limit of login attempts is reached. 
-* Actions: Adds IP addresses to the blacklist upon reaching the limit of locks. 
-* Actions: Allows adjusting the settings for blocking and automatic adding to the blacklist. 
-* Display: Keeps a log, in which the overall number of failed login attempts and the number of locks is documented, and shows the currents status. 
-* Actions: Allows adding single IP addresses to black- and whitelists. 
-* Notify: Sends email notifications to the administartor. 
-* Display: Allows customizing messages that are displayed in case of the failed login attempt, address blocking or when an address is added to the blacklist. 
-* Display: Allows customizing the text and layout of an email message that is sent to the administrator when an address is automatically blocked or added to the blacklist. 
-* Actions: Is compatible with Htaccess plugin (by BestWebSoft), allowing to add IP address blocking data to htaccess file. 
-* Actions: Is compatible with Captcha plugin (by BestWebSoft), allowing to specify whether an incorrect captcha input should be considered a failed login attempt. 
+* Blocks IP addresses when the limit of login attempts is reached. 
+* Adds IP addresses to the blacklist upon reaching the limit of locks. 
+* Allows adjusting the settings for blocking and automatic adding to the blacklist. 
+* Keeps a log, in which the overall number of failed login attempts and the number of locks is documented, and shows the currents status. 
+* Allows adding single IP addresses to black- and whitelists. 
+* Sends email notifications to the administartor. 
+* Allows customizing messages that are displayed in case of the failed login attempt, address blocking or when an address is added to the blacklist. 
+* Allows customizing the text and layout of an email message that is sent to the administrator when an address is automatically blocked or added to the blacklist. 
+* Is compatible with Htaccess plugin (by BestWebSoft), allowing to add IP address blocking data to htaccess file. 
+* Is compatible with Captcha plugin (by BestWebSoft), allowing to specify whether an incorrect captcha input should be considered a failed login attempt. 
 
 = Translation =
 
+* Polish (pl_PL) (thanks to <a href="mailto:dabek1812@gmail.com">Damian Dąbrowski</a>)
 * Russian (ru_RU)
 * Ukrainian (uk)
 
@@ -55,6 +56,8 @@ We can fix some things for free for the users who provide translation of our plu
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
 3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" > "Limit Attempts".
 4. Set your own options or use defaylts, create, if you need, whitelist or/and blacklist.
+
+<a href="https://docs.google.com/document/d/1zBn8PxGMR7v6hWJgT2vogwzP_rzJ6IipbxACnmuNa6E/edit" target="_blank">View a Step-by-step Instruction on Limit Attempts Installation</a>
 
 == Frequently Asked Questions ==
 
@@ -113,6 +116,7 @@ This may happen when you enable sending email notifications. No need to worry, y
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
 Please make sure that the problem hasn't been discussed yet on our forum (<a href="http://support.bestwebsoft.com" target="_blank">http://support.bestwebsoft.com</a>). If no, please provide the following data along with your problem's description:
+
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
@@ -132,6 +136,13 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 10. Message with error when user has been added to the blacklist.
 
 == Changelog ==
+
+= V1.0.8 - 14.05.2015 =
+* NEW : The Polish language file is added.
+* Bugfix: Undefined user blocking after plugin activation is fixed.
+* Bugfix: Access priority when IP is included to the black- and whitelist at the same time (blacklist has higher priority).
+* NEW: Ability to search by part IP.
+* NEW: Additional notifications on the plugin pages.
 
 = V1.0.7 - 30.01.2015 =
 * Update : Compatibility with new Htaccess was added.
@@ -169,6 +180,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.0.8 =
+The Polish language file is added. Undefined user blocking after plugin activation is fixed. Access priority when IP is included to the black- and whitelist at the same time (blacklist has higher priority). Ability to search by part IP. Additional notifications on the plugin pages.
 
 = V1.0.7 =
 Compatibility with new Htaccess was added. The work of IP unblocking function was improved.
