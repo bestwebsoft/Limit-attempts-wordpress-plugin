@@ -4,7 +4,7 @@ Donate link: http://bestwebsoft.com/donate/
 Tags: limit attempts, login, blacklist, whitelist, blocked ip, failed attempts, block, limited attempts, limit attempts plugin, lemet, limet, atempts, attemps, ettempts, etempts, block user, add to blackilist, add to whitelist, unblock, login attempt, block address, block automatically, limit of locks
 Requires at least: 3.6
 Tested up to: 4.2.2
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,6 +17,7 @@ Limit Attempts - This plugin allows you to limit users' attempts to log in to yo
 http://www.youtube.com/watch?v=xZCTEjVfu4Q
 
 <a href="http://wordpress.org/plugins/limit-attempts/faq/" target="_blank">FAQ</a>
+
 <a href="http://support.bestwebsoft.com" target="_blank">Support</a>
 
 <a href="http://bestwebsoft.com/products/limit-attempts/?k=cb8137a688618f00aad733d4b0b2d014" target="_blank">Upgrade to Pro Version</a>
@@ -137,6 +138,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.0.9 - 12.06.2015 =
+* Bugfix: We changed the mechanism of unlocking IP addresses on the timer.
+
 = V1.0.8 - 14.05.2015 =
 * NEW : The Polish language file is added.
 * Bugfix: Undefined user blocking after plugin activation is fixed.
@@ -180,6 +184,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.0.9 =
+We changed the mechanism of unlocking IP addresses on the timer.
 
 = V1.0.8 =
 The Polish language file is added. Undefined user blocking after plugin activation is fixed. Access priority when IP is included to the black- and whitelist at the same time (blacklist has higher priority). Ability to search by part IP. Additional notifications on the plugin pages.

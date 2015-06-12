@@ -9,7 +9,11 @@
 #lmtttmpts_statistics {
 	padding-top: 15px;
 }
-.bws-plugin-reviews {
+#lmtttmpts_blocked + .bws-plugin-reviews,
+#lmtttmpts_blacklist + .bws-plugin-reviews,
+#lmtttmpts_whitelist + .bws-plugin-reviews,
+#lmtttmpts_log + .bws-plugin-reviews,
+#lmtttmpts_statistics + .bws-plugin-reviews {
 	margin-top: 45px;
 }
 .lmtttmpts_hidden {
@@ -54,26 +58,26 @@ td.lmtttmpts_align_top {
 	max-width: 100%;
 	text-align: left;
 }
-tr.lmtttmpts_whitelist {
+tr.lmtttmpts_whitelist,
+.striped > tbody tr.lmtttmpts_whitelist {
 	background-color: #CFFED6;
 }
-tr.lmtttmpts_blacklist {
+tr.lmtttmpts_blacklist,
+.striped > tbody tr.lmtttmpts_blacklist {
 	background-color: #FFD7D7;
 }
-tr.lmtttmpts_blocked {
+tr.lmtttmpts_blocked,
+.striped > tbody tr.lmtttmpts_blocked {
 	background-color: #FFFCDC;
 }
-
 .lmtttmpts_options_table input,
 .lmtttmpts_options_table_demo input {
 	text-align: right;
 }
-
 .lmtttmpts-unit-measure {
 	margin-left: 2px;
 	font-weight: 900;
 }
-
 .lmtttmpts-edit {
 	cursor: pointer;
 	color: #0074a2;
