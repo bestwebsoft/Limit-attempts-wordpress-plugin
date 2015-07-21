@@ -176,6 +176,7 @@
 					/* remove blocks not neccessary elements */
 					$( '.lmtttmpts-restore-default-message' ).remove();
 					name = 'lmtttmpts_' + restoreMessage;
+					$( '.updated, .error' ).not( '#lmtttmpts_settings_notice' ).hide();
 					$( '#lmtttmpts_settings' ).find( 'textarea[name="' + name + '"]' ).val( data['restored_message_text'] );
 					$( '#lmtttmpts_settings_notice' ).after( data['admin_notice_message'] );
 				},

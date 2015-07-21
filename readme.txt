@@ -4,7 +4,7 @@ Donate link: http://bestwebsoft.com/donate/
 Tags: limit attempts, login, blacklist, whitelist, blocked ip, failed attempts, block, limited attempts, limit attempts plugin, lemet, limet, atempts, attemps, ettempts, etempts, block user, add to blackilist, add to whitelist, unblock, login attempt, block address, block automatically, limit of locks
 Requires at least: 3.6
 Tested up to: 4.2.2
-Stable tag: 1.0.9
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -15,6 +15,8 @@ The plugin Limit Attempts allows you to limit rate of login attempts by the ip, 
 Limit Attempts - This plugin allows you to limit users' attempts to log in to your website, as well as create and edit black- and whitelists. This way, you will be able to manage access to your website and its content and protect it from spam and unwanted visitors. There is also a premium version of Limit Attempts plugin - Limit Attempts Pro, with more useful features available. With the pro version, you recieve a possibility to add ranges of IP addresses or IP masks to black- and whitelists. Also, it is compatible with Captcha Pro plugin, so all functionality of Limit Attempts Pro can be applied to all forms when Captcha Pro is activated.
 
 http://www.youtube.com/watch?v=xZCTEjVfu4Q
+
+<a href="http://www.youtube.com/watch?v=BZ9WZ3G9ves" target="_blank">Video instruction on Installation</a>
 
 <a href="http://wordpress.org/plugins/limit-attempts/faq/" target="_blank">FAQ</a>
 
@@ -59,6 +61,8 @@ We can fix some things for free for the users who provide translation of our plu
 4. Set your own options or use defaylts, create, if you need, whitelist or/and blacklist.
 
 <a href="https://docs.google.com/document/d/1zBn8PxGMR7v6hWJgT2vogwzP_rzJ6IipbxACnmuNa6E/edit" target="_blank">View a Step-by-step Instruction on Limit Attempts Installation</a>
+
+http://www.youtube.com/watch?v=BZ9WZ3G9ves
 
 == Frequently Asked Questions ==
 
@@ -138,6 +142,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.1.0 - 21.07.2015 =
+* NEW : Ability to restore default settings.
+
 = V1.0.9 - 12.06.2015 =
 * Bugfix: We changed the mechanism of unlocking IP addresses on the timer.
 
@@ -184,6 +191,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.1.0 =
+Ability to restore default settings.
 
 = V1.0.9 =
 We changed the mechanism of unlocking IP addresses on the timer.
