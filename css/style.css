@@ -25,16 +25,6 @@
 #lmtttmpts_lock_options {
 	padding-bottom: 15px;
 }
-
-.lmtttmpts_little {
-	font-size: 10px;
-}
-.lmtttmpts_little * {
-	font-size: 10px;
-}
-.lmtttmpts_grey {
-	color: #888888;
-}
 td.lmtttmpts_align_top {
 	vertical-align: top;
 }
@@ -52,6 +42,7 @@ td.lmtttmpts_align_top {
 }
 
 #lmtttmpts_notify_options {
+	table-layout: fixed;
 	padding-bottom: 15px;
 }
 #lmtttmpts_interaction_settings th {

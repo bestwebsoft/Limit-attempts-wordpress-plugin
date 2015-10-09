@@ -1,10 +1,10 @@
 === Limit Attempts by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
-Tags: limit attempts, login, blacklist, whitelist, blocked ip, failed attempts, block, limited attempts, limit attempts plugin, lemet, limet, atempts, attemps, ettempts, etempts, block user, add to blackilist, add to whitelist, unblock, login attempt, block address, block automatically, limit of locks
-Requires at least: 3.6
-Tested up to: 4.2.2
-Stable tag: 1.1.0
+Tags: add to blackilist, add to whitelist, admin, atempts, attemps, Auth, authentication, attack, ban, blacklist, block, blocked, block address, block automatically, block user, blocked ip, best security, best security pligin, best wp security plugin, best wordpress security plugin, botnet, hack, etempts, ettempts, error log, failed attempts, lemet, limet, limit attempts, limit attempts plugin, limit of locks, limited attempts, login, login attempt, limit login attempts, Login Attempts, login security, login alerts, lock, lockdown, maintenance, maximum login security, permissions, personal security, plugin, prevent, prevention, privacy, private, protection, secrity, secure, secure login, secure website, security, security log, security plugin, securty, secury, unblock, users, user, whitelist, WP Login security, web server security, website security, wordpress security
+Requires at least: 3.8
+Tested up to: 4.3.1
+Stable tag: 1.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,13 +16,13 @@ Limit Attempts - This plugin allows you to limit users' attempts to log in to yo
 
 http://www.youtube.com/watch?v=xZCTEjVfu4Q
 
-<a href="http://www.youtube.com/watch?v=BZ9WZ3G9ves" target="_blank">Video instruction on Installation</a>
+<a href="http://www.youtube.com/watch?v=BZ9WZ3G9ves" target="_blank">Limit Attempts by BestWebSoft Video instruction on Installation</a>
 
-<a href="http://wordpress.org/plugins/limit-attempts/faq/" target="_blank">FAQ</a>
+<a href="http://wordpress.org/plugins/limit-attempts/faq/" target="_blank">Limit Attempts by BestWebSoft FAQ</a>
 
-<a href="http://support.bestwebsoft.com" target="_blank">Support</a>
+<a href="http://support.bestwebsoft.com" target="_blank">Limit Attempts by BestWebSoft Support</a>
 
-<a href="http://bestwebsoft.com/products/limit-attempts/?k=cb8137a688618f00aad733d4b0b2d014" target="_blank">Upgrade to Pro Version</a>
+<a href="http://bestwebsoft.com/products/limit-attempts/?k=cb8137a688618f00aad733d4b0b2d014" target="_blank">Upgrade to Limit Attempts Pro by BestWebSoft</a>
 
 = Features = 
 
@@ -99,7 +99,7 @@ To unblock a certain user, go to the "Blocked adresses" tab on the plugin's page
 
 = What will happen if I add a user to both the white and black lists?  =
 
-In case it happened so that a user is on both the black- and whitelist, the whitelist will have a higher priority. 
+In case it happened so that a user is on both the black- and whitelist, the blacklist will have a higher priority. 
 
 = I accidentally added my address to the blacklist, how can I fix that?  =
 
@@ -125,7 +125,7 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 1. the link to the page where the problem occurs
 2. the name of the plugin and its version. If you are using a pro version - your order number.
 3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">Instuction on System Status</a>
+4. copy and paste into the message your system status report. Please read more here: <a href="https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit" target="_blank">Instruction on System Status</a>
 
 == Screenshots ==
 
@@ -141,6 +141,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 10. Message with error when user has been added to the blacklist.
 
 == Changelog ==
+
+= V1.1.1 - 09.10.2015 =
+* NEW : Ability to add your IP in to the whitelist.
+* Update : We updated the list with IP addresses displaying in the black- and whitelist.
+* Bugfix : We fixed SQL injection vulnerability in the function of obtaining IP-address of the user.
+* Update : We updated all functionality for wordpress 4.3.1.
 
 = V1.1.0 - 21.07.2015 =
 * NEW : Ability to restore default settings.
@@ -191,6 +197,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.1.1 =
+Ability to add your IP in to the whitelist. We updated the list with IP addresses displaying in the black- and whitelist. We fixed SQL injection vulnerability in the function of obtaining IP-address of the user.
+We updated all functionality for wordpress 4.3.1.
 
 = V1.1.0 =
 Ability to restore default settings.

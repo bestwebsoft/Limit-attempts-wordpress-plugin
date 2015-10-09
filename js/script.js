@@ -1,15 +1,5 @@
 ( function( $ ) {
 	$( document ).ready( function() {
-		/* display 'setting changed' notice */
-		$( '#lmtttmpts_settings input' ).bind( "change click select", function() {
-			if ( $( this ).attr( 'type' ) != 'submit' ) {
-				$( '#lmtttmpts_settings_notice' ).css( 'display', 'block' );
-			};
-		});
-		$( '#lmtttmpts_settings textarea' ).click( function() {
-			$( '#lmtttmpts_settings_notice' ).css( 'display', 'block' );
-		});
-
 		/* hide zero values */
 		$( '.lmtttmpts-zero-value' ).addClass( 'lmtttmpts_hidden' );
 
@@ -156,8 +146,10 @@
 		$( '#lmtttmpts_notify_email_options' ).change( function() {
 			if ( $( this ).is( ':checked' ) ) {
 				$( '.lmtttmpts_notify_email_block' ).removeClass( 'lmtttmpts_hidden' );
+				$( this ).closest( 'td' ).css( "width", "15px" );
 			} else {
 				$( '.lmtttmpts_notify_email_block' ).addClass( 'lmtttmpts_hidden' );
+				$( this ).closest( 'td' ).css( "width", "auto" );
 			}
 		});
 		/* prevent form submit but get defaut text into form textarea */
@@ -176,9 +168,9 @@
 					/* remove blocks not neccessary elements */
 					$( '.lmtttmpts-restore-default-message' ).remove();
 					name = 'lmtttmpts_' + restoreMessage;
-					$( '.updated, .error' ).not( '#lmtttmpts_settings_notice' ).hide();
+					$( '.updated, .error' ).hide();
 					$( '#lmtttmpts_settings' ).find( 'textarea[name="' + name + '"]' ).val( data['restored_message_text'] );
-					$( '#lmtttmpts_settings_notice' ).after( data['admin_notice_message'] );
+					$( '.nav-tab-wrapper' ).after( data['admin_notice_message'] );
 				},
 				error: function( request, status, error ) {
 					alert( error + request.status );
@@ -187,6 +179,19 @@
 			});
 			event.preventDefault();
 			return false;
+		});
+
+		$( 'input[name="lmtttmpts_add_to_whitelist_my_ip"]' ).click( function() {
+			if ( $( this ).is( ':checked' ) )
+				$( 'input[name="lmtttmpts_add_to_whitelist"]' ).val( $( 'input[name="lmtttmpts_add_to_whitelist_my_ip_value"]' ).val() ).attr( 'readonly', 'readonly' );
+			else 
+				$( 'input[name="lmtttmpts_add_to_whitelist"]' ).val( '' ).removeAttr( 'readonly' );
+		});
+
+		$( '.bws_help_box_first' ).mouseenter( function() {
+			$( '.bws_help_box_second' ).hide();
+		}).mouseleave( function() {
+			$( '.bws_help_box_second' ).show();
 		});
 	});
 } )(jQuery);
