@@ -1,7 +1,7 @@
 <?php
 /*
 * General functions for BestWebSoft plugins
-* Version: 1.1.2
+* Version: 1.1.3
 */
 
 if ( ! function_exists ( 'bws_add_general_menu' ) ) {
@@ -331,7 +331,7 @@ if ( ! function_exists( 'bws_go_pro_tab_check' ) ) {
 /* compatibility function (Menu Version: 1.7.6) */
 if ( ! function_exists( 'bws_go_pro_tab' ) ) {
 	function bws_go_pro_tab( $plugin_info, $plugin_basename, $page, $pro_page, $bws_license_plugin, $link_slug, $link_key, $link_pn, $pro_plugin_is_activated = false, $trial_days_number = false ) {
-		bws_go_pro_tab_show( false, $plugin_info, $plugin_basename, $page, $pro_page, $bws_license_plugin, $link_slug, $link_key, $link_pn, $pro_plugin_is_activated = false, $trial_days_number = false );
+		bws_go_pro_tab_show( false, $plugin_info, $plugin_basename, $page, $pro_page, $bws_license_plugin, $link_slug, $link_key, $link_pn, $pro_plugin_is_activated, $trial_days_number );
 	}
 }
 
@@ -733,7 +733,7 @@ if ( ! function_exists ( 'bws_admin_enqueue_scripts' ) ) {
 
 if ( ! function_exists ( 'bws_plugins_admin_head' ) ) {
 	function bws_plugins_admin_head() {
-		global $bws_shortcode_list, $wp_version;
+		global $bws_shortcode_list, $wp_version, $post_type;
 		if ( isset( $_GET['page'] ) && $_GET['page'] == "bws_plugins" ) { ?>
 			<noscript>
 				<style type="text/css">
@@ -782,7 +782,25 @@ if ( ! function_exists ( 'bws_plugins_admin_head' ) ) {
 				};
 			</script>
 			<!-- TinyMCE Shortcode Plugin -->
-		<?php } 
+			<?php if ( isset( $post_type ) && in_array( $post_type, array( 'post', 'page' ) ) ) {
+				$tooltip_args = array(
+					'tooltip_id'	=> 'bws_shortcode_button_tooltip',
+					'css_selector' 	=> '.mce-bws_shortcode_button',
+					'actions' 		=> array(
+						'click' 	=> false,
+						'onload' 	=> true
+					), 
+					'content' 		=> '<h3>' . __( 'Add shortcode', 'bestwebsoft' ) . '</h3><p>' . __( "Add BestWebSoft plugins' shortcodes using this button.", 'bestwebsoft' ) . '</p>',
+					'position' => array( 
+						'edge' 		=> 'right'
+					),
+					'set_timeout' => 2000
+				);
+				if ( $wp_version < '3.9' )
+					$tooltip_args['css_selector'] = '.mce_add_bws_shortcode';
+				bws_add_tooltip_in_admin( $tooltip_args );
+			}
+		} 
     }
 }
 
@@ -823,7 +841,8 @@ if ( ! class_exists( 'BWS_admin_tooltip' ) ) {
 					'pos-left'	=> 0, 
 					'pos-top'	=> 0, 
 					'zindex' 	=> 10000 
-				), 
+				),
+				'set_timeout' => 0
 			);
 			$tooltip_args = array_merge( $tooltip_args_default, $tooltip_args );
 			/* Check that our merged array has default values */
@@ -1010,6 +1029,28 @@ if ( ! function_exists( 'bws_shortcode_media_button_popup' ) ) {
 				})(jQuery);
 			</script>
 		<?php } 
+	}
+}
+
+/* add help tab  */
+if ( ! function_exists( 'bws_help_tab' ) ) {
+	function bws_help_tab( $screen, $args ) {
+		$content = '<p><a href="http://support.bestwebsoft.com/hc/en-us/sections/' . $args['section'] . '" target="_blank">' . __( 'Visit Help Center', 'bestwebsoft' ) . '</a></p>';
+
+		$screen->add_help_tab( 
+			array(
+				'id'      => $args['id'] . '_help_tab',
+				'title'   => __( 'FAQ', 'bestwebsoft' ),
+				'content' => $content
+			)
+		);
+
+		$screen->set_help_sidebar(
+			'<p><strong>' . __( 'For more information:', 'bestwebsoft' ) . '</strong></p>' .
+			'<p><a href="https://drive.google.com/folderview?id=0B5l8lO-CaKt9VGh0a09vUjNFNjA&usp=sharing#list" target="_blank">' . __( 'Documentation', 'bestwebsoft' ) . '</a></p>' .
+			'<p><a href="http://www.youtube.com/user/bestwebsoft/playlists?flow=grid&sort=da&view=1" target="_blank">' . __( 'Video Instructions', 'bestwebsoft' ) . '</a></p>' .
+			'<p><a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">' . __( 'Submit a Request', 'bestwebsoft' ) . '</a></p>'
+		);
 	}
 }
 

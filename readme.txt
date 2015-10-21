@@ -4,7 +4,7 @@ Donate link: http://bestwebsoft.com/donate/
 Tags: add to blackilist, add to whitelist, admin, atempts, attemps, Auth, authentication, attack, ban, blacklist, block, blocked, block address, block automatically, block user, blocked ip, best security, best security pligin, best wp security plugin, best wordpress security plugin, botnet, hack, etempts, ettempts, error log, failed attempts, lemet, limet, limit attempts, limit attempts plugin, limit of locks, limited attempts, login, login attempt, limit login attempts, Login Attempts, login security, login alerts, lock, lockdown, maintenance, maximum login security, permissions, personal security, plugin, prevent, prevention, privacy, private, protection, secrity, secure, secure login, secure website, security, security log, security plugin, securty, secury, unblock, users, user, whitelist, WP Login security, web server security, website security, wordpress security
 Requires at least: 3.8
 Tested up to: 4.3.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -142,6 +142,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Changelog ==
 
+= V1.1.2 - 21.10.2015 =
+* Bugfix : We fixed the bug with adding IP to the blacklist.
+* Update : BWS plugins section is updated.
+
 = V1.1.1 - 09.10.2015 =
 * NEW : Ability to add your IP in to the whitelist.
 * Update : We updated the list with IP addresses displaying in the black- and whitelist.
@@ -197,6 +201,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.1.2 =
+We fixed the bug with adding IP to the blacklist. BWS plugins section is updated.
 
 = V1.1.1 =
 Ability to add your IP in to the whitelist. We updated the list with IP addresses displaying in the black- and whitelist. We fixed SQL injection vulnerability in the function of obtaining IP-address of the user.

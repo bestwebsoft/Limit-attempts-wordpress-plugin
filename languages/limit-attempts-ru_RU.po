@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Limit Attempts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 15:26+0300\n"
+"POT-Creation-Date: 2015-10-21 14:13+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: plugin@bestwebsoft.com <plugin@bestwebsoft.com>\n"
 "Language-Team: bestwebsoft.com <support@bestwebsoft.com>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../limit-attempts.php:36 ../limit-attempts.php:819
+#: ../limit-attempts.php:36 ../limit-attempts.php:825
 msgid "Limit Attempts Settings"
 msgstr "Настройки плагина Limit Attempts"
 
-#: ../limit-attempts.php:307
+#: ../limit-attempts.php:304
 msgid ""
 "Limit Attempts interaction with Htaccess was turned off since you are using "
 "an outdated Htaccess plugin version. If you want to keep using this "
@@ -33,11 +33,11 @@ msgstr ""
 "восстановить взаимодействие, обновите плагин Htaccess до версии 1.6.2."
 
 #: ../limit-attempts.php:371 ../limit-attempts.php:387
-#: ../limit-attempts.php:821
+#: ../limit-attempts.php:827
 msgid "Settings"
 msgstr "Настройки"
 
-#: ../limit-attempts.php:388 ../limit-attempts.php:827
+#: ../limit-attempts.php:388
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -49,71 +49,71 @@ msgstr "Техподдержка"
 msgid "Allowed formats:"
 msgstr "Допустимые форматы:"
 
-#: ../limit-attempts.php:406
+#: ../limit-attempts.php:407
 msgid "Add"
 msgstr "Добавить"
 
-#: ../limit-attempts.php:407
+#: ../limit-attempts.php:408
 msgid "Delete"
 msgstr "Удалить"
 
-#: ../limit-attempts.php:412
+#: ../limit-attempts.php:413
 msgid "Enter IP"
 msgstr "Введите IP"
 
-#: ../limit-attempts.php:415
+#: ../limit-attempts.php:416
 msgid "Allowed formats"
 msgstr "Допустимые форматы"
 
-#: ../limit-attempts.php:418
+#: ../limit-attempts.php:419
 msgid "Allowed diapason"
 msgstr "Допустимые значения"
 
-#: ../limit-attempts.php:421 ../limit-attempts.php:432
+#: ../limit-attempts.php:422 ../limit-attempts.php:433
 msgid "Allowed separators"
 msgstr "Допустимые разделительные знаки"
 
-#: ../limit-attempts.php:422 ../limit-attempts.php:432
+#: ../limit-attempts.php:423 ../limit-attempts.php:433
 msgid "a comma"
 msgstr "запятая"
 
-#: ../limit-attempts.php:422 ../limit-attempts.php:432
+#: ../limit-attempts.php:423 ../limit-attempts.php:433
 msgid "semicolon"
 msgstr "точка с запятой"
 
-#: ../limit-attempts.php:422
+#: ../limit-attempts.php:423
 msgid "ordinary space, tab, new line or carriage return"
 msgstr "обычный пробел, табуляция или новая строка"
 
-#: ../limit-attempts.php:429
+#: ../limit-attempts.php:430
 msgid "Reason for IP"
 msgstr "Причина для IP"
 
-#: ../limit-attempts.php:432
+#: ../limit-attempts.php:433
 msgid "tab, new line or carriage return"
 msgstr "обычный пробел, табуляция или новая строка"
 
-#: ../limit-attempts.php:440
+#: ../limit-attempts.php:441
 msgid "Select country"
 msgstr "Выберите страну"
 
-#: ../limit-attempts.php:444
+#: ../limit-attempts.php:445
 msgid "Reason for country"
 msgstr "Причина для страны"
 
-#: ../limit-attempts.php:451 ../limit-attempts.php:945
-#: ../limit-attempts.php:1238 ../limit-attempts.php:1279
-#: ../limit-attempts.php:1393
-msgid "Unlock premium options by upgrading to PRO version."
-msgstr "Активируйте премиум опции обновившись до PRO версии."
+#: ../limit-attempts.php:452 ../limit-attempts.php:958
+#: ../limit-attempts.php:1253 ../limit-attempts.php:1297
+#: ../limit-attempts.php:1412
+msgid "Unlock premium options by upgrading to Pro version"
+msgstr "Активируйте премиум опции обновившись до Pro версии"
 
-#: ../limit-attempts.php:452 ../limit-attempts.php:946
-#: ../limit-attempts.php:1239 ../limit-attempts.php:1280
-#: ../limit-attempts.php:1394
+#: ../limit-attempts.php:453 ../limit-attempts.php:959
+#: ../limit-attempts.php:1254 ../limit-attempts.php:1298
+#: ../limit-attempts.php:1413
 msgid "Learn More"
 msgstr "Подробнее"
 
-#: ../limit-attempts.php:473
+#: ../limit-attempts.php:475
 msgid ""
 "Allowed retries must be numeric, it was automatically changed to the "
 "previous value"
@@ -121,7 +121,7 @@ msgstr ""
 "Количество допустимых попыток должно быть числом, предыдущее значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:475
+#: ../limit-attempts.php:477
 msgid ""
 "Allowed retries must be more than zero, it was automatically changed to the "
 "previous value"
@@ -129,7 +129,7 @@ msgstr ""
 "Количество попыток должно быть больше нуля, предыдущее значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:481
+#: ../limit-attempts.php:483
 msgid ""
 "Days of lock must be numeric, it was automatically changed to the previous "
 "value"
@@ -137,7 +137,7 @@ msgstr ""
 "Количество дней блокировки должно быть указано числом, предыдущее значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:483
+#: ../limit-attempts.php:485
 msgid ""
 "Days of lock can&rsquo;t be negative, it was automatically changed to the "
 "previous value"
@@ -145,7 +145,7 @@ msgstr ""
 "Количество дней блокировки не может быть отрицательным, предыдущее значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:489
+#: ../limit-attempts.php:491
 msgid ""
 "Hours of lock must be numeric, it was automatically changed to the previous "
 "value"
@@ -153,7 +153,7 @@ msgstr ""
 "Количество часов блокировки должно быть указано числом, предыдущее значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:491
+#: ../limit-attempts.php:493
 msgid ""
 "Hours of lock can&rsquo;t be negative, it was automatically changed to the "
 "previous value"
@@ -161,7 +161,7 @@ msgstr ""
 "Количество часов блокировки не может быть отрицательным, предыдущее значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:493
+#: ../limit-attempts.php:495
 msgid ""
 "Hours of lock can&rsquo;t be more than 23, it was automatically changed to "
 "the max value"
@@ -169,7 +169,7 @@ msgstr ""
 "Количество часов блокировки не может превышать 23, максимальное значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:499
+#: ../limit-attempts.php:501
 msgid ""
 "Minutes of lock must be numeric, it was automatically changed to the "
 "previous value"
@@ -177,7 +177,7 @@ msgstr ""
 "Количество минут блокировки должно быть указано числом, предыдущее значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:501
+#: ../limit-attempts.php:503
 msgid ""
 "Minutes of lock can&rsquo;t be negative, it was automatically changed to the "
 "previous value"
@@ -185,7 +185,7 @@ msgstr ""
 "Количество минут блокировки не может быть отрицательным, предыдущее значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:503
+#: ../limit-attempts.php:505
 msgid ""
 "Minutes of lock can&rsquo;t be more than 59, it was automatically changed to "
 "the max value"
@@ -193,7 +193,7 @@ msgstr ""
 "Количество минут блокировки не может превышать 59, максимальное значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:509
+#: ../limit-attempts.php:511
 msgid ""
 "Days to reset the number of tries must be numeric, it was automatically "
 "changed to the previous value"
@@ -201,7 +201,7 @@ msgstr ""
 "Количество дней до сброса неверных попыток должно быть указано числом, "
 "предыдущее значение восстановлено автоматически"
 
-#: ../limit-attempts.php:511
+#: ../limit-attempts.php:513
 msgid ""
 "Days to reset the number of tries can&rsquo;t be negative, it was "
 "automatically changed to the previous value"
@@ -209,7 +209,7 @@ msgstr ""
 "Количество дней до сброса попыток не может быть отрицательным, предыдущее "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:517
+#: ../limit-attempts.php:519
 msgid ""
 "Hours to reset the number of tries must be numeric, it was automatically "
 "changed to the previous value"
@@ -217,7 +217,7 @@ msgstr ""
 "Количество часов до сброса попыток должно быть указано числом, предыдущее "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:519
+#: ../limit-attempts.php:521
 msgid ""
 "Hours to reset the number of tries can&rsquo;t be negative, it was "
 "automatically changed to the previous value"
@@ -225,7 +225,7 @@ msgstr ""
 "Количество часов до сброса попыток не может быть отрицательным, предыдущее "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:521
+#: ../limit-attempts.php:523
 msgid ""
 "Hours to reset the number of tries can&rsquo;t be more than 23, it was "
 "automatically changed to the max value"
@@ -233,7 +233,7 @@ msgstr ""
 "Количество часов до сброса попыток не может быть больше 23, максимальное "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:527
+#: ../limit-attempts.php:529
 msgid ""
 "Minutes to reset the number of tries must be numeric, it was automatically "
 "changed to the previous value"
@@ -241,7 +241,7 @@ msgstr ""
 "Количество минут до сброса попыток должно быть указано числом, предыдущее "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:529
+#: ../limit-attempts.php:531
 msgid ""
 "Minutes to reset the number of tries can&rsquo;t be negative, it was "
 "automatically changed to the previous value"
@@ -249,7 +249,7 @@ msgstr ""
 "Количество минут до сброса попыток не может быть отрицательным, предыдущее "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:531
+#: ../limit-attempts.php:533
 msgid ""
 "Minutes to reset the number of tries can&rsquo;t be more than 59, it was "
 "automatically changed to the max value"
@@ -257,7 +257,7 @@ msgstr ""
 "Количество минут до сброса попыток не может превышать 59, максимальное "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:537
+#: ../limit-attempts.php:539
 msgid ""
 "Allowed blocks must be numeric, it was automatically changed to the previous "
 "value"
@@ -265,7 +265,7 @@ msgstr ""
 "Допустимое количество блокировок должно быть указано числом, предыдущее "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:539
+#: ../limit-attempts.php:541
 msgid ""
 "Allowed blocks must be more than zero, it was automatically changed to the "
 "previous value"
@@ -273,7 +273,7 @@ msgstr ""
 "Допустимое количество блокировок должно быть больше нуля, предыдущее "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:541
+#: ../limit-attempts.php:543
 msgid ""
 "Add to the blacklist option is set on after 1 blocking, this means that "
 "address will get into the blacklist right away, instead of blocking for some "
@@ -282,7 +282,7 @@ msgstr ""
 "Опцию 'Добавить в черный список' настроено 'после 1 блокировки', это значит "
 "что IP сразу попадет в черный список, а не заблокируется на время."
 
-#: ../limit-attempts.php:547
+#: ../limit-attempts.php:549
 msgid ""
 "Days to reset the number of locks must be numeric, it was automatically "
 "changed to the previous value"
@@ -290,7 +290,7 @@ msgstr ""
 "Количество дней до сброса количества блокировок должно быть указано числом, "
 "предыдущее значение восстановлено автоматически"
 
-#: ../limit-attempts.php:549
+#: ../limit-attempts.php:551
 msgid ""
 "Days to reset the number of locks can&rsquo;t be negative, it was "
 "automatically changed to the previous value"
@@ -298,7 +298,7 @@ msgstr ""
 "Количество дней до сброса количества блокировок не может быть отрицательным, "
 "предыдущее значение восстановлено автоматически"
 
-#: ../limit-attempts.php:555
+#: ../limit-attempts.php:557
 msgid ""
 "Hours to reset the number of locks must be numeric, it was automatically "
 "changed to the previous value"
@@ -306,7 +306,7 @@ msgstr ""
 "Количество часов до сброса количества блокировок должно быть указано числом, "
 "предыдущее значение восстановлено автоматически"
 
-#: ../limit-attempts.php:557
+#: ../limit-attempts.php:559
 msgid ""
 "Hours to reset the number of locks can&rsquo;t be negative, it was "
 "automatically changed to the previous value"
@@ -314,7 +314,7 @@ msgstr ""
 "Количество часов до сброса количества блокировок не может быть "
 "отрицательным, предыдущее значение восстановлено автоматически"
 
-#: ../limit-attempts.php:559
+#: ../limit-attempts.php:561
 msgid ""
 "Hours to reset the number of locks can&rsquo;t be more than 23, it was "
 "automatically changed to the max value"
@@ -322,7 +322,7 @@ msgstr ""
 "Количество часов до сброса количества блокировок не может превышать 23, "
 "максимальное значение восстановлено автоматически"
 
-#: ../limit-attempts.php:565
+#: ../limit-attempts.php:567
 msgid ""
 "Minutes to reset the number of locks must be numeric, it was automatically "
 "changed to the previous value"
@@ -330,7 +330,7 @@ msgstr ""
 "Количество минут до сброса количества блокировок должно быть указано числом, "
 "предыдущее значение восстановлено автоматически"
 
-#: ../limit-attempts.php:567
+#: ../limit-attempts.php:569
 msgid ""
 "Minutes to reset the number of locks can&rsquo;t be negative, it was "
 "automatically changed to the previous value"
@@ -338,7 +338,7 @@ msgstr ""
 "Количество минут до сброса количества блокировок не может быть "
 "отрицательным, предыдущее значение восстановлено автоматически"
 
-#: ../limit-attempts.php:569
+#: ../limit-attempts.php:571
 msgid ""
 "Minutes to reset the number of locks can&rsquo;t be more than 59, it was "
 "automatically changed to the max value"
@@ -346,7 +346,7 @@ msgstr ""
 "Количество минут до сброса количества блокировок не может превышать 59, оно "
 "автоматически изменено на максимальное значение"
 
-#: ../limit-attempts.php:574
+#: ../limit-attempts.php:576
 msgid ""
 "Days to clear statistics must be numeric, it was automatically changed to "
 "the previous value"
@@ -354,7 +354,7 @@ msgstr ""
 "Количество дней, после которых запись в статистике будет удалена, должно "
 "быть числом, оно автоматически изменено на предыдущее значение"
 
-#: ../limit-attempts.php:576
+#: ../limit-attempts.php:578
 msgid ""
 "Days to clear statistics can&rsquo;t be negative, it was automatically "
 "changed to the previous value"
@@ -362,11 +362,11 @@ msgstr ""
 "Количество дней, после которых запись в статистике будет удалена, не может "
 "быть отрицательным, оно автоматически изменено на предыдущее значение"
 
-#: ../limit-attempts.php:581
+#: ../limit-attempts.php:583
 msgid "Wrong email, it was automatically changed to the previous value"
 msgstr "Неверный емейл, предыдущее значение восстановлено автоматически"
 
-#: ../limit-attempts.php:585
+#: ../limit-attempts.php:587
 msgid ""
 "Time of lock can&rsquo;t be less than 1 minute, it was automatically changed "
 "to the min value"
@@ -374,7 +374,7 @@ msgstr ""
 "Время блокировки не может быть меньше одной минуты, минимальное значение "
 "восстановлено автоматически"
 
-#: ../limit-attempts.php:589
+#: ../limit-attempts.php:591
 msgid ""
 "Time to reset block can&rsquo;t be less than 1 minute, it was automatically "
 "changed to the min value"
@@ -382,7 +382,7 @@ msgstr ""
 "Время до сброса блокировки не может быть меньше одной минуты, минимальное "
 "значение восстановлено автоматически"
 
-#: ../limit-attempts.php:593
+#: ../limit-attempts.php:595
 msgid ""
 "Time to reset the number of locks can&rsquo;t be less than 1 minute, it was "
 "automatically changed to the min value"
@@ -390,82 +390,82 @@ msgstr ""
 "Время до сброса количества блокировок не может быть меньше одной минуты, "
 "минимальное значение восстановлено автоматически"
 
-#: ../limit-attempts.php:600 ../limit-attempts.php:607
-#: ../limit-attempts.php:1783 ../limit-attempts.php:1846
-#: ../limit-attempts.php:3074
+#: ../limit-attempts.php:602 ../limit-attempts.php:609
+#: ../limit-attempts.php:1802 ../limit-attempts.php:1865
+#: ../limit-attempts.php:3100
 msgid "Notice:"
 msgstr "Предупреждение:"
 
-#: ../limit-attempts.php:603
+#: ../limit-attempts.php:605
 msgid "All changes have been saved"
 msgstr "Все изменения были сохранены"
 
-#: ../limit-attempts.php:609 ../limit-attempts.php:3076
+#: ../limit-attempts.php:611 ../limit-attempts.php:3102
 msgid "Subject has been restored to default"
 msgstr "Тема письма была сброшена до значения по умолчанию"
 
-#: ../limit-attempts.php:611 ../limit-attempts.php:3078
+#: ../limit-attempts.php:613 ../limit-attempts.php:3104
 msgid "Message has been restored to default"
 msgstr "Сообщение восстановлено в значение по умолчанию"
 
-#: ../limit-attempts.php:613 ../limit-attempts.php:3080
+#: ../limit-attempts.php:615 ../limit-attempts.php:3106
 msgid "Changes are not saved"
 msgstr "Изменения не сохранены"
 
-#: ../limit-attempts.php:621
+#: ../limit-attempts.php:623
 msgid "Search results for"
 msgstr "Результаты поиска для"
 
-#: ../limit-attempts.php:623
+#: ../limit-attempts.php:625
 msgid "is in the following entries"
 msgstr "в следующих значениях"
 
-#: ../limit-attempts.php:627 ../limit-attempts.php:1847
+#: ../limit-attempts.php:629 ../limit-attempts.php:1866
 msgid "ERROR:"
 msgstr "ОШИБКА:"
 
-#: ../limit-attempts.php:627 ../limit-attempts.php:1850
+#: ../limit-attempts.php:629 ../limit-attempts.php:1869
 msgid "Wrong format or it does not lie in diapason 0.0.0.0 - 255.255.255.255."
 msgstr "Формат неверен или не принадлежит диапазону 0.0.0.0 - 255.255.255.255"
 
-#: ../limit-attempts.php:810
+#: ../limit-attempts.php:819
 msgid "All plugin settings were restored."
 msgstr "Все настройки плагина были восстановлены."
 
-#: ../limit-attempts.php:822
+#: ../limit-attempts.php:828
 msgid "Blocked IP"
 msgstr "Заблокированные IP адреса"
 
-#: ../limit-attempts.php:823
+#: ../limit-attempts.php:829
 msgid "Blacklist"
 msgstr "Черный список"
 
-#: ../limit-attempts.php:824
+#: ../limit-attempts.php:830
 msgid "Whitelist"
 msgstr "Белый список"
 
-#: ../limit-attempts.php:825
+#: ../limit-attempts.php:831
 msgid "Log"
 msgstr "Лог"
 
-#: ../limit-attempts.php:826
+#: ../limit-attempts.php:832
 msgid "Statistics"
 msgstr "Статистика"
 
-#: ../limit-attempts.php:828
+#: ../limit-attempts.php:833
 msgid "Go PRO"
 msgstr "Перейти на PRO версию"
 
-#: ../limit-attempts.php:845
+#: ../limit-attempts.php:856
 msgid "Block address"
 msgstr "Заблокировать адрес"
 
-#: ../limit-attempts.php:848
+#: ../limit-attempts.php:859
 msgid "for"
 msgstr "на"
 
-#: ../limit-attempts.php:850 ../limit-attempts.php:874
-#: ../limit-attempts.php:903
+#: ../limit-attempts.php:861 ../limit-attempts.php:885
+#: ../limit-attempts.php:914
 msgid "day"
 msgid_plural "days"
 msgstr[0] "день"
@@ -473,8 +473,8 @@ msgstr[1] "дня"
 msgstr[2] "дней"
 msgstr[3] "день"
 
-#: ../limit-attempts.php:851 ../limit-attempts.php:875
-#: ../limit-attempts.php:904
+#: ../limit-attempts.php:862 ../limit-attempts.php:886
+#: ../limit-attempts.php:915
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "час"
@@ -482,8 +482,8 @@ msgstr[1] "часа"
 msgstr[2] "часов"
 msgstr[3] "час"
 
-#: ../limit-attempts.php:852 ../limit-attempts.php:876
-#: ../limit-attempts.php:905
+#: ../limit-attempts.php:863 ../limit-attempts.php:887
+#: ../limit-attempts.php:916
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "минуту"
@@ -491,33 +491,33 @@ msgstr[1] "минуты"
 msgstr[2] "минут"
 msgstr[3] "минуту"
 
-#: ../limit-attempts.php:853 ../limit-attempts.php:865
-#: ../limit-attempts.php:877 ../limit-attempts.php:894
-#: ../limit-attempts.php:906
+#: ../limit-attempts.php:864 ../limit-attempts.php:876
+#: ../limit-attempts.php:888 ../limit-attempts.php:905
+#: ../limit-attempts.php:917
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ../limit-attempts.php:856 ../limit-attempts.php:880
-#: ../limit-attempts.php:909 ../limit-attempts.php:932
-#: ../limit-attempts.php:954
+#: ../limit-attempts.php:867 ../limit-attempts.php:891
+#: ../limit-attempts.php:920 ../limit-attempts.php:945
+#: ../limit-attempts.php:968
 msgid "days"
 msgstr "дней"
 
-#: ../limit-attempts.php:857 ../limit-attempts.php:881
-#: ../limit-attempts.php:910
+#: ../limit-attempts.php:868 ../limit-attempts.php:892
+#: ../limit-attempts.php:921
 msgid "hours"
 msgstr "часов"
 
-#: ../limit-attempts.php:858 ../limit-attempts.php:882
-#: ../limit-attempts.php:911
+#: ../limit-attempts.php:869 ../limit-attempts.php:893
+#: ../limit-attempts.php:922
 msgid "minutes"
 msgstr "минут"
 
-#: ../limit-attempts.php:862 ../limit-attempts.php:891
+#: ../limit-attempts.php:873 ../limit-attempts.php:902
 msgid "after"
 msgstr "после"
 
-#: ../limit-attempts.php:864
+#: ../limit-attempts.php:875
 msgid "failed attempt"
 msgid_plural "failed attempts"
 msgstr[0] "неверной попытки"
@@ -525,19 +525,19 @@ msgstr[1] "неверных попыток"
 msgstr[2] "неверных попыток"
 msgstr[3] "неверной попытки"
 
-#: ../limit-attempts.php:868
+#: ../limit-attempts.php:879
 msgid "failed attempts"
 msgstr "неверных попыток"
 
-#: ../limit-attempts.php:872 ../limit-attempts.php:901
+#: ../limit-attempts.php:883 ../limit-attempts.php:912
 msgid "per"
 msgstr "в течении"
 
-#: ../limit-attempts.php:888
+#: ../limit-attempts.php:899
 msgid "Add to the blacklist"
 msgstr "Добавить в черный список"
 
-#: ../limit-attempts.php:893
+#: ../limit-attempts.php:904
 msgid "block"
 msgid_plural "blocks"
 msgstr[0] "блокировки"
@@ -545,330 +545,338 @@ msgstr[1] "блокировок"
 msgstr[2] "блокировок"
 msgstr[3] "блокировки"
 
-#: ../limit-attempts.php:897
+#: ../limit-attempts.php:908
 msgid "blocks"
 msgstr "блокировок"
 
-#: ../limit-attempts.php:922
+#: ../limit-attempts.php:931 ../limit-attempts.php:1228
+#: ../limit-attempts.php:1265
+msgid "Close"
+msgstr "Закрыть"
+
+#: ../limit-attempts.php:935
 msgid "If user tried to log in with a non-existent username"
 msgstr "Если пользователь попытался войти под несуществующим именем"
 
-#: ../limit-attempts.php:924
+#: ../limit-attempts.php:937
 msgid "according to \"Block address\" and \"Add to the blacklist\" options"
 msgstr "согласно опциям \"Заблокировать адрес\" и \"Добавить в черный список\""
 
-#: ../limit-attempts.php:925
+#: ../limit-attempts.php:938
 msgid "block address immediately"
 msgstr "заблокировать адрес немедленно"
 
-#: ../limit-attempts.php:926
+#: ../limit-attempts.php:939
 msgid "add to the blacklist immediately"
 msgstr "добавить в черный список немедленно"
 
-#: ../limit-attempts.php:930
+#: ../limit-attempts.php:943
 msgid "Remove log entries that are over"
 msgstr "Удалить записи журнала, которые старше"
 
-#: ../limit-attempts.php:933
+#: ../limit-attempts.php:946
 msgid "Set \"0\" if you do not want to clear the log."
 msgstr "Укажите \"0\", если вы не хотите очищать журнал."
 
-#: ../limit-attempts.php:934
+#: ../limit-attempts.php:947
 msgid "Current size of DB table"
 msgstr "Текущий размер таблицы базы данных"
 
-#: ../limit-attempts.php:934
+#: ../limit-attempts.php:947
 msgid "Mb"
 msgstr "Мб"
 
-#: ../limit-attempts.php:939 ../limit-attempts.php:1231
+#: ../limit-attempts.php:952 ../limit-attempts.php:1246
 msgid "If you upgrade to Pro version all your settings will be saved."
 msgstr "При установке Pro версии плагина, все ваши настройки сохраняются."
 
-#: ../limit-attempts.php:952
+#: ../limit-attempts.php:966
 msgid "Remove statistics entry in case no failed attempts occurred for"
 msgstr ""
 "Удалять записи статистики в случае, если нет неправильных попыток входа за"
 
-#: ../limit-attempts.php:955
+#: ../limit-attempts.php:969
 msgid "Set \"0\" if you do not want to clear the statistics."
 msgstr "Укажите \"0\", если вы не хотите очищать статистику."
 
-#: ../limit-attempts.php:959
+#: ../limit-attempts.php:973
 msgid "Error messages"
 msgstr "Сообщения об ошибках"
 
-#: ../limit-attempts.php:961 ../limit-attempts.php:1040
+#: ../limit-attempts.php:975 ../limit-attempts.php:1054
 msgid "Hide"
 msgstr "Скрыть"
 
-#: ../limit-attempts.php:962 ../limit-attempts.php:1041
+#: ../limit-attempts.php:976 ../limit-attempts.php:1055
 msgid "Show"
 msgstr "Показать"
 
-#: ../limit-attempts.php:967 ../limit-attempts.php:972
+#: ../limit-attempts.php:981 ../limit-attempts.php:986
 msgid "For invalid attempt"
 msgstr "При неверной попытке входа"
 
-#: ../limit-attempts.php:968 ../limit-attempts.php:973
+#: ../limit-attempts.php:982 ../limit-attempts.php:987
 msgid "For blocked user"
 msgstr "При блокировке пользователя"
 
-#: ../limit-attempts.php:969 ../limit-attempts.php:974
+#: ../limit-attempts.php:983 ../limit-attempts.php:988
 msgid "For blacklisted user"
 msgstr "При добавлении в черный список"
 
-#: ../limit-attempts.php:979 ../limit-attempts.php:992
-#: ../limit-attempts.php:1006 ../limit-attempts.php:1060
-#: ../limit-attempts.php:1074 ../limit-attempts.php:1091
-#: ../limit-attempts.php:1108
+#: ../limit-attempts.php:993 ../limit-attempts.php:1006
+#: ../limit-attempts.php:1020 ../limit-attempts.php:1074
+#: ../limit-attempts.php:1088 ../limit-attempts.php:1105
+#: ../limit-attempts.php:1122
 msgid "Allowed Variables:"
 msgstr "Допустимые переменные:"
 
-#: ../limit-attempts.php:981
+#: ../limit-attempts.php:995
 msgid "display quantity of allowed attempts"
 msgstr "показывать количество оставшихся попыток"
 
-#: ../limit-attempts.php:983 ../limit-attempts.php:997
-#: ../limit-attempts.php:1010 ../limit-attempts.php:1099
-#: ../limit-attempts.php:1116
+#: ../limit-attempts.php:997 ../limit-attempts.php:1011
+#: ../limit-attempts.php:1024 ../limit-attempts.php:1113
+#: ../limit-attempts.php:1130
 msgid "Restore default message"
 msgstr "Восстановить по умолчанию"
 
-#: ../limit-attempts.php:987 ../limit-attempts.php:1001
-#: ../limit-attempts.php:1014 ../limit-attempts.php:1069
-#: ../limit-attempts.php:1083 ../limit-attempts.php:1103
-#: ../limit-attempts.php:1120
+#: ../limit-attempts.php:1001 ../limit-attempts.php:1015
+#: ../limit-attempts.php:1028 ../limit-attempts.php:1083
+#: ../limit-attempts.php:1097 ../limit-attempts.php:1117
+#: ../limit-attempts.php:1134
 msgid "You can use standart HTML tags and attributes."
 msgstr "Вы можете использовать стандартные HTML теги и атрибуты."
 
-#: ../limit-attempts.php:994
+#: ../limit-attempts.php:1008
 msgid "display date when block is removed"
 msgstr "выводит дату когда блок будет снят"
 
-#: ../limit-attempts.php:995
+#: ../limit-attempts.php:1009
 msgid "display administrator&rsquo;s e-mail for feedback"
 msgstr "показывает электронную почту администратора для обратной связи"
 
-#: ../limit-attempts.php:1008
+#: ../limit-attempts.php:1022
 msgid "display administrators e-mail for feedback"
 msgstr "показывает электронную почту администратора для обратной связи"
 
-#: ../limit-attempts.php:1020
+#: ../limit-attempts.php:1034
 msgid "Send email with notification"
 msgstr "Отправить уведомление"
 
-#: ../limit-attempts.php:1025
+#: ../limit-attempts.php:1039
 msgid "Email to user's address"
 msgstr "Отправлять сообщения на email пользователя"
 
-#: ../limit-attempts.php:1027
+#: ../limit-attempts.php:1041
 msgid "Choose a username"
 msgstr "Выберите пользователя"
 
-#: ../limit-attempts.php:1034
+#: ../limit-attempts.php:1048
 msgid "Email to another address"
 msgstr "Отправлять сообщения на другой почтовый ящик"
 
-#: ../limit-attempts.php:1038
+#: ../limit-attempts.php:1052
 msgid "Additional options for email with notification"
 msgstr ""
 "Дополнительные настройки для сообщений электронной почты с уведомлением"
 
-#: ../limit-attempts.php:1047 ../limit-attempts.php:1051
+#: ../limit-attempts.php:1061 ../limit-attempts.php:1065
 msgid "Email to admistrator when user is blocked"
 msgstr "Сообщение администратору при блокировке пользователя"
 
-#: ../limit-attempts.php:1048 ../limit-attempts.php:1052
+#: ../limit-attempts.php:1062 ../limit-attempts.php:1066
 msgid "Email to admistrator when user is blacklisted"
 msgstr "Сообщение администратору при добавлении пользователя в черный список"
 
-#: ../limit-attempts.php:1056
+#: ../limit-attempts.php:1070
 msgid "Subject"
 msgstr "Тема"
 
-#: ../limit-attempts.php:1062
+#: ../limit-attempts.php:1076
 msgid "display blocked IP address"
 msgstr "выводит заблокированный IP адрес"
 
-#: ../limit-attempts.php:1063 ../limit-attempts.php:1077
-#: ../limit-attempts.php:1096 ../limit-attempts.php:1113
+#: ../limit-attempts.php:1077 ../limit-attempts.php:1091
+#: ../limit-attempts.php:1110 ../limit-attempts.php:1127
 msgid "display name of your site"
 msgstr "выводит название вашего сайта"
 
-#: ../limit-attempts.php:1065 ../limit-attempts.php:1079
+#: ../limit-attempts.php:1079 ../limit-attempts.php:1093
 msgid "Restore default subject"
 msgstr "Восстановить тему по умолчанию"
 
-#: ../limit-attempts.php:1076
+#: ../limit-attempts.php:1090
 msgid "display blacklisted IP address"
 msgstr "выводит IP адрес, добавленный в черный список"
 
-#: ../limit-attempts.php:1087
+#: ../limit-attempts.php:1101
 msgid "Message"
 msgstr "Сообщение"
 
-#: ../limit-attempts.php:1093
+#: ../limit-attempts.php:1107
 msgid "display IP address that is blocked"
 msgstr "отображать заблокированный IP адрес"
 
-#: ../limit-attempts.php:1094 ../limit-attempts.php:1111
+#: ../limit-attempts.php:1108 ../limit-attempts.php:1125
 msgid "display link for Limit Attempts plugin on your site"
 msgstr "отображать ссылку на плагин Limit Attempts на вашем сайте"
 
-#: ../limit-attempts.php:1095
+#: ../limit-attempts.php:1109
 msgid "display date and time when IP address was blocked"
 msgstr "отображать дату и время блокировки IP адреса"
 
-#: ../limit-attempts.php:1097 ../limit-attempts.php:1114
+#: ../limit-attempts.php:1111 ../limit-attempts.php:1128
 msgid "display your site's URL"
 msgstr "выводит URL вашего сайта"
 
-#: ../limit-attempts.php:1110
+#: ../limit-attempts.php:1124
 msgid "display IP address that is added to the blacklist"
 msgstr "отображать IP адрес, занесенный в черный список"
 
-#: ../limit-attempts.php:1112
+#: ../limit-attempts.php:1126
 msgid "display date and time when IP address was blacklisted"
 msgstr "отображать дату и время, когда IP адрес был занесен в черный список"
 
-#: ../limit-attempts.php:1126
+#: ../limit-attempts.php:1140
 msgid "Htaccess plugin"
 msgstr "Плагин Htaccess"
 
-#: ../limit-attempts.php:1134 ../limit-attempts.php:1137
-#: ../limit-attempts.php:1168 ../limit-attempts.php:1179
-#: ../limit-attempts.php:1187 ../limit-attempts.php:1212
+#: ../limit-attempts.php:1148 ../limit-attempts.php:1151
+#: ../limit-attempts.php:1182 ../limit-attempts.php:1193
+#: ../limit-attempts.php:1201
 msgid "Using"
 msgstr "Используя"
 
-#: ../limit-attempts.php:1134 ../limit-attempts.php:1137
-#: ../limit-attempts.php:1168 ../limit-attempts.php:1179
-#: ../limit-attempts.php:1187 ../limit-attempts.php:1212
-#: ../limit-attempts.php:1222
+#: ../limit-attempts.php:1148 ../limit-attempts.php:1151
+#: ../limit-attempts.php:1182 ../limit-attempts.php:1193
+#: ../limit-attempts.php:1201
 msgid "powered by"
 msgstr "разработанный"
 
-#: ../limit-attempts.php:1140 ../limit-attempts.php:1144
-#: ../limit-attempts.php:1148
+#: ../limit-attempts.php:1154 ../limit-attempts.php:1158
+#: ../limit-attempts.php:1162
 msgid "Using Htaccess powered by"
 msgstr "Используя Htaccess, разработанный"
 
-#: ../limit-attempts.php:1140
+#: ../limit-attempts.php:1154
 msgid "Update Htaccess at least to v.1.6.2"
 msgstr "Обновите Htaccess как минимум до версии 1.6.2"
 
-#: ../limit-attempts.php:1144
+#: ../limit-attempts.php:1158
 msgid "Activate Htaccess"
 msgstr "Активировать Htaccess"
 
-#: ../limit-attempts.php:1148
+#: ../limit-attempts.php:1162
 msgid "Download Htaccess"
 msgstr "Загрузить Htaccess"
 
-#: ../limit-attempts.php:1150
+#: ../limit-attempts.php:1164
 msgid "Allow Htaccess plugin block IP to reduce the database workload."
 msgstr ""
 "Позволить плагину Htaccess блокировать IP адрес для уменьшения нагрузки на "
 "базу данных."
 
-#: ../limit-attempts.php:1154
+#: ../limit-attempts.php:1168
 msgid "Captcha plugin"
 msgstr "Плагин Captcha"
 
-#: ../limit-attempts.php:1166 ../limit-attempts.php:1177
-#: ../limit-attempts.php:1185 ../limit-attempts.php:1385
+#: ../limit-attempts.php:1180 ../limit-attempts.php:1191
+#: ../limit-attempts.php:1199 ../limit-attempts.php:1404
 msgid "Login form"
 msgstr "Форма логина"
 
-#: ../limit-attempts.php:1171
+#: ../limit-attempts.php:1185
 msgid "Using Captcha Pro powered by"
 msgstr "Используя Captcha Pro разработанную"
 
-#: ../limit-attempts.php:1171
+#: ../limit-attempts.php:1185
 msgid "Update Captcha Pro at least to v.1.4.4"
 msgstr "Обновите Captcha Pro как минимум до версии 1.4.4"
 
-#: ../limit-attempts.php:1190 ../limit-attempts.php:1208
+#: ../limit-attempts.php:1204 ../limit-attempts.php:1222
 msgid "Using Captcha powered by"
 msgstr "Используя Captcha разработанную"
 
-#: ../limit-attempts.php:1190
+#: ../limit-attempts.php:1204
 msgid "Update Captcha at least to v.4.0.2"
 msgstr "Обновите Captcha как минимум до версии 4.0.2"
 
-#: ../limit-attempts.php:1203
+#: ../limit-attempts.php:1217
 #, php-format
 msgid "Using %s powered by"
 msgstr "Используя %s, разработанный"
 
-#: ../limit-attempts.php:1203
+#: ../limit-attempts.php:1217
 #, php-format
 msgid "Activate %s"
 msgstr "Активировать %s"
 
-#: ../limit-attempts.php:1208
+#: ../limit-attempts.php:1222
 msgid "Download Captcha"
 msgstr "Загрузить Captcha"
 
-#: ../limit-attempts.php:1210
+#: ../limit-attempts.php:1224
 msgid "Consider the incorrect captcha input as an invalid attempt."
 msgstr "Считать неправильно введенную капчу неверной попыткой."
 
-#: ../limit-attempts.php:1219
+#: ../limit-attempts.php:1233
 msgid "Registration form"
 msgstr "Форма регистрации"
 
-#: ../limit-attempts.php:1220
+#: ../limit-attempts.php:1234
 msgid "Reset Password form"
 msgstr "Форма восстановления пароля"
 
-#: ../limit-attempts.php:1221
+#: ../limit-attempts.php:1235
 msgid "Comments form"
 msgstr "Форма комментариев"
 
-#: ../limit-attempts.php:1222
-msgid "Contact form"
-msgstr "Contact form"
+#: ../limit-attempts.php:1236
+msgid "Contact form by BestWebSoft"
+msgstr "Contact form by BestWebSoft"
 
-#: ../limit-attempts.php:1223
+#: ../limit-attempts.php:1237
+msgid "Subscriber by BestWebSoft"
+msgstr "Subscriber by BestWebSoft"
+
+#: ../limit-attempts.php:1238
 msgid "Buddypress registration form"
 msgstr "Buddypress форма регистрации"
 
-#: ../limit-attempts.php:1224
+#: ../limit-attempts.php:1239
 msgid "Buddypress comments form"
 msgstr "Buddypress форма комментариев"
 
-#: ../limit-attempts.php:1225
+#: ../limit-attempts.php:1240
 msgid "Buddypress \"Create a Group\" form"
 msgstr "Buddypress форма  \"Создать группу\""
 
-#: ../limit-attempts.php:1226
+#: ../limit-attempts.php:1241
 msgid "Contact Form 7"
 msgstr "Contact Form 7"
 
-#: ../limit-attempts.php:1232
+#: ../limit-attempts.php:1247
 #, php-format
 msgid "You also need %s to use these options."
 msgstr "Вам так же необходим плагин %s, чтобы использовать эти опции. "
 
-#: ../limit-attempts.php:1251
+#: ../limit-attempts.php:1269
 msgid "Update GeoIP"
 msgstr "Обновить GeoIP"
 
-#: ../limit-attempts.php:1253
+#: ../limit-attempts.php:1271
 msgid "every"
 msgstr "каждый(е)"
 
-#: ../limit-attempts.php:1253
+#: ../limit-attempts.php:1271
 msgid "months"
 msgstr "месяц(ев)"
 
-#: ../limit-attempts.php:1255
+#: ../limit-attempts.php:1273
 msgid "Update now"
 msgstr "Обновить немедленно"
 
-#: ../limit-attempts.php:1260
+#: ../limit-attempts.php:1278
 msgid ""
 "This option allows you to download lists with registered IP addresses all "
 "over the world to the database (from"
@@ -877,7 +885,7 @@ msgstr ""
 "зарегистрированных IP-адресов всего мира и информацию о том, к какой стране "
 "принадлежит каждый IP-адрес ( с сайта "
 
-#: ../limit-attempts.php:1263
+#: ../limit-attempts.php:1281
 msgid ""
 "With this, you receive an information about each IP address, and to which "
 "country it belongs to. You can select the desired frequency for IP database "
@@ -887,7 +895,7 @@ msgstr ""
 "установления принадллежности IP-адреса к стране. Вы можете выбрать "
 "необходимую периодичность обновления белого и черного списков"
 
-#: ../limit-attempts.php:1266
+#: ../limit-attempts.php:1284
 msgid ""
 "If you need to update GeoIP immediately, please click on the \"Update now\" "
 "button and wait until the operation is finished"
@@ -895,85 +903,85 @@ msgstr ""
 "Если Вам необходимо полностью обновить GeoIP немедленно, просто нажмите на "
 "кнопку \"Обновить немедленно\"  и дождитесь окончания операции"
 
-#: ../limit-attempts.php:1269
+#: ../limit-attempts.php:1287
 msgid "Read more about"
 msgstr "Читать подробнее о"
 
-#: ../limit-attempts.php:1273
+#: ../limit-attempts.php:1291
 msgid "Last update was carried out"
 msgstr "Последнее обновление было произведено"
 
-#: ../limit-attempts.php:1286
+#: ../limit-attempts.php:1305
 msgid "Save Changes"
 msgstr "Сохранить изменения"
 
-#: ../limit-attempts.php:1299 ../limit-attempts.php:1324
-#: ../limit-attempts.php:1362 ../limit-attempts.php:1378
-#: ../limit-attempts.php:1415
+#: ../limit-attempts.php:1318 ../limit-attempts.php:1343
+#: ../limit-attempts.php:1381 ../limit-attempts.php:1397
+#: ../limit-attempts.php:1434
 msgid "Search IP"
 msgstr "Искать IP"
 
-#: ../limit-attempts.php:1315
+#: ../limit-attempts.php:1334
 msgid "Add IP to blacklist"
 msgstr "Добавить IP адрес в черный список"
 
-#: ../limit-attempts.php:1346
+#: ../limit-attempts.php:1365
 msgid "My IP"
 msgstr "Мой IP"
 
-#: ../limit-attempts.php:1352
+#: ../limit-attempts.php:1371
 msgid "Add IP to whitelist"
 msgstr "Добавить IP адрес в белый список"
 
-#: ../limit-attempts.php:1379
+#: ../limit-attempts.php:1398
 msgid "Clear Log"
 msgstr "Очистить лог"
 
-#: ../limit-attempts.php:1381 ../limit-attempts.php:1388
+#: ../limit-attempts.php:1400 ../limit-attempts.php:1407
 msgid "Delete log entry"
 msgstr "Удалить запись журнала"
 
-#: ../limit-attempts.php:1383 ../limit-attempts.php:1384
+#: ../limit-attempts.php:1402 ../limit-attempts.php:1403
 msgid "IP address"
 msgstr "IP адрес"
 
-#: ../limit-attempts.php:1383 ../limit-attempts.php:1384
+#: ../limit-attempts.php:1402 ../limit-attempts.php:1403
 msgid "Internet Hostname"
 msgstr "Название Хостинга"
 
-#: ../limit-attempts.php:1383 ../limit-attempts.php:1384
+#: ../limit-attempts.php:1402 ../limit-attempts.php:1403
 msgid "Event"
 msgstr "Событие"
 
-#: ../limit-attempts.php:1383 ../limit-attempts.php:1384
+#: ../limit-attempts.php:1402 ../limit-attempts.php:1403
 msgid "Form"
 msgstr "Форма"
 
-#: ../limit-attempts.php:1383 ../limit-attempts.php:1384
+#: ../limit-attempts.php:1402 ../limit-attempts.php:1403
 msgid "Event time"
 msgstr "Время события"
 
-#: ../limit-attempts.php:1385
+#: ../limit-attempts.php:1404
 msgid "Failed attempt"
 msgstr "Неверная попытка"
 
-#: ../limit-attempts.php:1403
+#: ../limit-attempts.php:1422
 msgid "Are you sure you want to delete all statistics entries?"
 msgstr "Вы уверены, что хотите удалить всю статистику?"
 
-#: ../limit-attempts.php:1405
+#: ../limit-attempts.php:1424
 msgid "Yes, delete these entries"
 msgstr "Да, удалить эти записи"
 
-#: ../limit-attempts.php:1406
+#: ../limit-attempts.php:1425
 msgid "No, go back to the Statistics page"
 msgstr "Нет, вернуться на страницу Статистики"
 
-#: ../limit-attempts.php:1421
+#: ../limit-attempts.php:1440
 msgid "Clear Statistics"
 msgstr "Очистить статистику"
 
-#: ../limit-attempts.php:1783
+#: ../limit-attempts.php:1802
 msgid ""
 "Limit Login Attempts plugin is activated on your site, as well as Limit "
 "Attempts plugin. Please note that Limit Attempts ensures maximum security "
@@ -987,111 +995,111 @@ msgstr ""
 "плагинов одновременно. Игнорирование этой простой рекомендации может "
 "привести к нежеланным последствиям для вашего сайта."
 
-#: ../limit-attempts.php:1810
+#: ../limit-attempts.php:1829
 msgid "ATTENTION!"
 msgstr "ВНИМАНИЕ!"
 
-#: ../limit-attempts.php:1813
+#: ../limit-attempts.php:1832
 msgid "Read and Understood"
 msgstr "Ознакомлен"
 
-#: ../limit-attempts.php:1848
+#: ../limit-attempts.php:1867
 msgid "No address has been selected"
 msgstr "Не было выбрано ни одного адреса"
 
-#: ../limit-attempts.php:1849
+#: ../limit-attempts.php:1868
 msgid "You must type IP address"
 msgstr "Вы должны ввести IP адрес"
 
-#: ../limit-attempts.php:1852
+#: ../limit-attempts.php:1871
 msgid "Block has been reset for"
 msgstr "Блок был сброшен для"
 
-#: ../limit-attempts.php:1853
+#: ../limit-attempts.php:1872
 msgid "Error while reseting block for"
 msgstr "Ошибка при переустановке блокировок"
 
-#: ../limit-attempts.php:1855
+#: ../limit-attempts.php:1874
 msgid "has been added to blacklist"
 msgstr "был добавлен в черный список"
 
-#: ../limit-attempts.php:1856
+#: ../limit-attempts.php:1875
 msgid "can&rsquo;t be added to blacklist."
 msgstr "не может быть добавлен в черный список."
 
-#: ../limit-attempts.php:1857
+#: ../limit-attempts.php:1876
 msgid "This IP address has already been added to blacklist"
 msgstr "Этот IP адрес уже добавлен в черный список"
 
-#: ../limit-attempts.php:1858
+#: ../limit-attempts.php:1877
 msgid "This IP address is in whitelist too, please check this to avoid errors"
 msgstr ""
 "Данный IP адрес также находится в белом списке. Пожалуйста, проверьте это во "
 "избежание ошибок"
 
-#: ../limit-attempts.php:1859
+#: ../limit-attempts.php:1878
 msgid "has been deleted from blacklist"
 msgstr "был удален из черного списка"
 
-#: ../limit-attempts.php:1860
+#: ../limit-attempts.php:1879
 msgid "have been deleted from blacklist"
 msgstr "были удалены из черного списка"
 
-#: ../limit-attempts.php:1861
+#: ../limit-attempts.php:1880
 msgid "Error while deleting from blacklist"
 msgstr "Ошибка при удалении из черного списка"
 
-#: ../limit-attempts.php:1863
+#: ../limit-attempts.php:1882
 msgid "has been added to whitelist"
 msgstr "был добавлен в белый список"
 
-#: ../limit-attempts.php:1864
+#: ../limit-attempts.php:1883
 msgid "can&rsquo;t be added to whitelist."
 msgstr "не может быть добавлен в белый список."
 
-#: ../limit-attempts.php:1865
+#: ../limit-attempts.php:1884
 msgid "This IP address has already been added to whitelist"
 msgstr "Этот IP адрес уже добавлен в белый список"
 
-#: ../limit-attempts.php:1866
+#: ../limit-attempts.php:1885
 msgid "This IP address is in blacklist too, please check this to avoid errors"
 msgstr ""
 "Данный IP адрес также находится в черном списке. Пожалуйста, проверьте это "
 "во избежание ошибок"
 
-#: ../limit-attempts.php:1867
+#: ../limit-attempts.php:1886
 msgid "has been deleted from whitelist"
 msgstr "был удален из белого списка"
 
-#: ../limit-attempts.php:1868
+#: ../limit-attempts.php:1887
 msgid "have been deleted from whitelist"
 msgstr "были удалены из белого списка"
 
-#: ../limit-attempts.php:1869
+#: ../limit-attempts.php:1888
 msgid "Error while deleting from whitelist"
 msgstr "Ошибка при удалении из белого списка"
 
-#: ../limit-attempts.php:1871
+#: ../limit-attempts.php:1890
 msgid "Statistics has been cleared completely"
 msgstr "Статистика была очищена полностью"
 
-#: ../limit-attempts.php:1872
+#: ../limit-attempts.php:1891
 msgid "Statistics is already empty"
 msgstr "Статистика пуста"
 
-#: ../limit-attempts.php:1873
+#: ../limit-attempts.php:1892
 msgid "Error while clearing statistics completely"
 msgstr "Ошибка при окончательном удалении статистики"
 
-#: ../limit-attempts.php:1874
+#: ../limit-attempts.php:1893
 msgid "Selected statistics entry (entries) has been deleted"
 msgstr "Выбранная статистика была удалена"
 
-#: ../limit-attempts.php:1875
+#: ../limit-attempts.php:1894
 msgid "Error while deleting statistics entry (entries)"
 msgstr "Ошибка при удалении статистики"
 
-#: ../limit-attempts.php:1876
+#: ../limit-attempts.php:1895
 msgid ""
 "Error when creating the database. For the plugins correct work, please, "
 "deactivate and activate it again"
@@ -1099,11 +1107,11 @@ msgstr ""
 "Ошибка создания базы данных. Для корректной работы плагина деактивируйте и "
 "активируйте его снова."
 
-#: ../limit-attempts.php:2220 ../limit-attempts.php:2223
+#: ../limit-attempts.php:2239 ../limit-attempts.php:2242
 msgid "Total"
 msgstr "Всего"
 
-#: ../limit-attempts.php:2220 ../limit-attempts.php:2223
+#: ../limit-attempts.php:2239 ../limit-attempts.php:2242
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "запись"
@@ -1111,64 +1119,64 @@ msgstr[1] "записи"
 msgstr[2] "записей"
 msgstr[3] "запись"
 
-#: ../limit-attempts.php:2249 ../limit-attempts.php:2369
-#: ../limit-attempts.php:2482 ../limit-attempts.php:2596
+#: ../limit-attempts.php:2268 ../limit-attempts.php:2388
+#: ../limit-attempts.php:2501 ../limit-attempts.php:2615
 msgid "Ip address"
 msgstr "IP адрес"
 
-#: ../limit-attempts.php:2250
+#: ../limit-attempts.php:2269
 msgid "The lock expires"
 msgstr "Срок блокировки истекает"
 
-#: ../limit-attempts.php:2267 ../limit-attempts.php:2275
+#: ../limit-attempts.php:2286 ../limit-attempts.php:2294
 msgid "Reset block"
 msgstr "Сбросить блок"
 
-#: ../limit-attempts.php:2370 ../limit-attempts.php:2483
+#: ../limit-attempts.php:2389 ../limit-attempts.php:2502
 msgid "Date added"
 msgstr "Дата добавления"
 
-#: ../limit-attempts.php:2387 ../limit-attempts.php:2395
+#: ../limit-attempts.php:2406 ../limit-attempts.php:2414
 msgid "Remove from blacklist"
 msgstr "Удалить из  черного списка"
 
-#: ../limit-attempts.php:2500 ../limit-attempts.php:2508
+#: ../limit-attempts.php:2519 ../limit-attempts.php:2527
 msgid "Remove from whitelist"
 msgstr "Удалить из белого списка"
 
-#: ../limit-attempts.php:2597
+#: ../limit-attempts.php:2616
 msgid "Number of failed attempts"
 msgstr "Количество неверных попыток"
 
-#: ../limit-attempts.php:2598
+#: ../limit-attempts.php:2617
 msgid "Number of blocks"
 msgstr "Количество блокировок"
 
-#: ../limit-attempts.php:2599
+#: ../limit-attempts.php:2618
 msgid "Status"
 msgstr "Статус"
 
-#: ../limit-attempts.php:2607
+#: ../limit-attempts.php:2626
 msgid "Delete statistics entry"
 msgstr "Удалить статистику"
 
-#: ../limit-attempts.php:2692
+#: ../limit-attempts.php:2711
 msgid "blacklisted"
 msgstr "в черном списке"
 
-#: ../limit-attempts.php:2695
+#: ../limit-attempts.php:2714
 msgid "whitelisted"
 msgstr "в белом списке"
 
-#: ../limit-attempts.php:2698
+#: ../limit-attempts.php:2717
 msgid "blocked"
 msgstr "заблокированный"
 
-#: ../limit-attempts.php:2701
+#: ../limit-attempts.php:2720
 msgid "not blocked"
 msgstr "не заблокированный"
 
-#: ../limit-attempts.php:2774
+#: ../limit-attempts.php:2800
 msgid "Addresses per page"
 msgstr "Адресов на странице"
 

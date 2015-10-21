@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: http://bestwebsoft.com/products/
 Description: The plugin Limit Attempts allows you to limit rate of login attempts by the ip, and create whitelist and blacklist.
 Author: BestWebSoft
-Version: 1.1.1
+Version: 1.1.2
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: http://bestwebsoft.com/
@@ -38,14 +38,12 @@ if ( ! function_exists( 'add_lmtttmpts_admin_menu' ) ) {
 	}
 }
 
-
 if ( ! function_exists( 'lmtttmpts_plugins_loaded' ) ) {
 	function lmtttmpts_plugins_loaded() {
 		/* Internationalization, first(!) */
 		load_plugin_textdomain( 'limit-attempts', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 }
-
 
 /**
  * Function initialisation plugin for init
@@ -54,7 +52,6 @@ if ( ! function_exists( 'lmtttmpts_plugin_init' ) ) {
 	function lmtttmpts_plugin_init() {
 		global $lmtttmpts_plugin_info;
 		$plugin_basename = plugin_basename( __FILE__ );
-		
 
 		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
 		bws_include_init( $plugin_basename ); 
@@ -229,7 +226,7 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 		global $lmtttmpts_options, $lmtttmpts_plugin_info, $lmtttmpts_option_defaults;
 		/* email addres that was setting Settings -> General -> E-mail Address */
 		$lmtttmpts_email_address = get_bloginfo( 'admin_email' );
-		$lmtttmpts_db_version = "1.1";
+		$lmtttmpts_db_version = "1.2";
 		/*Default options for plugin*/
 		$lmtttmpts_option_defaults = array(
 			'plugin_db_version'				=> $lmtttmpts_db_version,
@@ -308,6 +305,9 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 					}
 				}
 			}
+			/* show pro features */
+			$lmtttmpts_options['hide_premium_options'] = array();
+
 			$lmtttmpts_options = array_merge( $lmtttmpts_option_defaults, $lmtttmpts_options );
 			$lmtttmpts_options['plugin_option_version'] = $lmtttmpts_plugin_info["Version"];
 			$update_option = true;
@@ -397,63 +397,65 @@ if ( ! function_exists( 'lmtttmpts_register_plugin_links' ) ) {
  */
 if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 	function lmtttmpts_display_advertising() { 
-		global $lmtttmpts_plugin_info, $wp_version; ?>
+		global $lmtttmpts_plugin_info, $wp_version, $lmtttmpts_options; ?>
 		<span class="bws_info" style="display: inline-block;margin: 10px 0;"><?php _e( "Allowed formats:", 'limit-attempts' ); ?><code>192.168.0.1</code></span>
-		<div class="bws_pro_version_bloc" style="overflow: visible;max-width: 610px;">
-			<div class="bws_pro_version_table_bloc">
-				<div class="bws_table_bg"></div>
-				<ul style="float: none; margin: 0; padding: 5px 0 0 5px;" class="subsubsub">
-					<li><span class="current"><?php _e( 'Add', 'limit-attempts' ); ?></span>&nbsp;|</li>
-					<li><a href="#"><?php _e( 'Delete', 'limit-attempts' ); ?></a></li>
-				</ul>
-				<table style="padding: 5px 0 5px 5px;">
-					<tr>
-						<td>
-							<label><?php _e( 'Enter IP', 'limit-attempts' ); ?></label>
-							<div class="bws_help_box bws_help_box_left dashicons dashicons-editor-help bws_help_box_first" style="z-index:3;">
-								<div class="bws_hidden_help_text">
-									<p style="line-height: 2;text-indent: 15px;"><?php _e( 'Allowed formats', 'limit-attempts' ); ?>:<br>
-										<code>192.168.0.1, 192.168.0.,<br>192.168., 192.,<br>192.168.0.1/8,<br>123.126.12.243-185.239.34.54</code>
-									</p>
-									<p style="line-height: 2text-indent: 15px;;"><?php _e( 'Allowed diapason', 'limit-attempts' ); ?>:<br>
-										<code>0.0.0.0 - 255.255.255.255</code>
-									</p>
-									<p style="line-height: 2;text-indent: 15px;"><?php _e( 'Allowed separators', 'limit-attempts' ); ?>:<br>
-										<?php _e( 'a comma', 'limit-attempts' ); ?>&nbsp;(<code>,</code>), <?php _e( 'semicolon', 'limit-attempts' ); ?> (<code>;</code>), <?php _e( 'ordinary space, tab, new line or carriage return', 'limit-attempts' ); ?>
-									</p>
-								</div>
-							</div><br>
-							<input type="text" disabled="disabled" />
-						</td>
-						<td>
-							<label><?php _e( 'Reason for IP', 'limit-attempts' ); ?></label>
-							<div class="bws_help_box bws_help_box_right dashicons dashicons-editor-help bws_help_box_second" style="z-index:3;">
-								<div style="min-width: 200px;text-align: justify;" class="bws_hidden_help_text">
-									<p style="line-height: 2;text-indent: 15px;"><?php _e( 'Allowed separators', 'limit-attempts' ); ?>:<br><?php _e( 'a comma', 'limit-attempts' ); ?>&nbsp;(<code>,</code>), <?php _e( 'semicolon', 'limit-attempts' ); ?> (<code>;</code>), <?php _e( 'tab, new line or carriage return', 'limit-attempts' ); ?></p>
-								</div>
-							</div><br>
-							<input type="text" disabled="disabled" />
-						</td>
-					</tr>
-					<tr>
-						<td valign="top">
-							<label><?php _e( 'Select country', 'limit-attempts' ); ?></label><br>
-							<select disabled="disabled" style="width: 100%;"></select>
-						</td>
-						<td>
-							<label><?php _e( 'Reason for country', 'limit-attempts' ); ?></label><br>
-							<input type="text" disabled="disabled" />
-						</td>
-					</tr>
-				</table>
+		<?php if ( ! bws_hide_premium_options_check( $lmtttmpts_options ) ) { ?>
+			<div class="bws_pro_version_bloc" style="overflow: visible;max-width: 610px;">
+				<div class="bws_pro_version_table_bloc">
+					<div class="bws_table_bg"></div>
+					<ul style="float: none; margin: 0; padding: 5px 0 0 5px;" class="subsubsub">
+						<li><span class="current"><?php _e( 'Add', 'limit-attempts' ); ?></span>&nbsp;|</li>
+						<li><a href="#"><?php _e( 'Delete', 'limit-attempts' ); ?></a></li>
+					</ul>
+					<table style="padding: 5px 0 5px 5px;">
+						<tr>
+							<td>
+								<label><?php _e( 'Enter IP', 'limit-attempts' ); ?></label>
+								<div class="bws_help_box bws_help_box_left dashicons dashicons-editor-help bws_help_box_first" style="z-index:3;">
+									<div class="bws_hidden_help_text">
+										<p style="line-height: 2;text-indent: 15px;"><?php _e( 'Allowed formats', 'limit-attempts' ); ?>:<br>
+											<code>192.168.0.1, 192.168.0.,<br>192.168., 192.,<br>192.168.0.1/8,<br>123.126.12.243-185.239.34.54</code>
+										</p>
+										<p style="line-height: 2text-indent: 15px;;"><?php _e( 'Allowed diapason', 'limit-attempts' ); ?>:<br>
+											<code>0.0.0.0 - 255.255.255.255</code>
+										</p>
+										<p style="line-height: 2;text-indent: 15px;"><?php _e( 'Allowed separators', 'limit-attempts' ); ?>:<br>
+											<?php _e( 'a comma', 'limit-attempts' ); ?>&nbsp;(<code>,</code>), <?php _e( 'semicolon', 'limit-attempts' ); ?> (<code>;</code>), <?php _e( 'ordinary space, tab, new line or carriage return', 'limit-attempts' ); ?>
+										</p>
+									</div>
+								</div><br>
+								<input type="text" disabled="disabled" />
+							</td>
+							<td>
+								<label><?php _e( 'Reason for IP', 'limit-attempts' ); ?></label>
+								<div class="bws_help_box bws_help_box_right dashicons dashicons-editor-help bws_help_box_second" style="z-index:3;">
+									<div style="min-width: 200px;text-align: justify;" class="bws_hidden_help_text">
+										<p style="line-height: 2;text-indent: 15px;"><?php _e( 'Allowed separators', 'limit-attempts' ); ?>:<br><?php _e( 'a comma', 'limit-attempts' ); ?>&nbsp;(<code>,</code>), <?php _e( 'semicolon', 'limit-attempts' ); ?> (<code>;</code>), <?php _e( 'tab, new line or carriage return', 'limit-attempts' ); ?></p>
+									</div>
+								</div><br>
+								<input type="text" disabled="disabled" />
+							</td>
+						</tr>
+						<tr>
+							<td valign="top">
+								<label><?php _e( 'Select country', 'limit-attempts' ); ?></label><br>
+								<select disabled="disabled" style="width: 100%;"></select>
+							</td>
+							<td>
+								<label><?php _e( 'Reason for country', 'limit-attempts' ); ?></label><br>
+								<input type="text" disabled="disabled" />
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="bws_pro_version_tooltip">
+					<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
+					<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+					<div class="clear"></div>
+				</div>
 			</div>
-			<div class="bws_pro_version_tooltip">
-				<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to PRO version.', 'limit-attempts' ); ?></div>
-				<div class="bws_pro_links"><a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a></div>
-				<div class="clear"></div>
-			</div>
-		</div>
-	<?php }
+		<?php }
+	}
 }
 /**
  * Display notices on settings page
@@ -464,7 +466,7 @@ if ( ! function_exists( 'lmtttmpts_display_notices' ) ) {
 				/* if buttons were pressed on "Settings" tab */
 		if ( isset( $_POST['lmtttmpts_form_submit'] ) && check_admin_referer( plugin_basename(__FILE__), 'lmtttmpts_nonce_name' ) ) {
 			/* if button "Save changes" was pressed */
-			if ( isset( $_POST['lmtttmpts_form_submit_button'] ) ) {
+			if ( isset( $_POST['lmtttmpts_form_submit'] ) ) {
 				$notice_messages = array(); 
 				/* Show notices for Settings form */
 				if ( isset( $_POST['lmtttmpts_allowed_retries'] ) ) { 
@@ -663,9 +665,11 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 
 		/* Start updating and verification options from Settings form */
 		/* If form was submited - whether "Save changes" button was pressed or not - check for inputed values and firstly update var $lmtttmpts_options only */
-		if ( isset( $_POST['lmtttmpts_form_submit'] )
-			/* && ! isset( $_POST['lmtttmpts_return_default'] ) */
-			&& check_admin_referer( $plugin_basename, 'lmtttmpts_nonce_name' ) ) {
+		if ( isset( $_POST['lmtttmpts_form_submit'] ) && check_admin_referer( $plugin_basename, 'lmtttmpts_nonce_name' ) ) {
+			if ( isset( $_POST['bws_hide_premium_options'] ) ) {
+				$hide_result = bws_hide_premium_options( $lmtttmpts_options );
+				$lmtttmpts_options = $hide_result['options'];
+			}
 			/*Verification and updating option with allowed retries, after which address will be blocked automatically*/
 			if ( ( isset( $_POST['lmtttmpts_allowed_retries'] ) ) && ( $_POST['lmtttmpts_allowed_retries'] >= 1 ) && ( is_numeric( $_POST['lmtttmpts_allowed_retries'] ) ) )
 				$lmtttmpts_options['allowed_retries'] = floor( $_POST['lmtttmpts_allowed_retries'] );
@@ -714,7 +718,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 
 			/* Veification and updating option with days to clear statistics */
 			if ( isset( $_POST['lmtttmpts_days_to_clear_statistics'] ) && $_POST['lmtttmpts_days_to_clear_statistics'] >= 0 && is_numeric( $_POST['lmtttmpts_days_to_clear_statistics'] ) ) {
-				if ( $lmtttmpts_options['days_to_clear_statistics'] != floor( $_POST['lmtttmpts_days_to_clear_statistics'] ) && isset( $_POST['lmtttmpts_form_submit_button'] ) ) {
+				if ( $lmtttmpts_options['days_to_clear_statistics'] != floor( $_POST['lmtttmpts_days_to_clear_statistics'] ) && isset( $_POST['lmtttmpts_form_submit'] ) ) {
 					if ( $lmtttmpts_options['days_to_clear_statistics'] == 0 ) {
 						$time = time() - fmod( time(), 86400 ) + 86400;
 						wp_schedule_event( $time, 'daily', 'lmtttmpts_daily_statistics_clear' );
@@ -723,9 +727,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 					}
 				}
 				$lmtttmpts_options['days_to_clear_statistics'] = floor( $_POST['lmtttmpts_days_to_clear_statistics'] );
-			}
-
-			
+			}			
 
 			if ( isset( $_POST['lmtttmpts_mailto'] ) ) {
 				$lmtttmpts_options['mailto'] = $_POST['lmtttmpts_mailto'];
@@ -792,16 +794,23 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 				$lmtttmpts_options['minutes_to_reset_block'] = 1;
 			$lmtttmpts_options = array_map( 'stripslashes_deep', $lmtttmpts_options );
 			/* Updating options in wp_options table if button "Save changes" is pressed */
-			if ( isset( $_POST['lmtttmpts_form_submit_button'] ) )
-				update_option( 'lmtttmpts_options', $lmtttmpts_options );
+			update_option( 'lmtttmpts_options', $lmtttmpts_options );
 			/* Finish updating and verification options from Settings form */ 
 		}
 
+		/* action message when working with blocked/black/white lists or statistics */
+		if ( isset( $_GET['action'] ) && 'log' != $_GET['action']  )
+			$action_message = lmtttmpts_list_actions();
+
+		$bws_hide_premium_options_check = bws_hide_premium_options_check( $lmtttmpts_options );
+
 		/* GO PRO */
 		if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) {
-			$go_pro_result = bws_go_pro_tab_check( $plugin_basename );
+			$go_pro_result = bws_go_pro_tab_check( $plugin_basename, 'lmtttmpts_options' );
 			if ( ! empty( $go_pro_result['error'] ) )
 				$error = $go_pro_result['error'];
+			elseif ( ! empty( $go_pro_result['message'] ) )
+				$action_message['done'] = $go_pro_result['message'];
 		}
 
 		if ( isset( $_REQUEST['bws_restore_confirm'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
@@ -809,10 +818,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			update_option( 'lmtttmpts_options', $lmtttmpts_options );
 			$action_message['done'] .= __( 'All plugin settings were restored.', 'limit-attempts' );
 		} 
-
-		/* action message when working with blocked/black/white lists or statistics */
-		if ( isset( $_GET['action'] ) && 'log' != $_GET['action']  )
-			$action_message = lmtttmpts_list_actions();
+		
 		if ( ! empty( $error ) )
 			$action_message['error'] = $error; ?>
 		<div class="wrap">
@@ -824,13 +830,18 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'whitelist' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=limit-attempts.php&amp;action=whitelist"><?php _e( 'Whitelist', 'limit-attempts' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'log' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=limit-attempts.php&amp;action=log"><?php _e( 'Log', 'limit-attempts' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'statistics' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=limit-attempts.php&amp;action=statistics"><?php _e( 'Statistics', 'limit-attempts' ); ?></a>
-				<a class="nav-tab" href="http://bestwebsoft.com/products/limit-attempts/faq/" target="_blank"><?php _e( 'FAQ', 'limit-attempts' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=limit-attempts.php&amp;action=go_pro"><?php _e( 'Go PRO', 'limit-attempts' ); ?></a>
 			</h2>
-			<?php lmtttmpts_display_notices(); ?>
-			<div class="error" <?php if ( empty( $action_message['error'] ) ) echo 'style="display:none"'; ?>><p><strong><?php if ( ! empty( $action_message['error'] ) ) echo $action_message['error']; ?></strong></p></div>
-			<div class="updated fade" <?php if ( empty( $action_message['done'] ) ) echo 'style="display: none;"'?>><p><?php if ( ! empty( $action_message['done'] ) ) echo $action_message['done'] ?></p></div>
-			<?php bws_show_settings_notice();
+			<?php lmtttmpts_display_notices();
+			if ( ! empty( $hide_result['message'] ) ) { ?>
+				<div class="updated fade"><p><strong><?php echo $hide_result['message']; ?></strong></p></div>
+			<?php }
+			if ( ! empty( $action_message['error'] ) ) { ?>
+				<div class="error"><p><strong><?php echo $action_message['error']; ?></strong></p></div>
+			<?php } else if ( ! empty( $action_message['done'] ) ) { ?>
+				<div class="updated fade"><p><?php echo $action_message['done'] ?></p></div>
+			<?php }
+			bws_show_settings_notice();
 			if ( ! isset( $_GET['action'] ) ) { /* Showing settings tab */
 				if ( isset( $_REQUEST['bws_restore_default'] ) && check_admin_referer( $plugin_basename, 'bws_settings_nonce_name' ) ) {
 					bws_form_restore_default_confirm( $plugin_basename );
@@ -914,39 +925,42 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 									</td>
 								</tr>
 							</table>
-							<div class="bws_pro_version_bloc">
-								<div class="bws_pro_version_table_bloc">
-									<div class="bws_table_bg"></div>
-									<table class="form-table bws_pro_version lmtttmpts_options_table_demo">
-										<tr>
-											<th><?php _e( 'If user tried to log in with a non-existent username', 'limit-attempts' ); ?></th>
-											<td>
-												<input type="radio" disabled="disabled" /><label><?php _e( 'according to "Block address" and "Add to the blacklist" options', 'limit-attempts' ); ?></label><br>
-												<input type="radio" disabled="disabled" /><label><?php _e( 'block address immediately', 'limit-attempts' ); ?></label><br>
-												<input type="radio" disabled="disabled" /><label><?php _e( 'add to the blacklist immediately', 'limit-attempts' ); ?></label><br>
-											</td>
-										</tr>
-										<tr>
-											<th><?php _e( 'Remove log entries that are over', 'limit-attempts' ) ?></th>
-											<td style="min-width: 210px;">
-												<input disabled="disabled" type="number" min="0" max="999" step="1" maxlength="3" value="30"/> <?php _e( 'days', 'limit-attempts' ) ?><br/>
-												<span class="bws_info"><?php _e( 'Set "0" if you do not want to clear the log.', 'limit-attempts' ) ?><br />
-												<?php echo __( 'Current size of DB table', 'limit-attempts' ) . '&asymp; <strong>' . '1.234' . '</strong> ' . __( 'Mb', 'limit-attempts' ); ?></span>
-											</td>
-										</tr>
-										<tr valign="top">
-											<th scope="row" colspan="3">
-												* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'limit-attempts' ); ?>
-											</th>
-										</tr>
-									</table>
+							<?php if ( ! $bws_hide_premium_options_check ) { ?>
+								<div class="bws_pro_version_bloc">
+									<div class="bws_pro_version_table_bloc">
+										<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'limit-attempts' ); ?>"></button>
+										<div class="bws_table_bg"></div>
+										<table class="form-table bws_pro_version">
+											<tr>
+												<th><?php _e( 'If user tried to log in with a non-existent username', 'limit-attempts' ); ?></th>
+												<td>
+													<input type="radio" disabled="disabled" /><label><?php _e( 'according to "Block address" and "Add to the blacklist" options', 'limit-attempts' ); ?></label><br>
+													<input type="radio" disabled="disabled" /><label><?php _e( 'block address immediately', 'limit-attempts' ); ?></label><br>
+													<input type="radio" disabled="disabled" /><label><?php _e( 'add to the blacklist immediately', 'limit-attempts' ); ?></label><br>
+												</td>
+											</tr>
+											<tr>
+												<th><?php _e( 'Remove log entries that are over', 'limit-attempts' ) ?></th>
+												<td style="min-width: 210px;">
+													<input disabled="disabled" type="number" min="0" max="999" step="1" maxlength="3" value="30"/> <?php _e( 'days', 'limit-attempts' ) ?><br/>
+													<span class="bws_info"><?php _e( 'Set "0" if you do not want to clear the log.', 'limit-attempts' ) ?><br />
+													<?php echo __( 'Current size of DB table', 'limit-attempts' ) . '&asymp; <strong>' . '1.234' . '</strong> ' . __( 'Mb', 'limit-attempts' ); ?></span>
+												</td>
+											</tr>
+											<tr valign="top">
+												<th scope="row" colspan="3">
+													* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'limit-attempts' ); ?>
+												</th>
+											</tr>
+										</table>
+									</div>
+									<div class="bws_pro_version_tooltip">
+										<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
+										<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+										<div class="clear"></div>
+									</div>
 								</div>
-								<div class="bws_pro_version_tooltip">
-									<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to PRO version.', 'limit-attempts' ); ?></div>
-									<div class="bws_pro_links"><a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a></div>
-									<div class="clear"></div>
-								</div>
-							</div>
+							<?php } ?>
 							<table class="form-table lmtttmpts_options_table">
 								<tr>
 									<th><?php _e( 'Remove statistics entry in case no failed attempts occurred for', 'limit-attempts' ) ?></th>
@@ -1208,84 +1222,83 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 											<span class="bws_info">(<?php _e( 'Using Captcha powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="http://bestwebsoft.com/products/captcha/"><?php _e( 'Download Captcha', 'limit-attempts' ); ?></a></span>
 										<?php } ?>
 										<br /><span class="bws_info"><?php _e( 'Consider the incorrect captcha input as an invalid attempt.', 'limit-attempts' ) ?></span>
-
-										<?php $captcha_span = '<span class="bws_info"> (' . __( 'Using', 'limit-attempts' ) . ' <a href="">Captcha Pro</a> ' . __( 'powered by', 'limit-attempts' ) . ' <a href="">bestwebsoft.com</a>)</span>' ?>
-										<div class="bws_pro_version_bloc" style="max-width: 580px;">
-											<div class="bws_pro_version_table_bloc">
-												<div class="bws_table_bg"></div>
-												<table class="form-table bws_pro_version lmtttmpts_options_table_demo">
-													<tr>
-														<td style="min-width: 430px;">
-															<label><input disabled="disabled" type="checkbox" checked="checked"/><span> <?php _e( 'Registration form', 'limit-attempts' ); ?></span></label><? echo $captcha_span ?><br />
-															<label><input disabled="disabled" type="checkbox"/><span> <?php _e( 'Reset Password form', 'limit-attempts' ); ?></span></label><? echo $captcha_span ?><br />
-															<label><input disabled="disabled" type="checkbox"/><span> <?php _e( 'Comments form', 'limit-attempts' ); ?></span></label><? echo $captcha_span ?><br />
-															<label><input disabled="disabled" type="checkbox" checked="checked"/><span> <?php _e( 'Contact form', 'limit-attempts' ); ?></span></label><span class="bws_info"> (<?php _e( 'powered by', 'limit-attempts' ); ?> <a href="">bestwebsoft.com</a>)</span><br />
-															<label><input disabled="disabled" type="checkbox"/><span> <?php _e( 'Buddypress registration form', 'limit-attempts' ); ?></span></label><br />
-															<label><input disabled="disabled" type="checkbox"/><span> <?php _e( 'Buddypress comments form', 'limit-attempts' ); ?></span></label><br />
-															<label><input disabled="disabled" type="checkbox"/><span> <?php _e( 'Buddypress "Create a Group" form', 'limit-attempts' ); ?></span></label><br />
-															<label><input disabled="disabled" type="checkbox" checked="checked"/><span> <?php _e( 'Contact Form 7', 'limit-attempts' ); ?></span></label>
-														</td>
-													</tr>
-													<tr valign="top">
-														<th scope="row" colspan="3">
-															<p>* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'limit-attempts' ); ?></p>
-															<p style="position: relative;z-index: 2;">* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="http://bestwebsoft.com/products/captcha/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=' . $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">Captcha Pro</a>' ); ?></p>
-														</th>
-													</tr>
-												</table>
+										<?php if ( ! $bws_hide_premium_options_check ) { ?>
+											<div class="bws_pro_version_bloc" style="max-width: 580px;">
+												<div class="bws_pro_version_table_bloc">
+													<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'limit-attempts' ); ?>"></button>
+													<div class="bws_table_bg"></div>
+													<div class="bws_pro_version">
+														<fieldset>
+																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Registration form', 'limit-attempts' ); ?></span></label><br />
+																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Reset Password form', 'limit-attempts' ); ?></span></label><br />
+																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Comments form', 'limit-attempts' ); ?></span></label><br />
+																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Contact form by BestWebSoft', 'limit-attempts' ); ?></span></label><br />
+																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Subscriber by BestWebSoft', 'limit-attempts' ); ?></span></label><br />
+																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress registration form', 'limit-attempts' ); ?></span></label><br />
+																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress comments form', 'limit-attempts' ); ?></span></label><br />
+																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress "Create a Group" form', 'limit-attempts' ); ?></span></label><br />
+																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Contact Form 7', 'limit-attempts' ); ?></span></label>
+														</fieldset>
+														<p><strong>* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'limit-attempts' ); ?></strong></p>
+														<p style="position: relative;z-index: 2;"><strong>* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="http://bestwebsoft.com/products/captcha/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=' . $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">Captcha Pro</a>' ); ?></strong></p>
+													</div>
+												</div>
+												<div class="bws_pro_version_tooltip">
+													<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
+													<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+													<div class="clear"></div>
+												</div>
 											</div>
-											<div class="bws_pro_version_tooltip">
-												<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to PRO version.', 'limit-attempts' ); ?></div>
-												<div class="bws_pro_links"><a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a></div>
-												<div class="clear"></div>
-											</div>
-										</div>
+										<?php } ?>
 									</td>
 								</tr>
 							</table>
-							<div class="bws_pro_version_bloc" style="overflow: visible;">
-								<div class="bws_pro_version_table_bloc">
-									<div class="bws_table_bg"></div>
-									<table class="form-table bws_pro_version lmtttmpts_options_table_demo">
-										<tr>
-											<th><?php _e( 'Update GeoIP', 'limit-attempts' ); ?></th>
-											<td>
-												<label style="display: inline-block;margin-right: 20px;"><?php _e( 'every', 'limit-attempts' ); ?>&nbsp;<input disabled="disabled" type="number" style="width: 50px;">&nbsp;<?php _e( 'months', 'limit-attempts' ); ?></label>
-												<div style="display: inline-block;position: relative;">
-													<input disabled="disabled" class="button" type="submit" value="<?php _e( 'Update now', 'limit-attempts' ); ?>">
-												</div>
-												<div class="bws_help_box bws_help_box_left<?php if ( $wp_version >= '3.9' ) echo ' dashicons dashicons-editor-help'; ?>" style="z-index: 3;">
-													<div class="bws_hidden_help_text" style="min-width: 220px;">
-														<p style="text-indent: 15px;">
-															<?php _e( 'This option allows you to download lists with registered IP addresses all over the world to the database (from', 'limit-attempts' ); ?>&nbsp;<a href="https://www.maxmind.com" target="_blank">https://www.maxmind.com</a>).
-														</p>
-														<p style="text-indent: 15px;">
-															<?php _e( 'With this, you receive an information about each IP address, and to which country it belongs to. You can select the desired frequency for IP database updating', 'limit-attempts' ); ?>.
-														</p>
-														<p style="text-indent: 15px;">
-															<?php _e( 'If you need to update GeoIP immediately, please click on the "Update now" button and wait until the operation is finished', 'limit-attempts' ); ?>.
-														</p>
-														<p style="text-indent: 15px;">
-															<?php _e( 'Read more about', 'limit-attempts' ); ?>&nbsp;<a href="https://www.maxmind.com/en/geoip2-services-and-databases" target="_blank">GeoIp</a>.
-														</p>
+							<?php if ( ! $bws_hide_premium_options_check ) { ?>
+								<div class="bws_pro_version_bloc" style="overflow: visible;">
+									<div class="bws_pro_version_table_bloc">
+										<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'limit-attempts' ); ?>"></button>
+										<div class="bws_table_bg"></div>
+										<table class="form-table bws_pro_version">
+											<tr>
+												<th><?php _e( 'Update GeoIP', 'limit-attempts' ); ?></th>
+												<td>
+													<label style="display: inline-block;margin-right: 20px;"><?php _e( 'every', 'limit-attempts' ); ?>&nbsp;<input disabled="disabled" type="number" style="width: 50px;">&nbsp;<?php _e( 'months', 'limit-attempts' ); ?></label>
+													<div style="display: inline-block;position: relative;">
+														<input disabled="disabled" class="button" type="submit" value="<?php _e( 'Update now', 'limit-attempts' ); ?>">
 													</div>
-												</div>
-												<p><?php _e( 'Last update was carried out', 'limit-attempts' ); ?>&nbsp;2015-09-22 10:32:41</p>
-											</td>
-										</tr>
-									</table>
+													<div class="bws_help_box bws_help_box_left<?php if ( $wp_version >= '3.9' ) echo ' dashicons dashicons-editor-help'; ?>" style="z-index: 3;">
+														<div class="bws_hidden_help_text" style="min-width: 220px;">
+															<p style="text-indent: 15px;">
+																<?php _e( 'This option allows you to download lists with registered IP addresses all over the world to the database (from', 'limit-attempts' ); ?>&nbsp;<a href="https://www.maxmind.com" target="_blank">https://www.maxmind.com</a>).
+															</p>
+															<p style="text-indent: 15px;">
+																<?php _e( 'With this, you receive an information about each IP address, and to which country it belongs to. You can select the desired frequency for IP database updating', 'limit-attempts' ); ?>.
+															</p>
+															<p style="text-indent: 15px;">
+																<?php _e( 'If you need to update GeoIP immediately, please click on the "Update now" button and wait until the operation is finished', 'limit-attempts' ); ?>.
+															</p>
+															<p style="text-indent: 15px;">
+																<?php _e( 'Read more about', 'limit-attempts' ); ?>&nbsp;<a href="https://www.maxmind.com/en/geoip2-services-and-databases" target="_blank">GeoIp</a>.
+															</p>
+														</div>
+													</div>
+													<p><?php _e( 'Last update was carried out', 'limit-attempts' ); ?>&nbsp;2015-09-22 10:32:41</p>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<div class="bws_pro_version_tooltip">
+										<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
+										<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+										<div class="clear"></div>
+									</div>
 								</div>
-								<div class="bws_pro_version_tooltip">
-									<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to PRO version.', 'limit-attempts' ); ?></div>
-									<div class="bws_pro_links"><a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a></div>
-									<div class="clear"></div>
-								</div>
-							</div>
-							<input type="hidden" name="lmtttmpts_form_submit" value="submit" />
+							<?php } ?>					
 							<p class="submit">
+								<input type="hidden" name="lmtttmpts_form_submit" value="submit" />
 								<input id="bws-submit-button" type="submit" name="lmtttmpts_form_submit_button" class="button-primary" value="<?php _e( 'Save Changes', 'limit-attempts' ) ?>" />
-							</p>
-							<?php wp_nonce_field( $plugin_basename, 'lmtttmpts_nonce_name' ); ?>
+								<?php wp_nonce_field( $plugin_basename, 'lmtttmpts_nonce_name' ); ?>
+							</p>							
 						</form>
 						<?php bws_form_restore_default_settings( $plugin_basename ); ?>
 					</div>
@@ -1390,8 +1403,8 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 							</div>
 						</div>
 						<div class="bws_pro_version_tooltip">
-												<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to PRO version.', 'limit-attempts' ); ?></div>
-							<div class="bws_pro_links"><a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a></div>
+							<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
+							<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
 							<div class="clear"></div>
 						</div>
 					</div>
@@ -1428,7 +1441,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 					</div>
 				<?php }
 			} elseif ( 'go_pro' == $_GET['action'] ) {
-				bws_go_pro_tab_show( false, $lmtttmpts_plugin_info, $plugin_basename, 'limit-attempts.php', 'limit-attempts-pro.php', 'limit-attempts-pro/limit-attempts-pro.php', 'limit-attempts', 'fdac994c203b41e499a2818c409ff2bc', '140', isset( $go_pro_result['pro_plugin_is_activated'] ) );
+				bws_go_pro_tab_show( $bws_hide_premium_options_check, $lmtttmpts_plugin_info, $plugin_basename, 'limit-attempts.php', 'limit-attempts-pro.php', 'limit-attempts-pro/limit-attempts-pro.php', 'limit-attempts', 'fdac994c203b41e499a2818c409ff2bc', '140', isset( $go_pro_result['pro_plugin_is_activated'] ) );
 			}
 			bws_plugin_reviews_block( $lmtttmpts_plugin_info['Name'], 'limit-attempts' ); ?>
 		</div>
@@ -2768,6 +2781,13 @@ if ( !function_exists( 'lmtttmpts_is_ip_blocked' ) ) {
 
 if ( ! function_exists( 'lmtttmpts_screen_options' ) ) {
 	function lmtttmpts_screen_options() {
+		$screen = get_current_screen();
+		$args = array(
+			'id' 			=> 'lmtttmpts',
+			'section' 		=> '200538789'
+		);
+		bws_help_tab( $screen, $args );
+
 		if ( isset( $_GET['action'] ) && 'go_pro' != $_GET['action'] ) {
 			$option = 'per_page';
 			$args = array(
