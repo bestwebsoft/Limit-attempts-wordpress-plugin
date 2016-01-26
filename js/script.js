@@ -23,6 +23,8 @@
 			$( '#lmtttmpts-time-to-reset-block-display, #lmtttmpts-time-to-reset-block' ).toggleClass( 'lmtttmpts_hidden' );
 		});
 
+		$('div.updated.lmttmpts_message, div.error.lmttmpts_message').insertAfter( $('div.wrap h2:first') );
+
 			/* time-of-lock */
 		var daysOfLock = $( '#lmtttmpts-days-of-lock-display' ).val(),
 			hoursOfLock = $( '#lmtttmpts-hours-of-lock-display' ).val(),

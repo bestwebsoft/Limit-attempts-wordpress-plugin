@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add to blackilist, add to whitelist, admin, atempts, attemps, Auth, authentication, attack, ban, blacklist, block, blocked, block address, block automatically, block user, blocked ip, best security, best security pligin, best wp security plugin, best wordpress security plugin, botnet, hack, etempts, ettempts, error log, failed attempts, lemet, limet, limit attempts, limit attempts plugin, limit of locks, limited attempts, login, login attempt, limit login attempts, Login Attempts, login security, login alerts, lock, lockdown, maintenance, maximum login security, permissions, personal security, plugin, prevent, prevention, privacy, private, protection, secrity, secure, secure login, secure website, security, security log, security plugin, securty, secury, unblock, users, user, whitelist, WP Login security, web server security, website security, wordpress security
 Requires at least: 3.8
-Tested up to: 4.3.1
-Stable tag: 1.1.2
+Tested up to: 4.4.1
+Stable tag: 1.1.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -35,7 +35,8 @@ http://www.youtube.com/watch?v=xZCTEjVfu4Q
 * Allows customizing messages that are displayed in case of the failed login attempt, address blocking or when an address is added to the blacklist. 
 * Allows customizing the text and layout of an email message that is sent to the administrator when an address is automatically blocked or added to the blacklist. 
 * Is compatible with Htaccess plugin (by BestWebSoft), allowing to add IP address blocking data to htaccess file. 
-* Is compatible with Captcha plugin (by BestWebSoft), allowing to specify whether an incorrect captcha input should be considered a failed login attempt. 
+* Is compatible with Captcha plugin (by BestWebSoft), allowing to specify whether an incorrect captcha input should be considered a failed login attempt.
+* Ability to hide the login form, the registration form and the lostpassword form for blocked or blacklisted IPs.
 
 = Translation =
 
@@ -118,6 +119,12 @@ If you have checked all of the abovementioned and everything seems to be correct
 
 This may happen when you enable sending email notifications. No need to worry, your site's and your plugin's performance will not be affected whatsoever. 
 
+= I saw the message "With such ... options` settings the user`s IP will never get into the blacklist..." when saving plugin settings. What does it means? =
+
+This means that you put wrong values in "Block address" and "Add to the blacklist" options. You have to change them so that they correspond to the formula:
+
+`{"Add to the blacklist per" option} < {"Block address for" option} * {"Add to the blacklist after" option}`
+
 = I have some problems with the plugin's work. What Information should I provide to receive proper support? =
 
 Please make sure that the problem hasn't been discussed yet on our forum (<a href="http://support.bestwebsoft.com" target="_blank">http://support.bestwebsoft.com</a>). If no, please provide the following data along with your problem's description:
@@ -141,6 +148,15 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 10. Message with error when user has been added to the blacklist.
 
 == Changelog ==
+
+= V1.1.3 - 26.01.2016 =
+* NEW : Ability to hide the login form, the registration form and the lostpassword form for blocked or blacklisted IPs.
+* Bugfix : Bug with displaying of list of blocked IPs has been fixed.
+* Bugfix : Bugs with the recording/removing of statistical data in the database have been fixed.
+* Bugfix : Bugs with the pagination on plugin`s settings pages have been fixed.
+* Update : Compatibility with the Htaccess by BestWebSoft plugin has been updated.
+* Update : Functionality for the login form, the registration form and the lostpassword form has been updated.
+* Update : Functionality for wordpress 4.4.1 has been updated.
 
 = V1.1.2 - 21.10.2015 =
 * Bugfix : We fixed the bug with adding IP to the blacklist.
@@ -201,6 +217,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.1.3 =
+Ability to hide the login form, the registration form and the lostpassword form for blocked or blacklisted IPs. Bug with displaying of list of blocked IPs has been fixed. Bugs with the recording/removing of statistical data in the database have been fixed. Bugs with the pagination on plugin`s settings pages have been fixed. Compatibility with the Htaccess by BestWebSoft plugin has been updated. Functionality for the login form, the registration form and the lostpassword form has been updated. Functionality for wordpress 4.4.1 has been updated.
 
 = V1.1.2 =
 We fixed the bug with adding IP to the blacklist. BWS plugins section is updated.

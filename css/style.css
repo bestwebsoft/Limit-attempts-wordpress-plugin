@@ -78,3 +78,48 @@ tr.lmtttmpts_blocked,
 .lmtttmpts_options_table_demo input[type='number'] {
 	width: 5em;
 }
+.lmtttmpts_edit_list_form table {
+	padding: 5px 0 5px 5px 5px;
+}
+
+@media only screen and ( max-width: 785px ) {
+	.bws-plugins_page_limit-attempts p.search-box {
+		position: static;
+		margin-top: 10px;
+	}
+	
+	.lmtttmpts_edit_list_form input[type="checkbox"] {
+		margin: 5px 2px 5px 0;
+	}
+}
+@media only screen and ( max-width: 450px ) {
+	
+	.lmtttmpts_edit_list_form,
+	.lmtttmpts_edit_list_form table,
+	.lmtttmpts_edit_list_form tbody,
+	.lmtttmpts_edit_list_form tr,
+	.lmtttmpts_edit_list_form td {
+		display: block;
+		width: inherit;
+		box-sizing: border-box;
+	}
+	.lmtttmpts_edit_list_form table {
+		padding-right: 5px;
+	}
+	.lmtttmpts_edit_list_form select,
+	.lmtttmpts_edit_list_form input[type="text"] {
+		width: 100%;
+	}
+	.lmtttmpts_edit_list_form .subsubsub {
+		display: inline-block;
+		float: none;
+	}
+	.lmtttmpts_edit_list_form .subsubsub li {
+		float: left;
+	}
+	.bws-plugins_page_limit-attempts .tablenav.bottom .displaying-num {
+		display: block;
+		position: static;
+		margin-bottom: 10px;
+	}
+}
