@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: http://bestwebsoft.com/products/
 Description: The plugin Limit Attempts allows you to limit rate of login attempts by the ip, and create whitelist and blacklist.
 Author: BestWebSoft
-Version: 1.1.3
+Version: 1.1.4
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: http://bestwebsoft.com/
@@ -31,9 +31,9 @@ if ( ! is_admin() )
 	require_once( dirname( __FILE__ ) . '/includes/front-end-functions.php' );
 
 /**
- * Function for adding menu and submenu 
+ * Function for adding menu and submenu
  */
-if ( ! function_exists( 'add_lmtttmpts_admin_menu' ) ) { 
+if ( ! function_exists( 'add_lmtttmpts_admin_menu' ) ) {
 	function add_lmtttmpts_admin_menu() {
 		bws_general_menu();
 		$hook = add_submenu_page( 'bws_plugins', __( 'Limit Attempts Settings', 'limit-attempts' ), 'Limit Attempts', 'manage_options', "limit-attempts.php", 'lmtttmpts_settings_page' );
@@ -51,13 +51,13 @@ if ( ! function_exists( 'lmtttmpts_plugins_loaded' ) ) {
 /**
  * Function initialisation plugin for init
  */
-if ( ! function_exists( 'lmtttmpts_plugin_init' ) ) { 
+if ( ! function_exists( 'lmtttmpts_plugin_init' ) ) {
 	function lmtttmpts_plugin_init() {
 		global $lmtttmpts_plugin_info;
 		$plugin_basename = plugin_basename( __FILE__ );
 
 		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
-		bws_include_init( $plugin_basename ); 
+		bws_include_init( $plugin_basename );
 
 		if ( empty( $lmtttmpts_plugin_info ) ) {
 			if ( ! function_exists( 'get_plugin_data' ) ) {
@@ -80,10 +80,10 @@ if ( ! function_exists( 'lmtttmpts_plugin_admin_init' ) ) {
 
 		if ( ! isset( $bws_plugin_info ) || empty( $bws_plugin_info ) )
 			$bws_plugin_info = array( 'id' => '140', 'version' => $lmtttmpts_plugin_info["Version"] );
-		
+
 		/* Call register settings function */
 		if ( ( isset( $_GET['page'] ) && "limit-attempts.php" == $_GET['page'] ) || ! is_admin() )
-			register_lmtttmpts_settings(); 
+			register_lmtttmpts_settings();
 	}
 }
 
@@ -114,8 +114,8 @@ if ( ! function_exists( 'lmtttmpts_get_default_messages' ) ) {
 		/* Default set of messages */
 		$lmtttmpts_messages_defaults = array(
 			'failed_message_default'			=> 'Retries to lock: %ATTEMPTS%',
-			'blocked_message_default'			=> 'Too many retries. You have been blocked for %DATE%', 
-			'blacklisted_message_default'		=> 'You have been added to blacklist. Please contact with administrator to resolve this problem', 
+			'blocked_message_default'			=> 'Too many retries. You have been blocked for %DATE%',
+			'blacklisted_message_default'		=> 'You have been added to blacklist. Please contact with administrator to resolve this problem',
 			'email_subject_default'				=> '%IP% have been blocked in %SITE_NAME%',
 			'email_subject_blacklisted_default'	=> '%IP% have been added to the blacklist in %SITE_NAME%',
 			'email_blocked_default'				=> '%WHEN% IP %IP% have been automatically blocked due to the excess of login attempts on your website <a href="%SITE_URL%">%SITE_NAME%</a>.<br/><br/> Using the plugin <a href="%PLUGIN_LINK%">Limit Attempts</a> by <a href="http://bestwebsoft.com/">BestWebSoft</a>',
@@ -175,57 +175,65 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		/* Query for create table with current number of failed attempts and block quantity, block status and time when addres will be deblocked */
-		$sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "failed_attempts` (
-			`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-			`ip` CHAR(31) NOT NULL,
-			`ip_int` BIGINT,
-			`failed_attempts` INT(3) NOT NULL DEFAULT '0',
-			`block` BOOL DEFAULT FALSE,
-			`block_quantity` INT(3) NOT NULL DEFAULT '0',
-			`block_till` DATETIME,
-			PRIMARY KEY (`id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-		dbDelta( $sql );
+		if ( ! $wpdb->query( "SHOW TABLES LIKE '{$prefix}failed_attempts';" ) ) {
+			$sql = "CREATE TABLE `{$prefix}failed_attempts` (
+				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+				`ip` CHAR(31) NOT NULL,
+				`ip_int` BIGINT,
+				`failed_attempts` INT(3) NOT NULL DEFAULT '0',
+				`block` BOOL DEFAULT FALSE,
+				`block_quantity` INT(3) NOT NULL DEFAULT '0',
+				`block_till` DATETIME,
+				PRIMARY KEY (`id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+			dbDelta( $sql );
+		}
 		/* Query for create table with all number of failed attempts and block quantity, block status and time when addres will be deblocked */
-		$sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "all_failed_attempts` (
-			`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-			`ip` CHAR(31) NOT NULL,
-			`ip_int` BIGINT,
-			`failed_attempts` INT(4) NOT NULL DEFAULT '0',
-			`block_quantity` INT(3) NOT NULL DEFAULT '0',
-			`last_failed_attempt` TIMESTAMP,
-			PRIMARY KEY (`id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-		dbDelta( $sql );
+		if ( ! $wpdb->query( "SHOW TABLES LIKE '{$prefix}all_failed_attempts';" ) ) {
+			$sql = "CREATE TABLE `{$prefix}all_failed_attempts` (
+				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+				`ip` CHAR(31) NOT NULL,
+				`ip_int` BIGINT,
+				`failed_attempts` INT(4) NOT NULL DEFAULT '0',
+				`block_quantity` INT(3) NOT NULL DEFAULT '0',
+				`last_failed_attempt` TIMESTAMP,
+				PRIMARY KEY (`id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+			dbDelta( $sql );
+		}
 		/* Query for create table with whitelisted addresses */
-		$sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "whitelist` (
-			`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-			`ip` CHAR(31) NOT NULL UNIQUE,
-			`ip_from` CHAR(15) NOT NULL,
-			`ip_to` CHAR(15) NOT NULL,
-			`ip_from_int` BIGINT,
-			`ip_to_int` BIGINT,
-			`add_time` DATETIME,
-			PRIMARY KEY (`id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-		dbDelta( $sql );
+		if ( ! $wpdb->query( "SHOW TABLES LIKE '{$prefix}whitelist';" ) ) {
+			$sql = "CREATE TABLE `{$prefix}whitelist` (
+				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+				`ip` CHAR(31) NOT NULL UNIQUE,
+				`ip_from` CHAR(15) NOT NULL,
+				`ip_to` CHAR(15) NOT NULL,
+				`ip_from_int` BIGINT,
+				`ip_to_int` BIGINT,
+				`add_time` DATETIME,
+				PRIMARY KEY (`id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+			dbDelta( $sql );
+		}
 		/* Query for create table with blacklisted addresse */
-		$sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "blacklist` (
-			`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-			`ip` CHAR(31) NOT NULL UNIQUE,
-			`ip_from` CHAR(15) NOT NULL,
-			`ip_to` CHAR(15) NOT NULL,
-			`ip_from_int` BIGINT,
-			`ip_to_int` BIGINT,
-			`add_time` DATETIME,
-			PRIMARY KEY (`id`)
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-		dbDelta( $sql );
+		if ( ! $wpdb->query( "SHOW TABLES LIKE '{$prefix}blacklist';" ) ) {
+			$sql = "CREATE TABLE `{$prefix}blacklist` (
+				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+				`ip` CHAR(31) NOT NULL UNIQUE,
+				`ip_from` CHAR(15) NOT NULL,
+				`ip_to` CHAR(15) NOT NULL,
+				`ip_from_int` BIGINT,
+				`ip_to_int` BIGINT,
+				`add_time` DATETIME,
+				PRIMARY KEY (`id`)
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+			dbDelta( $sql );
+		}
 	}
 }
 
 /**
- * Register settings function 
+ * Register settings function
  */
 if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 	function register_lmtttmpts_settings() {
@@ -256,7 +264,7 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 			'email_address'					=> $lmtttmpts_email_address,
 			'failed_message'				=> 'Retries to lock: %ATTEMPTS%',
 			'blocked_message'				=> 'Too many retries. You have been blocked for %DATE%',
-			'blacklisted_message'			=> 'You have been added to blacklist. Please contact with administrator to resolve this problem', 
+			'blacklisted_message'			=> 'You have been added to blacklist. Please contact with administrator to resolve this problem',
 			'email_subject'					=> '%IP% have been blocked in %SITE_NAME%',
 			'email_subject_blacklisted'		=> '%IP% have been added to the blacklist in %SITE_NAME%',
 			'email_blocked'					=> '%WHEN% IP %IP% have been automatically blocked due to the excess of login attempts on your website <a href="%SITE_URL%">%SITE_NAME%</a>.<br/><br/> Using the plugin <a href="%PLUGIN_LINK%">Limit Attempts</a> by <a href="http://bestwebsoft.com/">BestWebSoft</a>',
@@ -265,7 +273,10 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 			'first_install'					=> strtotime( "now" ),
 			/* since v1.1.3 */
 			'hide_login_form'				=> 0,
-			'block_by_htaccess'				=> 0
+			'block_by_htaccess'				=> 0,
+			/* since v 1.1.3 */
+			'suggest_feature_banner'		=> 1
+
 		);
 		/* Install the option defaults */
 		if ( ! get_option( 'lmtttmpts_options' ) ) {
@@ -292,21 +303,21 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 					wp_clear_scheduled_hook( 'lmtttmpts_daily_log_clear' );
 					if ( 0 != $lmtttmpts_options[ 'days_to_clear_statistics' ] ) {
 						$time = time() - fmod( time(), 86400 ) + 86400;
-						wp_schedule_event( $time, 'daily', 'lmtttmpts_daily_statistics_clear' );	
+						wp_schedule_event( $time, 'daily', 'lmtttmpts_daily_statistics_clear' );
 					}
 				}
 				unset( $lmtttmpts_options[ 'days_to_clear_log' ] );
 			}
 
 			/* check if old version of htaccess is used */
-			if ( 
-				isset( $lmtttmpts_options['block_by_htaccess'] ) && 
-				0 !== $lmtttmpts_options['block_by_htaccess'] 
+			if (
+				isset( $lmtttmpts_options['block_by_htaccess'] ) &&
+				0 !== $lmtttmpts_options['block_by_htaccess']
 			) {
 				$all_plugins = get_plugins();
-				if ( 
-					is_plugin_active( 'htaccess/htaccess.php' ) || 
-					( array_key_exists( 'htaccess/htaccess.php', $all_plugins ) && ! array_key_exists( 'htaccess-pro/htaccess-pro.php', $all_plugins ) ) 
+				if (
+					is_plugin_active( 'htaccess/htaccess.php' ) ||
+					( array_key_exists( 'htaccess/htaccess.php', $all_plugins ) && ! array_key_exists( 'htaccess-pro/htaccess-pro.php', $all_plugins ) )
 				) {
 					global $htccss_plugin_info;
 					if ( ! $htccss_plugin_info )
@@ -335,7 +346,7 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 			$column_exists = $wpdb->query( "SHOW COLUMNS FROM `" . $prefix . "all_failed_attempts` LIKE 'invalid_captcha_from_login_form';" );
 			/* drop columns */
 			if ( ! empty( $column_exists ) )
-				$wpdb->query( "ALTER TABLE `{$prefix}all_failed_attempts` 
+				$wpdb->query( "ALTER TABLE `{$prefix}all_failed_attempts`
 					DROP `invalid_captcha_from_login_form`,
 					DROP `invalid_captcha_from_registration_form`,
 					DROP `invalid_captcha_from_reset_password_form`,
@@ -352,8 +363,8 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 				$table = $prefix . $table_name;
 				if ( 0 == $wpdb->query( "SHOW COLUMNS FROM {$table} LIKE 'id';" ) ) {
 					if ( in_array( $table_name, array( 'whitelist', 'blacklist' ) ) ) {
-						$wpdb->query( 
-							"ALTER TABLE {$table} DROP PRIMARY KEY, 
+						$wpdb->query(
+							"ALTER TABLE {$table} DROP PRIMARY KEY,
 							ADD `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST,
 							ADD `add_time` DATETIME;" );
 						$indexes = $wpdb->get_results( "SHOW KEYS FROM `{$table}` WHERE Key_name Like '%ip%'" );
@@ -421,10 +432,10 @@ if ( ! function_exists( 'lmtttmpts_register_plugin_links' ) ) {
 }
 
 /**
- * allowed symbol to enter in black- and whitelist 
+ * allowed symbol to enter in black- and whitelist
  */
 if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
-	function lmtttmpts_display_advertising( $ip_list ) { 
+	function lmtttmpts_display_advertising( $ip_list ) {
 		global $lmtttmpts_plugin_info, $wp_version, $lmtttmpts_options;
 		if ( isset( $_POST['bws_hide_premium_options'] ) ) {
 			check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' );
@@ -495,7 +506,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 }
 
 /**
- * Function for display limit attempts settings page 
+ * Function for display limit attempts settings page
  * in the admin area and register new settings
  */
 if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
@@ -505,7 +516,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
 		$error = $message = '';
 		$plugin_basename = plugin_basename( __FILE__ );
-		
+
 		if ( ! function_exists( 'get_plugins' ) )
 			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$all_plugins = get_plugins();
@@ -516,7 +527,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 		} else {
 			$active_plugins = get_option( 'active_plugins' );
 		}
-		
+
 		/* get admins for emails */
 		$userslogin = get_users( 'blog_id=' . $GLOBALS['blog_id'] . '&role=administrator' );
 
@@ -528,7 +539,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 				$lmtttmpts_options = $hide_result['options'];
 			}
 
-			$numeric_options = array( 
+			$numeric_options = array(
 				'allowed_retries', 'days_of_lock', 'hours_of_lock', 'minutes_of_lock',
 				'days_to_reset', 'hours_to_reset', 'minutes_to_reset', 'allowed_locks',
 				'days_to_reset_block', 'hours_to_reset_block', 'minutes_to_reset_block',
@@ -546,24 +557,24 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			if ( ( $lmtttmpts_options['days_to_reset_block'] == 0 ) && ( $lmtttmpts_options['hours_to_reset_block'] == 0 ) && ( $lmtttmpts_options['minutes_to_reset_block'] == 0 ) )
 				$lmtttmpts_options['minutes_to_reset_block'] = 1;
 
-			$allotted_time_to_block = 
-				$lmtttmpts_options['days_of_lock'] * 86400 + 
-				$lmtttmpts_options['hours_of_lock'] * 3600 + 
-				$lmtttmpts_options['minutes_of_lock'] * 60 + 
+			$allotted_time_to_block =
+				$lmtttmpts_options['days_of_lock'] * 86400 +
+				$lmtttmpts_options['hours_of_lock'] * 3600 +
+				$lmtttmpts_options['minutes_of_lock'] * 60 +
 				$lmtttmpts_options['allowed_retries'] * 60;
 
-			$allotted_time_to_blacklist = 
-				$lmtttmpts_options['days_to_reset_block'] * 86400 + 
-				$lmtttmpts_options['hours_to_reset_block'] * 3600 + 
+			$allotted_time_to_blacklist =
+				$lmtttmpts_options['days_to_reset_block'] * 86400 +
+				$lmtttmpts_options['hours_to_reset_block'] * 3600 +
 				$lmtttmpts_options['minutes_to_reset_block'] * 60;
 
 			$time_for_blacklist = $allotted_time_to_block * $lmtttmpts_options['allowed_locks'];
 
 			if ( $time_for_blacklist > $allotted_time_to_blacklist ) {
-				$message = 
+				$message =
 					'<strong>' . __( 'Notice', 'limit-attempts-pro' ) . ':</strong>&nbsp;' . __( "With such \"Block address\" and \"Add to the blacklist\" options` settings the user`s IP will never get into the blacklist. Please make necessary corrections in this options", 'limit-attempts' ) . ".<br/>\n";
 			}
-			
+
 			/* Veification and updating option with days to clear statistics */
 			if ( isset( $_POST['lmtttmpts_days_to_clear_statistics'] ) ) {
 				if ( $lmtttmpts_options['days_to_clear_statistics'] != $_POST['lmtttmpts_days_to_clear_statistics'] ) {
@@ -590,10 +601,10 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			$htaccess_is_active = 0 < count( preg_grep( '/htaccess\/htaccess.php/', $active_plugins ) ) || 0 < count( preg_grep( '/htaccess-pro\/htaccess-pro.php/', $active_plugins ) ) ? true : false;
 			if ( isset( $_POST['lmtttmpts_block_by_htaccess'] ) ) {
 				if ( $htaccess_is_active && 0 == $lmtttmpts_options['block_by_htaccess'] ) {
-					$blocked_ips = $wpdb->get_col( 
+					$blocked_ips = $wpdb->get_col(
 						"SELECT `ip` FROM `{$prefix}failed_attempts` WHERE `block` = true
 						 UNION
-						 SELECT `ip` FROM `{$prefix}blacklist`" 
+						 SELECT `ip` FROM `{$prefix}blacklist`"
 					);
 					if ( is_array( $blocked_ips ) && ! empty( $blocked_ips ) )
 						do_action( 'lmtttmpts_htaccess_hook_for_block', $blocked_ips );
@@ -617,8 +628,8 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			/* Update messages when login failed, address blocked or blacklisted, email subject and text when address blocked or blacklisted */
 			foreach ( $messages as $single_message ) {
 				if ( isset( $_POST['lmtttmpts_' . $single_message ] ) ) {
-					$lmtttmpts_options[ $single_message ] = empty( $_POST['lmtttmpts_' . $single_message ] ) 
-						? $lmtttmpts_option_defaults[ $single_message ] 
+					$lmtttmpts_options[ $single_message ] = empty( $_POST['lmtttmpts_' . $single_message ] )
+						? $lmtttmpts_option_defaults[ $single_message ]
 						: trim( esc_html( $_POST['lmtttmpts_' . $single_message ] ) );
 				}
 			}
@@ -641,7 +652,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			$lmtttmpts_options = array_map( 'stripslashes_deep', $lmtttmpts_options );
 			/* Updating options in wp_options table if button "Save changes" is pressed */
 			update_option( 'lmtttmpts_options', $lmtttmpts_options );
-			/* Finish updating and verification options from Settings form */ 
+			/* Finish updating and verification options from Settings form */
 			$message .= __( 'Settings saved.', 'limit-attempts' );
 		}
 
@@ -670,6 +681,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'whitelist' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=limit-attempts.php&amp;action=whitelist"><?php _e( 'Whitelist', 'limit-attempts' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'log' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=limit-attempts.php&amp;action=log"><?php _e( 'Log', 'limit-attempts' ); ?></a>
 				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'statistics' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=limit-attempts.php&amp;action=statistics"><?php _e( 'Statistics', 'limit-attempts' ); ?></a>
+				<a class="nav-tab<?php if ( isset( $_GET['action'] ) && 'summaries' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=limit-attempts.php&amp;action=summaries"><?php _e( 'Summaries', 'limit-attempts' ); ?></a>
 				<a class="nav-tab bws_go_pro_tab<?php if ( isset( $_GET['action'] ) && 'go_pro' == $_GET['action'] ) echo ' nav-tab-active'; ?>" href="admin.php?page=limit-attempts.php&amp;action=go_pro"><?php _e( 'Go PRO', 'limit-attempts' ); ?></a>
 			</h2>
 			<?php if ( ! empty( $hide_result['message'] ) ) { ?>
@@ -694,73 +706,68 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 								<tr>
 									<th><?php _e( 'Block address', 'limit-attempts' ) ?></th>
 									<td class="lmtttmpts-lock-options">
-										<p>
-											<?php _e( 'for', 'limit-attempts' ) ?>
-											<span id="lmtttmpts-time-of-lock-display" class="lmtttmpts_hidden lmtttmpts-display">
-												<span <?php if ( 0 == $lmtttmpts_options['days_of_lock'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['days_of_lock']; ?></span> <?php echo _n( 'day', 'days', $lmtttmpts_options['days_of_lock'], 'limit-attempts' ) ?></span>
-												<span <?php if ( 0 == $lmtttmpts_options['hours_of_lock'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['hours_of_lock']; ?></span> <?php echo _n( 'hour', 'hours', $lmtttmpts_options['hours_of_lock'], 'limit-attempts' ) ?></span>
-												<span <?php if ( 0 == $lmtttmpts_options['minutes_of_lock'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['minutes_of_lock']; ?></span> <?php echo _n( 'minute', 'minutes', $lmtttmpts_options['minutes_of_lock'], 'limit-attempts' ) ?></span>
-												<span id="lmtttmpts-time-of-lock-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></span>
-											</span>
-											<span id="lmtttmpts-time-of-lock" class="lmtttmpts-hidden-input">
-												<input id="lmtttmpts-days-of-lock-display" type="number" max="999" min="0" step="1" maxlength="3" value="<?php echo $lmtttmpts_options['days_of_lock'] ; ?>" name="lmtttmpts_days_of_lock" /> <?php _e( 'days', 'limit-attempts' ) ?> 
-												<input id="lmtttmpts-hours-of-lock-display" type="number" max="23" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['hours_of_lock'] ; ?>" name="lmtttmpts_hours_of_lock" /> <?php _e( 'hours', 'limit-attempts' ) ?> 
-												<input id="lmtttmpts-minutes-of-lock-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['minutes_of_lock'] ; ?>" name="lmtttmpts_minutes_of_lock" /> <?php _e( 'minutes', 'limit-attempts' ) ?>
-											</span>
-										</p>
-										<p>
-											<?php _e( 'after', 'limit-attempts' ) ?>
-											<span id="lmtttmpts-allowed-retries-display" class="lmtttmpts_hidden lmtttmpts-display">
-												<span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['allowed_retries']; ?></span> <?php echo _n( 'failed attempt', 'failed attempts', $lmtttmpts_options['allowed_retries'], 'limit-attempts' ) ?>
-												<span id="lmtttmpts-allowed-retries-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></span>
-											</span>
-											<span id="lmtttmpts-allowed-retries" class="lmtttmpts-hidden-input">
-												<input id="lmtttmpts-allowed-retries-number-display" type="number" min="1" max="99" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['allowed_retries'] ; ?>" name="lmtttmpts_allowed_retries" /> <?php _e( 'failed attempts', 'limit-attempts' ) ?>
-											</span>
-										</p>
-										<p>
-											<?php _e( 'per', 'limit-attempts' ) ?> 
-											<span id="lmtttmpts-time-to-reset-display" class="lmtttmpts_hidden lmtttmpts-display">
-												<span <?php if ( 0 == $lmtttmpts_options['days_to_reset'] ) echo 'class="lmtttmpts-zero-value"' ?> > <span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['days_to_reset']; ?></span> <?php echo _n( 'day', 'days', $lmtttmpts_options['days_to_reset'], 'limit-attempts' ) ?></span>
-												<span <?php if ( 0 == $lmtttmpts_options['hours_to_reset'] ) echo 'class="lmtttmpts-zero-value"' ?> > <span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['hours_to_reset']; ?></span> <?php echo _n( 'hour', 'hours', $lmtttmpts_options['hours_to_reset'], 'limit-attempts' ) ?></span>
-												<span <?php if ( 0 == $lmtttmpts_options['minutes_to_reset'] ) echo 'class="lmtttmpts-zero-value"' ?> > <span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['minutes_to_reset']; ?></span> <?php echo _n( 'minute', 'minutes', $lmtttmpts_options['minutes_to_reset'], 'limit-attempts' ) ?></span>
-												<span id="lmtttmpts-time-to-reset-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></span>
-											</span>
-											<span id="lmtttmpts-time-to-reset" class="lmtttmpts-hidden-input">
-												<input id="lmtttmpts-days-to-reset-display" type="number" max="999" min="0" step="1" maxlength="3" value="<?php echo $lmtttmpts_options['days_to_reset'] ; ?>" name="lmtttmpts_days_to_reset" /> <?php _e( 'days', 'limit-attempts' ) ?> 
-												<input id="lmtttmpts-hours-to-reset-display" type="number" max="23" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['hours_to_reset'] ; ?>" name="lmtttmpts_hours_to_reset" /> <?php _e( 'hours', 'limit-attempts' ) ?> 
-												<input id="lmtttmpts-minutes-to-reset-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['minutes_to_reset'] ; ?>" name="lmtttmpts_minutes_to_reset" /> <?php _e( 'minutes', 'limit-attempts' ); ?>
-											</span>
-										</p>
+										<fieldset id="lmtttmpts-time-of-lock-display" class="lmtttmpts_hidden lmtttmpts-display">
+											<label><?php _e( 'for', 'limit-attempts' ) ?></label>
+											<label <?php if ( 0 == $lmtttmpts_options['days_of_lock'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['days_of_lock']; ?></span> <?php echo _n( 'day', 'days', $lmtttmpts_options['days_of_lock'], 'limit-attempts' ) ?></label>
+											<label <?php if ( 0 == $lmtttmpts_options['hours_of_lock'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['hours_of_lock']; ?></span> <?php echo _n( 'hour', 'hours', $lmtttmpts_options['hours_of_lock'], 'limit-attempts' ) ?></label>
+											<label <?php if ( 0 == $lmtttmpts_options['minutes_of_lock'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['minutes_of_lock']; ?></span> <?php echo _n( 'minute', 'minutes', $lmtttmpts_options['minutes_of_lock'], 'limit-attempts' ) ?></label>
+											<label id="lmtttmpts-time-of-lock-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></label>
+										</fieldset>
+										<fieldset id="lmtttmpts-time-of-lock" class="lmtttmpts-hidden-input">
+											<label><?php _e( 'for', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-days-of-lock-display" type="number" max="999" min="0" step="1" maxlength="3" value="<?php echo $lmtttmpts_options['days_of_lock'] ; ?>" name="lmtttmpts_days_of_lock" /> <?php _e( 'days', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-hours-of-lock-display" type="number" max="23" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['hours_of_lock'] ; ?>" name="lmtttmpts_hours_of_lock" /> <?php _e( 'hours', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-minutes-of-lock-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['minutes_of_lock'] ; ?>" name="lmtttmpts_minutes_of_lock" /> <?php _e( 'minutes', 'limit-attempts' ) ?></label>
+										</fieldset>
+										<fieldset id="lmtttmpts-allowed-retries-display" class="lmtttmpts_hidden lmtttmpts-display">
+											<label><?php _e( 'after', 'limit-attempts' ) ?></label>
+											<label class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['allowed_retries']; ?></label> <?php echo _n( 'failed attempt', 'failed attempts', $lmtttmpts_options['allowed_retries'], 'limit-attempts' ) ?>
+											<label id="lmtttmpts-allowed-retries-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></label>
+										</fieldset>
+										<fieldset id="lmtttmpts-allowed-retries" class="lmtttmpts-hidden-input">
+											<label><?php _e( 'after', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-allowed-retries-number-display" type="number" min="1" max="99" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['allowed_retries'] ; ?>" name="lmtttmpts_allowed_retries" /> <?php _e( 'failed attempts', 'limit-attempts' ) ?></label>
+										</fieldset>
+										<fieldset id="lmtttmpts-time-to-reset-display" class="lmtttmpts_hidden lmtttmpts-display">
+											<label><?php _e( 'per', 'limit-attempts' ) ?></label>
+											<label <?php if ( 0 == $lmtttmpts_options['days_to_reset'] ) echo 'class="lmtttmpts-zero-value"' ?> > <span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['days_to_reset']; ?></span> <?php echo _n( 'day', 'days', $lmtttmpts_options['days_to_reset'], 'limit-attempts' ) ?></label>
+											<label <?php if ( 0 == $lmtttmpts_options['hours_to_reset'] ) echo 'class="lmtttmpts-zero-value"' ?> > <span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['hours_to_reset']; ?></span> <?php echo _n( 'hour', 'hours', $lmtttmpts_options['hours_to_reset'], 'limit-attempts' ) ?></label>
+											<label <?php if ( 0 == $lmtttmpts_options['minutes_to_reset'] ) echo 'class="lmtttmpts-zero-value"' ?> > <span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['minutes_to_reset']; ?></span> <?php echo _n( 'minute', 'minutes', $lmtttmpts_options['minutes_to_reset'], 'limit-attempts' ) ?></label>
+											<label id="lmtttmpts-time-to-reset-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></label>
+										</fieldset>
+										<fieldset id="lmtttmpts-time-to-reset" class="lmtttmpts-hidden-input">
+											<label><?php _e( 'per', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-days-to-reset-display" type="number" max="999" min="0" step="1" maxlength="3" value="<?php echo $lmtttmpts_options['days_to_reset'] ; ?>" name="lmtttmpts_days_to_reset" /> <?php _e( 'days', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-hours-to-reset-display" type="number" max="23" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['hours_to_reset'] ; ?>" name="lmtttmpts_hours_to_reset" /> <?php _e( 'hours', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-minutes-to-reset-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['minutes_to_reset'] ; ?>" name="lmtttmpts_minutes_to_reset" /> <?php _e( 'minutes', 'limit-attempts' ); ?></label>
+										</fieldset>
 									</td>
 								</tr>
 								<tr>
 									<th><?php _e( 'Add to the blacklist', 'limit-attempts') ?></th>
 									<td>
-										<p>
-											<?php _e( 'after', 'limit-attempts' ) ?>
-											<span id="lmtttmpts-allowed-locks-display" class="lmtttmpts_hidden lmtttmpts-display">
-												<span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['allowed_locks']; ?></span> <?php echo _n( 'block', 'blocks', $lmtttmpts_options['allowed_locks'], 'limit-attempts' ) ?>
-												<span id="lmtttmpts-allowed-locks-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></span>
-											</span>
-											<span id="lmtttmpts-allowed-locks" class="lmtttmpts-hidden-input">
-												<input id="lmtttmpts-allowed-locks-number-display" type="number" min="1" max="99" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['allowed_locks'] ; ?>" name="lmtttmpts_allowed_locks" /> <?php _e( 'blocks','limit-attempts' );?>
-											</span>
-										</p>
-										<p>
-											<?php _e( 'per', 'limit-attempts' ) ?>
-											<span id="lmtttmpts-time-to-reset-block-display" class="lmtttmpts_hidden lmtttmpts-display">
-												<span <?php if ( 0 == $lmtttmpts_options['days_to_reset_block'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['days_to_reset_block']; ?></span> <?php echo _n( 'day', 'days', $lmtttmpts_options['days_to_reset_block'], 'limit-attempts' ) ?></span>
-												<span <?php if ( 0 == $lmtttmpts_options['hours_to_reset_block'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['hours_to_reset_block']; ?></span> <?php echo _n( 'hour', 'hours', $lmtttmpts_options['hours_to_reset_block'], 'limit-attempts' ) ?></span>
-												<span <?php if ( 0 == $lmtttmpts_options['minutes_to_reset_block'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['minutes_to_reset_block']; ?></span> <?php echo _n( 'minute', 'minutes', $lmtttmpts_options['minutes_to_reset_block'], 'limit-attempts' ) ?></span>
-												<span id="lmtttmpts-time-to-reset-block-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></span>
-											</span>
-											<span id="lmtttmpts-time-to-reset-block" class="lmtttmpts-hidden-input">
-												<input id="lmtttmpts-days-to-reset-block-display" type="number" max="999" min="0" step="1" maxlength="3" value="<?php echo $lmtttmpts_options['days_to_reset_block'] ; ?>" name="lmtttmpts_days_to_reset_block" /> <?php _e( 'days', 'limit-attempts' ) ?> 
-												<input id="lmtttmpts-hours-to-reset-block-display" type="number" max="23" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['hours_to_reset_block'] ; ?>" name="lmtttmpts_hours_to_reset_block" /> <?php _e( 'hours', 'limit-attempts' ) ?> 
-												<input id="lmtttmpts-minutes-to-reset-block-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['minutes_to_reset_block'] ; ?>" name="lmtttmpts_minutes_to_reset_block" /> <?php _e( 'minutes', 'limit-attempts' ); ?>
-											</span>
-										</p>
+										<fieldset id="lmtttmpts-allowed-locks-display" class="lmtttmpts_hidden lmtttmpts-display">
+											<label><?php _e( 'after', 'limit-attempts' ) ?></label>
+											<label class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['allowed_locks']; ?></label> <?php echo _n( 'block', 'blocks', $lmtttmpts_options['allowed_locks'], 'limit-attempts' ) ?>
+											<label id="lmtttmpts-allowed-locks-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></label>
+										</fieldset>
+										<fieldset id="lmtttmpts-allowed-locks" class="lmtttmpts-hidden-input">
+											<label><?php _e( 'after', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-allowed-locks-number-display" type="number" min="1" max="99" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['allowed_locks'] ; ?>" name="lmtttmpts_allowed_locks" /> <?php _e( 'blocks','limit-attempts' );?></label>
+										</fieldset>
+										<fieldset id="lmtttmpts-time-to-reset-block-display" class="lmtttmpts_hidden lmtttmpts-display">
+											<label><?php _e( 'per', 'limit-attempts' ) ?></label>
+											<label <?php if ( 0 == $lmtttmpts_options['days_to_reset_block'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['days_to_reset_block']; ?></span> <?php echo _n( 'day', 'days', $lmtttmpts_options['days_to_reset_block'], 'limit-attempts' ) ?></label>
+											<label <?php if ( 0 == $lmtttmpts_options['hours_to_reset_block'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['hours_to_reset_block']; ?></span> <?php echo _n( 'hour', 'hours', $lmtttmpts_options['hours_to_reset_block'], 'limit-attempts' ) ?></label>
+											<label <?php if ( 0 == $lmtttmpts_options['minutes_to_reset_block'] ) echo 'class="lmtttmpts-zero-value"' ?> ><span class="lmtttmpts-unit-measure" ><?php echo $lmtttmpts_options['minutes_to_reset_block']; ?></span> <?php echo _n( 'minute', 'minutes', $lmtttmpts_options['minutes_to_reset_block'], 'limit-attempts' ) ?></label>
+											<label id="lmtttmpts-time-to-reset-block-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ) ?></label>
+										</fieldset>
+										<fieldset id="lmtttmpts-time-to-reset-block" class="lmtttmpts-hidden-input">
+											<label><?php _e( 'per', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-days-to-reset-block-display" type="number" max="999" min="0" step="1" maxlength="3" value="<?php echo $lmtttmpts_options['days_to_reset_block'] ; ?>" name="lmtttmpts_days_to_reset_block" /> <?php _e( 'days', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-hours-to-reset-block-display" type="number" max="23" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['hours_to_reset_block'] ; ?>" name="lmtttmpts_hours_to_reset_block" /> <?php _e( 'hours', 'limit-attempts' ) ?></label>
+											<label><input id="lmtttmpts-minutes-to-reset-block-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $lmtttmpts_options['minutes_to_reset_block'] ; ?>" name="lmtttmpts_minutes_to_reset_block" /> <?php _e( 'minutes', 'limit-attempts' ); ?></label>
+										</fieldset>
 									</td>
 								</tr>
 							</table>
@@ -844,7 +851,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 								</tr>
 								<tr id="lmtttmpts_message_blocked_area" <?php if ( ! isset( $_GET['login_error_tab'] ) || ( isset( $_GET['login_error_tab'] ) && 'blocked' != $_GET['login_error_tab'] ) ) echo 'class="lmtttmpts_hidden"' ?>>
 									<td>
-										<p><?php _e( 'Allowed Variables:', 'limit-attempts' ) ?></p> 
+										<p><?php _e( 'Allowed Variables:', 'limit-attempts' ) ?></p>
 										<ul>
 											<li>'%DATE%' <span class="bws_info">(<?php _e( 'display date when block is removed', 'limit-attempts' ); ?>)</span></li>
 											<li>'%MAIL%' <span class="bws_info">(<?php _e( 'display administrator&rsquo;s e-mail for feedback', 'limit-attempts' ); ?>)</span></li>
@@ -858,7 +865,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 								</tr>
 								<tr id="lmtttmpts_message_blacklisted_area" <?php if ( ! isset( $_GET['login_error_tab'] ) || ( isset( $_GET['login_error_tab'] ) && 'blacklisted' != $_GET['login_error_tab'] ) ) echo 'class="lmtttmpts_hidden"'?>>
 									<td>
-										<p><?php _e( 'Allowed Variables:', 'limit-attempts' ) ?></p> 
+										<p><?php _e( 'Allowed Variables:', 'limit-attempts' ) ?></p>
 										<ul>
 											<li>'%MAIL%' <span class="bws_info">(<?php _e( 'display administrators e-mail for feedback', 'limit-attempts' ); ?>)</span></li>
 										</ul>
@@ -876,9 +883,9 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 									<td<?php if ( ! isset( $lmtttmpts_options['notify_email'] ) || true === $lmtttmpts_options['notify_email'] ) echo ' style="width: 15px;"'; ?> class="lmtttmpts_align_top">
 										<input id="lmtttmpts_notify_email_options" type="checkbox" name="lmtttmpts_notify_email" value="1" <?php if ( $lmtttmpts_options['notify_email'] ) echo 'checked="checked" ' ?>/><br />
 									</td>
-									<td class="lmtttmpts_align_top lmtttmpts_notify_email_block <?php if ( isset( $lmtttmpts_options['notify_email'] ) && false === $lmtttmpts_options['notify_email'] ) echo "lmtttmpts_hidden" ?>" style="max-width:150px;">
+									<td class="lmtttmpts_align_top lmtttmpts_notify_email_block <?php if ( isset( $lmtttmpts_options['notify_email'] ) && false === $lmtttmpts_options['notify_email'] ) echo "lmtttmpts_hidden" ?>">
 										<input type="radio" id="lmtttmpts_user_mailto" name="lmtttmpts_mailto" value="admin" <?php if ( isset( $lmtttmpts_options['mailto'] ) && $lmtttmpts_options['mailto'] == 'admin' ) echo 'checked="checked" ' ?>/><label for="lmtttmpts_user_mailto"><?php _e( "Email to user's address", 'limit-attempts' ) ?></label>
-										<select name="lmtttmpts_user_email_address" onfocus="document.getElementById('lmtttmpts_user_mailto').checked = true;">
+										<select name="lmtttmpts_user_email_address">
 											<option disabled><?php _e( "Choose a username", 'limit-attempts' ); ?></option>
 											<?php foreach ( $userslogin as $key => $value ) {
 												if ( $value->data->user_email != '' ) { ?>
@@ -886,7 +893,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 												<?php }
 											} ?>
 										</select></br>
-										<input type="radio" id="lmtttmpts_custom_mailto" name="lmtttmpts_mailto" value="custom" <?php if ( isset( $lmtttmpts_options['mailto'] ) && $lmtttmpts_options['mailto'] == 'custom' ) echo 'checked="checked" ' ?>/><label for="lmtttmpts_custom_mailto"><?php _e( 'Email to another address', 'limit-attempts' ) ?></label> <input type="email" maxlength="100" name="lmtttmpts_email_address" value="<?php if ( $lmtttmpts_options['mailto'] == 'custom' ) echo $lmtttmpts_options['email_address']; ?>" onfocus="document.getElementById('lmtttmpts_custom_mailto').checked = true;"/>
+										<input type="radio" id="lmtttmpts_custom_mailto" name="lmtttmpts_mailto" value="custom" <?php if ( isset( $lmtttmpts_options['mailto'] ) && $lmtttmpts_options['mailto'] == 'custom' ) echo 'checked="checked" ' ?>/><label for="lmtttmpts_custom_mailto"><?php _e( 'Email to another address', 'limit-attempts' ) ?></label> <input type="email" maxlength="100" name="lmtttmpts_email_address" value="<?php if ( $lmtttmpts_options['mailto'] == 'custom' ) echo $lmtttmpts_options['email_address']; ?>" />
 									</td>
 								</tr>
 								<tr class="lmtttmpts_notify_email_block<?php if ( isset( $lmtttmpts_options['notify_email'] ) && false === $lmtttmpts_options['notify_email'] ) echo " lmtttmpts_hidden" ?>">
@@ -989,7 +996,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 										<?php if ( array_key_exists( 'htaccess/htaccess.php', $all_plugins ) || array_key_exists( 'htaccess-pro/htaccess-pro.php', $all_plugins ) ) {
 											$htaccess_free_active = ( 0 < count( preg_grep( '/htaccess\/htaccess.php/', $active_plugins ) ) ) ? true : false;
 											$htaccess_pro_active = ( 0 < count( preg_grep( '/htaccess-pro\/htaccess-pro.php/', $active_plugins ) ) ) ? true : false;
-											if ( $htaccess_free_active || $htaccess_pro_active ) { 
+											if ( $htaccess_free_active || $htaccess_pro_active ) {
 												if ( $htaccess_pro_active && ! $htaccess_free_active ) { ?>
 													<input type="checkbox" name="lmtttmpts_block_by_htaccess" value="1" <?php if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) echo 'checked="checked"'; ?> />
 													<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=htaccess-pro.php">Htaccess Pro</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
@@ -1019,89 +1026,91 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 								<tr>
 									<th><?php _e( 'Captcha plugin', 'limit-attempts' ) ?></th>
 									<td>
-										<?php if ( array_key_exists( 'captcha/captcha.php', $all_plugins ) || array_key_exists( 'captcha-plus/captcha-plus.php', $all_plugins ) || array_key_exists( 'captcha-pro/captcha_pro.php', $all_plugins ) ) {
-											/* if captcha is installed */
-											if ( 0 < count( preg_grep( '/captcha\/captcha.php/', $active_plugins ) ) || 0 < count( preg_grep( '/captcha-pro\/captcha_pro.php/', $active_plugins ) ) || 0 < count( preg_grep( '/captcha-plus\/captcha-plus.php/', $active_plugins ) ) ) {
-												/* if captcha plugin is active */
-												if ( 0 < count( preg_grep( '/captcha-pro\/captcha_pro.php/', $active_plugins ) ) ) { 	
-													/* if Captcha Pro is active */
-													if ( isset( $all_plugins['captcha-pro/captcha_pro.php']['Version'] ) && $all_plugins['captcha-pro/captcha_pro.php']['Version'] >= '1.4.4' ) { ?>
-														<!-- Checkbox for Login form captcha checking -->
+										<fieldset>
+											<?php if ( array_key_exists( 'captcha/captcha.php', $all_plugins ) || array_key_exists( 'captcha-plus/captcha-plus.php', $all_plugins ) || array_key_exists( 'captcha-pro/captcha_pro.php', $all_plugins ) ) {
+												/* if captcha is installed */
+												if ( 0 < count( preg_grep( '/captcha\/captcha.php/', $active_plugins ) ) || 0 < count( preg_grep( '/captcha-pro\/captcha_pro.php/', $active_plugins ) ) || 0 < count( preg_grep( '/captcha-plus\/captcha-plus.php/', $active_plugins ) ) ) {
+													/* if captcha plugin is active */
+													if ( 0 < count( preg_grep( '/captcha-pro\/captcha_pro.php/', $active_plugins ) ) ) {
+														/* if Captcha Pro is active */
+														if ( isset( $all_plugins['captcha-pro/captcha_pro.php']['Version'] ) && $all_plugins['captcha-pro/captcha_pro.php']['Version'] >= '1.4.4' ) { ?>
+															<!-- Checkbox for Login form captcha checking -->
+															<label>
+																<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
+																<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
+															</label>
+															<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=captcha_pro.php">Captcha Pro</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
+														<?php } else { ?>
+															<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
+															<span class="bws_info">(<?php _e( 'Using Captcha Pro powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php _e( 'Update Captcha Pro at least to v.1.4.4', 'limit-attempts' ); ?></a></span>
+														<?php }
+													} elseif ( 0 < count( preg_grep( '/captcha-plus\/captcha-plus.php/', $active_plugins ) ) ) {
+														/* if Captcha Plus is active */?>
 														<label>
 															<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
 															<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 														</label>
-														<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=captcha_pro.php">Captcha Pro</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
-													<?php } else { ?>
-														<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
-														<span class="bws_info">(<?php _e( 'Using Captcha Pro powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php _e( 'Update Captcha Pro at least to v.1.4.4', 'limit-attempts' ); ?></a></span>
-													<?php }
-												} elseif ( 0 < count( preg_grep( '/captcha-plus\/captcha-plus.php/', $active_plugins ) ) ) {
-													/* if Captcha Plus is active */?>
-													<label>
-														<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
-														<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
-													</label>
-													<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=captcha-plus.php">Captcha Plus</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
-												<?php } else {
-													/* Captcha free is active */
-													if ( isset( $all_plugins['captcha/captcha.php']['Version'] ) && $all_plugins['captcha/captcha.php']['Version'] >= '4.0.2' ) { ?>
-														<label>
-															<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
-															<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
-														</label>
-														<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=captcha.php">Captcha</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
-													<?php } else { ?>
-														<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
-														<span class="bws_info">(<?php _e( 'Using Captcha powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php _e( 'Update Captcha at least to v.4.0.2', 'limit-attempts' ); ?></a></span>
-													<?php }
-												}
-											} else {
-												/* if no plugin is active */
-												if ( array_key_exists( 'captcha-pro/captcha_pro.php', $all_plugins ) ) {
-													$using_plugin_name = 'Captcha Pro';
-												} elseif ( array_key_exists( 'captcha-plus/captcha-plus.php', $all_plugins ) ) {
-													$using_plugin_name = 'Captcha Plus';
+														<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=captcha-plus.php">Captcha Plus</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
+													<?php } else {
+														/* Captcha free is active */
+														if ( isset( $all_plugins['captcha/captcha.php']['Version'] ) && $all_plugins['captcha/captcha.php']['Version'] >= '4.0.2' ) { ?>
+															<label>
+																<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
+																<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
+															</label>
+															<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=captcha.php">Captcha</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
+														<?php } else { ?>
+															<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
+															<span class="bws_info">(<?php _e( 'Using Captcha powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php _e( 'Update Captcha at least to v.4.0.2', 'limit-attempts' ); ?></a></span>
+														<?php }
+													}
 												} else {
-													$using_plugin_name = 'Captcha';
-												}
-												?>
-												<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> /><span class="bws_info"> (<?php printf( __( 'Using %s powered by', 'limit-attempts' ), $using_plugin_name ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php printf( __( 'Activate %s', 'limit-attempts' ), $using_plugin_name ); ?>
-												</a></span>
-											<?php }
-										} else { ?>
-											<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" />
-											<span class="bws_info">(<?php _e( 'Using Captcha powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="http://bestwebsoft.com/products/captcha/"><?php _e( 'Download Captcha', 'limit-attempts' ); ?></a></span>
-										<?php } ?>
-										<br /><span class="bws_info"><?php _e( 'Consider the incorrect captcha input as an invalid attempt.', 'limit-attempts' ) ?></span>
-										<?php if ( ! $bws_hide_premium_options_check ) { ?>
-											<div class="bws_pro_version_bloc" style="max-width: 580px;">
-												<div class="bws_pro_version_table_bloc">
-													<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'limit-attempts' ); ?>"></button>
-													<div class="bws_table_bg"></div>
-													<div class="bws_pro_version">
-														<fieldset>
-																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Registration form', 'limit-attempts' ); ?></span></label><br />
-																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Reset Password form', 'limit-attempts' ); ?></span></label><br />
-																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Comments form', 'limit-attempts' ); ?></span></label><br />
-																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Contact form by BestWebSoft', 'limit-attempts' ); ?></span></label><br />
-																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Subscriber by BestWebSoft', 'limit-attempts' ); ?></span></label><br />
-																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress registration form', 'limit-attempts' ); ?></span></label><br />
-																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress comments form', 'limit-attempts' ); ?></span></label><br />
-																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress "Create a Group" form', 'limit-attempts' ); ?></span></label><br />
-																<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Contact Form 7', 'limit-attempts' ); ?></span></label>
-														</fieldset>
-														<p><strong>* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'limit-attempts' ); ?></strong></p>
-														<p style="position: relative;z-index: 2;"><strong>* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="http://bestwebsoft.com/products/captcha/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=' . $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">Captcha Pro</a>' ); ?></strong></p>
+													/* if no plugin is active */
+													if ( array_key_exists( 'captcha-pro/captcha_pro.php', $all_plugins ) ) {
+														$using_plugin_name = 'Captcha Pro';
+													} elseif ( array_key_exists( 'captcha-plus/captcha-plus.php', $all_plugins ) ) {
+														$using_plugin_name = 'Captcha Plus';
+													} else {
+														$using_plugin_name = 'Captcha';
+													}
+													?>
+													<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> /><span class="bws_info"> (<?php printf( __( 'Using %s powered by', 'limit-attempts' ), $using_plugin_name ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php printf( __( 'Activate %s', 'limit-attempts' ), $using_plugin_name ); ?>
+													</a></span>
+												<?php }
+											} else { ?>
+												<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" />
+												<span class="bws_info">(<?php _e( 'Using Captcha powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="http://bestwebsoft.com/products/captcha/"><?php _e( 'Download Captcha', 'limit-attempts' ); ?></a></span>
+											<?php } ?>
+											<br /><span class="bws_info"><?php _e( 'Consider the incorrect captcha input as an invalid attempt.', 'limit-attempts' ) ?></span>
+											<?php if ( ! $bws_hide_premium_options_check ) { ?>
+												<div class="bws_pro_version_bloc" style="max-width: 580px;">
+													<div class="bws_pro_version_table_bloc">
+														<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'limit-attempts' ); ?>"></button>
+														<div class="bws_table_bg"></div>
+														<div class="bws_pro_version">
+															<fieldset>
+																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Registration form', 'limit-attempts' ); ?></span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Reset Password form', 'limit-attempts' ); ?></span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Comments form', 'limit-attempts' ); ?></span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Contact form by BestWebSoft', 'limit-attempts' ); ?></span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Subscriber by BestWebSoft', 'limit-attempts' ); ?></span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress registration form', 'limit-attempts' ); ?></span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress comments form', 'limit-attempts' ); ?></span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress "Create a Group" form', 'limit-attempts' ); ?></span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Contact Form 7', 'limit-attempts' ); ?></span></label>
+															</fieldset>
+															<p><strong>* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'limit-attempts' ); ?></strong></p>
+															<p style="position: relative;z-index: 2;"><strong>* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="http://bestwebsoft.com/products/captcha/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=' . $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">Captcha Pro</a>' ); ?></strong></p>
+														</div>
+													</div>
+													<div class="bws_pro_version_tooltip">
+														<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
+														<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+														<div class="clear"></div>
 													</div>
 												</div>
-												<div class="bws_pro_version_tooltip">
-													<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
-													<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
-													<div class="clear"></div>
-												</div>
-											</div>
-										<?php } ?>
+											<?php } ?>
+										</fieldset>
 									</td>
 								</tr>
 							</table>
@@ -1114,27 +1123,29 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 											<tr>
 												<th><?php _e( 'Update GeoIP', 'limit-attempts' ); ?></th>
 												<td>
-													<label style="display: inline-block;margin-right: 20px;"><?php _e( 'every', 'limit-attempts' ); ?>&nbsp;<input disabled="disabled" type="number" style="width: 50px;">&nbsp;<?php _e( 'months', 'limit-attempts' ); ?></label>
-													<div style="display: inline-block;position: relative;">
-														<input disabled="disabled" class="button" type="submit" value="<?php _e( 'Update now', 'limit-attempts' ); ?>">
-													</div>
-													<div class="bws_help_box bws_help_box_left dashicons dashicons-editor-help" style="z-index: 3;">
-														<div class="bws_hidden_help_text" style="min-width: 220px;">
-															<p style="text-indent: 15px;">
-																<?php _e( 'This option allows you to download lists with registered IP addresses all over the world to the database (from', 'limit-attempts' ); ?>&nbsp;<a href="https://www.maxmind.com" target="_blank">https://www.maxmind.com</a>).
-															</p>
-															<p style="text-indent: 15px;">
-																<?php _e( 'With this, you receive an information about each IP address, and to which country it belongs to. You can select the desired frequency for IP database updating', 'limit-attempts' ); ?>.
-															</p>
-															<p style="text-indent: 15px;">
-																<?php _e( 'If you need to update GeoIP immediately, please click on the "Update now" button and wait until the operation is finished', 'limit-attempts' ); ?>.
-															</p>
-															<p style="text-indent: 15px;">
-																<?php _e( 'Read more about', 'limit-attempts' ); ?>&nbsp;<a href="https://www.maxmind.com/en/geoip2-services-and-databases" target="_blank">GeoIp</a>.
-															</p>
+													<fieldset>
+														<label style="display: inline-block;margin-right: 20px;"><?php _e( 'every', 'limit-attempts' ); ?></label>&nbsp;<input disabled="disabled" type="number" style="width: 50px;">&nbsp;<?php _e( 'months', 'limit-attempts' ); ?>
+														<div style="display: inline-block;position: relative;">
+															<input disabled="disabled" class="button" type="submit" value="<?php _e( 'Update now', 'limit-attempts' ); ?>">
 														</div>
-													</div>
-													<p><?php _e( 'Last update was carried out', 'limit-attempts' ); ?>&nbsp;2015-09-22 10:32:41</p>
+														<div class="bws_help_box bws_help_box_left dashicons dashicons-editor-help" style="z-index: 3;">
+															<div class="bws_hidden_help_text" style="min-width: 220px;">
+																<p style="text-indent: 15px;">
+																	<?php _e( 'This option allows you to download lists with registered IP addresses all over the world to the database (from', 'limit-attempts' ); ?>&nbsp;<a href="https://www.maxmind.com" target="_blank">https://www.maxmind.com</a>).
+																</p>
+																<p style="text-indent: 15px;">
+																	<?php _e( 'With this, you receive an information about each IP address, and to which country it belongs to. You can select the desired frequency for IP database updating', 'limit-attempts' ); ?>.
+																</p>
+																<p style="text-indent: 15px;">
+																	<?php _e( 'If you need to update GeoIP immediately, please click on the "Update now" button and wait until the operation is finished', 'limit-attempts' ); ?>.
+																</p>
+																<p style="text-indent: 15px;">
+																	<?php _e( 'Read more about', 'limit-attempts' ); ?>&nbsp;<a href="https://www.maxmind.com/en/geoip2-services-and-databases" target="_blank">GeoIp</a>.
+																</p>
+															</div>
+														</div>
+														<p><?php _e( 'Last update was carried out', 'limit-attempts' ); ?>&nbsp;2015-09-22 10:32:41</p>
+													</fieldset>
 												</td>
 											</tr>
 										</table>
@@ -1150,7 +1161,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 								<input type="hidden" name="lmtttmpts_form_submit" value="submit" />
 								<input id="bws-submit-button" type="submit" name="lmtttmpts_form_submit_button" class="button-primary" value="<?php _e( 'Save Changes', 'limit-attempts' ) ?>" />
 								<?php wp_nonce_field( $plugin_basename, 'lmtttmpts_nonce_name' ); ?>
-							</p>							
+							</p>
 						</form>
 						<?php bws_form_restore_default_settings( $plugin_basename ); ?>
 					</div>
@@ -1158,6 +1169,9 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			} else {
 				if ( 'go_pro' == $_GET['action'] ) {
 					bws_go_pro_tab_show( $bws_hide_premium_options_check, $lmtttmpts_plugin_info, $plugin_basename, 'limit-attempts.php', 'limit-attempts-pro.php', 'limit-attempts-pro/limit-attempts-pro.php', 'limit-attempts', 'fdac994c203b41e499a2818c409ff2bc', '140', isset( $go_pro_result['pro_plugin_is_activated'] ) );
+				} elseif ( 'summaries' == $_GET['action'] || 'log' == $_GET['action'] ) {
+					require_once( dirname( __FILE__ ) . "/includes/pro-tab.php" );
+					call_user_func_array( "lmtttmpts_display_{$_GET["action"]}", array( $plugin_basename ) );
 				} elseif ( file_exists( dirname( __FILE__ ) . "/includes/{$_GET["action"]}.php" ) ) {
 					require_once( dirname( __FILE__ ) . "/includes/{$_GET["action"]}.php" );
 					call_user_func_array( "lmtttmpts_display_{$_GET["action"]}", array( $plugin_basename ) );
@@ -1165,7 +1179,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 			}
 			bws_plugin_reviews_block( $lmtttmpts_plugin_info['Name'], 'limit-attempts' ); ?>
 		</div>
-	<?php } 
+	<?php }
 }
 
 /**
@@ -1174,7 +1188,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 if ( ! function_exists( 'lmtttmpts_show_notices' ) ) {
 	function lmtttmpts_show_notices() {
 		global $lmtttmpts_options, $hook_suffix, $lmtttmpts_plugin_info;
-		
+
 		/* if limit-login-attempts is also installed */
 		if ( 'plugins.php' == $hook_suffix && is_plugin_active( 'limit-login-attempts/limit-login-attempts.php' ) ) {
 			echo '<div class="error"><p><strong>' . __( 'Notice:', 'limit-attempts' ) . '</strong> ' . __( "Limit Login Attempts plugin is activated on your site, as well as Limit Attempts plugin. Please note that Limit Attempts ensures maximum security when no similar plugins are activated. Using other plugins that limit user's login attempts at the same time may lead to undesirable behaviour on your WP site.", 'limit-attempts' ) . '</p></div>';
@@ -1182,10 +1196,10 @@ if ( ! function_exists( 'lmtttmpts_show_notices' ) ) {
 		if ( empty( $lmtttmpts_options ) ) {
 			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
 		}
-		
+
 		if ( 'plugins.php' == $hook_suffix ) {
-			if ( isset( $lmtttmpts_options['first_install'] ) && strtotime( '-1 week' ) > $lmtttmpts_options['first_install'] ) 
-				bws_plugin_banner( $lmtttmpts_plugin_info, 'limit-attempts', 'limit-attempts', '33bc89079511cdfe28aeba317abfaf37', '140', '//ps.w.org/limit-attempts/assets/icon-128x128.png' ); 
+			if ( isset( $lmtttmpts_options['first_install'] ) && strtotime( '-1 week' ) > $lmtttmpts_options['first_install'] )
+				bws_plugin_banner( $lmtttmpts_plugin_info, 'limit-attempts', 'limit-attempts', '33bc89079511cdfe28aeba317abfaf37', '140', '//ps.w.org/limit-attempts/assets/icon-128x128.png' );
 			bws_plugin_banner_to_settings( $lmtttmpts_plugin_info, 'lmtttmpts_options', 'limit-attempts', 'admin.php?page=limit-attempts.php' );
 		}
 
@@ -1196,7 +1210,7 @@ if ( ! function_exists( 'lmtttmpts_show_notices' ) ) {
 			if ( isset( $_REQUEST['lmtttmpts_htaccess_notice_submit'] ) && check_admin_referer( plugin_basename(__FILE__), 'lmtttmpts_htaccess_notice_nonce_name' ) ) {
 				$lmtttmpts_options['htaccess_notice'] = '';
 				update_option( 'lmtttmpts_options', $lmtttmpts_options );
-			} else { 
+			} else {
 				/* get action_slug */
 				$action_slug = ( $hook_suffix == 'plugins.php' || $hook_suffix == 'update-core.php' ) ? $hook_suffix : 'admin.php?page=' . $_REQUEST['page']; ?>
 				<div class="updated" style="padding: 0; margin: 0; border: none; background: none;">
@@ -1216,6 +1230,9 @@ if ( ! function_exists( 'lmtttmpts_show_notices' ) ) {
 				</div>
 			<?php }
 		}
+
+		if ( isset( $_GET['page'] ) && 'limit-attempts.php' == $_GET['page'] )
+			bws_plugin_suggest_feature_banner( $lmtttmpts_plugin_info, 'lmtttmpts_options', 'limit-attempts' );
 	}
 }
 
@@ -1246,21 +1263,21 @@ if ( ! function_exists( 'lmtttmpts_get_ip' ) ) {
 	}
 }
 
-/** 
- * Function for checking is current ip is blocked 
+/**
+ * Function for checking is current ip is blocked
  */
-if ( !function_exists( 'lmtttmpts_is_ip_blocked' ) ) { 
+if ( !function_exists( 'lmtttmpts_is_ip_blocked' ) ) {
 	function lmtttmpts_is_ip_blocked( $ip ) {
 		global $wpdb;
 		$ip_int  = sprintf( '%u', ip2long( $ip ) );
 		$ip_info = $wpdb->get_row(
-			"SELECT 
-				`failed_attempts`, 
-				`block_quantity`, 
-				`block_till` 
-			FROM 
-				`{$wpdb->prefix}lmtttmpts_failed_attempts` 
-			WHERE 
+			"SELECT
+				`failed_attempts`,
+				`block_quantity`,
+				`block_till`
+			FROM
+				`{$wpdb->prefix}lmtttmpts_failed_attempts`
+			WHERE
 				`ip_int`={$ip_int} AND `block`=1
 			LIMIT 1",
 			ARRAY_A
@@ -1282,7 +1299,7 @@ if ( ! function_exists( 'lmtttmpts_screen_options' ) ) {
 			$option = 'per_page';
 			$args = array(
 				'label'   => __( 'Addresses per page', 'limit-attempts' ),
-				'default' => 30,
+				'default' => 20,
 				'option'  => 'addresses_per_page'
 			);
 			add_screen_option( $option, $args );
@@ -1303,7 +1320,7 @@ if ( ! function_exists( 'lmtttmpts_remove_from_blocked_list' ) ) {
 	function lmtttmpts_remove_from_blocked_list( $ip ) {
 		global $wpdb;
 		$wpdb->update(
-			"{$wpdb->prefix}lmtttmpts_failed_attempts", 
+			"{$wpdb->prefix}lmtttmpts_failed_attempts",
 			array( 'block' => 0 ),
 			array( 'ip' => $ip )
 		);
@@ -1324,8 +1341,8 @@ if ( ! function_exists( 'lmtttmpts_is_ip_in_table' ) ) {
 			/* for whitelist and blacklist tables needs different method */
 			if ( $ip_int != 0 ) {
 				/* checking is $ip variable is ip address and not a ip mask */
-				$is_in = $wpdb->get_var( $wpdb->prepare( 
-					'SELECT `ip` FROM %1$s WHERE `ip_from_int` <= %2$s AND `ip_to_int` >= %2$s ', $prefix . $table, $ip_int 
+				$is_in = $wpdb->get_var( $wpdb->prepare(
+					'SELECT `ip` FROM %1$s WHERE `ip_from_int` <= %2$s AND `ip_to_int` >= %2$s ', $prefix . $table, $ip_int
 				) );
 			} else {
 				/* if $ip variable is ip mask */
@@ -1347,20 +1364,20 @@ if ( ! function_exists( 'lmtttmpts_is_ip_in_table' ) ) {
  * @param ip - (string) IP
  * @return bool true/false with the result of DB add operation
  */
-if ( ! function_exists( 'lmtttmpts_add_ip_to_blacklist' ) ) { 
+if ( ! function_exists( 'lmtttmpts_add_ip_to_blacklist' ) ) {
 	function lmtttmpts_add_ip_to_blacklist( $ip ) {
 		global $wpdb, $lmtttmpts_options;
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
 		/* if IP isn't empty and isn't in blacklist already */
 		if ( '' != $ip && ! lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) ) {
 			/* if insert single ip address */
-			if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$/', $ip ) ) { 
-				$ip_int = sprintf( '%u', ip2long( $ip ) ); 
+			if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$/', $ip ) ) {
+				$ip_int = sprintf( '%u', ip2long( $ip ) );
 				/* add a new row to db */
 				$result = $wpdb->insert(
 					$prefix . 'blacklist',
-					array( 
-						'ip' 			=> $ip, 
+					array(
+						'ip' 			=> $ip,
 						'ip_from' 		=> $ip,
 						'ip_to' 		=> $ip,
 						'ip_from_int' 	=> $ip_int,
@@ -1384,7 +1401,7 @@ if ( ! function_exists( 'lmtttmpts_add_ip_to_blacklist' ) ) {
  * @param ip - (string) IP
  * @return bool true/false with the result of DB add operation
  */
-if ( ! function_exists( 'lmtttmpts_add_ip_to_whitelist' ) ) { 
+if ( ! function_exists( 'lmtttmpts_add_ip_to_whitelist' ) ) {
 	function lmtttmpts_add_ip_to_whitelist( $ip ) {
 		global $wpdb, $lmtttmpts_options;
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
@@ -1396,8 +1413,8 @@ if ( ! function_exists( 'lmtttmpts_add_ip_to_whitelist' ) ) {
 				/* add a new row to db */
 				$result = $wpdb->insert(
 					$prefix . 'whitelist',
-					array( 
-						'ip' 			=> $ip, 
+					array(
+						'ip' 			=> $ip,
 						'ip_from' 		=> $ip,
 						'ip_to' 		=> $ip,
 						'ip_from_int' 	=> $ip_int,
@@ -1420,7 +1437,7 @@ if ( ! function_exists( 'lmtttmpts_add_ip_to_whitelist' ) ) {
 if ( ! function_exists( 'lmtttmpts_clear_statistics_completely' ) ) {
 	function lmtttmpts_clear_statistics_completely() {
 		global $wpdb;
-		$result = $wpdb->query( "DELETE FROM `" . $wpdb->prefix . "lmtttmpts_all_failed_attempts`" );
+		$result = $wpdb->query( "DELETE FROM `{$wpdb->prefix}lmtttmpts_all_failed_attempts`" );
 		return $wpdb->last_error ? false : $result;
 	}
 }
@@ -1450,14 +1467,14 @@ if ( ! function_exists( 'lmtttmpts_clear_statistics_daily' ) ) {
 			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
 		}
 		$time = date( 'Y-m-d H:i:s', time() - 86400 * $lmtttmpts_options['days_to_clear_statistics'] );
-		$wpdb->query( "DELETE FROM `" . $wpdb->prefix . "lmtttmpts_all_failed_attempts` WHERE `last_failed_attempt` <= '" . $time . "'" );
+		$wpdb->query( "DELETE FROM `{$wpdb->prefix}lmtttmpts_all_failed_attempts` WHERE `last_failed_attempt` <= '{$time}'" );
 	}
 }
 
 /**
  * Function to reset failed attempts
  */
-if ( ! function_exists( 'lmtttmpts_reset_failed_attempts' ) ) { 
+if ( ! function_exists( 'lmtttmpts_reset_failed_attempts' ) ) {
 	function lmtttmpts_reset_failed_attempts( $ip ) {
 		global $wpdb;
 		$wpdb->update(
@@ -1473,7 +1490,7 @@ if ( ! function_exists( 'lmtttmpts_reset_failed_attempts' ) ) {
 /**
  * Function to reset block
  */
-if ( ! function_exists( 'lmtttmpts_reset_block' ) ) { 
+if ( ! function_exists( 'lmtttmpts_reset_block' ) ) {
 	function lmtttmpts_reset_block() {
 		global $wpdb, $lmtttmpts_options;
 		$reset_ip_db = '';
@@ -1484,8 +1501,8 @@ if ( ! function_exists( 'lmtttmpts_reset_block' ) ) {
 
 		$unlocking_timestamp =  date( 'Y-m-d H:i:s', ( current_time( 'timestamp' ) + 60 ) );
 		$current_timestamp = date( 'Y-m-d H:i:s', ( current_time( 'timestamp' ) ) );
-		$blockeds = $wpdb->get_results( "SELECT `ip_int`, `ip` FROM `" . $wpdb->prefix . "lmtttmpts_failed_attempts` WHERE `block_till` <= '" . $unlocking_timestamp . "' and `block` = '1'", ARRAY_A );
-		
+		$blockeds = $wpdb->get_results( "SELECT `ip_int`, `ip` FROM `{$wpdb->prefix}lmtttmpts_failed_attempts` WHERE `block_till` <= '{$unlocking_timestamp}' and `block` = '1'", ARRAY_A );
+
 		if ( ! empty( $blockeds ) ) {
 			foreach ( $blockeds as $blocked ) {
 				$reset_ip_in_htaccess[] = $blocked['ip'];
@@ -1494,14 +1511,14 @@ if ( ! function_exists( 'lmtttmpts_reset_block' ) ) {
 		}
 
 		if ( '' != $reset_ip_db )
-			$wpdb->query( "UPDATE `" . $wpdb->prefix . "lmtttmpts_failed_attempts` SET `block` = '0' WHERE `ip_int` IN (" . $reset_ip_db . ")" );
+			$wpdb->query( "UPDATE `{$wpdb->prefix}lmtttmpts_failed_attempts` SET `block` = '0' WHERE `ip_int` IN ({$reset_ip_db})" );
 
-		$next_timestamp = $wpdb->get_row( "SELECT `block_till` FROM `" . $wpdb->prefix . "lmtttmpts_failed_attempts` WHERE `block_till` > '" . $current_timestamp . "' ORDER BY `block_till`", ARRAY_A );
+		$next_timestamp = $wpdb->get_row( "SELECT `block_till` FROM `{$wpdb->prefix}lmtttmpts_failed_attempts` WHERE `block_till` > '{$current_timestamp}' ORDER BY `block_till`", ARRAY_A );
 		if ( ! empty( $next_timestamp ) ) {
 			$next_timestamp_unix_time = strtotime( $next_timestamp['block_till'] );
 			wp_schedule_single_event( $next_timestamp_unix_time, 'lmtttmpts_event_for_reset_block' );
 		}
-		
+
 		/* hook for deblocking by Htaccess */
 		if ( 1 == $lmtttmpts_options["block_by_htaccess"] && ! empty( $reset_ip_in_htaccess ) ) {
 			do_action( 'lmtttmpts_htaccess_hook_for_reset_block', $reset_ip_in_htaccess );
@@ -1511,7 +1528,7 @@ if ( ! function_exists( 'lmtttmpts_reset_block' ) ) {
 /**
  * Function to reset number of blocks
  */
-if ( ! function_exists( 'lmtttmpts_reset_block_quantity' ) ) { 
+if ( ! function_exists( 'lmtttmpts_reset_block_quantity' ) ) {
 	function lmtttmpts_reset_block_quantity( $ip ) {
 		global $wpdb;
 		$wpdb->update(
@@ -1527,7 +1544,7 @@ if ( ! function_exists( 'lmtttmpts_reset_block_quantity' ) ) {
 /**
  * Filter to transfer message in html format
  */
-if ( ! function_exists( 'lmtttmpts_set_html_content_type' ) ) { 
+if ( ! function_exists( 'lmtttmpts_set_html_content_type' ) ) {
 	function lmtttmpts_set_html_content_type() {
 		return 'text/html';
 	}
@@ -1572,20 +1589,20 @@ if ( ! function_exists( 'lmtttmpts_check_block_options' ) )  {
 		/*
 		 * Over what period of time the user can be blocked
 		 */
-		$time_to_block = 
-			$option['days_of_lock'] * 86400 + 
-			$option['hours_of_lock'] * 3600 + 
-			$option['minutes_of_lock'] * 60 + 
+		$time_to_block =
+			$option['days_of_lock'] * 86400 +
+			$option['hours_of_lock'] * 3600 +
+			$option['minutes_of_lock'] * 60 +
 			$option['allowed_retries'] * 60;
 
 		/*
 		 * The minimum period of time necessary for the user`s IP to be added to the blacklist
 		 */
-		$time_for_blacklist = intval( 
-				( $option['days_to_reset_block'] * 86400 + 
-				  $option['hours_to_reset_block'] * 3600 + 
+		$time_for_blacklist = intval(
+				( $option['days_to_reset_block'] * 86400 +
+				  $option['hours_to_reset_block'] * 3600 +
 				  $option['minutes_to_reset_block'] * 60
-				) / 
+				) /
 				$option['allowed_locks']
 			);
 
@@ -1661,6 +1678,10 @@ if ( ! function_exists( 'lmtttmpts_plugin_uninstall' ) ) {
 			return;
 		}
 		lmtttmpts_delete_options( $pro_version_exist );
+
+		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
+		bws_include_init( plugin_basename( __FILE___ ) );
+		bws_delete_plugin( plugin_basename( __FILE___ ) );
 	}
 }
 
@@ -1682,7 +1703,7 @@ if ( ! function_exists( 'lmtttmpts_delete_blog' ) ) {
 /**
  * Function for deleting options when uninstal current plugin
  */
-if ( ! function_exists( 'lmtttmpts_delete_options' ) ) { 
+if ( ! function_exists( 'lmtttmpts_delete_options' ) ) {
 	function lmtttmpts_delete_options( $pro_version_exist ) {
 		global $wpdb;
 		$prefix = $wpdb->prefix . 'lmtttmpts_';

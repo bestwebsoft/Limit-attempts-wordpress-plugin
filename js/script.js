@@ -5,7 +5,7 @@
 
 		/* hide "block/add to blacklist" time options at the page load */
 		$( '.lmtttmpts-hidden-input, .lmtttmpts-display' ).toggleClass( 'lmtttmpts_hidden' );
-		
+
 		/* display inputs if 'Edit' was clicked*/
 		$( '#lmtttmpts-time-of-lock-edit' ).click( function(){
 			$( '#lmtttmpts-time-of-lock-display, #lmtttmpts-time-of-lock' ).toggleClass( 'lmtttmpts_hidden' );
@@ -18,7 +18,7 @@
 		});
 		$( '#lmtttmpts-allowed-locks-edit' ).click( function(){
 			$( '#lmtttmpts-allowed-locks-display, #lmtttmpts-allowed-locks' ).toggleClass( 'lmtttmpts_hidden' );
-		});		
+		});
 		$( '#lmtttmpts-time-to-reset-block-edit' ).click( function(){
 			$( '#lmtttmpts-time-to-reset-block-display, #lmtttmpts-time-to-reset-block' ).toggleClass( 'lmtttmpts_hidden' );
 		});
@@ -44,7 +44,7 @@
 		$( document ).click( function( event ) {
 			/* hide time-of-lock inputs if clicked outside and values not changed */
 			if ( ! $( event.target ).closest( "#lmtttmpts-time-of-lock-edit, #lmtttmpts-time-of-lock" ).length &&
-				daysOfLock == $( '#lmtttmpts-days-of-lock-display' ).val() && 
+				daysOfLock == $( '#lmtttmpts-days-of-lock-display' ).val() &&
 				hoursOfLock == $( '#lmtttmpts-hours-of-lock-display' ).val() &&
 				minutesOfLock == $( '#lmtttmpts-minutes-of-lock-display' ).val() ) {
 				$( '#lmtttmpts-time-of-lock-display' ).removeClass( 'lmtttmpts_hidden' );
@@ -57,8 +57,8 @@
 				$( '#lmtttmpts-allowed-retries' ).addClass( 'lmtttmpts_hidden' );
 			};
 			/* hide time-to-reset inputs if clicked outside and values not changed */
-			if ( ! $( event.target ).closest( "#lmtttmpts-time-to-reset-edit, #lmtttmpts-time-to-reset" ).length && 
-				daysToReset == $( '#lmtttmpts-days-to-reset-display' ).val() && 
+			if ( ! $( event.target ).closest( "#lmtttmpts-time-to-reset-edit, #lmtttmpts-time-to-reset" ).length &&
+				daysToReset == $( '#lmtttmpts-days-to-reset-display' ).val() &&
 				hoursToReset == $( '#lmtttmpts-hours-to-reset-display' ).val() &&
 				minutesToReset == $( '#lmtttmpts-minutes-to-reset-display' ).val() ) {
 				$( '#lmtttmpts-time-to-reset-display' ).removeClass( 'lmtttmpts_hidden' );
@@ -71,8 +71,8 @@
 				$( '#lmtttmpts-allowed-locks' ).addClass( 'lmtttmpts_hidden' );
 			};
 			/* hide time-to-reset-block inputs if clicked outside and values not changed */
-			if ( ! $( event.target ).closest( '#lmtttmpts-time-to-reset-block-edit, #lmtttmpts-time-to-reset-block' ).length && 
-				daysToResetBlock == $( '#lmtttmpts-days-to-reset-block-display' ).val() && 
+			if ( ! $( event.target ).closest( '#lmtttmpts-time-to-reset-block-edit, #lmtttmpts-time-to-reset-block' ).length &&
+				daysToResetBlock == $( '#lmtttmpts-days-to-reset-block-display' ).val() &&
 				hoursToResetBlock == $( '#lmtttmpts-hours-to-reset-block-display' ).val() &&
 				minutesToResetBlock == $( '#lmtttmpts-minutes-to-reset-block-display' ).val() ) {
 				$( '#lmtttmpts-time-to-reset-block-display' ).removeClass( 'lmtttmpts_hidden' );
@@ -107,7 +107,7 @@
 			$( '.lmtttmpts_email_message_block' ).addClass( 'lmtttmpts_hidden' );
 			event.preventDefault();
 		});
-		
+
 		$( '#lmtttmpts_nav_tab_message_js, #lmtttmpts_nav_tab_email_js_a' ).css( 'display', 'block' );
 		$( '#lmtttmpts_nav_tab_message_no_js, #lmtttmpts_nav_tab_email_no_js_a' ).css( 'display', 'none' );
 
@@ -154,15 +154,24 @@
 				$( this ).closest( 'td' ).css( "width", "auto" );
 			}
 		});
+
+		$( 'select[name="lmtttmpts_user_email_address"]' ).on( 'focus', function() {
+			document.getElementById( 'lmtttmpts_user_mailto' ).checked = true;
+		});
+
+		$( 'input[name="lmtttmpts_email_address"]' ).on( 'focus', function() {
+			document.getElementById( 'lmtttmpts_custom_mailto' ).checked = true;
+		});
+
 		/* prevent form submit but get defaut text into form textarea */
 		$( 'button[name="lmtttmpts_return_default"]' ).click( function( event ) {
 			var restoreMessage = $( this ).val();
 			$.ajax({
 				type: "POST",
 				url: ajaxurl,
-				data: { 
-					action: 				'lmtttmpts_restore_default_message', 
-					message_option_name: 	restoreMessage, 
+				data: {
+					action: 				'lmtttmpts_restore_default_message',
+					message_option_name: 	restoreMessage,
 					'lmtttmpts_nonce': 		lmtttmptsScriptVars.lmtttmpts_ajax_nonce,
 				},
 				success: function ( result ) {
@@ -172,7 +181,7 @@
 					name = 'lmtttmpts_' + restoreMessage;
 					$( '.updated, .error' ).hide();
 					$( '#lmtttmpts_settings' ).find( 'textarea[name="' + name + '"]' ).val( data['restored_message_text'] );
-					$( '.nav-tab-wrapper' ).after( data['admin_notice_message'] );
+					$( '.nav-tab-wrapper:first' ).after( data['admin_notice_message'] );
 				},
 				error: function( request, status, error ) {
 					alert( error + request.status );
@@ -186,7 +195,7 @@
 		$( 'input[name="lmtttmpts_add_to_whitelist_my_ip"]' ).click( function() {
 			if ( $( this ).is( ':checked' ) )
 				$( 'input[name="lmtttmpts_add_to_whitelist"]' ).val( $( 'input[name="lmtttmpts_add_to_whitelist_my_ip_value"]' ).val() ).attr( 'readonly', 'readonly' );
-			else 
+			else
 				$( 'input[name="lmtttmpts_add_to_whitelist"]' ).val( '' ).removeAttr( 'readonly' );
 		});
 

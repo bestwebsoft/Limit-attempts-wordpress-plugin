@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Limit Attempts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-22 11:39+0300\n"
+"POT-Creation-Date: 2016-04-08 13:13+0300\n"
 "PO-Revision-Date: \n"
-"Last-Translator: BestWebSoft team <wp@bestwebsoft.com>\n"
-"Language-Team: Damian Dąbrowski <dabek1812@gmail.com>\n"
+"Last-Translator: Damian Dąbrowski <contact@codester.pl>\n"
+"Language-Team: Damian Dąbrowski <contact@codester.pl>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,16 +13,16 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _e;__;_n:1,2;_x\n"
 "X-Poedit-Basepath: .\n"
-"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n%10==1 && n%100!=11) ? 3 : "
-"((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../limit-attempts.php:39 ../limit-attempts.php:665
+#: ../limit-attempts.php:39 ../limit-attempts.php:676
 msgid "Limit Attempts Settings"
 msgstr "Limit Attempts - Ustawienia"
 
-#: ../limit-attempts.php:319
+#: ../limit-attempts.php:330
 msgid ""
 "Limit Attempts interaction with Htaccess was turned off since you are using "
 "an outdated Htaccess plugin version. If you want to keep using this "
@@ -32,464 +32,459 @@ msgstr ""
 "nieaktualną wersję Htaccess. Jeśli chcesz utrzymać współpracę między "
 "wtyczkami zainstaluj najnowszą wersję Htaccess - v 1.6.2"
 
-#: ../limit-attempts.php:399 ../limit-attempts.php:415
-#: ../limit-attempts.php:667
+#: ../limit-attempts.php:410 ../limit-attempts.php:426
+#: ../limit-attempts.php:678
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: ../limit-attempts.php:416
+#: ../limit-attempts.php:427
 msgid "FAQ"
 msgstr "FAQ"
 
-#: ../limit-attempts.php:417
+#: ../limit-attempts.php:428
 msgid "Support"
 msgstr "Pomoc"
 
-#: ../limit-attempts.php:438 ../limit-attempts.php:770
-#: ../limit-attempts.php:1080 ../limit-attempts.php:1111
+#: ../limit-attempts.php:449 ../limit-attempts.php:777
+#: ../limit-attempts.php:1088 ../limit-attempts.php:1120
 msgid "Close"
-msgstr ""
+msgstr "Zamknij"
 
-#: ../limit-attempts.php:441
+#: ../limit-attempts.php:452
 msgid "Add"
-msgstr ""
+msgstr "Dodaj"
 
-#: ../limit-attempts.php:442
+#: ../limit-attempts.php:453
 msgid "Delete"
-msgstr ""
+msgstr "Usuń"
 
-#: ../limit-attempts.php:447
+#: ../limit-attempts.php:458
 msgid "Enter IP"
-msgstr ""
+msgstr "Podaj IP"
 
-#: ../limit-attempts.php:450
-#, fuzzy
+#: ../limit-attempts.php:461
 msgid "Allowed formats"
 msgstr "Dozwolone formaty"
 
-#: ../limit-attempts.php:453
-#, fuzzy
+#: ../limit-attempts.php:464
 msgid "Allowed diapason"
 msgstr "Dozwolone zmienne:"
 
-#: ../limit-attempts.php:456 ../limit-attempts.php:467
-#, fuzzy
+#: ../limit-attempts.php:467 ../limit-attempts.php:478
 msgid "Allowed separators"
 msgstr "Dozwolone separatory"
 
-#: ../limit-attempts.php:457 ../limit-attempts.php:467
+#: ../limit-attempts.php:468 ../limit-attempts.php:478
 msgid "a comma"
 msgstr "przecinek"
 
-#: ../limit-attempts.php:457 ../limit-attempts.php:467
+#: ../limit-attempts.php:468 ../limit-attempts.php:478
 msgid "semicolon"
 msgstr "średnik"
 
-#: ../limit-attempts.php:457
+#: ../limit-attempts.php:468
 msgid "ordinary space, tab, new line or carriage return"
 msgstr "spacja, tabulacja, znak nowej linii, powrót karetki"
 
-#: ../limit-attempts.php:464
-#, fuzzy
+#: ../limit-attempts.php:475
 msgid "Reason for IP"
 msgstr "Powód"
 
-#: ../limit-attempts.php:467
-#, fuzzy
+#: ../limit-attempts.php:478
 msgid "tab, new line or carriage return"
 msgstr "spacja, tabulacja, znak nowej linii, powrót karetki"
 
-#: ../limit-attempts.php:475
-#, fuzzy
+#: ../limit-attempts.php:486
 msgid "Select country"
-msgstr "Usuń wpis dziennika"
+msgstr "Wybierz kraj"
 
-#: ../limit-attempts.php:479
+#: ../limit-attempts.php:490
 msgid "Reason for country"
-msgstr ""
+msgstr "Powód"
 
-#: ../limit-attempts.php:486 ../limit-attempts.php:799
-#: ../limit-attempts.php:1099 ../limit-attempts.php:1143
-#: ../includes/log.php:81
-#, fuzzy
+#: ../limit-attempts.php:497 ../limit-attempts.php:806
+#: ../limit-attempts.php:1107 ../limit-attempts.php:1154
+#: ../includes/pro-tab.php:82 ../includes/pro-tab.php:106
 msgid "Unlock premium options by upgrading to Pro version"
 msgstr "Odblokuj dodatkowe opcje przez aktualizację do wersji PRO."
 
-#: ../limit-attempts.php:487 ../limit-attempts.php:800
-#: ../limit-attempts.php:1100 ../limit-attempts.php:1144
-#: ../includes/log.php:82
+#: ../limit-attempts.php:498 ../limit-attempts.php:807
+#: ../limit-attempts.php:1108 ../limit-attempts.php:1155
+#: ../includes/pro-tab.php:83 ../includes/pro-tab.php:107
 msgid "Learn More"
 msgstr "Czytaj dalej"
 
-#: ../limit-attempts.php:564
-#, fuzzy
+#: ../limit-attempts.php:575
 msgid "Notice"
-msgstr "Uwaga:"
+msgstr "Uwaga"
 
-#: ../limit-attempts.php:564
+#: ../limit-attempts.php:575
 msgid ""
 "With such \"Block address\" and \"Add to the blacklist\" options` settings "
 "the user`s IP will never get into the blacklist. Please make necessary "
 "corrections in this options"
 msgstr ""
+"Niestety obecne ustawienia sprawiają, że adresy IP nigdy nie zostaną dodane "
+"do czarnej listy. Prosimy o wprowadzenie niezbędnych poprawek."
 
-#: ../limit-attempts.php:645
-#, fuzzy
+#: ../limit-attempts.php:656
 msgid "Settings saved."
-msgstr "Ustawienia"
+msgstr "Ustawienia zostały zapisane."
 
-#: ../limit-attempts.php:662
+#: ../limit-attempts.php:673
 msgid "All plugin settings were restored."
-msgstr ""
+msgstr "Wszystkie ustawienia wtyczki zostały przywrócone."
 
-#: ../limit-attempts.php:668
+#: ../limit-attempts.php:679
 msgid "Blocked IP"
 msgstr "Zablokowane adresy IP"
 
-#: ../limit-attempts.php:669
+#: ../limit-attempts.php:680
 msgid "Blacklist"
 msgstr "Czarna lista"
 
-#: ../limit-attempts.php:670
+#: ../limit-attempts.php:681
 msgid "Whitelist"
 msgstr "Biała lista"
 
-#: ../limit-attempts.php:671
+#: ../limit-attempts.php:682
 msgid "Log"
 msgstr "Dziennik"
 
-#: ../limit-attempts.php:672
+#: ../limit-attempts.php:683
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: ../limit-attempts.php:673
+#: ../limit-attempts.php:684
+msgid "Summaries"
+msgstr ""
+
+#: ../limit-attempts.php:685
 msgid "Go PRO"
 msgstr "Wersja PRO"
 
-#: ../limit-attempts.php:695
+#: ../limit-attempts.php:707
 msgid "Block address"
 msgstr "Blokada adresu"
 
-#: ../limit-attempts.php:698
+#: ../limit-attempts.php:710 ../limit-attempts.php:717
 msgid "for"
 msgstr "na okres"
 
-#: ../limit-attempts.php:700 ../limit-attempts.php:724
-#: ../limit-attempts.php:753 ../limit-attempts.php:1594
-#: ../includes/front-end-functions.php:610
-#: ../includes/front-end-functions.php:631
+#: ../limit-attempts.php:711 ../limit-attempts.php:733
+#: ../limit-attempts.php:760 ../limit-attempts.php:1611
+#: ../includes/front-end-functions.php:619
+#: ../includes/front-end-functions.php:640
 msgid "day"
 msgid_plural "days"
 msgstr[0] "dnia"
 msgstr[1] "dni"
 msgstr[2] "dni"
-msgstr[3] "dni"
 
-#: ../limit-attempts.php:701 ../limit-attempts.php:725
-#: ../limit-attempts.php:754 ../limit-attempts.php:1598
-#: ../includes/front-end-functions.php:614
+#: ../limit-attempts.php:712 ../limit-attempts.php:734
+#: ../limit-attempts.php:761 ../limit-attempts.php:1615
+#: ../includes/front-end-functions.php:623
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "godziny"
 msgstr[1] "godzin"
 msgstr[2] "godzin"
-msgstr[3] "godzin"
 
-#: ../limit-attempts.php:702 ../limit-attempts.php:726
-#: ../limit-attempts.php:755 ../limit-attempts.php:1602
-#: ../includes/front-end-functions.php:618
+#: ../limit-attempts.php:713 ../limit-attempts.php:735
+#: ../limit-attempts.php:762 ../limit-attempts.php:1619
+#: ../includes/front-end-functions.php:627
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuty"
 msgstr[1] "minut"
 msgstr[2] "minut"
-msgstr[3] "minut"
 
-#: ../limit-attempts.php:703 ../limit-attempts.php:715
-#: ../limit-attempts.php:727 ../limit-attempts.php:744
-#: ../limit-attempts.php:756
+#: ../limit-attempts.php:714 ../limit-attempts.php:725
+#: ../limit-attempts.php:736 ../limit-attempts.php:752
+#: ../limit-attempts.php:763
 msgid "Edit"
 msgstr "Edytuj"
 
-#: ../limit-attempts.php:706 ../limit-attempts.php:730
-#: ../limit-attempts.php:759 ../limit-attempts.php:786
-#: ../limit-attempts.php:809
+#: ../limit-attempts.php:718 ../limit-attempts.php:740
+#: ../limit-attempts.php:767 ../limit-attempts.php:793
+#: ../limit-attempts.php:816
 msgid "days"
 msgstr "dni"
 
-#: ../limit-attempts.php:707 ../limit-attempts.php:731
-#: ../limit-attempts.php:760
+#: ../limit-attempts.php:719 ../limit-attempts.php:741
+#: ../limit-attempts.php:768
 msgid "hours"
 msgstr "godziny"
 
-#: ../limit-attempts.php:708 ../limit-attempts.php:732
-#: ../limit-attempts.php:761
+#: ../limit-attempts.php:720 ../limit-attempts.php:742
+#: ../limit-attempts.php:769
 msgid "minutes"
 msgstr "minuty"
 
-#: ../limit-attempts.php:712 ../limit-attempts.php:741
+#: ../limit-attempts.php:723 ../limit-attempts.php:728
+#: ../limit-attempts.php:750 ../limit-attempts.php:755
 msgid "after"
 msgstr "po"
 
-#: ../limit-attempts.php:714
+#: ../limit-attempts.php:724
 msgid "failed attempt"
 msgid_plural "failed attempts"
 msgstr[0] "nieudanej próbie"
 msgstr[1] "nieudanych próbach"
 msgstr[2] "nieudanych próbach"
-msgstr[3] "nieudanych próbach"
 
-#: ../limit-attempts.php:718
+#: ../limit-attempts.php:729
 msgid "failed attempts"
 msgstr "nieudanych próbach"
 
-#: ../limit-attempts.php:722 ../limit-attempts.php:751
+#: ../limit-attempts.php:732 ../limit-attempts.php:739
+#: ../limit-attempts.php:759 ../limit-attempts.php:766
 msgid "per"
 msgstr "w ciągu"
 
-#: ../limit-attempts.php:738
+#: ../limit-attempts.php:747
 msgid "Add to the blacklist"
 msgstr "Dodaj do czarnej listy"
 
-#: ../limit-attempts.php:743
+#: ../limit-attempts.php:751
 msgid "block"
 msgid_plural "blocks"
 msgstr[0] "blokadzie"
 msgstr[1] "blokadach"
 msgstr[2] "blokadach"
-msgstr[3] "blokadach"
 
-#: ../limit-attempts.php:747
+#: ../limit-attempts.php:756
 msgid "blocks"
 msgstr "blokadach"
 
-#: ../limit-attempts.php:774
+#: ../limit-attempts.php:781
 msgid "If user tried to log in with a non-existent username"
 msgstr ""
-
-#: ../limit-attempts.php:777
-msgid "according to \"Block address\" and \"Add to the blacklist\" options"
-msgstr ""
-
-#: ../limit-attempts.php:778
-#, fuzzy
-msgid "block address immediately"
-msgstr "Blokada adresu"
-
-#: ../limit-attempts.php:779
-#, fuzzy
-msgid "add to the blacklist immediately"
-msgstr "Dodaj do czarnej listy"
+"W przypadku próby logowania z wykorzystaniem nieistniejącej nazwy użytkownika"
 
 #: ../limit-attempts.php:784
+msgid "according to \"Block address\" and \"Add to the blacklist\" options"
+msgstr "odwołaj się do ustawień listy"
+
+#: ../limit-attempts.php:785
+msgid "block address immediately"
+msgstr "natychmiastowo blokuj adres"
+
+#: ../limit-attempts.php:786
+msgid "add to the blacklist immediately"
+msgstr "natychmiastowo dodaj adres do czarnej listy"
+
+#: ../limit-attempts.php:791
 msgid "Remove log entries that are over"
 msgstr "Usuń wpisy z dziennika po upływie"
 
-#: ../limit-attempts.php:787
+#: ../limit-attempts.php:794
 msgid "Set \"0\" if you do not want to clear the log."
 msgstr "Ustaw \"0\" jeśli nie chcesz czyścić wpisów w dzienniku."
 
-#: ../limit-attempts.php:788
+#: ../limit-attempts.php:795
 msgid "Current size of DB table"
 msgstr "Obecny rozmiar tablicy w bazie danych"
 
-#: ../limit-attempts.php:788
+#: ../limit-attempts.php:795
 msgid "Mb"
 msgstr "Mb"
 
-#: ../limit-attempts.php:793 ../limit-attempts.php:1094
+#: ../limit-attempts.php:800 ../limit-attempts.php:1102
 msgid "If you upgrade to Pro version all your settings will be saved."
 msgstr ""
 "Przy aktualizacji do wersji PRO wszystkie twoje ustawienia zostaną "
 "zapamiętane."
 
-#: ../limit-attempts.php:807
+#: ../limit-attempts.php:814
 msgid "Remove statistics entry in case no failed attempts occurred for"
 msgstr ""
 "Usuń adres ze statystyk w przypadku braku logowań zakończonych "
 "niepowodzeniem w przeciągu"
 
-#: ../limit-attempts.php:810
+#: ../limit-attempts.php:817
 msgid "Set \"0\" if you do not want to clear the statistics."
 msgstr "Ustaw \"0\" jeśli nie chcesz czyścić statystyk."
 
-#: ../limit-attempts.php:814
+#: ../limit-attempts.php:821
 msgid "Error messages"
 msgstr "Komunikat o błędach"
 
-#: ../limit-attempts.php:816 ../limit-attempts.php:895
+#: ../limit-attempts.php:823 ../limit-attempts.php:902
 msgid "Hide"
 msgstr "Ukryj"
 
-#: ../limit-attempts.php:817 ../limit-attempts.php:896
+#: ../limit-attempts.php:824 ../limit-attempts.php:903
 msgid "Show"
 msgstr "Pokaż"
 
-#: ../limit-attempts.php:822 ../limit-attempts.php:827
+#: ../limit-attempts.php:829 ../limit-attempts.php:834
 msgid "For invalid attempt"
 msgstr "Dla nieudanej próby"
 
-#: ../limit-attempts.php:823 ../limit-attempts.php:828
+#: ../limit-attempts.php:830 ../limit-attempts.php:835
 msgid "For blocked user"
 msgstr "Dla zablokowanego użytkownika"
 
-#: ../limit-attempts.php:824 ../limit-attempts.php:829
+#: ../limit-attempts.php:831 ../limit-attempts.php:836
 msgid "For blacklisted user"
 msgstr "Dla użytkownika z czarnej listy"
 
-#: ../limit-attempts.php:834 ../limit-attempts.php:847
-#: ../limit-attempts.php:861 ../limit-attempts.php:915
-#: ../limit-attempts.php:929 ../limit-attempts.php:946
-#: ../limit-attempts.php:963
+#: ../limit-attempts.php:841 ../limit-attempts.php:854
+#: ../limit-attempts.php:868 ../limit-attempts.php:922
+#: ../limit-attempts.php:936 ../limit-attempts.php:953
+#: ../limit-attempts.php:970
 msgid "Allowed Variables:"
 msgstr "Dozwolone zmienne:"
 
-#: ../limit-attempts.php:836
+#: ../limit-attempts.php:843
 msgid "display quantity of allowed attempts"
 msgstr "wyświetla ilość prób, które pozostały"
 
-#: ../limit-attempts.php:838 ../limit-attempts.php:852
-#: ../limit-attempts.php:865 ../limit-attempts.php:954
-#: ../limit-attempts.php:971
+#: ../limit-attempts.php:845 ../limit-attempts.php:859
+#: ../limit-attempts.php:872 ../limit-attempts.php:961
+#: ../limit-attempts.php:978
 msgid "Restore default message"
 msgstr "Przywróć wiadomość domyślną"
 
-#: ../limit-attempts.php:842 ../limit-attempts.php:856
-#: ../limit-attempts.php:869 ../limit-attempts.php:924
-#: ../limit-attempts.php:938 ../limit-attempts.php:958
-#: ../limit-attempts.php:975
+#: ../limit-attempts.php:849 ../limit-attempts.php:863
+#: ../limit-attempts.php:876 ../limit-attempts.php:931
+#: ../limit-attempts.php:945 ../limit-attempts.php:965
+#: ../limit-attempts.php:982
 msgid "You can use standart HTML tags and attributes."
 msgstr "Możesz wykorzystać standardowe tagi i atrybuty HTML."
 
-#: ../limit-attempts.php:849
+#: ../limit-attempts.php:856
 msgid "display date when block is removed"
 msgstr "wyświetla czas kiedy użytkownik zostanie odblokowany"
 
-#: ../limit-attempts.php:850
+#: ../limit-attempts.php:857
 msgid "display administrator&rsquo;s e-mail for feedback"
 msgstr "wyświetla adres administratora w celu udzielenia wsparcia"
 
-#: ../limit-attempts.php:863
+#: ../limit-attempts.php:870
 msgid "display administrators e-mail for feedback"
 msgstr "wyświetla adres e-mail administratora by móc udzielić wsparcia"
 
-#: ../limit-attempts.php:875
+#: ../limit-attempts.php:882
 msgid "Send email with notification"
 msgstr "Wyślij wiadomość z powiadomieniem"
 
-#: ../limit-attempts.php:880
+#: ../limit-attempts.php:887
 msgid "Email to user's address"
 msgstr "Wiadomość na adres użytkownika"
 
-#: ../limit-attempts.php:882
+#: ../limit-attempts.php:889
 msgid "Choose a username"
 msgstr "Wybierz użytkownika"
 
-#: ../limit-attempts.php:889
+#: ../limit-attempts.php:896
 msgid "Email to another address"
 msgstr "Wiadomość na inny adres"
 
-#: ../limit-attempts.php:893
+#: ../limit-attempts.php:900
 msgid "Additional options for email with notification"
 msgstr "Dodatkowe opcje do wiadomości z powiadomieniem"
 
-#: ../limit-attempts.php:902 ../limit-attempts.php:906
+#: ../limit-attempts.php:909 ../limit-attempts.php:913
 msgid "Email to admistrator when user is blocked"
 msgstr "Wiadomość do administratora kiedy użytkownik zostanie zablokowany"
 
-#: ../limit-attempts.php:903 ../limit-attempts.php:907
+#: ../limit-attempts.php:910 ../limit-attempts.php:914
 msgid "Email to admistrator when user is blacklisted"
 msgstr ""
 "Wiadomość do administratora kiedy użytkownik zostanie umieszczony na czarnej "
 "liście"
 
-#: ../limit-attempts.php:911
+#: ../limit-attempts.php:918
 msgid "Subject"
 msgstr "Temat"
 
-#: ../limit-attempts.php:917
+#: ../limit-attempts.php:924
 msgid "display blocked IP address"
 msgstr "wyświetla zablokowany adres IP"
 
-#: ../limit-attempts.php:918 ../limit-attempts.php:932
-#: ../limit-attempts.php:951 ../limit-attempts.php:968
+#: ../limit-attempts.php:925 ../limit-attempts.php:939
+#: ../limit-attempts.php:958 ../limit-attempts.php:975
 msgid "display name of your site"
 msgstr "wyświetla nazwę strony"
 
-#: ../limit-attempts.php:920 ../limit-attempts.php:934
+#: ../limit-attempts.php:927 ../limit-attempts.php:941
 msgid "Restore default subject"
 msgstr "Przywróć domyślny temat"
 
-#: ../limit-attempts.php:931
+#: ../limit-attempts.php:938
 msgid "display blacklisted IP address"
 msgstr "wyświetla zablokowane adresy IP"
 
-#: ../limit-attempts.php:942
+#: ../limit-attempts.php:949
 msgid "Message"
 msgstr "Wiadomość"
 
-#: ../limit-attempts.php:948
+#: ../limit-attempts.php:955
 msgid "display IP address that is blocked"
 msgstr "wyświetla adres IP, który został zablokowany"
 
-#: ../limit-attempts.php:949 ../limit-attempts.php:966
+#: ../limit-attempts.php:956 ../limit-attempts.php:973
 msgid "display link for Limit Attempts plugin on your site"
 msgstr "wyświetla link do wtyczki Limit Attempts na twojej stronie"
 
-#: ../limit-attempts.php:950
+#: ../limit-attempts.php:957
 msgid "display date and time when IP address was blocked"
 msgstr "wyświetla czas kiedy adres IP został zablokowany"
 
-#: ../limit-attempts.php:952 ../limit-attempts.php:969
+#: ../limit-attempts.php:959 ../limit-attempts.php:976
 msgid "display your site's URL"
 msgstr "wyświetla adres twojej strony"
 
-#: ../limit-attempts.php:965
+#: ../limit-attempts.php:972
 msgid "display IP address that is added to the blacklist"
 msgstr "wyświetla adres IP, który został dodany do czarnej listy"
 
-#: ../limit-attempts.php:967
+#: ../limit-attempts.php:974
 msgid "display date and time when IP address was blacklisted"
 msgstr "wyświetla czas kiedy adres IP został dodany do czarnej listy"
 
-#: ../limit-attempts.php:981
+#: ../limit-attempts.php:988
 msgid "Hide login/register/lostpassword forms for blocked or blacklisted IPs"
 msgstr ""
+"Ukryj formularz logowania/rejestracji/przywracania hasła dla użytkowników "
+"zablokowanych i znajdujących się na czarnej liście"
 
-#: ../limit-attempts.php:987
+#: ../limit-attempts.php:994
 msgid "Htaccess plugin"
 msgstr "Wtyczka Htaccess"
 
-#: ../limit-attempts.php:995 ../limit-attempts.php:998
-#: ../limit-attempts.php:1034 ../limit-attempts.php:1045
-#: ../limit-attempts.php:1053
+#: ../limit-attempts.php:1002 ../limit-attempts.php:1005
+#: ../limit-attempts.php:1042 ../limit-attempts.php:1053
+#: ../limit-attempts.php:1061
 msgid "Using"
 msgstr "Wykorzystaj"
 
-#: ../limit-attempts.php:995 ../limit-attempts.php:998
-#: ../limit-attempts.php:1034 ../limit-attempts.php:1045
-#: ../limit-attempts.php:1053
+#: ../limit-attempts.php:1002 ../limit-attempts.php:1005
+#: ../limit-attempts.php:1042 ../limit-attempts.php:1053
+#: ../limit-attempts.php:1061
 msgid "powered by"
 msgstr "stworzone przez"
 
-#: ../limit-attempts.php:1001 ../limit-attempts.php:1005
-#: ../limit-attempts.php:1009
+#: ../limit-attempts.php:1008 ../limit-attempts.php:1012
+#: ../limit-attempts.php:1016
 msgid "Using Htaccess powered by"
 msgstr "Wykorzystaj Htaccess stworzone przez"
 
-#: ../limit-attempts.php:1001
+#: ../limit-attempts.php:1008
 msgid "Update Htaccess at least to v.1.6.2"
 msgstr "Aktualizuj Htaccess do wersji v 1.6.2"
 
-#: ../limit-attempts.php:1005
+#: ../limit-attempts.php:1012
 msgid "Activate Htaccess"
 msgstr "Aktywuj Htaccess"
 
-#: ../limit-attempts.php:1009
+#: ../limit-attempts.php:1016
 msgid "Download Htaccess"
 msgstr "Pobierz Htaccess"
 
-#: ../limit-attempts.php:1013
+#: ../limit-attempts.php:1020
 msgid ""
 "When you turn on this option, all IPs from the blocked list and from the "
 "blacklist will be added to the direction \"deny from\" of file .htaccess. IP "
@@ -497,152 +492,162 @@ msgid ""
 "also will be added to the direction \"deny from\" of the file .htaccess "
 "automatically"
 msgstr ""
+"W przypadku uruchomienia tej opcji wszystkie zablokowane adresy oraz te "
+"znajdujące się na czarnej liście zostanę przekazane sekcji 'zabroń z' w "
+"pliku .htaccess. Wszystkie nowe adresy również zostaną natychmiastowo "
+"przeniesione do pliku htaccess"
 
-#: ../limit-attempts.php:1016
+#: ../limit-attempts.php:1023
 msgid "Allow Htaccess plugin block IP to reduce the database workload."
 msgstr ""
 "Pozwól Htaccess na blokowanie adresów IP w celu zmniejszenia rozmiaru bazy "
 "danych."
 
-#: ../limit-attempts.php:1020
+#: ../limit-attempts.php:1027
 msgid "Captcha plugin"
 msgstr "Wtyczka Captcha"
 
-#: ../limit-attempts.php:1032 ../limit-attempts.php:1043
-#: ../limit-attempts.php:1051 ../includes/log.php:62
+#: ../limit-attempts.php:1040 ../limit-attempts.php:1051
+#: ../limit-attempts.php:1059 ../includes/pro-tab.php:63
 msgid "Login form"
 msgstr "Formularz logowania"
 
-#: ../limit-attempts.php:1037
+#: ../limit-attempts.php:1045
 msgid "Using Captcha Pro powered by"
 msgstr "Wykorzystaj Captcha Pro stworzone przez"
 
-#: ../limit-attempts.php:1037
+#: ../limit-attempts.php:1045
 msgid "Update Captcha Pro at least to v.1.4.4"
 msgstr "Aktualizuj Captcha Pro do wersji v 1.4.4"
 
-#: ../limit-attempts.php:1056 ../limit-attempts.php:1074
+#: ../limit-attempts.php:1064 ../limit-attempts.php:1082
 msgid "Using Captcha powered by"
 msgstr "Wykorzystaj Captcha stworzone przez"
 
-#: ../limit-attempts.php:1056
+#: ../limit-attempts.php:1064
 msgid "Update Captcha at least to v.4.0.2"
 msgstr "Aktualizuj Captcha do wersji v 4.0.2"
 
-#: ../limit-attempts.php:1069
+#: ../limit-attempts.php:1077
 #, php-format
 msgid "Using %s powered by"
 msgstr "Wykorzystaj %s stworzone przez"
 
-#: ../limit-attempts.php:1069
+#: ../limit-attempts.php:1077
 #, php-format
 msgid "Activate %s"
 msgstr "Aktywuj %s"
 
-#: ../limit-attempts.php:1074
+#: ../limit-attempts.php:1082
 msgid "Download Captcha"
 msgstr "Pobierz Captcha"
 
-#: ../limit-attempts.php:1076
+#: ../limit-attempts.php:1084
 msgid "Consider the incorrect captcha input as an invalid attempt."
 msgstr "Zliczaj błędne kody Captcha jako nieudane próby."
 
-#: ../limit-attempts.php:1084
+#: ../limit-attempts.php:1092
 msgid "Registration form"
 msgstr "Formularz rejestracji"
 
-#: ../limit-attempts.php:1085
+#: ../limit-attempts.php:1093
 msgid "Reset Password form"
 msgstr "Formularz resetowania hasła"
 
-#: ../limit-attempts.php:1086
+#: ../limit-attempts.php:1094
 msgid "Comments form"
 msgstr "Formularz komentarzy"
 
-#: ../limit-attempts.php:1087
-#, fuzzy
+#: ../limit-attempts.php:1095
 msgid "Contact form by BestWebSoft"
-msgstr "Formularz kontaktowy"
+msgstr "Contact form by BestWebSoft"
 
-#: ../limit-attempts.php:1088
+#: ../limit-attempts.php:1096
 msgid "Subscriber by BestWebSoft"
-msgstr ""
+msgstr "Subscriber by BestWebSoft"
 
-#: ../limit-attempts.php:1089
+#: ../limit-attempts.php:1097
 msgid "Buddypress registration form"
 msgstr "Formularz rejestracji BuddyPress"
 
-#: ../limit-attempts.php:1090
+#: ../limit-attempts.php:1098
 msgid "Buddypress comments form"
 msgstr "Formularz komentarzy BuddyPress"
 
-#: ../limit-attempts.php:1091
+#: ../limit-attempts.php:1099
 msgid "Buddypress \"Create a Group\" form"
 msgstr "Formularz \"Stwórz grupę\" dla BuddyPress"
 
-#: ../limit-attempts.php:1092
+#: ../limit-attempts.php:1100
 msgid "Contact Form 7"
 msgstr "Contact Form 7"
 
-#: ../limit-attempts.php:1095
-#, fuzzy, php-format
+#: ../limit-attempts.php:1103
+#, php-format
 msgid "You also need %s to use these options."
-msgstr "Potrzebujesz Captcha PRO by móc wykorzystać te opcje."
-
-#: ../limit-attempts.php:1115
-msgid "Update GeoIP"
-msgstr ""
-
-#: ../limit-attempts.php:1117
-msgid "every"
-msgstr ""
-
-#: ../limit-attempts.php:1117 ../includes/front-end-functions.php:637
-msgid "months"
-msgstr ""
-
-#: ../limit-attempts.php:1119
-msgid "Update now"
-msgstr ""
+msgstr "Potrzebujesz również %s by wykorzystać te opcje."
 
 #: ../limit-attempts.php:1124
+msgid "Update GeoIP"
+msgstr "Aktualizuj GeoIP"
+
+#: ../limit-attempts.php:1127
+msgid "every"
+msgstr "co"
+
+#: ../limit-attempts.php:1127 ../includes/front-end-functions.php:646
+msgid "months"
+msgstr "miesiące"
+
+#: ../limit-attempts.php:1129
+msgid "Update now"
+msgstr "Aktualizuj teraz"
+
+#: ../limit-attempts.php:1134
 msgid ""
 "This option allows you to download lists with registered IP addresses all "
 "over the world to the database (from"
 msgstr ""
+"Ta opcja zezwala na pobieranie listy adresów IP zarejestrowanych na całym "
+"świecie do bazy danych (z"
 
-#: ../limit-attempts.php:1127
+#: ../limit-attempts.php:1137
 msgid ""
 "With this, you receive an information about each IP address, and to which "
 "country it belongs to. You can select the desired frequency for IP database "
 "updating"
 msgstr ""
+"Dzięki temu otrzymujesz informację na temat każdego adres IP, oraz "
+"informację z którego kraju pochodzi. Możesz wybrać żądaną częstotliwość "
+"aktualizacji bazy danych"
 
-#: ../limit-attempts.php:1130
+#: ../limit-attempts.php:1140
 msgid ""
 "If you need to update GeoIP immediately, please click on the \"Update now\" "
 "button and wait until the operation is finished"
 msgstr ""
+"Jeśli potrzebujesz natychmiastowej aktualizacji bazy proszę nacisnąć "
+"\"Aktualizuj teraz\" i poczekać do zakończenia operacji"
 
-#: ../limit-attempts.php:1133
+#: ../limit-attempts.php:1143
 msgid "Read more about"
-msgstr ""
+msgstr "Przeczytaj więcej o"
 
-#: ../limit-attempts.php:1137
+#: ../limit-attempts.php:1147
 msgid "Last update was carried out"
-msgstr ""
+msgstr "ostatnia aktualizacja"
 
-#: ../limit-attempts.php:1151
+#: ../limit-attempts.php:1162
 msgid "Save Changes"
 msgstr "Zapisz zmiany"
 
-#: ../limit-attempts.php:1180 ../limit-attempts.php:1624
+#: ../limit-attempts.php:1194 ../limit-attempts.php:1641
 #: ../includes/blacklist.php:260 ../includes/whitelist.php:261
 #: ../includes/blocked.php:267 ../includes/statistics.php:287
 msgid "Notice:"
 msgstr "Uwaga:"
 
-#: ../limit-attempts.php:1180
+#: ../limit-attempts.php:1194
 msgid ""
 "Limit Login Attempts plugin is activated on your site, as well as Limit "
 "Attempts plugin. Please note that Limit Attempts ensures maximum security "
@@ -656,27 +661,27 @@ msgstr ""
 "włączonej podobnej wtyczki. Jednoczesne wykorzystywanie kilku wtyczek o "
 "podobnym działaniu może wywołać niepożądane zachowania na twojej stronie."
 
-#: ../limit-attempts.php:1207
+#: ../limit-attempts.php:1221
 msgid "ATTENTION!"
 msgstr "UWAGA!"
 
-#: ../limit-attempts.php:1210
+#: ../limit-attempts.php:1224
 msgid "Read and Understood"
 msgstr "Przeczytaj i zapamiętaj"
 
-#: ../limit-attempts.php:1284
+#: ../limit-attempts.php:1301
 msgid "Addresses per page"
 msgstr "Adresy na stronę"
 
-#: ../limit-attempts.php:1626
+#: ../limit-attempts.php:1643
 msgid "Subject has been restored to default"
 msgstr "Przywrócono domyślny temat"
 
-#: ../limit-attempts.php:1628
+#: ../limit-attempts.php:1645
 msgid "Message has been restored to default"
 msgstr "Przywrócono domyślną wiadomość"
 
-#: ../limit-attempts.php:1630
+#: ../limit-attempts.php:1647
 msgid "Changes are not saved"
 msgstr "Zmiany nie zostały zapisane"
 
@@ -687,7 +692,7 @@ msgstr "Adresy IP"
 
 #: ../includes/blacklist.php:17 ../includes/whitelist.php:17
 msgid "Date added"
-msgstr ""
+msgstr "Data dodania"
 
 #: ../includes/blacklist.php:34 ../includes/blacklist.php:42
 msgid "Remove from blacklist"
@@ -698,45 +703,42 @@ msgstr "Usuń z czarnej listy"
 #, php-format
 msgid "%s item"
 msgid_plural "%s items"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%s element"
+msgstr[1] "%s elementy"
+msgstr[2] "%s elementów"
 
 #: ../includes/blacklist.php:185 ../includes/whitelist.php:186
 #: ../includes/blocked.php:192 ../includes/statistics.php:212
-#, fuzzy
 msgid "First page"
-msgstr "Strona z wtyczkami"
+msgstr "Pierwsza strona"
 
 #: ../includes/blacklist.php:195 ../includes/whitelist.php:196
 #: ../includes/blocked.php:202 ../includes/statistics.php:222
-#, fuzzy
 msgid "Previous page"
-msgstr "Strona z wtyczkami"
+msgstr "Poprzednia stona"
 
 #: ../includes/blacklist.php:202 ../includes/blacklist.php:205
 #: ../includes/whitelist.php:203 ../includes/whitelist.php:206
 #: ../includes/blocked.php:209 ../includes/blocked.php:212
 #: ../includes/statistics.php:229 ../includes/statistics.php:232
 msgid "Current Page"
-msgstr ""
+msgstr "Obecna strona"
 
 #: ../includes/blacklist.php:211 ../includes/whitelist.php:212
 #: ../includes/blocked.php:218 ../includes/statistics.php:238
 #, php-format
 msgid "%1$s of %2$s"
-msgstr ""
+msgstr "%1$s z %2$s"
 
 #: ../includes/blacklist.php:218 ../includes/whitelist.php:219
 #: ../includes/blocked.php:225 ../includes/statistics.php:245
 msgid "Next page"
-msgstr ""
+msgstr "Następna strona"
 
 #: ../includes/blacklist.php:228 ../includes/whitelist.php:229
 #: ../includes/blocked.php:235 ../includes/statistics.php:255
 msgid "Last page"
-msgstr ""
+msgstr "Ostatnia strona"
 
 #: ../includes/blacklist.php:261 ../includes/whitelist.php:262
 msgid "ERROR:"
@@ -793,10 +795,9 @@ msgstr "Wyszukaj wyników dla"
 
 #: ../includes/blacklist.php:340 ../includes/whitelist.php:340
 #: ../includes/blocked.php:342 ../includes/statistics.php:338
-#, fuzzy
 msgid "Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255."
 msgstr ""
-"Zły format lub adres nie mieści się w przedziale 0.0.0.0 - 255.255.255.255"
+"Zły format lub adres nie mieści się w przedziale 0.0.0.0 - 255.255.255.255."
 
 #: ../includes/blacklist.php:362
 msgid "Add IP to blacklist"
@@ -806,43 +807,11 @@ msgstr "Dodaj adres IP do czarnej listy"
 msgid "Allowed formats:"
 msgstr "Dozwolone formaty"
 
-#: ../includes/blacklist.php:375 ../includes/log.php:18
-#: ../includes/whitelist.php:387 ../includes/blocked.php:363
-#: ../includes/statistics.php:369
+#: ../includes/blacklist.php:375 ../includes/whitelist.php:387
+#: ../includes/blocked.php:363 ../includes/statistics.php:369
+#: ../includes/pro-tab.php:19
 msgid "Search IP"
 msgstr "Szukaj adresu"
-
-#: ../includes/log.php:22
-msgid "Clear Log"
-msgstr "Wyczyść dziennik"
-
-#: ../includes/log.php:28 ../includes/log.php:70
-msgid "Delete log entry"
-msgstr "Usuń wpis dziennika"
-
-#: ../includes/log.php:39 ../includes/log.php:49
-msgid "IP address"
-msgstr "Adresy IP"
-
-#: ../includes/log.php:40 ../includes/log.php:50
-msgid "Internet Hostname"
-msgstr "Nazwa hosta"
-
-#: ../includes/log.php:41 ../includes/log.php:51
-msgid "Event"
-msgstr "Zdarzenie"
-
-#: ../includes/log.php:42 ../includes/log.php:52
-msgid "Form"
-msgstr "Formularz"
-
-#: ../includes/log.php:43 ../includes/log.php:53
-msgid "Event time"
-msgstr "Czas zdarzenia"
-
-#: ../includes/log.php:61
-msgid "Failed attempt"
-msgstr "Nieudana próba"
 
 #: ../includes/whitelist.php:34 ../includes/whitelist.php:42
 msgid "Remove from whitelist"
@@ -880,7 +849,7 @@ msgstr "Wystąpił błąd w czasie usuwania adresu z białej listy"
 
 #: ../includes/whitelist.php:367
 msgid "My IP"
-msgstr ""
+msgstr "Mój adres"
 
 #: ../includes/whitelist.php:373
 msgid "Add IP to whitelist"
@@ -964,7 +933,6 @@ msgid_plural "entries"
 msgstr[0] "wpis"
 msgstr[1] "wpisy"
 msgstr[2] "wpisów"
-msgstr[3] "wpisów"
 
 #: ../includes/statistics.php:356
 msgid "Are you sure you want to delete all statistics entries?"
@@ -982,42 +950,83 @@ msgstr "Wróć do strony ze statystykami"
 msgid "Clear Statistics"
 msgstr "Czyść statystyki"
 
-#: ../includes/front-end-functions.php:598
+#: ../includes/front-end-functions.php:606
 msgid ""
 "some time. Try to reload the page. Perhaps, you already have been unlocked"
 msgstr ""
+"czasami. Spróbuj odświeżyć stronę, możliwie, że zostałeś już odblokowany"
 
-#: ../includes/front-end-functions.php:606
+#: ../includes/front-end-functions.php:615
 msgid "week"
 msgid_plural "weeks"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "tydzień"
+msgstr[1] "tygodnie"
+msgstr[2] "tygodni"
 
-#: ../includes/front-end-functions.php:622
+#: ../includes/front-end-functions.php:631
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "sekunda"
+msgstr[1] "sekundy"
+msgstr[2] "sekund"
 
-#: ../includes/front-end-functions.php:632
+#: ../includes/front-end-functions.php:641
 msgid "month"
 msgid_plural "months"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "miesiąc"
+msgstr[1] "miesiące"
+msgstr[2] "miesięcy"
 
-#: ../includes/front-end-functions.php:642
+#: ../includes/front-end-functions.php:651
 msgid "year"
 msgid_plural "years"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "rok"
+msgstr[1] "lata"
+msgstr[2] "lat"
+
+#: ../includes/pro-tab.php:23
+msgid "Clear Log"
+msgstr "Wyczyść dziennik"
+
+#: ../includes/pro-tab.php:29 ../includes/pro-tab.php:71
+msgid "Delete log entry"
+msgstr "Usuń wpis dziennika"
+
+#: ../includes/pro-tab.php:40 ../includes/pro-tab.php:50
+msgid "IP address"
+msgstr "Adresy IP"
+
+#: ../includes/pro-tab.php:41 ../includes/pro-tab.php:51
+msgid "Internet Hostname"
+msgstr "Nazwa hosta"
+
+#: ../includes/pro-tab.php:42 ../includes/pro-tab.php:52
+msgid "Event"
+msgstr "Zdarzenie"
+
+#: ../includes/pro-tab.php:43 ../includes/pro-tab.php:53
+msgid "Form"
+msgstr "Formularz"
+
+#: ../includes/pro-tab.php:44 ../includes/pro-tab.php:54
+msgid "Event time"
+msgstr "Czas zdarzenia"
+
+#: ../includes/pro-tab.php:62
+msgid "Failed attempt"
+msgstr "Nieudana próba"
+
+#: ../includes/pro-tab.php:99
+msgid "For last 24 hours the plugin prevented * hacking attempts."
+msgstr ""
+
+#: ../includes/pro-tab.php:100
+msgid "For last month the plugin prevented * hacking attempts."
+msgstr ""
+
+#: ../includes/pro-tab.php:101
+msgid "For last half-year the plugin prevented * hacking attempts."
+msgstr ""
 
 #~ msgid ""
 #~ "Allowed retries must be numeric, it was automatically changed to the "

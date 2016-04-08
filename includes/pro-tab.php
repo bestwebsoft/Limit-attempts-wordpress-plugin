@@ -4,6 +4,7 @@
  * @package Limit Attempts
  * @since 1.1.3
  */
+
 if ( ! function_exists( 'lmtttmpts_display_log' ) ) {
 	function lmtttmpts_display_log() { 
 		global $lmtttmpts_plugin_info, $wp_version; ?>
@@ -85,4 +86,28 @@ if ( ! function_exists( 'lmtttmpts_display_log' ) ) {
 			</div>
 		</div>
 	<?php }
-} ?>
+}
+
+if ( ! function_exists( 'lmtttmpts_display_summaries' ) ) {
+	function lmtttmpts_display_summaries() { 
+		global $lmtttmpts_plugin_info, $wp_version; ?>
+		<div id="lmtttmpts_summaries">
+			<div style="max-width: 100%" class="bws_pro_version_bloc">
+				<div class="bws_pro_version_table_bloc">
+					<div class="bws_table_bg"></div>
+					<div style="padding: 5px;">
+						<p><?php _e( 'For last 24 hours the plugin prevented * hacking attempts.', 'limit-attempts' ); ?></p>
+						<p><?php _e( 'For last month the plugin prevented * hacking attempts.', 'limit-attempts' ); ?></p>
+						<p><?php _e( 'For last half-year the plugin prevented * hacking attempts.', 'limit-attempts' ); ?></p>
+						<img src="<?php echo plugins_url( '../images/summaries-tab.png', __FILE__ ); ?>" alt="" />
+					</div>
+				</div>
+				<div class="bws_pro_version_tooltip">
+					<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
+					<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	<?php }
+}

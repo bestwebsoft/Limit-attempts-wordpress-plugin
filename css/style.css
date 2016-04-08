@@ -17,7 +17,7 @@
 	margin-top: 45px;
 }
 .lmtttmpts_hidden {
-	display: none !important ; 
+	display: none !important;
 }
 .lmtttmpts_settings label {
 	padding-bottom: 15px;
@@ -47,7 +47,6 @@ td.lmtttmpts_align_top {
 }
 #lmtttmpts_interaction_settings th {
 	max-width: 100%;
-	text-align: left;
 }
 tr.lmtttmpts_whitelist,
 .striped > tbody tr.lmtttmpts_whitelist {
@@ -81,19 +80,31 @@ tr.lmtttmpts_blocked,
 .lmtttmpts_edit_list_form table {
 	padding: 5px 0 5px 5px 5px;
 }
+.lmtttmpts_block_message_block p,
+.lmtttmpts_email_message_block p {
+    margin-bottom: 0;
+}
+.lmtttmpts_align_top {
+    max-width: 150px;
+}
 
 @media only screen and ( max-width: 785px ) {
+	.lmtttmpts_align_top {
+        max-width: none;
+    }
+    select[name="lmtttmpts_user_email_address"],
+    input[name="lmtttmpts_email_address"] {
+        margin-top: 5px;
+    }
 	.bws-plugins_page_limit-attempts p.search-box {
 		position: static;
 		margin-top: 10px;
 	}
-	
 	.lmtttmpts_edit_list_form input[type="checkbox"] {
 		margin: 5px 2px 5px 0;
 	}
 }
 @media only screen and ( max-width: 450px ) {
-	
 	.lmtttmpts_edit_list_form,
 	.lmtttmpts_edit_list_form table,
 	.lmtttmpts_edit_list_form tbody,
