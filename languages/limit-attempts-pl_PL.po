@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Limit Attempts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-08 13:13+0300\n"
+"POT-Creation-Date: 2016-06-27 13:43+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Damian Dąbrowski <contact@codester.pl>\n"
 "Language-Team: Damian Dąbrowski <contact@codester.pl>\n"
@@ -157,7 +157,7 @@ msgstr "Statystyki"
 
 #: ../limit-attempts.php:684
 msgid "Summaries"
-msgstr ""
+msgstr "Podsumowanie"
 
 #: ../limit-attempts.php:685
 msgid "Go PRO"
@@ -642,8 +642,8 @@ msgid "Save Changes"
 msgstr "Zapisz zmiany"
 
 #: ../limit-attempts.php:1194 ../limit-attempts.php:1641
-#: ../includes/blacklist.php:260 ../includes/whitelist.php:261
 #: ../includes/blocked.php:267 ../includes/statistics.php:287
+#: ../includes/blacklist.php:260 ../includes/whitelist.php:261
 msgid "Notice:"
 msgstr "Uwaga:"
 
@@ -685,175 +685,10 @@ msgstr "Przywrócono domyślną wiadomość"
 msgid "Changes are not saved"
 msgstr "Zmiany nie zostały zapisane"
 
-#: ../includes/blacklist.php:16 ../includes/whitelist.php:16
 #: ../includes/blocked.php:16 ../includes/statistics.php:17
+#: ../includes/blacklist.php:16 ../includes/whitelist.php:16
 msgid "Ip address"
 msgstr "Adresy IP"
-
-#: ../includes/blacklist.php:17 ../includes/whitelist.php:17
-msgid "Date added"
-msgstr "Data dodania"
-
-#: ../includes/blacklist.php:34 ../includes/blacklist.php:42
-msgid "Remove from blacklist"
-msgstr "Usuń z czarnej listy"
-
-#: ../includes/blacklist.php:138 ../includes/whitelist.php:139
-#: ../includes/blocked.php:145 ../includes/statistics.php:165
-#, php-format
-msgid "%s item"
-msgid_plural "%s items"
-msgstr[0] "%s element"
-msgstr[1] "%s elementy"
-msgstr[2] "%s elementów"
-
-#: ../includes/blacklist.php:185 ../includes/whitelist.php:186
-#: ../includes/blocked.php:192 ../includes/statistics.php:212
-msgid "First page"
-msgstr "Pierwsza strona"
-
-#: ../includes/blacklist.php:195 ../includes/whitelist.php:196
-#: ../includes/blocked.php:202 ../includes/statistics.php:222
-msgid "Previous page"
-msgstr "Poprzednia stona"
-
-#: ../includes/blacklist.php:202 ../includes/blacklist.php:205
-#: ../includes/whitelist.php:203 ../includes/whitelist.php:206
-#: ../includes/blocked.php:209 ../includes/blocked.php:212
-#: ../includes/statistics.php:229 ../includes/statistics.php:232
-msgid "Current Page"
-msgstr "Obecna strona"
-
-#: ../includes/blacklist.php:211 ../includes/whitelist.php:212
-#: ../includes/blocked.php:218 ../includes/statistics.php:238
-#, php-format
-msgid "%1$s of %2$s"
-msgstr "%1$s z %2$s"
-
-#: ../includes/blacklist.php:218 ../includes/whitelist.php:219
-#: ../includes/blocked.php:225 ../includes/statistics.php:245
-msgid "Next page"
-msgstr "Następna strona"
-
-#: ../includes/blacklist.php:228 ../includes/whitelist.php:229
-#: ../includes/blocked.php:235 ../includes/statistics.php:255
-msgid "Last page"
-msgstr "Ostatnia strona"
-
-#: ../includes/blacklist.php:261 ../includes/whitelist.php:262
-msgid "ERROR:"
-msgstr "BŁĄD:"
-
-#: ../includes/blacklist.php:262 ../includes/whitelist.php:263
-#: ../includes/blocked.php:268 ../includes/statistics.php:288
-msgid "No address has been selected"
-msgstr "Nie zaznaczono żadnego adresu"
-
-#: ../includes/blacklist.php:263 ../includes/whitelist.php:264
-msgid "You must type IP address"
-msgstr "Musisz podać adres IP"
-
-#: ../includes/blacklist.php:264 ../includes/whitelist.php:265
-msgid "Wrong format or it does not lie in diapason 0.0.0.0 - 255.255.255.255."
-msgstr ""
-"Zły format lub adres nie mieści się w przedziale 0.0.0.0 - 255.255.255.255"
-
-#: ../includes/blacklist.php:265
-msgid "has been added to blacklist"
-msgstr "został dodany do czarnej listy"
-
-#: ../includes/blacklist.php:266
-msgid "can&rsquo;t be added to blacklist."
-msgstr "nie może zostać dodany do czarnej listy"
-
-#: ../includes/blacklist.php:267
-msgid "This IP address has already been added to blacklist"
-msgstr "Podany adres IP został już umieszczony na czarnej liście"
-
-#: ../includes/blacklist.php:268
-msgid "This IP address is in whitelist too, please check this to avoid errors"
-msgstr ""
-"Podany adres IP został już umieszczony na białej liście, proszę sprawdzić "
-"podłoże błędu."
-
-#: ../includes/blacklist.php:269
-msgid "has been deleted from blacklist"
-msgstr "został usunięty z czarnej listy"
-
-#: ../includes/blacklist.php:270
-msgid "have been deleted from blacklist"
-msgstr "zostanie usunięty z czarnej listy"
-
-#: ../includes/blacklist.php:271
-msgid "Error while deleting from blacklist"
-msgstr "Wystąpił błąd w czasie usuwania adresu z czarnej listy"
-
-#: ../includes/blacklist.php:338 ../includes/whitelist.php:338
-#: ../includes/blocked.php:340 ../includes/statistics.php:336
-msgid "Search results for"
-msgstr "Wyszukaj wyników dla"
-
-#: ../includes/blacklist.php:340 ../includes/whitelist.php:340
-#: ../includes/blocked.php:342 ../includes/statistics.php:338
-msgid "Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255."
-msgstr ""
-"Zły format lub adres nie mieści się w przedziale 0.0.0.0 - 255.255.255.255."
-
-#: ../includes/blacklist.php:362
-msgid "Add IP to blacklist"
-msgstr "Dodaj adres IP do czarnej listy"
-
-#: ../includes/blacklist.php:368 ../includes/whitelist.php:380
-msgid "Allowed formats:"
-msgstr "Dozwolone formaty"
-
-#: ../includes/blacklist.php:375 ../includes/whitelist.php:387
-#: ../includes/blocked.php:363 ../includes/statistics.php:369
-#: ../includes/pro-tab.php:19
-msgid "Search IP"
-msgstr "Szukaj adresu"
-
-#: ../includes/whitelist.php:34 ../includes/whitelist.php:42
-msgid "Remove from whitelist"
-msgstr "Usuń z białej listy"
-
-#: ../includes/whitelist.php:266
-msgid "has been added to whitelist"
-msgstr "został dodany do białej listy"
-
-#: ../includes/whitelist.php:267
-msgid "can&rsquo;t be added to whitelist."
-msgstr "nie może zostać dodany do białej listy"
-
-#: ../includes/whitelist.php:268
-msgid "This IP address has already been added to whitelist"
-msgstr "Podany adres IP został już umieszczony na białej liście"
-
-#: ../includes/whitelist.php:269
-msgid "This IP address is in blacklist too, please check this to avoid errors"
-msgstr ""
-"Podany adres IP został już umieszczony na czarnej liście, proszę sprawdzić "
-"podłoże błędu."
-
-#: ../includes/whitelist.php:270
-msgid "has been deleted from whitelist"
-msgstr "został usunięty z białej listy"
-
-#: ../includes/whitelist.php:271
-msgid "have been deleted from whitelist"
-msgstr "zostanie usunięty z białej listy"
-
-#: ../includes/whitelist.php:272
-msgid "Error while deleting from whitelist"
-msgstr "Wystąpił błąd w czasie usuwania adresu z białej listy"
-
-#: ../includes/whitelist.php:367
-msgid "My IP"
-msgstr "Mój adres"
-
-#: ../includes/whitelist.php:373
-msgid "Add IP to whitelist"
-msgstr "Dodaj adres IP do białej listy"
 
 #: ../includes/blocked.php:17
 msgid "The lock expires"
@@ -863,6 +698,53 @@ msgstr "Blokada wygasła"
 msgid "Reset block"
 msgstr "Resetuj blokadę"
 
+#: ../includes/blocked.php:145 ../includes/statistics.php:165
+#: ../includes/blacklist.php:138 ../includes/whitelist.php:139
+#, php-format
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] "%s element"
+msgstr[1] "%s elementy"
+msgstr[2] "%s elementów"
+
+#: ../includes/blocked.php:192 ../includes/statistics.php:212
+#: ../includes/blacklist.php:185 ../includes/whitelist.php:186
+msgid "First page"
+msgstr "Pierwsza strona"
+
+#: ../includes/blocked.php:202 ../includes/statistics.php:222
+#: ../includes/blacklist.php:195 ../includes/whitelist.php:196
+msgid "Previous page"
+msgstr "Poprzednia stona"
+
+#: ../includes/blocked.php:209 ../includes/blocked.php:212
+#: ../includes/statistics.php:229 ../includes/statistics.php:232
+#: ../includes/blacklist.php:202 ../includes/blacklist.php:205
+#: ../includes/whitelist.php:203 ../includes/whitelist.php:206
+msgid "Current Page"
+msgstr "Obecna strona"
+
+#: ../includes/blocked.php:218 ../includes/statistics.php:238
+#: ../includes/blacklist.php:211 ../includes/whitelist.php:212
+#, php-format
+msgid "%1$s of %2$s"
+msgstr "%1$s z %2$s"
+
+#: ../includes/blocked.php:225 ../includes/statistics.php:245
+#: ../includes/blacklist.php:218 ../includes/whitelist.php:219
+msgid "Next page"
+msgstr "Następna strona"
+
+#: ../includes/blocked.php:235 ../includes/statistics.php:255
+#: ../includes/blacklist.php:228 ../includes/whitelist.php:229
+msgid "Last page"
+msgstr "Ostatnia strona"
+
+#: ../includes/blocked.php:268 ../includes/statistics.php:288
+#: ../includes/blacklist.php:262 ../includes/whitelist.php:263
+msgid "No address has been selected"
+msgstr "Nie zaznaczono żadnego adresu"
+
 #: ../includes/blocked.php:269
 msgid "Block has been reset for"
 msgstr "Blokada została zresetowana dla"
@@ -870,6 +752,67 @@ msgstr "Blokada została zresetowana dla"
 #: ../includes/blocked.php:270
 msgid "Error while reseting block for"
 msgstr "Wystąpił błąd w czasie resetowania blokady dla"
+
+#: ../includes/blocked.php:340 ../includes/statistics.php:336
+#: ../includes/blacklist.php:338 ../includes/whitelist.php:338
+msgid "Search results for"
+msgstr "Wyszukaj wyników dla"
+
+#: ../includes/blocked.php:342 ../includes/statistics.php:338
+#: ../includes/blacklist.php:340 ../includes/whitelist.php:340
+msgid "Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255."
+msgstr ""
+"Zły format lub adres nie mieści się w przedziale 0.0.0.0 - 255.255.255.255."
+
+#: ../includes/blocked.php:363 ../includes/pro-tab.php:19
+#: ../includes/statistics.php:369 ../includes/blacklist.php:375
+#: ../includes/whitelist.php:387
+msgid "Search IP"
+msgstr "Szukaj adresu"
+
+#: ../includes/pro-tab.php:23
+msgid "Clear Log"
+msgstr "Wyczyść dziennik"
+
+#: ../includes/pro-tab.php:29 ../includes/pro-tab.php:71
+msgid "Delete log entry"
+msgstr "Usuń wpis dziennika"
+
+#: ../includes/pro-tab.php:40 ../includes/pro-tab.php:50
+msgid "IP address"
+msgstr "Adresy IP"
+
+#: ../includes/pro-tab.php:41 ../includes/pro-tab.php:51
+msgid "Internet Hostname"
+msgstr "Nazwa hosta"
+
+#: ../includes/pro-tab.php:42 ../includes/pro-tab.php:52
+msgid "Event"
+msgstr "Zdarzenie"
+
+#: ../includes/pro-tab.php:43 ../includes/pro-tab.php:53
+msgid "Form"
+msgstr "Formularz"
+
+#: ../includes/pro-tab.php:44 ../includes/pro-tab.php:54
+msgid "Event time"
+msgstr "Czas zdarzenia"
+
+#: ../includes/pro-tab.php:62
+msgid "Failed attempt"
+msgstr "Nieudana próba"
+
+#: ../includes/pro-tab.php:99
+msgid "For last 24 hours the plugin prevented * hacking attempts."
+msgstr "W ciągu ostatniej doby wtyczka zapobiegła * próbom ataku"
+
+#: ../includes/pro-tab.php:100
+msgid "For last month the plugin prevented * hacking attempts."
+msgstr "W ciągu ostatniego miesiąca wtyczka zapobiegła * próbom ataku"
+
+#: ../includes/pro-tab.php:101
+msgid "For last half-year the plugin prevented * hacking attempts."
+msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom ataku"
 
 #: ../includes/statistics.php:18
 msgid "Number of failed attempts"
@@ -950,6 +893,65 @@ msgstr "Wróć do strony ze statystykami"
 msgid "Clear Statistics"
 msgstr "Czyść statystyki"
 
+#: ../includes/blacklist.php:17 ../includes/whitelist.php:17
+msgid "Date added"
+msgstr "Data dodania"
+
+#: ../includes/blacklist.php:34 ../includes/blacklist.php:42
+msgid "Remove from blacklist"
+msgstr "Usuń z czarnej listy"
+
+#: ../includes/blacklist.php:261 ../includes/whitelist.php:262
+msgid "ERROR:"
+msgstr "BŁĄD:"
+
+#: ../includes/blacklist.php:263 ../includes/whitelist.php:264
+msgid "You must type IP address"
+msgstr "Musisz podać adres IP"
+
+#: ../includes/blacklist.php:264 ../includes/whitelist.php:265
+msgid "Wrong format or it does not lie in diapason 0.0.0.0 - 255.255.255.255."
+msgstr ""
+"Zły format lub adres nie mieści się w przedziale 0.0.0.0 - 255.255.255.255"
+
+#: ../includes/blacklist.php:265
+msgid "has been added to blacklist"
+msgstr "został dodany do czarnej listy"
+
+#: ../includes/blacklist.php:266
+msgid "can&rsquo;t be added to blacklist."
+msgstr "nie może zostać dodany do czarnej listy"
+
+#: ../includes/blacklist.php:267
+msgid "This IP address has already been added to blacklist"
+msgstr "Podany adres IP został już umieszczony na czarnej liście"
+
+#: ../includes/blacklist.php:268
+msgid "This IP address is in whitelist too, please check this to avoid errors"
+msgstr ""
+"Podany adres IP został już umieszczony na białej liście, proszę sprawdzić "
+"podłoże błędu."
+
+#: ../includes/blacklist.php:269
+msgid "has been deleted from blacklist"
+msgstr "został usunięty z czarnej listy"
+
+#: ../includes/blacklist.php:270
+msgid "have been deleted from blacklist"
+msgstr "zostanie usunięty z czarnej listy"
+
+#: ../includes/blacklist.php:271
+msgid "Error while deleting from blacklist"
+msgstr "Wystąpił błąd w czasie usuwania adresu z czarnej listy"
+
+#: ../includes/blacklist.php:362
+msgid "Add IP to blacklist"
+msgstr "Dodaj adres IP do czarnej listy"
+
+#: ../includes/blacklist.php:368 ../includes/whitelist.php:380
+msgid "Allowed formats:"
+msgstr "Dozwolone formaty"
+
 #: ../includes/front-end-functions.php:606
 msgid ""
 "some time. Try to reload the page. Perhaps, you already have been unlocked"
@@ -984,49 +986,47 @@ msgstr[0] "rok"
 msgstr[1] "lata"
 msgstr[2] "lat"
 
-#: ../includes/pro-tab.php:23
-msgid "Clear Log"
-msgstr "Wyczyść dziennik"
+#: ../includes/whitelist.php:34 ../includes/whitelist.php:42
+msgid "Remove from whitelist"
+msgstr "Usuń z białej listy"
 
-#: ../includes/pro-tab.php:29 ../includes/pro-tab.php:71
-msgid "Delete log entry"
-msgstr "Usuń wpis dziennika"
+#: ../includes/whitelist.php:266
+msgid "has been added to whitelist"
+msgstr "został dodany do białej listy"
 
-#: ../includes/pro-tab.php:40 ../includes/pro-tab.php:50
-msgid "IP address"
-msgstr "Adresy IP"
+#: ../includes/whitelist.php:267
+msgid "can&rsquo;t be added to whitelist."
+msgstr "nie może zostać dodany do białej listy"
 
-#: ../includes/pro-tab.php:41 ../includes/pro-tab.php:51
-msgid "Internet Hostname"
-msgstr "Nazwa hosta"
+#: ../includes/whitelist.php:268
+msgid "This IP address has already been added to whitelist"
+msgstr "Podany adres IP został już umieszczony na białej liście"
 
-#: ../includes/pro-tab.php:42 ../includes/pro-tab.php:52
-msgid "Event"
-msgstr "Zdarzenie"
-
-#: ../includes/pro-tab.php:43 ../includes/pro-tab.php:53
-msgid "Form"
-msgstr "Formularz"
-
-#: ../includes/pro-tab.php:44 ../includes/pro-tab.php:54
-msgid "Event time"
-msgstr "Czas zdarzenia"
-
-#: ../includes/pro-tab.php:62
-msgid "Failed attempt"
-msgstr "Nieudana próba"
-
-#: ../includes/pro-tab.php:99
-msgid "For last 24 hours the plugin prevented * hacking attempts."
+#: ../includes/whitelist.php:269
+msgid "This IP address is in blacklist too, please check this to avoid errors"
 msgstr ""
+"Podany adres IP został już umieszczony na czarnej liście, proszę sprawdzić "
+"podłoże błędu."
 
-#: ../includes/pro-tab.php:100
-msgid "For last month the plugin prevented * hacking attempts."
-msgstr ""
+#: ../includes/whitelist.php:270
+msgid "has been deleted from whitelist"
+msgstr "został usunięty z białej listy"
 
-#: ../includes/pro-tab.php:101
-msgid "For last half-year the plugin prevented * hacking attempts."
-msgstr ""
+#: ../includes/whitelist.php:271
+msgid "have been deleted from whitelist"
+msgstr "zostanie usunięty z białej listy"
+
+#: ../includes/whitelist.php:272
+msgid "Error while deleting from whitelist"
+msgstr "Wystąpił błąd w czasie usuwania adresu z białej listy"
+
+#: ../includes/whitelist.php:367
+msgid "My IP"
+msgstr "Mój adres"
+
+#: ../includes/whitelist.php:373
+msgid "Add IP to whitelist"
+msgstr "Dodaj adres IP do białej listy"
 
 #~ msgid ""
 #~ "Allowed retries must be numeric, it was automatically changed to the "

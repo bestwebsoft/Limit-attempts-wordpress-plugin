@@ -1,10 +1,10 @@
 === Limit Attempts by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
-Tags: add to blackilist, add to whitelist, admin, atempts, attemps, Auth, authentication, attack, ban, blacklist, block, blocked, block address, block automatically, block user, blocked ip, best security, best security pligin, best wp security plugin, best wordpress security plugin, botnet, hack, etempts, ettempts, error log, failed attempts, lemet, limet, limit attempts, limit attempts plugin, limit of locks, limited attempts, login, login attempt, limit login attempts, Login Attempts, login security, login alerts, lock, lockdown, maintenance, maximum login security, permissions, personal security, plugin, prevent, prevention, privacy, private, protection, secrity, secure, secure login, secure website, security, security log, security plugin, securty, secury, unblock, users, user, whitelist, WP Login security, web server security, website security, wordpress security
+Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
 Requires at least: 3.8
-Tested up to: 4.5
-Stable tag: 1.1.4
+Tested up to: 4.5.3
+Stable tag: 1.1.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -46,7 +46,7 @@ If you have a feature, suggestion or idea you'd like to see in the plugin, we'd 
 * Russian (ru_RU)
 * Ukrainian (uk)
 
-If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com/hc/en-us/requests/new" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
 
 = Technical support =
 
@@ -98,7 +98,7 @@ The statistics of IP addresses of users who failed to enter login data correctly
 
 = How can I unblock a user manually? =
 
-To unblock a certain user, go to the "Blocked adresses" tab on the plugin's page and search for the necessary address in the "IP adress" column. This done, a "Reset block" option will appear when you move the cursor to the user's address. Click on this caption and the ip address will be unblocked. To unblock a group of users, you can use "Bulk Actions": mark the addresses that have to be unblocked, choose the "Reset block" action and click "Apply."
+To unblock a certain user, go to the "Blocked addresses" tab on the plugin's page and search for the necessary address in the "IP adress" column. This done, a "Reset block" option will appear when you move the cursor to the user's address. Click on this caption and the ip address will be unblocked. To unblock a group of users, you can use "Bulk Actions": mark the addresses that have to be unblocked, choose the "Reset block" action and click "Apply."
 
 = What will happen if I add a user to both the white and black lists?  =
 
@@ -138,21 +138,25 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Screenshots ==
 
-1. Plugin settings in WordPress admin panel.
-2. Additonal settings which allow to customize error messages in the form.
-3. Plugin additonal settings which allow to customize email messages.
-4. Tab with Blocked adresses.
-5. Tab with Blacklist settings.
-6. Tab with Whitelist settings.
-7. Tab with Statistics.
-8. Message with allowed retries.
-9. Message with error when user has been blocked.
-10. Message with error when user has been added to the blacklist.
+1. Message with allowed retries.
+2. Message with error when user has been blocked.
+3. Message with error when user has been added to the blacklist.
+4. Plugin settings in WordPress admin panel.
+5. Additonal settings which allow to customize error messages in the form.
+6. Plugin additonal settings which allow to customize email messages.
+7. Tab with Blocked addresses.
+8. Tab with Blacklist settings.
+9. Tab with Whitelist settings.
+10. Tab with Statistics.
 
 == Changelog ==
 
+= V1.1.5 - 27.06.2016 =
+* Update : The Polish language file has been updated.
+* Update : BWS Panel section is updated.
+
 = V1.1.4 - 08.04.2016 =
-* Update : The Poland language file has been updated.
+* Update : The Polish language file has been updated.
 * Bugfix : The bug with the displaying of the HTML tags in error messages has been fixed.
 * Bugfix : The bug with the automatic unblocking of users has been fixed.
 * Bugfix : The bug with the automatic blacklisting of users has been fixed.
@@ -227,8 +231,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 
 == Upgrade Notice ==
 
+= V1.1.5 =
+The Polish language file has been updated. BWS Panel section is updated.
+
 = V1.1.4 =
-The Poland language file has been updated. The bug with the displaying of the HTML tags in error messages has been fixed. The bug with the automatic unblocking of users has been fixed. The bug with the automatic blacklisting of users has been fixed. The bug with the creating of plugin`s database tables has been fixed.
+The Polish language file has been updated. The bug with the displaying of the HTML tags in error messages has been fixed. The bug with the automatic unblocking of users has been fixed. The bug with the automatic blacklisting of users has been fixed. The bug with the creating of plugin`s database tables has been fixed.
 
 = V1.1.3 =
 Ability to hide the login form, the registration form and the lostpassword form for blocked or blacklisted IPs. Bug with displaying of list of blocked IPs has been fixed. Bugs with the recording/removing of statistical data in the database have been fixed. Bugs with the pagination on plugin`s settings pages have been fixed. Compatibility with the Htaccess by BestWebSoft plugin has been updated. Functionality for the login form, the registration form and the lostpassword form has been updated. Functionality for wordpress 4.4.1 has been updated.

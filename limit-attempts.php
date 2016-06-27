@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: http://bestwebsoft.com/products/
 Description: The plugin Limit Attempts allows you to limit rate of login attempts by the ip, and create whitelist and blacklist.
 Author: BestWebSoft
-Version: 1.1.4
+Version: 1.1.5
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: http://bestwebsoft.com/
@@ -36,7 +36,7 @@ if ( ! is_admin() )
 if ( ! function_exists( 'add_lmtttmpts_admin_menu' ) ) {
 	function add_lmtttmpts_admin_menu() {
 		bws_general_menu();
-		$hook = add_submenu_page( 'bws_plugins', __( 'Limit Attempts Settings', 'limit-attempts' ), 'Limit Attempts', 'manage_options', "limit-attempts.php", 'lmtttmpts_settings_page' );
+		$hook = add_submenu_page( 'bws_panel', __( 'Limit Attempts Settings', 'limit-attempts' ), 'Limit Attempts', 'manage_options', "limit-attempts.php", 'lmtttmpts_settings_page' );
 		add_action( "load-$hook", 'lmtttmpts_screen_options' );
 	}
 }
