@@ -3,12 +3,12 @@ Contributors: bestwebsoft
 Donate link: http://bestwebsoft.com/donate/
 Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
 Requires at least: 3.8
-Tested up to: 4.5.3
-Stable tag: 1.1.5
+Tested up to: 4.6
+Stable tag: 1.1.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-The plugin Limit Attempts allows you to limit rate of login attempts by the ip, and create whitelist and blacklist.
+Protect WordPress website against brute force attacks. Limit rate of login attempts.
 
 == Description ==
 
@@ -60,7 +60,7 @@ We can fix some things for free for the users who provide translation of our plu
 
 1. Upload the `limit-attempts` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "BWS Plugins" > "Limit Attempts".
+3. You can adjust the necessary settings using your WordPress admin panel in "BWS Panel" > "Limit Attempts".
 4. Set your own options or use defaylts, create, if you need, whitelist or/and blacklist.
 
 <a href="https://docs.google.com/document/d/1zBn8PxGMR7v6hWJgT2vogwzP_rzJ6IipbxACnmuNa6E/edit" target="_blank">View a Step-by-step Instruction on Limit Attempts Installation</a>
@@ -74,9 +74,9 @@ http://www.youtube.com/watch?v=BZ9WZ3G9ves
 The "Settings" tab includes all the basic plugin settings that allow blocking addresses, displaying notifications and interacting with other BestWebSoft plugins.
 "Lock options:". This block includes settings for automatic blocking of the user's IP address for a certain period ( "Block address for 'x' days 'y' hours 'z' minutes" ), after a certain number of failed login attempts ( "after 'x' failed attempts" ) within a specified time frame ( "per 'x' days 'y' hours 'z' minutes" ).
 "Block options:". Here you can find settings for automatic adding of the user's IP address to the blacklist after a certain number of blocks ( "Add to the blacklist after 'x' blocks" ) within a specified period of time ( "per 'x' days 'y' hours 'z' minutes" ).
-"Show additonal options for block message." This block includes fields for customizing messages displayed in the login form. To display certain variables, you can use their names, which can be found to the left of the field itself.
+"Show additional options for block message." This block includes fields for customizing messages displayed in the login form. To display certain variables, you can use their names, which can be found to the left of the field itself.
 "Send mail with notify to administrator". This option enables sending messages to the administrator concerning users recently blocked or added to the blacklist. Also, you can specify the email address these notifications will be sent from.
-"Show additonal options for email message". Here you can find fields for customizing email messages concerning the blocking of a user. Similar to "Show additonal options for block message" block, you can use the names to display certain variables, which are located to the left of the field itself.
+"Show additional options for email message". Here you can find fields for customizing email messages concerning the blocking of a user. Similar to "Show additional options for block message" block, you can use the names to display certain variables, which are located to the left of the field itself.
 "Htaccess plugin". This block enables the interaction with Htaccess plugin. All blacklist and blocking data is copied to the .htaccess file, which reduces your website's workload and improves site security.
 "Captcha". This option enables the interaction with Captcha plugin. Also, this is where you can specify whether incorrect captcha input should be considered a failed login attempt.
 
@@ -98,7 +98,7 @@ The statistics of IP addresses of users who failed to enter login data correctly
 
 = How can I unblock a user manually? =
 
-To unblock a certain user, go to the "Blocked addresses" tab on the plugin's page and search for the necessary address in the "IP adress" column. This done, a "Reset block" option will appear when you move the cursor to the user's address. Click on this caption and the ip address will be unblocked. To unblock a group of users, you can use "Bulk Actions": mark the addresses that have to be unblocked, choose the "Reset block" action and click "Apply."
+To unblock a certain user, go to the "Blocked addresses" tab on the plugin's page and search for the necessary address in the "IP adress" column. This done, a "Reset block" option will appear when you move the cursor to the user's address. Click on this caption and the IP address will be unblocked. To unblock a group of users, you can use "Bulk Actions": mark the addresses that have to be unblocked, choose the "Reset block" action and click "Apply."
 
 = What will happen if I add a user to both the white and black lists?  =
 
@@ -142,14 +142,17 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 2. Message with error when user has been blocked.
 3. Message with error when user has been added to the blacklist.
 4. Plugin settings in WordPress admin panel.
-5. Additonal settings which allow to customize error messages in the form.
-6. Plugin additonal settings which allow to customize email messages.
+5. Additional settings which allow to customize error messages in the form.
+6. Plugin additional settings which allow to customize email messages.
 7. Tab with Blocked addresses.
 8. Tab with Blacklist settings.
 9. Tab with Whitelist settings.
 10. Tab with Statistics.
 
 == Changelog ==
+
+= V1.1.6 - 08.08.2016 =
+* Update : All functionality for wordpress 4.6 was updated.
 
 = V1.1.5 - 27.06.2016 =
 * Update : The Polish language file has been updated.
@@ -230,6 +233,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<a hre
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.1.6 =
+* The compatibility with new WordPress version updated.
 
 = V1.1.5 =
 The Polish language file has been updated. BWS Panel section is updated.

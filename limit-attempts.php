@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Limit Attempts by BestWebSoft
-Plugin URI: http://bestwebsoft.com/products/
-Description: The plugin Limit Attempts allows you to limit rate of login attempts by the ip, and create whitelist and blacklist.
+Plugin URI: http://bestwebsoft.com/products/limit-attempts/
+Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.1.5
+Version: 1.1.6
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: http://bestwebsoft.com/
@@ -67,7 +67,7 @@ if ( ! function_exists( 'lmtttmpts_plugin_init' ) ) {
 		}
 
 		/* check WordPress version */
-		bws_wp_min_version_check( $plugin_basename, $lmtttmpts_plugin_info, '3.8', '3.6' );
+		bws_wp_min_version_check( $plugin_basename, $lmtttmpts_plugin_info, '3.8' );
 	}
 }
 
@@ -78,7 +78,7 @@ if ( ! function_exists( 'lmtttmpts_plugin_admin_init' ) ) {
 	function lmtttmpts_plugin_admin_init() {
 		global $bws_plugin_info, $lmtttmpts_plugin_info;
 
-		if ( ! isset( $bws_plugin_info ) || empty( $bws_plugin_info ) )
+		if ( empty( $bws_plugin_info ) )
 			$bws_plugin_info = array( 'id' => '140', 'version' => $lmtttmpts_plugin_info["Version"] );
 
 		/* Call register settings function */
@@ -495,7 +495,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 					</div>
 					<div class="bws_pro_version_tooltip">
 						<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
-						<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+						<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=fdac994c203b41e499a2818c409ff2bc&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"]; ?>&wp_v=<?php echo $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
 						<div class="clear"></div>
 					</div>
 				</div>
@@ -804,7 +804,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 									</div>
 									<div class="bws_pro_version_tooltip">
 										<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
-										<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+										<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=fdac994c203b41e499a2818c409ff2bc&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
 										<div class="clear"></div>
 									</div>
 								</div>
@@ -999,28 +999,38 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 											if ( $htaccess_free_active || $htaccess_pro_active ) {
 												if ( $htaccess_pro_active && ! $htaccess_free_active ) { ?>
 													<input type="checkbox" name="lmtttmpts_block_by_htaccess" value="1" <?php if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) echo 'checked="checked"'; ?> />
-													<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=htaccess-pro.php">Htaccess Pro</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
+													<span class="bws_info"> (<?php printf( __( 'Using %s', 'limit-attempts' ), '<a href="admin.php?page=htaccess-pro.php">Htaccess Pro by BestWebSoft</a>' ); ?>)</span>
 												<?php } elseif ( $htaccess_free_active && isset( $all_plugins['htaccess/htaccess.php']['Version'] ) && $all_plugins['htaccess/htaccess.php']['Version'] >= '1.6.2' ) { ?>
 													<input type="checkbox" name="lmtttmpts_block_by_htaccess" value="1" <?php if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) echo 'checked="checked"'; ?> />
-													<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=htaccess.php">Htaccess</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
+													<span class="bws_info"> (<?php printf( __( 'Using %s', 'limit-attempts' ), '<a href="admin.php?page=htaccess.php">Htaccess by BestWebSoft</a>' ); ?>)</span>
 												<?php } else { ?>
 													<input disabled="disabled" type="checkbox" name="lmtttmpts_block_by_htaccess" value="1" <?php if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) echo 'checked="checked"'; ?> />
-													<span class="bws_info">(<?php _e( 'Using Htaccess powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php _e( 'Update Htaccess at least to v.1.6.2', 'limit-attempts' ); ?></a></span>
+													<span class="bws_info">
+														(<?php printf( __( 'Using %s', 'limit-attempts' ), 'Htaccess by BestWebSoft' ); ?>) 
+														<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Htaccess', 'v.1.6.2' ); ?></a>
+													</span>
 												<?php }
 											} else { ?>
 												<input disabled="disabled" type="checkbox" name="lmtttmpts_block_by_htaccess" value="1" <?php if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) echo 'checked="checked"'; ?> />
-												<span class="bws_info">(<?php _e( 'Using Htaccess powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php _e( 'Activate Htaccess', 'limit-attempts' ); ?></a></span>
+												<span class="bws_info">
+													(<?php printf( __( 'Using %s', 'limit-attempts' ), 'Htaccess by BestWebSoft' ); ?>) 
+													<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Activate %s', 'limit-attempts' ), 'Htaccess' ); ?></a>
+												</span>
 											<?php }
 										} else { ?>
 											<input disabled="disabled" type="checkbox" name="lmtttmpts_block_by_htaccess" value="1" />
-											<span class="bws_info">(<?php _e( 'Using Htaccess powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="http://bestwebsoft.com/products/htaccess/"><?php _e( 'Download Htaccess', 'limit-attempts' ); ?></a></span>
+											<span class="bws_info">
+												(<?php printf( __( 'Using %s', 'limit-attempts' ), 'Htaccess by BestWebSoft' ); ?>) 
+												<a href="http://bestwebsoft.com/products/htaccess/?k=1208ca438a8fbc8adef8436ca76f6e6d"><?php printf( __( 'Download %s', 'limit-attempts' ), 'Htaccess' ); ?></a>
+											</span>
 										<?php } ?>
 										<div class="bws_help_box dashicons dashicons-editor-help">
 											<div class="bws_hidden_help_text" style="width: 200px;">
 												<p><?php _e( 'When you turn on this option, all IPs from the blocked list and from the blacklist will be added to the direction "deny from" of file .htaccess. IP addresses, which then will be added to the blocked list or to the blacklist, also will be added to the direction "deny from" of the file .htaccess automatically', "limit-attempts" ); ?>.</p>
 											</div>
 										</div>
-										<br /><span class="bws_info"><?php _e( 'Allow Htaccess plugin block IP to reduce the database workload.', 'limit-attempts' ) ?></span>
+										<br />
+										<span class="bws_info"><?php _e( 'Allow Htaccess plugin block IP to reduce the database workload.', 'limit-attempts' ) ?></span>
 									</td>
 								</tr>
 								<tr>
@@ -1039,10 +1049,13 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 																<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
 																<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 															</label>
-															<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=captcha_pro.php">Captcha Pro</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
+															<span class="bws_info"> (<?php printf( __( 'Using %s', 'limit-attempts' ), '<a href="admin.php?page=captcha_pro.php">Captcha Pro by BestWebSoft</a>' ); ?>)</span>
 														<?php } else { ?>
-															<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
-															<span class="bws_info">(<?php _e( 'Using Captcha Pro powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php _e( 'Update Captcha Pro at least to v.1.4.4', 'limit-attempts' ); ?></a></span>
+															<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> /> 
+															<span class="bws_info">
+																(<?php printf( __( 'Using %s', 'limit-attempts' ), 'Captcha Pro by BestWebSoft' ); ?>) 
+																<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Captcha Pro', 'v.1.4.4' ); ?></a>
+															</span>
 														<?php }
 													} elseif ( 0 < count( preg_grep( '/captcha-plus\/captcha-plus.php/', $active_plugins ) ) ) {
 														/* if Captcha Plus is active */?>
@@ -1050,7 +1063,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 															<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
 															<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 														</label>
-														<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=captcha-plus.php">Captcha Plus</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
+														<span class="bws_info"> (<?php printf( __( 'Using %s', 'limit-attempts' ), '<a href="admin.php?page=captcha-plus.php">Captcha Plus by BestWebSoft</a>' ); ?>)</span>
 													<?php } else {
 														/* Captcha free is active */
 														if ( isset( $all_plugins['captcha/captcha.php']['Version'] ) && $all_plugins['captcha/captcha.php']['Version'] >= '4.0.2' ) { ?>
@@ -1058,28 +1071,36 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 																<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
 																<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 															</label>
-															<span class="bws_info"> (<?php _e( 'Using', 'limit-attempts' ); ?> <a href="admin.php?page=captcha.php">Captcha</a> <?php _e( 'powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>)</span>
+															<span class="bws_info"> (<?php printf( __( 'Using %s', 'limit-attempts' ), '<a href="admin.php?page=captcha.php">Captcha by BestWebSoft</a>' ); ?>)</span>
 														<?php } else { ?>
 															<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
-															<span class="bws_info">(<?php _e( 'Using Captcha powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php _e( 'Update Captcha at least to v.4.0.2', 'limit-attempts' ); ?></a></span>
+															<span class="bws_info">
+																(<?php _e( 'Using Captcha powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) 
+																<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Captcha', 'v.4.0.2' ); ?></a>
+															</span>
 														<?php }
 													}
 												} else {
 													/* if no plugin is active */
 													if ( array_key_exists( 'captcha-pro/captcha_pro.php', $all_plugins ) ) {
-														$using_plugin_name = 'Captcha Pro';
+														$using_plugin_name = 'Captcha Pro by BestWebSoft';
 													} elseif ( array_key_exists( 'captcha-plus/captcha-plus.php', $all_plugins ) ) {
-														$using_plugin_name = 'Captcha Plus';
+														$using_plugin_name = 'Captcha Plus by BestWebSoft';
 													} else {
-														$using_plugin_name = 'Captcha';
-													}
-													?>
-													<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> /><span class="bws_info"> (<?php printf( __( 'Using %s powered by', 'limit-attempts' ), $using_plugin_name ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="<?php echo bloginfo("url"); ?>/wp-admin/plugins.php"><?php printf( __( 'Activate %s', 'limit-attempts' ), $using_plugin_name ); ?>
-													</a></span>
+														$using_plugin_name = 'Captcha by BestWebSoft';
+													} ?>
+													<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $lmtttmpts_options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
+													<span class="bws_info"> 
+														(<?php printf( __( 'Using %s', 'limit-attempts' ), $using_plugin_name ); ?>) 
+														<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Activate %s', 'limit-attempts' ), $using_plugin_name ); ?></a>
+													</span>
 												<?php }
 											} else { ?>
 												<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" />
-												<span class="bws_info">(<?php _e( 'Using Captcha powered by', 'limit-attempts' ); ?> <a href="http://bestwebsoft.com/products/">bestwebsoft.com</a>) <a href="http://bestwebsoft.com/products/captcha/"><?php _e( 'Download Captcha', 'limit-attempts' ); ?></a></span>
+												<span class="bws_info">
+													(<?php printf( __( 'Using %s', 'limit-attempts' ), 'Captcha by BestWebSoft' ); ?>)  
+													<a href="http://bestwebsoft.com/products/captcha/?k=da48686c77c832045c113eb82447d40d"><?php printf( __( 'Download %s', 'limit-attempts' ), 'Captcha' ); ?></a>
+												</span>
 											<?php } ?>
 											<br /><span class="bws_info"><?php _e( 'Consider the incorrect captcha input as an invalid attempt.', 'limit-attempts' ) ?></span>
 											<?php if ( ! $bws_hide_premium_options_check ) { ?>
@@ -1092,20 +1113,20 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Registration form', 'limit-attempts' ); ?></span></label><br />
 																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Reset Password form', 'limit-attempts' ); ?></span></label><br />
 																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Comments form', 'limit-attempts' ); ?></span></label><br />
-																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Contact form by BestWebSoft', 'limit-attempts' ); ?></span></label><br />
-																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Subscriber by BestWebSoft', 'limit-attempts' ); ?></span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> Contact Form by BestWebSoft</span></label><br />
+																	<label><input disabled="disabled" type="checkbox" /><span> Subscriber by BestWebSoft</span></label><br />
 																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress registration form', 'limit-attempts' ); ?></span></label><br />
 																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress comments form', 'limit-attempts' ); ?></span></label><br />
 																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress "Create a Group" form', 'limit-attempts' ); ?></span></label><br />
-																	<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Contact Form 7', 'limit-attempts' ); ?></span></label>
+																	<label><input disabled="disabled" type="checkbox" /><span> Contact Form 7</span></label>
 															</fieldset>
 															<p><strong>* <?php _e( 'If you upgrade to Pro version all your settings will be saved.', 'limit-attempts' ); ?></strong></p>
-															<p style="position: relative;z-index: 2;"><strong>* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="http://bestwebsoft.com/products/captcha/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=' . $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">Captcha Pro</a>' ); ?></strong></p>
+															<p style="position: relative;z-index: 2;"><strong>* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="http://bestwebsoft.com/products/captcha/?k=da48686c77c832045c113eb82447d40d&pn=140&v=' . $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">Captcha Pro</a>' ); ?></strong></p>
 														</div>
 													</div>
 													<div class="bws_pro_version_tooltip">
 														<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
-														<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+														<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=fdac994c203b41e499a2818c409ff2bc&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
 														<div class="clear"></div>
 													</div>
 												</div>
@@ -1144,7 +1165,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 																</p>
 															</div>
 														</div>
-														<p><?php _e( 'Last update was carried out', 'limit-attempts' ); ?>&nbsp;2015-09-22 10:32:41</p>
+														<p><?php _e( 'Last update was carried out', 'limit-attempts' ); ?>&nbsp;2016-07-22 10:32:41</p>
 													</fieldset>
 												</td>
 											</tr>
@@ -1152,7 +1173,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 									</div>
 									<div class="bws_pro_version_tooltip">
 										<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
-										<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+										<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=fdac994c203b41e499a2818c409ff2bc&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
 										<div class="clear"></div>
 									</div>
 								</div>

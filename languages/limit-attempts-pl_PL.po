@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Limit Attempts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-27 13:43+0300\n"
+"POT-Creation-Date: 2016-08-08 15:02+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Damian Dąbrowski <contact@codester.pl>\n"
 "Language-Team: Damian Dąbrowski <contact@codester.pl>\n"
@@ -46,7 +46,7 @@ msgid "Support"
 msgstr "Pomoc"
 
 #: ../limit-attempts.php:449 ../limit-attempts.php:777
-#: ../limit-attempts.php:1088 ../limit-attempts.php:1120
+#: ../limit-attempts.php:1109 ../limit-attempts.php:1141
 msgid "Close"
 msgstr "Zamknij"
 
@@ -103,13 +103,13 @@ msgid "Reason for country"
 msgstr "Powód"
 
 #: ../limit-attempts.php:497 ../limit-attempts.php:806
-#: ../limit-attempts.php:1107 ../limit-attempts.php:1154
+#: ../limit-attempts.php:1128 ../limit-attempts.php:1175
 #: ../includes/pro-tab.php:82 ../includes/pro-tab.php:106
 msgid "Unlock premium options by upgrading to Pro version"
 msgstr "Odblokuj dodatkowe opcje przez aktualizację do wersji PRO."
 
 #: ../limit-attempts.php:498 ../limit-attempts.php:807
-#: ../limit-attempts.php:1108 ../limit-attempts.php:1155
+#: ../limit-attempts.php:1129 ../limit-attempts.php:1176
 #: ../includes/pro-tab.php:83 ../includes/pro-tab.php:107
 msgid "Learn More"
 msgstr "Czytaj dalej"
@@ -172,7 +172,7 @@ msgid "for"
 msgstr "na okres"
 
 #: ../limit-attempts.php:711 ../limit-attempts.php:733
-#: ../limit-attempts.php:760 ../limit-attempts.php:1611
+#: ../limit-attempts.php:760 ../limit-attempts.php:1632
 #: ../includes/front-end-functions.php:619
 #: ../includes/front-end-functions.php:640
 msgid "day"
@@ -182,7 +182,7 @@ msgstr[1] "dni"
 msgstr[2] "dni"
 
 #: ../limit-attempts.php:712 ../limit-attempts.php:734
-#: ../limit-attempts.php:761 ../limit-attempts.php:1615
+#: ../limit-attempts.php:761 ../limit-attempts.php:1636
 #: ../includes/front-end-functions.php:623
 msgid "hour"
 msgid_plural "hours"
@@ -191,7 +191,7 @@ msgstr[1] "godzin"
 msgstr[2] "godzin"
 
 #: ../limit-attempts.php:713 ../limit-attempts.php:735
-#: ../limit-attempts.php:762 ../limit-attempts.php:1619
+#: ../limit-attempts.php:762 ../limit-attempts.php:1640
 #: ../includes/front-end-functions.php:627
 msgid "minute"
 msgid_plural "minutes"
@@ -290,7 +290,7 @@ msgstr "Obecny rozmiar tablicy w bazie danych"
 msgid "Mb"
 msgstr "Mb"
 
-#: ../limit-attempts.php:800 ../limit-attempts.php:1102
+#: ../limit-attempts.php:800 ../limit-attempts.php:1123
 msgid "If you upgrade to Pro version all your settings will be saved."
 msgstr ""
 "Przy aktualizacji do wersji PRO wszystkie twoje ustawienia zostaną "
@@ -456,35 +456,32 @@ msgid "Htaccess plugin"
 msgstr "Wtyczka Htaccess"
 
 #: ../limit-attempts.php:1002 ../limit-attempts.php:1005
-#: ../limit-attempts.php:1042 ../limit-attempts.php:1053
-#: ../limit-attempts.php:1061
-msgid "Using"
+#: ../limit-attempts.php:1009 ../limit-attempts.php:1016
+#: ../limit-attempts.php:1023 ../limit-attempts.php:1052
+#: ../limit-attempts.php:1056 ../limit-attempts.php:1066
+#: ../limit-attempts.php:1074 ../limit-attempts.php:1094
+#: ../limit-attempts.php:1101
+#, fuzzy, php-format
+msgid "Using %s"
 msgstr "Wykorzystaj"
 
-#: ../limit-attempts.php:1002 ../limit-attempts.php:1005
-#: ../limit-attempts.php:1042 ../limit-attempts.php:1053
-#: ../limit-attempts.php:1061
-msgid "powered by"
-msgstr "stworzone przez"
-
-#: ../limit-attempts.php:1008 ../limit-attempts.php:1012
-#: ../limit-attempts.php:1016
-msgid "Using Htaccess powered by"
-msgstr "Wykorzystaj Htaccess stworzone przez"
-
-#: ../limit-attempts.php:1008
-msgid "Update Htaccess at least to v.1.6.2"
+#: ../limit-attempts.php:1010 ../limit-attempts.php:1057
+#: ../limit-attempts.php:1079
+#, fuzzy, php-format
+msgid "Update %s at least to %s"
 msgstr "Aktualizuj Htaccess do wersji v 1.6.2"
 
-#: ../limit-attempts.php:1012
-msgid "Activate Htaccess"
-msgstr "Aktywuj Htaccess"
+#: ../limit-attempts.php:1017 ../limit-attempts.php:1095
+#, php-format
+msgid "Activate %s"
+msgstr "Aktywuj %s"
 
-#: ../limit-attempts.php:1016
-msgid "Download Htaccess"
+#: ../limit-attempts.php:1024 ../limit-attempts.php:1102
+#, fuzzy, php-format
+msgid "Download %s"
 msgstr "Pobierz Htaccess"
 
-#: ../limit-attempts.php:1020
+#: ../limit-attempts.php:1029
 msgid ""
 "When you turn on this option, all IPs from the blocked list and from the "
 "blacklist will be added to the direction \"deny from\" of file .htaccess. IP "
@@ -497,113 +494,75 @@ msgstr ""
 "pliku .htaccess. Wszystkie nowe adresy również zostaną natychmiastowo "
 "przeniesione do pliku htaccess"
 
-#: ../limit-attempts.php:1023
+#: ../limit-attempts.php:1033
 msgid "Allow Htaccess plugin block IP to reduce the database workload."
 msgstr ""
 "Pozwól Htaccess na blokowanie adresów IP w celu zmniejszenia rozmiaru bazy "
 "danych."
 
-#: ../limit-attempts.php:1027
+#: ../limit-attempts.php:1037
 msgid "Captcha plugin"
 msgstr "Wtyczka Captcha"
 
-#: ../limit-attempts.php:1040 ../limit-attempts.php:1051
-#: ../limit-attempts.php:1059 ../includes/pro-tab.php:63
+#: ../limit-attempts.php:1050 ../limit-attempts.php:1064
+#: ../limit-attempts.php:1072 ../includes/pro-tab.php:63
 msgid "Login form"
 msgstr "Formularz logowania"
 
-#: ../limit-attempts.php:1045
-msgid "Using Captcha Pro powered by"
-msgstr "Wykorzystaj Captcha Pro stworzone przez"
-
-#: ../limit-attempts.php:1045
-msgid "Update Captcha Pro at least to v.1.4.4"
-msgstr "Aktualizuj Captcha Pro do wersji v 1.4.4"
-
-#: ../limit-attempts.php:1064 ../limit-attempts.php:1082
+#: ../limit-attempts.php:1078
 msgid "Using Captcha powered by"
 msgstr "Wykorzystaj Captcha stworzone przez"
 
-#: ../limit-attempts.php:1064
-msgid "Update Captcha at least to v.4.0.2"
-msgstr "Aktualizuj Captcha do wersji v 4.0.2"
-
-#: ../limit-attempts.php:1077
-#, php-format
-msgid "Using %s powered by"
-msgstr "Wykorzystaj %s stworzone przez"
-
-#: ../limit-attempts.php:1077
-#, php-format
-msgid "Activate %s"
-msgstr "Aktywuj %s"
-
-#: ../limit-attempts.php:1082
-msgid "Download Captcha"
-msgstr "Pobierz Captcha"
-
-#: ../limit-attempts.php:1084
+#: ../limit-attempts.php:1105
 msgid "Consider the incorrect captcha input as an invalid attempt."
 msgstr "Zliczaj błędne kody Captcha jako nieudane próby."
 
-#: ../limit-attempts.php:1092
+#: ../limit-attempts.php:1113
 msgid "Registration form"
 msgstr "Formularz rejestracji"
 
-#: ../limit-attempts.php:1093
+#: ../limit-attempts.php:1114
 msgid "Reset Password form"
 msgstr "Formularz resetowania hasła"
 
-#: ../limit-attempts.php:1094
+#: ../limit-attempts.php:1115
 msgid "Comments form"
 msgstr "Formularz komentarzy"
 
-#: ../limit-attempts.php:1095
-msgid "Contact form by BestWebSoft"
-msgstr "Contact form by BestWebSoft"
-
-#: ../limit-attempts.php:1096
-msgid "Subscriber by BestWebSoft"
-msgstr "Subscriber by BestWebSoft"
-
-#: ../limit-attempts.php:1097
+#: ../limit-attempts.php:1118
 msgid "Buddypress registration form"
 msgstr "Formularz rejestracji BuddyPress"
 
-#: ../limit-attempts.php:1098
+#: ../limit-attempts.php:1119
 msgid "Buddypress comments form"
 msgstr "Formularz komentarzy BuddyPress"
 
-#: ../limit-attempts.php:1099
+#: ../limit-attempts.php:1120
 msgid "Buddypress \"Create a Group\" form"
 msgstr "Formularz \"Stwórz grupę\" dla BuddyPress"
 
-#: ../limit-attempts.php:1100
-msgid "Contact Form 7"
-msgstr "Contact Form 7"
-
-#: ../limit-attempts.php:1103
+#: ../limit-attempts.php:1124
 #, php-format
 msgid "You also need %s to use these options."
 msgstr "Potrzebujesz również %s by wykorzystać te opcje."
 
-#: ../limit-attempts.php:1124
+#: ../limit-attempts.php:1145
 msgid "Update GeoIP"
 msgstr "Aktualizuj GeoIP"
 
-#: ../limit-attempts.php:1127
+#: ../limit-attempts.php:1148
 msgid "every"
 msgstr "co"
 
-#: ../limit-attempts.php:1127 ../includes/front-end-functions.php:646
+#: ../limit-attempts.php:1148 ../includes/front-end-functions.php:646
 msgid "months"
 msgstr "miesiące"
 
-#: ../limit-attempts.php:1129
+#: ../limit-attempts.php:1150
 msgid "Update now"
 msgstr "Aktualizuj teraz"
 
-#: ../limit-attempts.php:1134
+#: ../limit-attempts.php:1155
 msgid ""
 "This option allows you to download lists with registered IP addresses all "
 "over the world to the database (from"
@@ -611,7 +570,7 @@ msgstr ""
 "Ta opcja zezwala na pobieranie listy adresów IP zarejestrowanych na całym "
 "świecie do bazy danych (z"
 
-#: ../limit-attempts.php:1137
+#: ../limit-attempts.php:1158
 msgid ""
 "With this, you receive an information about each IP address, and to which "
 "country it belongs to. You can select the desired frequency for IP database "
@@ -621,7 +580,7 @@ msgstr ""
 "informację z którego kraju pochodzi. Możesz wybrać żądaną częstotliwość "
 "aktualizacji bazy danych"
 
-#: ../limit-attempts.php:1140
+#: ../limit-attempts.php:1161
 msgid ""
 "If you need to update GeoIP immediately, please click on the \"Update now\" "
 "button and wait until the operation is finished"
@@ -629,25 +588,25 @@ msgstr ""
 "Jeśli potrzebujesz natychmiastowej aktualizacji bazy proszę nacisnąć "
 "\"Aktualizuj teraz\" i poczekać do zakończenia operacji"
 
-#: ../limit-attempts.php:1143
+#: ../limit-attempts.php:1164
 msgid "Read more about"
 msgstr "Przeczytaj więcej o"
 
-#: ../limit-attempts.php:1147
+#: ../limit-attempts.php:1168
 msgid "Last update was carried out"
 msgstr "ostatnia aktualizacja"
 
-#: ../limit-attempts.php:1162
+#: ../limit-attempts.php:1183
 msgid "Save Changes"
 msgstr "Zapisz zmiany"
 
-#: ../limit-attempts.php:1194 ../limit-attempts.php:1641
+#: ../limit-attempts.php:1215 ../limit-attempts.php:1662
 #: ../includes/blocked.php:267 ../includes/statistics.php:287
 #: ../includes/blacklist.php:260 ../includes/whitelist.php:261
 msgid "Notice:"
 msgstr "Uwaga:"
 
-#: ../limit-attempts.php:1194
+#: ../limit-attempts.php:1215
 msgid ""
 "Limit Login Attempts plugin is activated on your site, as well as Limit "
 "Attempts plugin. Please note that Limit Attempts ensures maximum security "
@@ -661,27 +620,27 @@ msgstr ""
 "włączonej podobnej wtyczki. Jednoczesne wykorzystywanie kilku wtyczek o "
 "podobnym działaniu może wywołać niepożądane zachowania na twojej stronie."
 
-#: ../limit-attempts.php:1221
+#: ../limit-attempts.php:1242
 msgid "ATTENTION!"
 msgstr "UWAGA!"
 
-#: ../limit-attempts.php:1224
+#: ../limit-attempts.php:1245
 msgid "Read and Understood"
 msgstr "Przeczytaj i zapamiętaj"
 
-#: ../limit-attempts.php:1301
+#: ../limit-attempts.php:1322
 msgid "Addresses per page"
 msgstr "Adresy na stronę"
 
-#: ../limit-attempts.php:1643
+#: ../limit-attempts.php:1664
 msgid "Subject has been restored to default"
 msgstr "Przywrócono domyślny temat"
 
-#: ../limit-attempts.php:1645
+#: ../limit-attempts.php:1666
 msgid "Message has been restored to default"
 msgstr "Przywrócono domyślną wiadomość"
 
-#: ../limit-attempts.php:1647
+#: ../limit-attempts.php:1668
 msgid "Changes are not saved"
 msgstr "Zmiany nie zostały zapisane"
 
@@ -1027,6 +986,39 @@ msgstr "Mój adres"
 #: ../includes/whitelist.php:373
 msgid "Add IP to whitelist"
 msgstr "Dodaj adres IP do białej listy"
+
+#~ msgid "powered by"
+#~ msgstr "stworzone przez"
+
+#~ msgid "Using Htaccess powered by"
+#~ msgstr "Wykorzystaj Htaccess stworzone przez"
+
+#~ msgid "Activate Htaccess"
+#~ msgstr "Aktywuj Htaccess"
+
+#~ msgid "Using Captcha Pro powered by"
+#~ msgstr "Wykorzystaj Captcha Pro stworzone przez"
+
+#~ msgid "Update Captcha Pro at least to v.1.4.4"
+#~ msgstr "Aktualizuj Captcha Pro do wersji v 1.4.4"
+
+#~ msgid "Update Captcha at least to v.4.0.2"
+#~ msgstr "Aktualizuj Captcha do wersji v 4.0.2"
+
+#~ msgid "Using %s powered by"
+#~ msgstr "Wykorzystaj %s stworzone przez"
+
+#~ msgid "Download Captcha"
+#~ msgstr "Pobierz Captcha"
+
+#~ msgid "Contact form by BestWebSoft"
+#~ msgstr "Contact form by BestWebSoft"
+
+#~ msgid "Subscriber by BestWebSoft"
+#~ msgstr "Subscriber by BestWebSoft"
+
+#~ msgid "Contact Form 7"
+#~ msgstr "Contact Form 7"
 
 #~ msgid ""
 #~ "Allowed retries must be numeric, it was automatically changed to the "
