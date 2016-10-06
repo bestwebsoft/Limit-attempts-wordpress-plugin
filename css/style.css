@@ -22,8 +22,20 @@
 .lmtttmpts_settings label {
 	padding-bottom: 15px;
 }
+#lmtttmpts-time-to-reset,
+#lmtttmpts-time-to-reset-display,
+#lmtttmpts-time-to-reset-block,
+#lmtttmpts-time-to-reset-block-display {
+	display: inline-block;
+}
 #lmtttmpts_lock_options {
 	padding-bottom: 15px;
+}
+#lmtttmpts_lock_options input[type='number'] {
+	text-align: right;
+}
+.rtl #lmtttmpts_lock_options input[type='number'] {
+	text-align: left;
 }
 td.lmtttmpts_align_top {
 	vertical-align: top;
@@ -40,7 +52,10 @@ td.lmtttmpts_align_top {
 .lmtttmpts_block_message_block td ul {
 	margin: 0px;
 }
-
+table.lmtttmpts_block_message_block textarea {
+	width: 100%;
+	max-width: 800px;
+}
 #lmtttmpts_notify_options {
 	table-layout: fixed;
 	padding-bottom: 15px;
@@ -78,24 +93,27 @@ tr.lmtttmpts_blocked,
 	width: 5em;
 }
 .lmtttmpts_edit_list_form table {
-	padding: 5px 0 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
 }
 .lmtttmpts_block_message_block p,
 .lmtttmpts_email_message_block p {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 .lmtttmpts_align_top {
-    max-width: 150px;
+	max-width: 150px;
 }
 
 @media only screen and ( max-width: 785px ) {
+	.lmtttmpts_list p.search-box {
+		position: relative;
+	}
 	.lmtttmpts_align_top {
-        max-width: none;
-    }
-    select[name="lmtttmpts_user_email_address"],
-    input[name="lmtttmpts_email_address"] {
-        margin-top: 5px;
-    }
+		max-width: none;
+	}
+	select[name="lmtttmpts_user_email_address"],
+	input[name="lmtttmpts_email_address"] {
+		margin-top: 5px;
+	}
 	.bws-plugins_page_limit-attempts p.search-box {
 		position: static;
 		margin-top: 10px;

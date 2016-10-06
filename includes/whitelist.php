@@ -1,6 +1,6 @@
-<?php 
+<?php
 /**
- * Display list of IP, which are in whitelist 
+ * Display list of IP, which are in whitelist
  * @package Limit Attempts
  * @since 1.1.3
  */
@@ -271,7 +271,7 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 				'whitelisted_delete_done_many'	=> __( 'have been deleted from whitelist', 'limit-attempts' ),
 				'whitelisted_delete_error'		=> __( 'Error while deleting from whitelist', 'limit-attempts' )
 			);
-			
+
 			if ( ( isset( $_POST['lmtttmpts_add_to_whitelist_my_ip'] ) || isset( $_POST['lmtttmpts_add_to_whitelist'] ) ) && check_admin_referer( 'limit-attempts/limit-attempts.php', 'lmtttmpts_nonce_name' ) ) {
 				$add_ip = isset( $_POST['lmtttmpts_add_to_whitelist_my_ip'] ) ? esc_html( trim( $_POST['lmtttmpts_add_to_whitelist_my_ip_value'] ) ) : false;
 				$add_ip = ! $add_ip && isset( $_POST['lmtttmpts_add_to_whitelist'] ) ? esc_html( trim( $_POST['lmtttmpts_add_to_whitelist'] ) ) : $add_ip;
@@ -307,8 +307,8 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 					check_admin_referer( 'lmtttmpts_remove_from_whitelist_' . $_REQUEST['lmtttmpts_remove_from_whitelist'], 'lmtttmpts_nonce_name' );
 					$ip_list = $_REQUEST['lmtttmpts_remove_from_whitelist'];
 				} else {
-					if( 
-						( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_whitelist_ips' ) || 
+					if(
+						( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_whitelist_ips' ) ||
 						( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_whitelist_ips' )
 					) {
 						check_admin_referer( 'bulk-' . $this->_args['plural'] );
@@ -353,7 +353,7 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 
 if ( ! function_exists( 'lmtttmpts_display_whitelist' ) ) {
 	function lmtttmpts_display_whitelist( $plugin_basename ) { ?>
-		<div id="lmtttmpts_whitelist">
+		<div id="lmtttmpts_whitelist" class="lmtttmpts_list">
 			<form method="post" action="admin.php?page=limit-attempts.php&amp;action=whitelist" class="lmtttmpts_edit_list_form">
 				<table>
 					<tr valign="top">
@@ -363,7 +363,7 @@ if ( ! function_exists( 'lmtttmpts_display_whitelist' ) ) {
 							if ( ! empty( $my_ip ) ) { ?>
 								<br />
 								<label>
-									<input type="checkbox" name="lmtttmpts_add_to_whitelist_my_ip" value="1" /> 
+									<input type="checkbox" name="lmtttmpts_add_to_whitelist_my_ip" value="1" />
 									<?php _e( 'My IP', 'limit-attempts' ); ?>
 									<input type="hidden" name="lmtttmpts_add_to_whitelist_my_ip_value" value="<?php echo $my_ip; ?>" />
 								</label>

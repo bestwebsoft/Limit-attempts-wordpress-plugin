@@ -1,6 +1,6 @@
-<?php 
+<?php
 /**
- * Display list of IP, which are in blacklist 
+ * Display list of IP, which are in blacklist
  * @package Limit Attempts
  * @since 1.1.3
  */
@@ -305,8 +305,8 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
 					check_admin_referer( 'lmtttmpts_remove_from_blacklist_' . $_REQUEST['lmtttmpts_remove_from_blacklist'], 'lmtttmpts_nonce_name' );
 					$ip_list = $_REQUEST['lmtttmpts_remove_from_blacklist'];
 				} else {
-					if( 
-						( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_blacklist_ips' ) || 
+					if(
+						( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_blacklist_ips' ) ||
 						( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_blacklist_ips' )
 					) {
 						check_admin_referer( 'bulk-' . $this->_args['plural'] );
@@ -351,10 +351,9 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
 	}
 }
 
-
 if ( ! function_exists( 'lmtttmpts_display_blacklist' ) ) {
 	function lmtttmpts_display_blacklist( $plugin_basename ) { ?>
-		<div id="lmtttmpts_blacklist">
+		<div id="lmtttmpts_blacklist" class="lmtttmpts_list">
 			<form method="post" action="admin.php?page=limit-attempts.php&amp;action=blacklist" class="lmtttmpts_edit_list_form">
 				<table>
 					<tr valign="top">

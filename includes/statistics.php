@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Display statistics
  * @package Limit Attempts
@@ -9,7 +9,7 @@ if ( ! class_exists( 'WP_List_Table' ) )
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 
 if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
-	class Lmtttmpts_Statistics extends WP_List_Table { 
+	class Lmtttmpts_Statistics extends WP_List_Table {
 		function get_columns() {
 			/* adding collumns to table and their view */
 			$columns = array(
@@ -136,7 +136,7 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 			/* setting default view for collumn items */
 			switch( $column_name ) {
 				case 'ip':
-				case 'failed_attempts':	
+				case 'failed_attempts':
 				case 'block_quantity':
 				case 'status':
 					return $item[ $column_name ];
@@ -361,7 +361,7 @@ if ( ! function_exists( 'lmtttmpts_display_statistics' ) ) {
 				</form>
 			</div>
 		<?php } else { ?>
-			<div id="lmtttmpts_statistics">
+			<div id="lmtttmpts_statistics" class="lmtttmpts_list">
 				<?php $lmtttmpts_statistics_list = new Lmtttmpts_Statistics();
 				$lmtttmpts_statistics_list->action_message();
 				$lmtttmpts_statistics_list->prepare_items(); ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  *
  * @package Limit Attempts
@@ -6,7 +6,7 @@
  */
 
 if ( ! function_exists( 'lmtttmpts_display_log' ) ) {
-	function lmtttmpts_display_log() { 
+	function lmtttmpts_display_log() {
 		global $lmtttmpts_plugin_info, $wp_version; ?>
 		<div id="lmtttmpts_log">
 			<div style="max-width: 100%" class="bws_pro_version_bloc">
@@ -80,7 +80,7 @@ if ( ! function_exists( 'lmtttmpts_display_log' ) ) {
 				</div>
 				<div class="bws_pro_version_tooltip">
 					<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
-					<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+					<a class="bws_button" href="http://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
 					<div class="clear"></div>
 				</div>
 			</div>
@@ -89,7 +89,7 @@ if ( ! function_exists( 'lmtttmpts_display_log' ) ) {
 }
 
 if ( ! function_exists( 'lmtttmpts_display_summaries' ) ) {
-	function lmtttmpts_display_summaries() { 
+	function lmtttmpts_display_summaries() {
 		global $lmtttmpts_plugin_info, $wp_version; ?>
 		<div id="lmtttmpts_summaries">
 			<div style="max-width: 100%" class="bws_pro_version_bloc">
@@ -104,7 +104,7 @@ if ( ! function_exists( 'lmtttmpts_display_summaries' ) ) {
 				</div>
 				<div class="bws_pro_version_tooltip">
 					<div class="bws_info"><?php _e( 'Unlock premium options by upgrading to Pro version', 'limit-attempts' ); ?></div>
-					<a class="bws_button" href="http://bestwebsoft.com/products/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
+					<a class="bws_button" href="http://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=33bc89079511cdfe28aeba317abfaf37&pn=140&v=<?php echo $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version; ?>" target="_blank" title="Limit Attempts Pro"><?php _e( "Learn More", 'limit-attempts' ); ?></a>
 					<div class="clear"></div>
 				</div>
 			</div>

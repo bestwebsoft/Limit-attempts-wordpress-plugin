@@ -1,46 +1,149 @@
 <a href="http://bestwebsoft.com/products/limit-attempts/" target=_blank>Limit Attempts WordPress Plugin</a>
 ========================
 
-Limit Attempts - This plugin allows you to limit users' attempts to log in to your website, as well as create and edit black- and whitelists. This way, you will be able to manage access to your website and its content and protect it from spam and unwanted visitors. There is also a premium version of Limit Attempts plugin - Limit Attempts Pro, with more useful features available. With the pro version, you recieve a possibility to add ranges of IP addresses or IP masks to black- and whitelists. Also, it is compatible with Captcha Pro plugin, so all functionality of Limit Attempts Pro can be applied to all forms when Captcha Pro is activated.
+Protect WordPress website against brute force attacks. Limit rate of login attempts.
 
 <img src="http://bestwebsoft.com/wp-content/uploads/2014/09/limit-attempts-banner-website.jpg" />
 
-<a href="http://bestwebsoft.com/products/limit-attempts/description/" target=_blank>Description</a> | 
-<a href="http://bestwebsoft.com/products/limit-attempts/installation/" target=_blank>Installation</a> | 
-<a href="http://bestwebsoft.com/products/limit-attempts/faq/" target=_blank>FAQ</a> | 
-<a href="http://bestwebsoft.com/products/limit-attempts/screenshots/" target=_blank>Screenshots</a> | 
-<a href="http://bestwebsoft.com/products/limit-attempts/changelog/" target=_blank>Changelog</a> | 
-<a href="http://bestwebsoft.com/products/limit-attempts/download/" target=_blank>Download</a>
+<p>Limit Attempts plugin is a security solution for WordPress which protects your website from spam and brute-force attacks. Limit the number of failed login attempts per user and block user IP for a certain period of time based on your settings. This will stop automated scripts to generate a large number of different combinations and hack your website.</p>
+
+<p>Manage black- and whitelists, receive email notifications, hide website forms for blocked or blacklisted IPs, and other advanced features which guarantees safety of your data. Secure your website today!</p>
 
 
-Features
------------------------------
-* Blocks IP addresses when the limit of login attempts is reached.
-* Adds IP addresses to the blacklist upon reaching the limit of locks.
-* Allows adjusting the settings for blocking and automatic adding to the blacklist.
-* Keeps a log, in which the overall number of failed login attempts and the number of locks is documented, and shows the currents status.
-* Allows adding single IP addresses to black- and whitelists.
-* Sends email notifications to the administartor.
-* Allows customizing messages that are displayed in case of the failed login attempt, address blocking or when an address is added to the blacklist.
-* Allows customizing the text and layout of an email message that is sent to the administrator when an address is automatically blocked or added to the blacklist.
-* Is compatible with Htaccess plugin (by BestWebSoft), allowing to add IP address blocking data to htaccess file.
-* Is compatible with Captcha plugin (by BestWebSoft), allowing to specify whether an incorrect captcha input should be considered a failed login attempt.
-* Ability to hide the login form, the registration form and the lostpassword form for blocked or blacklisted IPs.
+<div class='video'></div>
 
 
-Translation
------------------------------
-* Polish (pl_PL) (thanks to Damian Dąbrowski)
-* Russian (ru_RU)
-* Ukrainian (uk)
+<h4>Free Features</h4>
 
-If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress" target="_blank">the text of PO and MO files</a> for <a href="http://support.bestwebsoft.com" target="_blank">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO files <a href="http://www.poedit.net/download.php" target="_blank">Poedit</a>.
+<ul>
+<li>Automatically block IP addresses that exceed limit login attempts</li>
+<li>Automatically add IP addresses that exceed blocks limit to the blacklist</li>
+<li>Manually add IP addresses to:
 
+<ul>
+<li>Blacklist</li>
+<li>Whitelist</li>
+</ul></li>
+<li>Hide login, register, lost password forms for blocked or blacklisted IPs</li>
+<li>Compatible with <a href="http://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd">Htaccess</a>:
 
-Technical support
------------------------------
-Dear users, our plugins are available for free download. If you have any questions or recommendations regarding the functionality of our plugins (existing options, new options, current issues), please feel free to contact us. Please note that we accept requests in English only. All messages in other languages won't be accepted.
+<ul>
+<li>Add blacklisted IP address to the htaccess file to reduce your website database workload</li>
+</ul></li>
+<li>Compatible with <a href="http://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c">Captcha</a>:
 
-If you notice any bugs in the plugins, you can notify us about it and we'll investigate and fix the issue then. Your request should contain URL of the website, issues description and WordPress admin panel credentials.
-Moreover we can customize the plugin according to your requirements. It's a paid service (as a rule it costs $40, but the price can vary depending on the amount of the necessary changes and their complexity). Please note that we could also include this or that feature (developed for you) in the next release and share with the other users then.
-We can fix some things for free for the users who provide translation of our plugin into their native language (this should be a new translation of a certain plugin, you can check available translations on the official plugin page).
+<ul>
+<li>Consider incorrect captcha as a failed login attempt</li>
+</ul></li>
+<li>Manage your statistics list with:
+
+<ul>
+<li>IP address</li>
+<li>Number of failed attempts</li>
+<li>Number of blocks</li>
+<li>Status</li>
+</ul></li>
+<li>Customize error messages for:
+
+<ul>
+<li>Invalid attempt</li>
+<li>Blocked user</li>
+<li>Blacklisted user</li>
+</ul></li>
+<li>Send customizable notifications about blocked and blacklisted users to:
+
+<ul>
+<li>User email</li>
+<li>Custom email</li>
+</ul></li>
+<li>Compatible with latest WordPress version</li>
+<li>Incredibly simple settings for fast setup without modifying code</li>
+<li>Detailed step-by-step documentation and videos</li>
+</ul>
+
+<blockquote>
+  <p><strong>Pro Features</strong></p>
+  
+  <p>All features from Free version included plus:</p>
+  
+  <ul>
+  <li>Add IP address ranges or IP masks to black- and whitelists</li>
+  <li>Add certain country's IP addresses to the black- and whitelist - GeoIP database</li>
+  <li>Manage blocked list with additional option:
+  
+  <ul>
+  <li>Total number of failed attempts</li>
+  </ul></li>
+  <li>Manage black- and whitelists with extended options:
+  
+  <ul>
+  <li>Country</li>
+  <li>Range from</li>
+  <li>Range to</li>
+  <li>Reason</li>
+  </ul></li>
+  <li>Compatible with <a href="http://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c">Captcha Pro</a>:
+  
+  <ul>
+  <li>Consider the incorrect captcha input as an invalid attempt for the for the forms compatible with Captcha Pro</li>
+  </ul></li>
+  <li>Set the option for non-existent username log in:
+  
+  <ul>
+  <li>According to time and login attempts set for Block- and Blacklist</li>
+  <li>Block IP immediately</li>
+  <li>Blacklist IP immediately</li>
+  </ul></li>
+  <li>Manage your log tab with:
+  
+  <ul>
+  <li>IP adress</li>
+  <li>Internet Hostname</li>
+  <li>Event</li>
+  <li>Form</li>
+  <li>Event time</li>
+  </ul></li>
+  <li>Summary diagram with login attempts statistic and prevented hacking attempts in the settings page and in a dashboard widget</li>
+  <li>Configure all subsites on the network</li>
+  <li>Get answer to your support question within one business day (<a href="http://bestwebsoft.com/support-policy/">Support Policy</a>)</li>
+  </ul>
+  
+  <p><a href="http://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=cb8137a688618f00aad733d4b0b2d014">Upgrade to Pro Now</a></p>
+</blockquote>
+
+<p>If you have a feature suggestion or idea you'd like to see in the plugin, we'd love to hear about it! <a href="http://support.bestwebsoft.com/hc/en-us/requests/new">Suggest a Feature</a></p>
+
+<h4>Documentation &#38; Videos</h4>
+
+<ul>
+<li><a href="https://docs.google.com/document/d/1zBn8PxGMR7v6hWJgT2vogwzP_rzJ6IipbxACnmuNa6E/">[Doc] Installation</a></li>
+<li><a href="http://www.youtube.com/watch?v=BZ9WZ3G9ves">[Video] Installation Instruction</a></li>
+</ul>
+
+<h4>Help &#38; Support</h4>
+
+<p>Visit our Help Center if you have any questions, our friendly Support Team is happy to help - <a href="http://support.bestwebsoft.com/">http://support.bestwebsoft.com/</a></p>
+
+<h4>Translation</h4>
+
+<ul>
+<li>Polish (pl_PL) (thanks to <a href="mailto:dabek1812@gmail.com">Damian Dąbrowski</a>)</li>
+<li>Russian (ru_RU)</li>
+<li>Ukrainian (uk)</li>
+</ul>
+
+<p>Some of these translations are not complete. We are constantly adding new features which should be translated. If you would like to create your own language pack or update the existing one, you can send <a href="http://codex.wordpress.org/Translating_WordPress">the text of PO and MO files</a> to <a href="http://support.bestwebsoft.com/hc/en-us/requests/new">BestWebSoft</a> and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO <a href="http://www.poedit.net/download.php">files Poedit</a>.</p>
+
+<h4>Recommended Plugins</h4>
+
+<ul>
+<li><a href="http://bestwebsoft.com/products/wordpress/plugins/updater/?k=1babc7691c564636f8fddb7698f8f43e">Updater</a> - Automatically check and update WordPress core with all installed plugins to the latest versions. Manual mode, email notifications and backups of all your files and database before updating.</li>
+<li><a href="http://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c">Captcha</a> - Protect WordPress website forms from spam entries by means of math logic.</li>
+<li><a href="http://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd">Htaccess</a> - Protect WordPress website - allow and deny access for certain IP addresses, hostnames, etc.</li>
+</ul>
+
+<h4>Donate</h4>
+
+<p>Donations play an important role in supporting open-source projects. We greatly appreciate any donation you can make to help us continue further development of free products.</p>
+
+<p><a href="http://bestwebsoft.com/donate/">Donate Now</a></p>

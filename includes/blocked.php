@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Display list of IP, which are temporary blocked
  * @package Limit Attempts
@@ -104,7 +104,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_list' ) ) {
 			$date_time_format = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
 			foreach ( $blocked_items as &$blocked_item ) {
 				/* process block_till date */
-				$blocked_item['block_till'] = date( $date_time_format, strtotime( $blocked_item['block_till'] ) );				
+				$blocked_item['block_till'] = date( $date_time_format, strtotime( $blocked_item['block_till'] ) );
 			}
 
 			$columns 				= $this->get_columns();
@@ -252,7 +252,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_list' ) ) {
 
 			echo $this->_pagination;
 		}
-		
+
 		function action_message() {
 			global $wpdb, $lmtttmpts_options;
 			$action_message = array(
@@ -355,7 +355,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_list' ) ) {
 
 if ( ! function_exists( 'lmtttmpts_display_blocked' ) ) {
 	function lmtttmpts_display_blocked( $plugin_basename ) { ?>
-		<div id="lmtttmpts_blocked">
+		<div id="lmtttmpts_blocked" class="lmtttmpts_list">
 			<?php $lmtttmpts_blocked_list = new Lmtttmpts_Blocked_list();
 			$lmtttmpts_blocked_list->action_message();
 			$lmtttmpts_blocked_list->prepare_items(); ?>

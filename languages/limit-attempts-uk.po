@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Limit Attempts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-08 15:02+0300\n"
+"POT-Creation-Date: 2016-09-27 16:15+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: BestWebSoft team <wp@bestwebsoft.com>\n"
 "Language-Team: bestwebsoft.com <support@bestwebsoft.com>\n"
@@ -11,18 +11,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _e;__;_n:1,2;_x\n"
+"X-Poedit-KeywordsList: _e;__;_n:1,2;_x;_ex:1,2c\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n%10==1 && n%100!=11) ? 3 : "
 "((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2);\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../limit-attempts.php:39 ../limit-attempts.php:676
+#: ../limit-attempts.php:39 ../limit-attempts.php:682
 msgid "Limit Attempts Settings"
 msgstr "Налаштування плагіна Limit Attempts"
 
-#: ../limit-attempts.php:330
+#: ../limit-attempts.php:329
 msgid ""
 "Limit Attempts interaction with Htaccess was turned off since you are using "
 "an outdated Htaccess plugin version. If you want to keep using this "
@@ -32,150 +32,137 @@ msgstr ""
 "плагінами Limit Attempts та Htaccess було вимкнено. Якщо ви бажаєте "
 "відновити взаємодію, будь ласка, оновіть плагін Htaccess до версії 1.6.2."
 
-#: ../limit-attempts.php:410 ../limit-attempts.php:426
-#: ../limit-attempts.php:678
+#: ../limit-attempts.php:427 ../limit-attempts.php:443
+#: ../limit-attempts.php:684
 msgid "Settings"
 msgstr "Налаштування"
 
-#: ../limit-attempts.php:427
+#: ../limit-attempts.php:444
 msgid "FAQ"
 msgstr "FAQ"
 
-#: ../limit-attempts.php:428
+#: ../limit-attempts.php:445
 msgid "Support"
 msgstr "Техпідтримка"
 
-#: ../limit-attempts.php:449 ../limit-attempts.php:777
-#: ../limit-attempts.php:1109 ../limit-attempts.php:1141
+#: ../limit-attempts.php:466 ../limit-attempts.php:799
+#: ../limit-attempts.php:1131 ../limit-attempts.php:1167
 msgid "Close"
 msgstr "Закрити"
 
-#: ../limit-attempts.php:452
+#: ../limit-attempts.php:469
 msgid "Add"
 msgstr "Додати"
 
-#: ../limit-attempts.php:453
+#: ../limit-attempts.php:470
 msgid "Delete"
 msgstr "Видалити"
 
-#: ../limit-attempts.php:458
+#: ../limit-attempts.php:475
 msgid "Enter IP"
 msgstr "Введіть IP"
 
-#: ../limit-attempts.php:461
+#: ../limit-attempts.php:478
 msgid "Allowed formats"
 msgstr "Дозволені формати"
 
-#: ../limit-attempts.php:464
+#: ../limit-attempts.php:481
 msgid "Allowed diapason"
 msgstr "Дозволений діапазон"
 
-#: ../limit-attempts.php:467 ../limit-attempts.php:478
+#: ../limit-attempts.php:484 ../limit-attempts.php:495
 msgid "Allowed separators"
 msgstr "Дозволені розділові знаки"
 
-#: ../limit-attempts.php:468 ../limit-attempts.php:478
+#: ../limit-attempts.php:485 ../limit-attempts.php:495
 msgid "a comma"
 msgstr "кома"
 
-#: ../limit-attempts.php:468 ../limit-attempts.php:478
+#: ../limit-attempts.php:485 ../limit-attempts.php:495
 msgid "semicolon"
 msgstr "крапка з комою"
 
-#: ../limit-attempts.php:468
+#: ../limit-attempts.php:485
 msgid "ordinary space, tab, new line or carriage return"
 msgstr "звичайний пробіл, табуляція або новий рядок"
 
-#: ../limit-attempts.php:475
+#: ../limit-attempts.php:492
 msgid "Reason for IP"
 msgstr "Причина для IP"
 
-#: ../limit-attempts.php:478
+#: ../limit-attempts.php:495
 msgid "tab, new line or carriage return"
 msgstr "звичайний пробіл, табуляція або новий рядок"
 
-#: ../limit-attempts.php:486
+#: ../limit-attempts.php:503
 msgid "Select country"
 msgstr "Оберіть країну"
 
-#: ../limit-attempts.php:490
+#: ../limit-attempts.php:507
 msgid "Reason for country"
 msgstr "Причина для країни"
 
-#: ../limit-attempts.php:497 ../limit-attempts.php:806
-#: ../limit-attempts.php:1128 ../limit-attempts.php:1175
+#: ../limit-attempts.php:514 ../limit-attempts.php:828
+#: ../limit-attempts.php:1154 ../limit-attempts.php:1226
 #: ../includes/pro-tab.php:82 ../includes/pro-tab.php:106
 msgid "Unlock premium options by upgrading to Pro version"
 msgstr "Зробити доступними преміум-опції, перейшовши на Pro версію"
 
-#: ../limit-attempts.php:498 ../limit-attempts.php:807
-#: ../limit-attempts.php:1129 ../limit-attempts.php:1176
+#: ../limit-attempts.php:515 ../limit-attempts.php:829
+#: ../limit-attempts.php:1155 ../limit-attempts.php:1227
 #: ../includes/pro-tab.php:83 ../includes/pro-tab.php:107
 msgid "Learn More"
 msgstr "Докладніше"
 
-#: ../limit-attempts.php:575
-msgid "Notice"
-msgstr "Увага:"
-
-#: ../limit-attempts.php:575
-msgid ""
-"With such \"Block address\" and \"Add to the blacklist\" options` settings "
-"the user`s IP will never get into the blacklist. Please make necessary "
-"corrections in this options"
-msgstr ""
-"При заданих налаштуваннях в блоках \"Заблокувати адресу\" та \"Додати до "
-"чорного списку\" IP користувача ніколи не буде додано до чорного списку. "
-"Будь-ласка, внесіть необхідні  корективи в цих опціях"
-
-#: ../limit-attempts.php:656
+#: ../limit-attempts.php:662
 msgid "Settings saved."
 msgstr "Налаштування збережено."
 
-#: ../limit-attempts.php:673
+#: ../limit-attempts.php:679
 msgid "All plugin settings were restored."
 msgstr "Усі налаштування плагіну були відновлені. "
 
-#: ../limit-attempts.php:679
+#: ../limit-attempts.php:685
 msgid "Blocked IP"
 msgstr "Заблоковані IP"
 
-#: ../limit-attempts.php:680
+#: ../limit-attempts.php:686
 msgid "Blacklist"
 msgstr "Чорний список"
 
-#: ../limit-attempts.php:681
+#: ../limit-attempts.php:687
 msgid "Whitelist"
 msgstr "Білий список"
 
-#: ../limit-attempts.php:682
+#: ../limit-attempts.php:688
 msgid "Log"
 msgstr "Лог"
 
-#: ../limit-attempts.php:683
+#: ../limit-attempts.php:689
 msgid "Statistics"
 msgstr "Статистика"
 
-#: ../limit-attempts.php:684
+#: ../limit-attempts.php:690
 msgid "Summaries"
 msgstr "Зведення"
 
-#: ../limit-attempts.php:685
+#: ../limit-attempts.php:691
 msgid "Go PRO"
 msgstr "Перейти на PRO версію"
 
-#: ../limit-attempts.php:707
+#: ../limit-attempts.php:713
 msgid "Block address"
 msgstr "Заблокувати адресу"
 
-#: ../limit-attempts.php:710 ../limit-attempts.php:717
+#: ../limit-attempts.php:716 ../limit-attempts.php:723
 msgid "for"
 msgstr "на"
 
-#: ../limit-attempts.php:711 ../limit-attempts.php:733
-#: ../limit-attempts.php:760 ../limit-attempts.php:1632
-#: ../includes/front-end-functions.php:619
-#: ../includes/front-end-functions.php:640
+#: ../limit-attempts.php:717 ../limit-attempts.php:724
+#: ../limit-attempts.php:744 ../limit-attempts.php:751
+#: ../limit-attempts.php:763 ../limit-attempts.php:770
+#: ../limit-attempts.php:1667 ../includes/front-end-functions.php:603
+#: ../includes/front-end-functions.php:624
 msgid "day"
 msgid_plural "days"
 msgstr[0] "день"
@@ -183,9 +170,10 @@ msgstr[1] "дні"
 msgstr[2] "днів"
 msgstr[3] "день"
 
-#: ../limit-attempts.php:712 ../limit-attempts.php:734
-#: ../limit-attempts.php:761 ../limit-attempts.php:1636
-#: ../includes/front-end-functions.php:623
+#: ../limit-attempts.php:718 ../limit-attempts.php:725
+#: ../limit-attempts.php:745 ../limit-attempts.php:752
+#: ../limit-attempts.php:764 ../limit-attempts.php:771
+#: ../limit-attempts.php:1671 ../includes/front-end-functions.php:607
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "годину"
@@ -193,9 +181,10 @@ msgstr[1] "години"
 msgstr[2] "годин"
 msgstr[3] "годину"
 
-#: ../limit-attempts.php:713 ../limit-attempts.php:735
-#: ../limit-attempts.php:762 ../limit-attempts.php:1640
-#: ../includes/front-end-functions.php:627
+#: ../limit-attempts.php:719 ../limit-attempts.php:726
+#: ../limit-attempts.php:746 ../limit-attempts.php:753
+#: ../limit-attempts.php:765 ../limit-attempts.php:772
+#: ../limit-attempts.php:1675 ../includes/front-end-functions.php:611
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "хвилину"
@@ -203,34 +192,19 @@ msgstr[1] "хвилини"
 msgstr[2] "хвилин"
 msgstr[3] "хвилину"
 
-#: ../limit-attempts.php:714 ../limit-attempts.php:725
-#: ../limit-attempts.php:736 ../limit-attempts.php:752
-#: ../limit-attempts.php:763
+#: ../limit-attempts.php:720 ../limit-attempts.php:731
+#: ../limit-attempts.php:747 ../limit-attempts.php:766
+#: ../limit-attempts.php:787
 msgid "Edit"
 msgstr "Редагувати"
 
-#: ../limit-attempts.php:718 ../limit-attempts.php:740
-#: ../limit-attempts.php:767 ../limit-attempts.php:793
-#: ../limit-attempts.php:816
-msgid "days"
-msgstr "днів"
-
-#: ../limit-attempts.php:719 ../limit-attempts.php:741
-#: ../limit-attempts.php:768
-msgid "hours"
-msgstr "годин"
-
-#: ../limit-attempts.php:720 ../limit-attempts.php:742
-#: ../limit-attempts.php:769
-msgid "minutes"
-msgstr "хвилин"
-
-#: ../limit-attempts.php:723 ../limit-attempts.php:728
-#: ../limit-attempts.php:750 ../limit-attempts.php:755
+#: ../limit-attempts.php:729 ../limit-attempts.php:734
+#: ../limit-attempts.php:785 ../limit-attempts.php:790
+msgctxt "number"
 msgid "after"
 msgstr "після"
 
-#: ../limit-attempts.php:724
+#: ../limit-attempts.php:730 ../limit-attempts.php:735
 msgid "failed attempt"
 msgid_plural "failed attempts"
 msgstr[0] "невдалої спроби"
@@ -238,252 +212,271 @@ msgstr[1] "невдалих спроб"
 msgstr[2] "невдалих спроб"
 msgstr[3] "невдалої спроби"
 
-#: ../limit-attempts.php:729
+#: ../limit-attempts.php:740
+msgid "Reset the number of"
+msgstr "Обнулення кількості"
+
+#: ../limit-attempts.php:743 ../limit-attempts.php:750
 msgid "failed attempts"
 msgstr "невдалих спроб"
 
-#: ../limit-attempts.php:732 ../limit-attempts.php:739
-#: ../limit-attempts.php:759 ../limit-attempts.php:766
-msgid "per"
-msgstr "протягом"
+#: ../limit-attempts.php:743 ../limit-attempts.php:750
+#: ../limit-attempts.php:762 ../limit-attempts.php:769
+#: ../limit-attempts.php:1202
+msgid "after"
+msgstr "після"
 
-#: ../limit-attempts.php:747
+#: ../limit-attempts.php:757
+msgid ""
+"Time to reset the number of failed attempts after the last failed attempt"
+msgstr ""
+"Час до обнулення лічильника невдалих спроб після останньої невдалої спроби"
+
+#: ../limit-attempts.php:762 ../limit-attempts.php:769
+msgid "blockings"
+msgstr "блокувань"
+
+#: ../limit-attempts.php:776
+msgid "Time to reset the number of blockings after the last blocking"
+msgstr "Час до обнулення лічильника блокувань після останнього блокування"
+
+#: ../limit-attempts.php:782
 msgid "Add to the blacklist"
 msgstr "Додати до чорного списку"
 
-#: ../limit-attempts.php:751
-msgid "block"
-msgid_plural "blocks"
+#: ../limit-attempts.php:786 ../limit-attempts.php:791
+msgid "blocking"
+msgid_plural "blockings"
 msgstr[0] "блокування"
-msgstr[1] "блокувань"
+msgstr[1] "блокуваня"
 msgstr[2] "блокувань"
 msgstr[3] "блокування"
 
-#: ../limit-attempts.php:756
-msgid "blocks"
-msgstr "блокувань"
-
-#: ../limit-attempts.php:781
+#: ../limit-attempts.php:803
 msgid "If user tried to log in with a non-existent username"
 msgstr "Якщо користувач намагався під неіснуючим ім’ям"
 
-#: ../limit-attempts.php:784
+#: ../limit-attempts.php:806
 msgid "according to \"Block address\" and \"Add to the blacklist\" options"
 msgstr ""
 "згідно налаштувань \"Заблокувати адресу\" та \"Додати до чорного списку\""
 
-#: ../limit-attempts.php:785
+#: ../limit-attempts.php:807
 msgid "block address immediately"
 msgstr "заблокувати адресу негайно"
 
-#: ../limit-attempts.php:786
+#: ../limit-attempts.php:808
 msgid "add to the blacklist immediately"
 msgstr "додати до чорного списку негайно"
 
-#: ../limit-attempts.php:791
+#: ../limit-attempts.php:813
 msgid "Remove log entries that are over"
 msgstr "Видаляти записи журналу, термін яких більше"
 
-#: ../limit-attempts.php:794
+#: ../limit-attempts.php:815 ../limit-attempts.php:838
+msgid "days"
+msgstr "днів"
+
+#: ../limit-attempts.php:816
 msgid "Set \"0\" if you do not want to clear the log."
 msgstr "Виберіть \"0\", якщо ви не хочете очищати журнал."
 
-#: ../limit-attempts.php:795
+#: ../limit-attempts.php:817
 msgid "Current size of DB table"
 msgstr "Поточний розмір таблиці бази даних"
 
-#: ../limit-attempts.php:795
+#: ../limit-attempts.php:817
 msgid "Mb"
 msgstr "Мб"
 
-#: ../limit-attempts.php:800 ../limit-attempts.php:1123
+#: ../limit-attempts.php:822 ../limit-attempts.php:1149
 msgid "If you upgrade to Pro version all your settings will be saved."
 msgstr "Якщо ви перейдете на Pro версію, усі установки будуть збережені."
 
-#: ../limit-attempts.php:814
+#: ../limit-attempts.php:836
 msgid "Remove statistics entry in case no failed attempts occurred for"
 msgstr "Видаляти статистику, якщо невдалі спроби відсутні більше"
 
-#: ../limit-attempts.php:817
+#: ../limit-attempts.php:839
 msgid "Set \"0\" if you do not want to clear the statistics."
 msgstr "Виберіть \"0\", якщо ви не хочете очищати статистику."
 
-#: ../limit-attempts.php:821
+#: ../limit-attempts.php:843
 msgid "Error messages"
 msgstr "Повідомлення про помилки"
 
-#: ../limit-attempts.php:823 ../limit-attempts.php:902
+#: ../limit-attempts.php:845 ../limit-attempts.php:924
 msgid "Hide"
 msgstr "Сховати"
 
-#: ../limit-attempts.php:824 ../limit-attempts.php:903
+#: ../limit-attempts.php:846 ../limit-attempts.php:925
 msgid "Show"
 msgstr "Показати"
 
-#: ../limit-attempts.php:829 ../limit-attempts.php:834
+#: ../limit-attempts.php:851 ../limit-attempts.php:856
 msgid "For invalid attempt"
 msgstr "При невдалій спробі входу"
 
-#: ../limit-attempts.php:830 ../limit-attempts.php:835
+#: ../limit-attempts.php:852 ../limit-attempts.php:857
 msgid "For blocked user"
 msgstr "При блокуванні"
 
-#: ../limit-attempts.php:831 ../limit-attempts.php:836
+#: ../limit-attempts.php:853 ../limit-attempts.php:858
 msgid "For blacklisted user"
 msgstr "При додаванні до чорного списку"
 
-#: ../limit-attempts.php:841 ../limit-attempts.php:854
-#: ../limit-attempts.php:868 ../limit-attempts.php:922
-#: ../limit-attempts.php:936 ../limit-attempts.php:953
-#: ../limit-attempts.php:970
+#: ../limit-attempts.php:863 ../limit-attempts.php:876
+#: ../limit-attempts.php:890 ../limit-attempts.php:944
+#: ../limit-attempts.php:958 ../limit-attempts.php:975
+#: ../limit-attempts.php:992
 msgid "Allowed Variables:"
 msgstr "Дозволені змінні:"
 
-#: ../limit-attempts.php:843
+#: ../limit-attempts.php:865
 msgid "display quantity of allowed attempts"
 msgstr "показувати кількість дозволених спроб"
 
-#: ../limit-attempts.php:845 ../limit-attempts.php:859
-#: ../limit-attempts.php:872 ../limit-attempts.php:961
-#: ../limit-attempts.php:978
+#: ../limit-attempts.php:867 ../limit-attempts.php:881
+#: ../limit-attempts.php:894 ../limit-attempts.php:983
+#: ../limit-attempts.php:1000
 msgid "Restore default message"
 msgstr "Відновити за замовчуванням"
 
-#: ../limit-attempts.php:849 ../limit-attempts.php:863
-#: ../limit-attempts.php:876 ../limit-attempts.php:931
-#: ../limit-attempts.php:945 ../limit-attempts.php:965
-#: ../limit-attempts.php:982
-msgid "You can use standart HTML tags and attributes."
+#: ../limit-attempts.php:871 ../limit-attempts.php:885
+#: ../limit-attempts.php:898 ../limit-attempts.php:953
+#: ../limit-attempts.php:967 ../limit-attempts.php:987
+#: ../limit-attempts.php:1004
+msgid "You can use standard HTML tags and attributes."
 msgstr "Ви можете використовувати стандартні HTML теги та атрибути."
 
-#: ../limit-attempts.php:856
+#: ../limit-attempts.php:878
 msgid "display date when block is removed"
 msgstr "відображає дату, коли блок буде знято"
 
-#: ../limit-attempts.php:857
+#: ../limit-attempts.php:879
 msgid "display administrator&rsquo;s e-mail for feedback"
 msgstr "відображає електронну пошту адміністратора для зворотнього зв’язку"
 
-#: ../limit-attempts.php:870
+#: ../limit-attempts.php:892
 msgid "display administrators e-mail for feedback"
 msgstr "відображає електронну пошту адміністратора для зворотнього зв’язку"
 
-#: ../limit-attempts.php:882
+#: ../limit-attempts.php:904
 msgid "Send email with notification"
 msgstr "Надіслати сповіщення"
 
-#: ../limit-attempts.php:887
+#: ../limit-attempts.php:909
 msgid "Email to user's address"
 msgstr "Надсилати повідомлення на електронну адресу користувача"
 
-#: ../limit-attempts.php:889
+#: ../limit-attempts.php:911
 msgid "Choose a username"
 msgstr "Оберіть користувача"
 
-#: ../limit-attempts.php:896
+#: ../limit-attempts.php:918
 msgid "Email to another address"
 msgstr "Надсилати повідомлення на іншу електронну адресу"
 
-#: ../limit-attempts.php:900
+#: ../limit-attempts.php:922
 msgid "Additional options for email with notification"
 msgstr ""
 "Додаткові налаштування для повідомлень електронної пошти зі сповіщенням"
 
-#: ../limit-attempts.php:909 ../limit-attempts.php:913
+#: ../limit-attempts.php:931 ../limit-attempts.php:935
 msgid "Email to admistrator when user is blocked"
 msgstr "Повідомлення адміністратору при блокуванні користувача"
 
-#: ../limit-attempts.php:910 ../limit-attempts.php:914
+#: ../limit-attempts.php:932 ../limit-attempts.php:936
 msgid "Email to admistrator when user is blacklisted"
 msgstr ""
 "Повідомлення адміністратору при додаванні користувача до чорного списку"
 
-#: ../limit-attempts.php:918
+#: ../limit-attempts.php:940
 msgid "Subject"
 msgstr "Тема"
 
-#: ../limit-attempts.php:924
+#: ../limit-attempts.php:946
 msgid "display blocked IP address"
 msgstr "відображати заблоковану IP адресу"
 
-#: ../limit-attempts.php:925 ../limit-attempts.php:939
-#: ../limit-attempts.php:958 ../limit-attempts.php:975
+#: ../limit-attempts.php:947 ../limit-attempts.php:961
+#: ../limit-attempts.php:980 ../limit-attempts.php:997
 msgid "display name of your site"
 msgstr "відображає назву вашого сайту"
 
-#: ../limit-attempts.php:927 ../limit-attempts.php:941
+#: ../limit-attempts.php:949 ../limit-attempts.php:963
 msgid "Restore default subject"
 msgstr "Відновити тему за замовчуванням"
 
-#: ../limit-attempts.php:938
+#: ../limit-attempts.php:960
 msgid "display blacklisted IP address"
 msgstr "відображати IP адресу, додану до чорного списку"
 
-#: ../limit-attempts.php:949
+#: ../limit-attempts.php:971
 msgid "Message"
 msgstr "Повідомлення"
 
-#: ../limit-attempts.php:955
+#: ../limit-attempts.php:977
 msgid "display IP address that is blocked"
 msgstr "відображати заблоковану IP адресу"
 
-#: ../limit-attempts.php:956 ../limit-attempts.php:973
+#: ../limit-attempts.php:978 ../limit-attempts.php:995
 msgid "display link for Limit Attempts plugin on your site"
 msgstr "відображає посилання на плагін Limit Attempts на вашому сайті"
 
-#: ../limit-attempts.php:957
+#: ../limit-attempts.php:979
 msgid "display date and time when IP address was blocked"
 msgstr "відображати дату та час, коли IP адресу було заблоковано"
 
-#: ../limit-attempts.php:959 ../limit-attempts.php:976
+#: ../limit-attempts.php:981 ../limit-attempts.php:998
 msgid "display your site's URL"
 msgstr "відображає URL вашого сайту"
 
-#: ../limit-attempts.php:972
+#: ../limit-attempts.php:994
 msgid "display IP address that is added to the blacklist"
 msgstr "відображати IP адресу, додану до чорного списку"
 
-#: ../limit-attempts.php:974
+#: ../limit-attempts.php:996
 msgid "display date and time when IP address was blacklisted"
 msgstr "відображати дату та час, коли IP адресу було додану до чорного списку"
 
-#: ../limit-attempts.php:988
+#: ../limit-attempts.php:1010
 msgid "Hide login/register/lostpassword forms for blocked or blacklisted IPs"
 msgstr ""
 "Сховати форму аутентифікації, зміни паролю та регистрації для заблокованих "
 "IP та IP з чорного списку"
 
-#: ../limit-attempts.php:994
+#: ../limit-attempts.php:1016
 msgid "Htaccess plugin"
 msgstr "Плагін Htaccess"
 
-#: ../limit-attempts.php:1002 ../limit-attempts.php:1005
-#: ../limit-attempts.php:1009 ../limit-attempts.php:1016
-#: ../limit-attempts.php:1023 ../limit-attempts.php:1052
-#: ../limit-attempts.php:1056 ../limit-attempts.php:1066
-#: ../limit-attempts.php:1074 ../limit-attempts.php:1094
-#: ../limit-attempts.php:1101
+#: ../limit-attempts.php:1024 ../limit-attempts.php:1027
+#: ../limit-attempts.php:1031 ../limit-attempts.php:1038
+#: ../limit-attempts.php:1045 ../limit-attempts.php:1074
+#: ../limit-attempts.php:1078 ../limit-attempts.php:1088
+#: ../limit-attempts.php:1096 ../limit-attempts.php:1116
+#: ../limit-attempts.php:1123
 #, php-format
 msgid "Using %s"
 msgstr "Використовуючи %s"
 
-#: ../limit-attempts.php:1010 ../limit-attempts.php:1057
-#: ../limit-attempts.php:1079
+#: ../limit-attempts.php:1032 ../limit-attempts.php:1079
+#: ../limit-attempts.php:1101
 #, php-format
 msgid "Update %s at least to %s"
 msgstr "Оновіть %s як мінімум до версії %s"
 
-#: ../limit-attempts.php:1017 ../limit-attempts.php:1095
+#: ../limit-attempts.php:1039 ../limit-attempts.php:1117
 #, php-format
 msgid "Activate %s"
 msgstr "Активувати %s"
 
-#: ../limit-attempts.php:1024 ../limit-attempts.php:1102
+#: ../limit-attempts.php:1046 ../limit-attempts.php:1124
 #, php-format
 msgid "Download %s"
 msgstr "Завантажити %s"
 
-#: ../limit-attempts.php:1029
+#: ../limit-attempts.php:1051
 msgid ""
 "When you turn on this option, all IPs from the blocked list and from the "
 "blacklist will be added to the direction \"deny from\" of file .htaccess. IP "
@@ -497,75 +490,91 @@ msgstr ""
 "IP плагіну, будуть автоматично додаватись до директиви \"deny from\"файлу ."
 "htaccess"
 
-#: ../limit-attempts.php:1033
+#: ../limit-attempts.php:1055
 msgid "Allow Htaccess plugin block IP to reduce the database workload."
 msgstr ""
 "Дозволити плагіну Htaccess блокувати IP адресу задля зменшення навантаження "
 "на базу даних"
 
-#: ../limit-attempts.php:1037
+#: ../limit-attempts.php:1059
 msgid "Captcha plugin"
 msgstr "Captcha плагін"
 
-#: ../limit-attempts.php:1050 ../limit-attempts.php:1064
-#: ../limit-attempts.php:1072 ../includes/pro-tab.php:63
+#: ../limit-attempts.php:1072 ../limit-attempts.php:1086
+#: ../limit-attempts.php:1094 ../includes/pro-tab.php:63
 msgid "Login form"
 msgstr "Форма логіну"
 
-#: ../limit-attempts.php:1078
+#: ../limit-attempts.php:1100
 msgid "Using Captcha powered by"
 msgstr "Використовуючи Captcha, розроблену"
 
-#: ../limit-attempts.php:1105
+#: ../limit-attempts.php:1127
 msgid "Consider the incorrect captcha input as an invalid attempt."
 msgstr "Вважати неправильно введену капчу невдалою спробою."
 
-#: ../limit-attempts.php:1113
+#: ../limit-attempts.php:1135
 msgid "Registration form"
 msgstr "Форма реєстрації"
 
-#: ../limit-attempts.php:1114
+#: ../limit-attempts.php:1136
 msgid "Reset Password form"
 msgstr "Форма відновлення паролю"
 
-#: ../limit-attempts.php:1115
+#: ../limit-attempts.php:1137
 msgid "Comments form"
 msgstr "Форма коментарів"
 
-#: ../limit-attempts.php:1118
+#: ../limit-attempts.php:1140
 msgid "Buddypress registration form"
 msgstr "Форма реєстрації Buddypress"
 
-#: ../limit-attempts.php:1119
+#: ../limit-attempts.php:1141
 msgid "Buddypress comments form"
 msgstr "Форма коментарів Buddypress"
 
-#: ../limit-attempts.php:1120
+#: ../limit-attempts.php:1142
 msgid "Buddypress \"Create a Group\" form"
 msgstr "Форма \"Створити групу\" Buddypress"
 
-#: ../limit-attempts.php:1124
+#: ../limit-attempts.php:1144
+msgid "WooCommerce Login form"
+msgstr "Форма логіну плагіна WooCommerce"
+
+#: ../limit-attempts.php:1145
+msgid "WooCommerce Register form"
+msgstr "Форма реєстрації плагіна WooCommerce"
+
+#: ../limit-attempts.php:1146
+msgid "WooCommerce Lost Password form"
+msgstr "Форма відновлення пароля плагіна WooCommerce"
+
+#: ../limit-attempts.php:1147
+msgid "WooCommerce Checkout Billing form"
+msgstr "Форма заказу плагіна WooCommerce"
+
+#: ../limit-attempts.php:1150
 #, php-format
 msgid "You also need %s to use these options."
 msgstr "Вам також потрібен плагін %s для того, щоб скористатися цією опцією."
 
-#: ../limit-attempts.php:1145
+#: ../limit-attempts.php:1171
 msgid "Update GeoIP"
 msgstr "Оновити GeoIP"
 
-#: ../limit-attempts.php:1148
+#: ../limit-attempts.php:1174
 msgid "every"
 msgstr "кожен(кожні)"
 
-#: ../limit-attempts.php:1148 ../includes/front-end-functions.php:646
+#: ../limit-attempts.php:1174 ../includes/front-end-functions.php:630
 msgid "months"
 msgstr "місяць(і)"
 
-#: ../limit-attempts.php:1150
+#: ../limit-attempts.php:1176 ../limit-attempts.php:1204
 msgid "Update now"
 msgstr "Оновити негайно"
 
-#: ../limit-attempts.php:1155
+#: ../limit-attempts.php:1181
 msgid ""
 "This option allows you to download lists with registered IP addresses all "
 "over the world to the database (from"
@@ -573,7 +582,7 @@ msgstr ""
 "Ця опція дозволить Вам завантажити список зареєстрованих IP-адрес всього "
 "світу до бази даних (з сайту"
 
-#: ../limit-attempts.php:1158
+#: ../limit-attempts.php:1184
 msgid ""
 "With this, you receive an information about each IP address, and to which "
 "country it belongs to. You can select the desired frequency for IP database "
@@ -582,7 +591,7 @@ msgstr ""
 "Ця опція дозволить Вам отримати інформацію про належність кожної IP-адреси "
 "до тієї чи іншої краіни. Ви можете обрати необхідну періодичність оновлення"
 
-#: ../limit-attempts.php:1161
+#: ../limit-attempts.php:1187
 msgid ""
 "If you need to update GeoIP immediately, please click on the \"Update now\" "
 "button and wait until the operation is finished"
@@ -590,25 +599,64 @@ msgstr ""
 "Якщо Вам необхідно негайно оновити GeoIP, будь-ласка натисніть на кнопку "
 "\"Оновити негайно\" та зачекайте доки операцію буде завершено"
 
-#: ../limit-attempts.php:1164
+#: ../limit-attempts.php:1190
 msgid "Read more about"
 msgstr "Читати детальніше про"
 
-#: ../limit-attempts.php:1168
+#: ../limit-attempts.php:1194 ../limit-attempts.php:1219
 msgid "Last update was carried out"
 msgstr "Останнє оновлення було"
 
-#: ../limit-attempts.php:1183
+#: ../limit-attempts.php:1199
+msgid "Update whitelist and blacklist"
+msgstr "Оновлювати білий та чорний списки"
+
+#: ../limit-attempts.php:1202
+msgid "updates of GeoIP"
+msgstr "оновлень GeoIP"
+
+#: ../limit-attempts.php:1209
+msgid ""
+"This option allows you to update your whitelist and blacklist to establish "
+"IP address belonging. You can select the desired frequency for updating"
+msgstr ""
+"Ця опція дозволить Вам оновлювати білий та чорний списки для отримання "
+"інформації про належність кожної IP-адреси до тієї чи іншої краіни. Ви "
+"можете обрати необхідну періодичність оновлення"
+
+#: ../limit-attempts.php:1212
+msgid "Please note"
+msgstr "Будь-ласка, зауважте"
+
+#: ../limit-attempts.php:1212
+msgid ""
+"because of the potentially large amount of information being processed, "
+"automatically updating will occur in parts in background mode"
+msgstr ""
+"Через великий об’єм інформації, автоматичне відновлення буде виконуватись по "
+"частинам у фоновому режимі"
+
+#: ../limit-attempts.php:1215
+msgid ""
+"If you need to update the whitelist and blacklist completely and "
+"immediately, please click on the \"Update now\" button and wait until the "
+"operation is finished"
+msgstr ""
+"Якщо Вам необхідно негайно оновити чорний та білий списки, будь-ласка "
+"натисніть на кнопку \"Оновити негайно\" та зачекайте доки операцію буде "
+"завершено"
+
+#: ../limit-attempts.php:1234
 msgid "Save Changes"
 msgstr "Зберегти зміни"
 
-#: ../limit-attempts.php:1215 ../limit-attempts.php:1662
-#: ../includes/blocked.php:267 ../includes/statistics.php:287
+#: ../limit-attempts.php:1266 ../limit-attempts.php:1696
 #: ../includes/blacklist.php:260 ../includes/whitelist.php:261
+#: ../includes/blocked.php:267 ../includes/statistics.php:287
 msgid "Notice:"
 msgstr "Увага:"
 
-#: ../limit-attempts.php:1215
+#: ../limit-attempts.php:1266
 msgid ""
 "Limit Login Attempts plugin is activated on your site, as well as Limit "
 "Attempts plugin. Please note that Limit Attempts ensures maximum security "
@@ -622,34 +670,198 @@ msgstr ""
 "Нехтування цією простою порадою може призвести до вкрай небажаних наслідків "
 "для вашого сайту."
 
-#: ../limit-attempts.php:1242
+#: ../limit-attempts.php:1293
 msgid "ATTENTION!"
 msgstr "УВАГА!"
 
-#: ../limit-attempts.php:1245
+#: ../limit-attempts.php:1296
 msgid "Read and Understood"
 msgstr "Ознайомлений"
 
-#: ../limit-attempts.php:1322
+#: ../limit-attempts.php:1373
 msgid "Addresses per page"
 msgstr "Адрес на сторінці"
 
-#: ../limit-attempts.php:1664
+#: ../limit-attempts.php:1698
 msgid "Subject has been restored to default"
 msgstr "Тема листа була відновлена до значення за замовчуванням"
 
-#: ../limit-attempts.php:1666
+#: ../limit-attempts.php:1700
 msgid "Message has been restored to default"
 msgstr "Повідомлення було відновлено до значення за замовчуванням"
 
-#: ../limit-attempts.php:1668
+#: ../limit-attempts.php:1702
 msgid "Changes are not saved"
 msgstr "Зміни не збережено"
 
-#: ../includes/blocked.php:16 ../includes/statistics.php:17
 #: ../includes/blacklist.php:16 ../includes/whitelist.php:16
+#: ../includes/blocked.php:16 ../includes/statistics.php:17
 msgid "Ip address"
 msgstr "IP адреса"
+
+#: ../includes/blacklist.php:17 ../includes/whitelist.php:17
+msgid "Date added"
+msgstr "Дата додавання"
+
+#: ../includes/blacklist.php:34 ../includes/blacklist.php:42
+msgid "Remove from blacklist"
+msgstr "Видалити з чорного списку"
+
+#: ../includes/blacklist.php:138 ../includes/whitelist.php:139
+#: ../includes/blocked.php:145 ../includes/statistics.php:165
+#, php-format
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] "%s елемент"
+msgstr[1] "%s елементи"
+msgstr[2] "%s елементів"
+msgstr[3] "%s елемент"
+
+#: ../includes/blacklist.php:185 ../includes/whitelist.php:186
+#: ../includes/blocked.php:192 ../includes/statistics.php:212
+msgid "First page"
+msgstr "Перша сторінка"
+
+#: ../includes/blacklist.php:195 ../includes/whitelist.php:196
+#: ../includes/blocked.php:202 ../includes/statistics.php:222
+msgid "Previous page"
+msgstr "Попередня сторінка"
+
+#: ../includes/blacklist.php:202 ../includes/blacklist.php:205
+#: ../includes/whitelist.php:203 ../includes/whitelist.php:206
+#: ../includes/blocked.php:209 ../includes/blocked.php:212
+#: ../includes/statistics.php:229 ../includes/statistics.php:232
+msgid "Current Page"
+msgstr "Поточна сторінка"
+
+#: ../includes/blacklist.php:211 ../includes/whitelist.php:212
+#: ../includes/blocked.php:218 ../includes/statistics.php:238
+#, php-format
+msgid "%1$s of %2$s"
+msgstr "%1$s з %2$s"
+
+#: ../includes/blacklist.php:218 ../includes/whitelist.php:219
+#: ../includes/blocked.php:225 ../includes/statistics.php:245
+msgid "Next page"
+msgstr "Наступна сторінка"
+
+#: ../includes/blacklist.php:228 ../includes/whitelist.php:229
+#: ../includes/blocked.php:235 ../includes/statistics.php:255
+msgid "Last page"
+msgstr "Остання сторінка"
+
+#: ../includes/blacklist.php:261 ../includes/whitelist.php:262
+msgid "ERROR:"
+msgstr "ПОМИЛКА:"
+
+#: ../includes/blacklist.php:262 ../includes/whitelist.php:263
+#: ../includes/blocked.php:268 ../includes/statistics.php:288
+msgid "No address has been selected"
+msgstr "Жодної адреси не було обрано"
+
+#: ../includes/blacklist.php:263 ../includes/whitelist.php:264
+msgid "You must type IP address"
+msgstr "Ви маєте вказати IP адресу"
+
+#: ../includes/blacklist.php:264 ../includes/whitelist.php:265
+msgid "Wrong format or it does not lie in diapason 0.0.0.0 - 255.255.255.255."
+msgstr "Формат невірний або не належить діапазону 0.0.0.0 -255.255.255.255."
+
+#: ../includes/blacklist.php:265
+msgid "has been added to blacklist"
+msgstr "було внесено до чорного списку"
+
+#: ../includes/blacklist.php:266
+msgid "can&rsquo;t be added to blacklist."
+msgstr "не може бути внесено до чорного списку."
+
+#: ../includes/blacklist.php:267
+msgid "This IP address has already been added to blacklist"
+msgstr "Цю IP адресу вже внесено до чорного списку"
+
+#: ../includes/blacklist.php:268
+msgid "This IP address is in whitelist too, please check this to avoid errors"
+msgstr ""
+"Ця IP адреса знаходиться також і у білому списку. Будь ласка, для уникнення "
+"помилки, перевірте ще раз"
+
+#: ../includes/blacklist.php:269
+msgid "has been deleted from blacklist"
+msgstr "було видалено з чорного списку"
+
+#: ../includes/blacklist.php:270
+msgid "have been deleted from blacklist"
+msgstr "були видалені з чорного списку"
+
+#: ../includes/blacklist.php:271
+msgid "Error while deleting from blacklist"
+msgstr "Помилка при видаленні з чорного списку"
+
+#: ../includes/blacklist.php:338 ../includes/whitelist.php:338
+#: ../includes/blocked.php:340 ../includes/statistics.php:336
+msgid "Search results for"
+msgstr "Результати пошуку для"
+
+#: ../includes/blacklist.php:340 ../includes/whitelist.php:340
+#: ../includes/blocked.php:342 ../includes/statistics.php:338
+msgid "Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255."
+msgstr "Формат невірний або не належить діапазону 0.0.0.0 -255.255.255.255."
+
+#: ../includes/blacklist.php:361
+msgid "Add IP to blacklist"
+msgstr "Додати IP до чорного списку"
+
+#: ../includes/blacklist.php:367 ../includes/whitelist.php:380
+msgid "Allowed formats:"
+msgstr "Дозволені формати:"
+
+#: ../includes/blacklist.php:374 ../includes/whitelist.php:387
+#: ../includes/blocked.php:363 ../includes/statistics.php:369
+#: ../includes/pro-tab.php:19
+msgid "Search IP"
+msgstr "Шукати IP"
+
+#: ../includes/whitelist.php:34 ../includes/whitelist.php:42
+msgid "Remove from whitelist"
+msgstr "Видалити з білого списку"
+
+#: ../includes/whitelist.php:266
+msgid "has been added to whitelist"
+msgstr "було внесено до білого списку"
+
+#: ../includes/whitelist.php:267
+msgid "can&rsquo;t be added to whitelist."
+msgstr "не може бути внесено до білого списку."
+
+#: ../includes/whitelist.php:268
+msgid "This IP address has already been added to whitelist"
+msgstr "Цю IP адресу вже додано до білого списку"
+
+#: ../includes/whitelist.php:269
+msgid "This IP address is in blacklist too, please check this to avoid errors"
+msgstr ""
+"Ця IP адреса знаходиться і в чорному списку. Будь ласка, для уникнення "
+"помилки, перевірте ще раз"
+
+#: ../includes/whitelist.php:270
+msgid "has been deleted from whitelist"
+msgstr "було видалено з білого списку"
+
+#: ../includes/whitelist.php:271
+msgid "have been deleted from whitelist"
+msgstr "були видалені з білого списку"
+
+#: ../includes/whitelist.php:272
+msgid "Error while deleting from whitelist"
+msgstr "Помилка при видаленні з білого списку"
+
+#: ../includes/whitelist.php:367
+msgid "My IP"
+msgstr "Мій IP"
+
+#: ../includes/whitelist.php:373
+msgid "Add IP to whitelist"
+msgstr "Додати IP адресу до білого списку"
 
 #: ../includes/blocked.php:17
 msgid "The lock expires"
@@ -659,54 +871,6 @@ msgstr "Термін блокування витікає"
 msgid "Reset block"
 msgstr "Скинути блокування"
 
-#: ../includes/blocked.php:145 ../includes/statistics.php:165
-#: ../includes/blacklist.php:138 ../includes/whitelist.php:139
-#, php-format
-msgid "%s item"
-msgid_plural "%s items"
-msgstr[0] "%s елемент"
-msgstr[1] "%s елементи"
-msgstr[2] "%s елементів"
-msgstr[3] "%s елемент"
-
-#: ../includes/blocked.php:192 ../includes/statistics.php:212
-#: ../includes/blacklist.php:185 ../includes/whitelist.php:186
-msgid "First page"
-msgstr "Перша сторінка"
-
-#: ../includes/blocked.php:202 ../includes/statistics.php:222
-#: ../includes/blacklist.php:195 ../includes/whitelist.php:196
-msgid "Previous page"
-msgstr "Попередня сторінка"
-
-#: ../includes/blocked.php:209 ../includes/blocked.php:212
-#: ../includes/statistics.php:229 ../includes/statistics.php:232
-#: ../includes/blacklist.php:202 ../includes/blacklist.php:205
-#: ../includes/whitelist.php:203 ../includes/whitelist.php:206
-msgid "Current Page"
-msgstr "Поточна сторінка"
-
-#: ../includes/blocked.php:218 ../includes/statistics.php:238
-#: ../includes/blacklist.php:211 ../includes/whitelist.php:212
-#, php-format
-msgid "%1$s of %2$s"
-msgstr "%1$s з %2$s"
-
-#: ../includes/blocked.php:225 ../includes/statistics.php:245
-#: ../includes/blacklist.php:218 ../includes/whitelist.php:219
-msgid "Next page"
-msgstr "Наступна сторінка"
-
-#: ../includes/blocked.php:235 ../includes/statistics.php:255
-#: ../includes/blacklist.php:228 ../includes/whitelist.php:229
-msgid "Last page"
-msgstr "Остання сторінка"
-
-#: ../includes/blocked.php:268 ../includes/statistics.php:288
-#: ../includes/blacklist.php:262 ../includes/whitelist.php:263
-msgid "No address has been selected"
-msgstr "Жодної адреси не було обрано"
-
 #: ../includes/blocked.php:269
 msgid "Block has been reset for"
 msgstr "Блокування було скинуто для"
@@ -714,66 +878,6 @@ msgstr "Блокування було скинуто для"
 #: ../includes/blocked.php:270
 msgid "Error while reseting block for"
 msgstr "Помилка при перезавантаженні блокування для"
-
-#: ../includes/blocked.php:340 ../includes/statistics.php:336
-#: ../includes/blacklist.php:338 ../includes/whitelist.php:338
-msgid "Search results for"
-msgstr "Результати пошуку для"
-
-#: ../includes/blocked.php:342 ../includes/statistics.php:338
-#: ../includes/blacklist.php:340 ../includes/whitelist.php:340
-msgid "Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255."
-msgstr "Формат невірний або не належить діапазону 0.0.0.0 -255.255.255.255."
-
-#: ../includes/blocked.php:363 ../includes/pro-tab.php:19
-#: ../includes/statistics.php:369 ../includes/blacklist.php:375
-#: ../includes/whitelist.php:387
-msgid "Search IP"
-msgstr "Шукати IP"
-
-#: ../includes/pro-tab.php:23
-msgid "Clear Log"
-msgstr "Очистити журнал"
-
-#: ../includes/pro-tab.php:29 ../includes/pro-tab.php:71
-msgid "Delete log entry"
-msgstr "Видалити запис журналу"
-
-#: ../includes/pro-tab.php:40 ../includes/pro-tab.php:50
-msgid "IP address"
-msgstr "IP адреса"
-
-#: ../includes/pro-tab.php:41 ../includes/pro-tab.php:51
-msgid "Internet Hostname"
-msgstr "Назва хостингу"
-
-#: ../includes/pro-tab.php:42 ../includes/pro-tab.php:52
-msgid "Event"
-msgstr "Подія"
-
-#: ../includes/pro-tab.php:43 ../includes/pro-tab.php:53
-msgid "Form"
-msgstr "Форма"
-
-#: ../includes/pro-tab.php:44 ../includes/pro-tab.php:54
-msgid "Event time"
-msgstr "Час події"
-
-#: ../includes/pro-tab.php:62
-msgid "Failed attempt"
-msgstr "Невдала спроба"
-
-#: ../includes/pro-tab.php:99
-msgid "For last 24 hours the plugin prevented * hacking attempts."
-msgstr "За останні 24 години плагіном було попереджено * спроб злому."
-
-#: ../includes/pro-tab.php:100
-msgid "For last month the plugin prevented * hacking attempts."
-msgstr "За останній місяць плагіном було попереджено * спроб злому."
-
-#: ../includes/pro-tab.php:101
-msgid "For last half-year the plugin prevented * hacking attempts."
-msgstr "За останні півроку плагіном було попереджено * спроб злому."
 
 #: ../includes/statistics.php:18
 msgid "Number of failed attempts"
@@ -855,70 +959,12 @@ msgstr "Ні, повернутись до сторінки Статистики"
 msgid "Clear Statistics"
 msgstr "Очистити статистику"
 
-#: ../includes/blacklist.php:17 ../includes/whitelist.php:17
-msgid "Date added"
-msgstr "Дата додавання"
-
-#: ../includes/blacklist.php:34 ../includes/blacklist.php:42
-msgid "Remove from blacklist"
-msgstr "Видалити з чорного списку"
-
-#: ../includes/blacklist.php:261 ../includes/whitelist.php:262
-msgid "ERROR:"
-msgstr "ПОМИЛКА:"
-
-#: ../includes/blacklist.php:263 ../includes/whitelist.php:264
-msgid "You must type IP address"
-msgstr "Ви маєте вказати IP адресу"
-
-#: ../includes/blacklist.php:264 ../includes/whitelist.php:265
-msgid "Wrong format or it does not lie in diapason 0.0.0.0 - 255.255.255.255."
-msgstr "Формат невірний або не належить діапазону 0.0.0.0 -255.255.255.255."
-
-#: ../includes/blacklist.php:265
-msgid "has been added to blacklist"
-msgstr "було внесено до чорного списку"
-
-#: ../includes/blacklist.php:266
-msgid "can&rsquo;t be added to blacklist."
-msgstr "не може бути внесено до чорного списку."
-
-#: ../includes/blacklist.php:267
-msgid "This IP address has already been added to blacklist"
-msgstr "Цю IP адресу вже внесено до чорного списку"
-
-#: ../includes/blacklist.php:268
-msgid "This IP address is in whitelist too, please check this to avoid errors"
-msgstr ""
-"Ця IP адреса знаходиться також і у білому списку. Будь ласка, для уникнення "
-"помилки, перевірте ще раз"
-
-#: ../includes/blacklist.php:269
-msgid "has been deleted from blacklist"
-msgstr "було видалено з чорного списку"
-
-#: ../includes/blacklist.php:270
-msgid "have been deleted from blacklist"
-msgstr "були видалені з чорного списку"
-
-#: ../includes/blacklist.php:271
-msgid "Error while deleting from blacklist"
-msgstr "Помилка при видаленні з чорного списку"
-
-#: ../includes/blacklist.php:362
-msgid "Add IP to blacklist"
-msgstr "Додати IP до чорного списку"
-
-#: ../includes/blacklist.php:368 ../includes/whitelist.php:380
-msgid "Allowed formats:"
-msgstr "Дозволені формати:"
-
-#: ../includes/front-end-functions.php:606
+#: ../includes/front-end-functions.php:590
 msgid ""
 "some time. Try to reload the page. Perhaps, you already have been unlocked"
 msgstr "де-який час. Спробуйте оновити сторінку. Можливо, Ви вже розблоковані"
 
-#: ../includes/front-end-functions.php:615
+#: ../includes/front-end-functions.php:599
 msgid "week"
 msgid_plural "weeks"
 msgstr[0] "тиждень"
@@ -926,7 +972,7 @@ msgstr[1] "тижні"
 msgstr[2] "тижнів"
 msgstr[3] "тиждень"
 
-#: ../includes/front-end-functions.php:631
+#: ../includes/front-end-functions.php:615
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "секунда"
@@ -934,7 +980,7 @@ msgstr[1] "секунди"
 msgstr[2] "секунд"
 msgstr[3] "секунда"
 
-#: ../includes/front-end-functions.php:641
+#: ../includes/front-end-functions.php:625
 msgid "month"
 msgid_plural "months"
 msgstr[0] "місяць"
@@ -942,7 +988,7 @@ msgstr[1] "місяці"
 msgstr[2] "місяців"
 msgstr[3] "місяць"
 
-#: ../includes/front-end-functions.php:651
+#: ../includes/front-end-functions.php:635
 msgid "year"
 msgid_plural "years"
 msgstr[0] "рік"
@@ -950,47 +996,80 @@ msgstr[1] "роки"
 msgstr[2] "років"
 msgstr[3] "рік"
 
-#: ../includes/whitelist.php:34 ../includes/whitelist.php:42
-msgid "Remove from whitelist"
-msgstr "Видалити з білого списку"
+#: ../includes/pro-tab.php:23
+msgid "Clear Log"
+msgstr "Очистити журнал"
 
-#: ../includes/whitelist.php:266
-msgid "has been added to whitelist"
-msgstr "було внесено до білого списку"
+#: ../includes/pro-tab.php:29 ../includes/pro-tab.php:71
+msgid "Delete log entry"
+msgstr "Видалити запис журналу"
 
-#: ../includes/whitelist.php:267
-msgid "can&rsquo;t be added to whitelist."
-msgstr "не може бути внесено до білого списку."
+#: ../includes/pro-tab.php:40 ../includes/pro-tab.php:50
+msgid "IP address"
+msgstr "IP адреса"
 
-#: ../includes/whitelist.php:268
-msgid "This IP address has already been added to whitelist"
-msgstr "Цю IP адресу вже додано до білого списку"
+#: ../includes/pro-tab.php:41 ../includes/pro-tab.php:51
+msgid "Internet Hostname"
+msgstr "Назва хостингу"
 
-#: ../includes/whitelist.php:269
-msgid "This IP address is in blacklist too, please check this to avoid errors"
-msgstr ""
-"Ця IP адреса знаходиться і в чорному списку. Будь ласка, для уникнення "
-"помилки, перевірте ще раз"
+#: ../includes/pro-tab.php:42 ../includes/pro-tab.php:52
+msgid "Event"
+msgstr "Подія"
 
-#: ../includes/whitelist.php:270
-msgid "has been deleted from whitelist"
-msgstr "було видалено з білого списку"
+#: ../includes/pro-tab.php:43 ../includes/pro-tab.php:53
+msgid "Form"
+msgstr "Форма"
 
-#: ../includes/whitelist.php:271
-msgid "have been deleted from whitelist"
-msgstr "були видалені з білого списку"
+#: ../includes/pro-tab.php:44 ../includes/pro-tab.php:54
+msgid "Event time"
+msgstr "Час події"
 
-#: ../includes/whitelist.php:272
-msgid "Error while deleting from whitelist"
-msgstr "Помилка при видаленні з білого списку"
+#: ../includes/pro-tab.php:62
+msgid "Failed attempt"
+msgstr "Невдала спроба"
 
-#: ../includes/whitelist.php:367
-msgid "My IP"
-msgstr "Мій IP"
+#: ../includes/pro-tab.php:99
+msgid "For last 24 hours the plugin prevented * hacking attempts."
+msgstr "За останні 24 години плагіном було попереджено * спроб злому."
 
-#: ../includes/whitelist.php:373
-msgid "Add IP to whitelist"
-msgstr "Додати IP адресу до білого списку"
+#: ../includes/pro-tab.php:100
+msgid "For last month the plugin prevented * hacking attempts."
+msgstr "За останній місяць плагіном було попереджено * спроб злому."
+
+#: ../includes/pro-tab.php:101
+msgid "For last half-year the plugin prevented * hacking attempts."
+msgstr "За останні півроку плагіном було попереджено * спроб злому."
+
+#~ msgid "Reset the number of failed attempts"
+#~ msgstr "Обнулення кількості невдалих спроб"
+
+#~ msgctxt "time"
+#~ msgid "after"
+#~ msgstr "через"
+
+#~ msgid "hours"
+#~ msgstr "годин"
+
+#~ msgid "minutes"
+#~ msgstr "хвилин"
+
+#~ msgid "blocks"
+#~ msgstr "блокувань"
+
+#~ msgid "Notice"
+#~ msgstr "Увага:"
+
+#~ msgid ""
+#~ "With such \"Block address\" and \"Add to the blacklist\" options` "
+#~ "settings the user`s IP will never get into the blacklist. Please make "
+#~ "necessary corrections in this options"
+#~ msgstr ""
+#~ "При заданих налаштуваннях в блоках \"Заблокувати адресу\" та \"Додати до "
+#~ "чорного списку\" IP користувача ніколи не буде додано до чорного списку. "
+#~ "Будь-ласка, внесіть необхідні  корективи в цих опціях"
+
+#~ msgid "per"
+#~ msgstr "протягом"
 
 #~ msgid "powered by"
 #~ msgstr "розроблений"
@@ -1384,9 +1463,6 @@ msgstr "Додати IP адресу до білого списку"
 #~ "Congratulations! The PRO version of the plugin is successfully download "
 #~ "and activated."
 #~ msgstr "Вітаємо! PRO версію плагіну успішно завантажено та активовано."
-
-#~ msgid "Please, go to"
-#~ msgstr "Будь ласка, перейдіть"
 
 #~ msgid "the setting page"
 #~ msgstr "сторінка установок"
