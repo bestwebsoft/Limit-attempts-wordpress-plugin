@@ -1,9 +1,7 @@
-<a href="http://bestwebsoft.com/products/limit-attempts/" target=_blank>Limit Attempts WordPress Plugin</a>
+<a href="http://bestwebsoft.com/products/wordpress/plugins/limit-attempts/" target=_blank>Limit Attempts WordPress Plugin</a>
 ========================
 
 Protect WordPress website against brute force attacks. Limit rate of login attempts.
-
-<img src="http://bestwebsoft.com/wp-content/uploads/2014/09/limit-attempts-banner-website.jpg" />
 
 <p>Limit Attempts plugin is a security solution for WordPress which protects your website from spam and brute-force attacks. Limit the number of failed login attempts per user and block user IP for a certain period of time based on your settings. This will stop automated scripts to generate a large number of different combinations and hack your website.</p>
 
