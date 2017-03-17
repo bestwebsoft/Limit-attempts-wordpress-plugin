@@ -13,8 +13,8 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 			/* adding collumns to table and their view */
 			$columns = array(
 				'cb'			=> '<input type="checkbox" />',
-				'ip'			=> __( 'Ip address', 'limit-attempts' ),
-				'add_time'		=> __( 'Date added', 'limit-attempts' )
+				'ip'			=> __( 'Ip Address', 'limit-attempts' ),
+				'add_time'		=> __( 'Date Added', 'limit-attempts' )
 			);
 			return $columns;
 		}
@@ -31,15 +31,15 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 		function column_ip( $item ) {
 			/* adding action to 'ip' collumn */
 			$actions = array(
-				'remove_from_whitelist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&action=%s&lmtttmpts_remove_from_whitelist=%s' ,$_REQUEST['page'],$_REQUEST['action'], $item['ip'] ) , 'lmtttmpts_remove_from_whitelist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Remove from whitelist', 'limit-attempts' ) . '</a>'
+				'delete'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&list=whitelist&lmtttmpts_remove_from_whitelist=%s' ,$_REQUEST['page'], $item['ip'] ) , 'lmtttmpts_remove_from_whitelist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Delete', 'limit-attempts' ) . '</a>'
 			);
-			return sprintf('%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
+			return sprintf( '%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 		}
 
 		function get_bulk_actions() {
 			/* adding bulk action */
 			$actions = array(
-				'remove_from_whitelist_ips'	=> __( 'Remove from whitelist', 'limit-attempts' ),
+				'remove_from_whitelist_ips'	=> __( 'Delete', 'limit-attempts' ),
 			);
 			return $actions;
 		}
@@ -257,76 +257,30 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 			);
 			$error = $done = '';
 			$prefix = "{$wpdb->prefix}lmtttmpts_";
-			$message_list = array(
-				'notice'						=> __( 'Notice:', 'limit-attempts' ),
-				'error'							=> __( 'ERROR:', 'limit-attempts' ),
-				'empty_ip_list'					=> __( 'No address has been selected', 'limit-attempts' ),
-				'empty_ip_textarea'				=> __( 'You must type IP address', 'limit-attempts' ),
-				'wrong_ip_format_error'			=> __( 'Wrong format or it does not lie in diapason 0.0.0.0 - 255.255.255.255.', 'limit-attempts' ),
-				'whitelist_add_done'			=> __( 'has been added to whitelist', 'limit-attempts' ),
-				'whitelist_add_error'			=> __( 'can&rsquo;t be added to whitelist.', 'limit-attempts' ),
-				'ip_already_in_whitelist'		=> __( 'This IP address has already been added to whitelist', 'limit-attempts' ),
-				'ip_also_in_blacklist'			=> __( 'This IP address is in blacklist too, please check this to avoid errors', 'limit-attempts' ),
-				'whitelisted_delete_done'		=> __( 'has been deleted from whitelist', 'limit-attempts' ),
-				'whitelisted_delete_done_many'	=> __( 'have been deleted from whitelist', 'limit-attempts' ),
-				'whitelisted_delete_error'		=> __( 'Error while deleting from whitelist', 'limit-attempts' )
-			);
 
-			if ( ( isset( $_POST['lmtttmpts_add_to_whitelist_my_ip'] ) || isset( $_POST['lmtttmpts_add_to_whitelist'] ) ) && check_admin_referer( 'limit-attempts/limit-attempts.php', 'lmtttmpts_nonce_name' ) ) {
-				$add_ip = isset( $_POST['lmtttmpts_add_to_whitelist_my_ip'] ) ? esc_html( trim( $_POST['lmtttmpts_add_to_whitelist_my_ip_value'] ) ) : false;
-				$add_ip = ! $add_ip && isset( $_POST['lmtttmpts_add_to_whitelist'] ) ? esc_html( trim( $_POST['lmtttmpts_add_to_whitelist'] ) ) : $add_ip;
-				if ( empty( $add_ip ) ) {
-					$action_message['error'] = $message_list['error'] . '&nbsp;' . $message_list['empty_ip_textarea'];
-				} elseif ( filter_var( $add_ip, FILTER_VALIDATE_IP ) ) {
-					if ( lmtttmpts_is_ip_in_table( $add_ip, 'whitelist' ) ) {
-							$action_message['done'] .= $message_list['notice'] . '&nbsp;' . $message_list['ip_already_in_whitelist'] . ' - ' . $add_ip;
-					} else {
-						if ( lmtttmpts_is_ip_in_table( $add_ip, 'blacklist' ) ) {
-							$action_message['done'] .= $message_list['notice'] . '&nbsp;' . $message_list['ip_also_in_blacklist'] . ' - ' . $add_ip;
-							$flag = false;
-						} else {
-							$flag = true;
-						}
-
-						if ( false !== lmtttmpts_add_ip_to_whitelist( $add_ip ) ) {
-							lmtttmpts_remove_from_blocked_list( $add_ip );
-							if ( ! empty( $action_message['done'] ) )
-								$action_message['done'] .= '<br />';
-							$action_message['done'] .= $add_ip . '&nbsp;' . $message_list['whitelist_add_done'];
-						} else {
-							if ( ! empty( $action_message['error'] ) )
-								$action_message['error'] .= '<br />';
-							$action_message['error'] .= $add_ip . '&nbsp;' . $message_list['whitelist_add_error'];
-						}
-					}
-				} else {
-					$action_message['error'] .= $message_list['wrong_ip_format_error'] . '<br />' . $add_ip . '&nbsp;' . $message_list['whitelist_add_error'];
-				}
+			if ( isset( $_REQUEST['lmtttmpts_remove_from_whitelist'] ) ) {
+				check_admin_referer( 'lmtttmpts_remove_from_whitelist_' . $_REQUEST['lmtttmpts_remove_from_whitelist'], 'lmtttmpts_nonce_name' );
+				$ip_list = $_REQUEST['lmtttmpts_remove_from_whitelist'];
 			} else {
-				if ( isset( $_REQUEST['lmtttmpts_remove_from_whitelist'] ) ) {
-					check_admin_referer( 'lmtttmpts_remove_from_whitelist_' . $_REQUEST['lmtttmpts_remove_from_whitelist'], 'lmtttmpts_nonce_name' );
-					$ip_list = $_REQUEST['lmtttmpts_remove_from_whitelist'];
-				} else {
-					if(
-						( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_whitelist_ips' ) ||
-						( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_whitelist_ips' )
-					) {
-						check_admin_referer( 'bulk-' . $this->_args['plural'] );
-						$ip_list = isset( $_POST['ip'] ) ? $_POST['ip'] : '';
-					}
+				if(
+					( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_whitelist_ips' ) ||
+					( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_whitelist_ips' )
+				) {
+					check_admin_referer( 'bulk-' . $this->_args['plural'] );
+					$ip_list = isset( $_POST['ip'] ) ? $_POST['ip'] : '';
 				}
-				if ( isset( $ip_list ) ) {
-					if ( empty( $ip_list ) ) {
-						$action_message['done'] = $message_list['notice'] . '&nbsp;' . $message_list['empty_ip_list'];
+			}
+			if ( isset( $ip_list ) ) {
+				if ( empty( $ip_list ) ) {
+					$action_message['done'] = __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'No address has been selected', 'limit-attempts' );
+				} else {
+					$ips = is_array( $ip_list ) ? implode( "','", $ip_list ) : $ip_list;
+					$wpdb->query( "DELETE FROM `{$prefix}whitelist` WHERE `ip` IN ('{$ips}');" );
+					if ( $wpdb->last_error ) {
+						$action_message['error'] = $ips . '&nbsp;-&nbsp;' . __( 'Error while deleting from whitelist', 'limit-attempts' );
 					} else {
-						$ips = is_array( $ip_list ) ? implode( "','", $ip_list ) : $ip_list;
-						$wpdb->query( "DELETE FROM `{$prefix}whitelist` WHERE `ip` IN ('{$ips}');" );
-						if ( $wpdb->last_error ) {
-							$action_message['error'] = $ips . '&nbsp;-&nbsp;' . $message_list['whitelisted_delete_error'];
-						} else {
-							$done_ips = (array)$ip_list;
-							$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? $message_list['whitelisted_delete_done'] : $message_list['whitelisted_delete_done_many'] );
-						}
+						$done_ips = (array)$ip_list;
+						$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? __( 'has been deleted from whitelist', 'limit-attempts' ) : __( 'have been deleted from whitelist', 'limit-attempts' ) );
 					}
 				}
 			}
@@ -337,7 +291,7 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 					if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])?(\.?(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[-0-9])?){0,3}?$/', $search_request ) )
 						$action_message['done'] .= ( empty( $action_message['done'] ) ? '' : '<br/>' ) . __( 'Search results for', 'limit-attempts' ) . '&nbsp;' . $search_request;
 					else
-						$action_message['error'] .= ( empty( $action_message['error'] ) ? '' : '<br/>' ) . __( 'Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255.', 'limit-attempts' );
+						$action_message['error'] .= ( empty( $action_message['error'] ) ? '' : '<br/>' ) .sprintf( __( 'Wrong format or it does not lie in range %s.', 'limit-attempts' ), '0.0.0.0 - 255.255.255.255' );
 				}
 			}
 
@@ -350,48 +304,3 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 		}
 	}
 }
-
-if ( ! function_exists( 'lmtttmpts_display_whitelist' ) ) {
-	function lmtttmpts_display_whitelist( $plugin_basename ) { ?>
-		<div id="lmtttmpts_whitelist" class="lmtttmpts_list">
-			<form method="post" action="admin.php?page=limit-attempts.php&amp;action=whitelist" class="lmtttmpts_edit_list_form">
-				<table>
-					<tr valign="top">
-						<td>
-							<input type="text" maxlength="31" name="lmtttmpts_add_to_whitelist" />
-							<?php $my_ip = lmtttmpts_get_ip();
-							if ( ! empty( $my_ip ) ) { ?>
-								<br />
-								<label>
-									<input type="checkbox" name="lmtttmpts_add_to_whitelist_my_ip" value="1" />
-									<?php _e( 'My IP', 'limit-attempts' ); ?>
-									<input type="hidden" name="lmtttmpts_add_to_whitelist_my_ip_value" value="<?php echo $my_ip; ?>" />
-								</label>
-							<?php } ?>
-						</td>
-						<td>
-							<input type="submit" class="button-secondary" value="<?php _e( 'Add IP to whitelist', 'limit-attempts' ) ?>" />
-						</td>
-					</tr>
-				</table>
-				<?php wp_nonce_field( $plugin_basename, 'lmtttmpts_nonce_name' ); ?>
-			</form>
-			<div>
-				<span class="bws_info" style="display: inline-block;margin: 10px 0;"><?php _e( "Allowed formats:", 'limit-attempts' ); ?><code>192.168.0.1</code></span>
-			</div>
-			<?php lmtttmpts_display_advertising( 'whitelist' );
-			$lmtttmpts_whitelist_table = new Lmtttmpts_Whitelist();
-			$lmtttmpts_whitelist_table->action_message();
-			$lmtttmpts_whitelist_table->prepare_items(); ?>
-			<form method="get" action="admin.php">
-				<?php $lmtttmpts_whitelist_table->search_box( __( 'Search IP', 'limit-attempts' ), 'search_whitelisted_ip' ); ?>
-				<input type="hidden" name="page" value="limit-attempts.php" />
-				<input type="hidden" name="action" value="whitelist" />
-			</form>
-			<form method="post" action="admin.php?page=limit-attempts.php&amp;action=whitelist">
-				<?php $lmtttmpts_whitelist_table->display(); ?>
-			</form>
-		</div>
-	<?php }
-}
-?>

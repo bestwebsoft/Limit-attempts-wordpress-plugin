@@ -20,11 +20,7 @@ if ( ! function_exists( 'lmtttmpts_authenticate' ) ) {
 
 		/* get plugin`s options */
 		if ( empty( $lmtttmpts_options ) ) {
-			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			if ( ! $lmtttmpts_options ) {
-				register_lmtttmpts_settings();
-				$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			}
+			register_lmtttmpts_settings();
 		}
 
 		if ( isset( $_POST['wp-submit'] ) ) {
@@ -64,41 +60,39 @@ if ( ! function_exists( 'lmtttmpts_authenticate' ) ) {
  * @param    mixed    $user    object, an instance of classes WP_Error or WP_User or true
  * @return   mixed    $user    object, an instance of classes WP_Error or WP_User or true
  */
-function lmtttmpts_form_check( $user = true ) {
-	global $lmtttmpts_options, $lmtttmpts_hide_form;
-	$lmtttmpts_hide_form = false;
+if ( ! function_exists( 'lmtttmpts_form_check' ) ) {
+	function lmtttmpts_form_check( $user = true ) {
+		global $lmtttmpts_options, $lmtttmpts_hide_form;
+		$lmtttmpts_hide_form = false;
 
-		/* get plugin`s options */
-	if ( empty( $lmtttmpts_options ) ) {
-		$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-		if ( ! $lmtttmpts_options ) {
+			/* get plugin`s options */
+		if ( empty( $lmtttmpts_options ) ) {
 			register_lmtttmpts_settings();
-			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
 		}
-	}
 
-	if ( 0 == $lmtttmpts_options['hide_login_form'] )
+		if ( 0 == $lmtttmpts_options['hide_login_form'] )
+			return $user;
+
+		if ( is_wp_error( $user ) ) {
+			$error_codes  = $user->get_error_codes();
+			$ignore_codes = array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' );
+			$check_ip     = ! is_array( $error_codes ) || ! array_intersect( $error_codes, $ignore_codes ) ? true : false;
+		} else {
+			$check_ip = false;
+		}
+
+		if ( $check_ip )
+			$user = lmtttmpts_check_ip( $user );
+
+		if ( is_wp_error( $user ) ) {
+			$error_codes = $user->get_error_codes();
+			$hide_form   = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' ) ) ? true : false;
+			if ( in_array( 'lmtttmpts_error', (array)$error_codes ) && $hide_form )
+				$user->remove( 'lmtttmpts_error' );
+			$lmtttmpts_hide_form = $hide_form ? true : false;
+		}
 		return $user;
-
-	if ( is_wp_error( $user ) ) {
-		$error_codes  = $user->get_error_codes();
-		$ignore_codes = array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' );
-		$check_ip     = ! is_array( $error_codes ) || ! array_intersect( $error_codes, $ignore_codes ) ? true : false;
-	} else {
-		$check_ip = false;
 	}
-
-	if ( $check_ip )
-		$user = lmtttmpts_check_ip( $user );
-
-	if ( is_wp_error( $user ) ) {
-		$error_codes = $user->get_error_codes();
-		$hide_form   = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' ) ) ? true : false;
-		if ( in_array( 'lmtttmpts_error', (array)$error_codes ) && $hide_form )
-			$user->remove( 'lmtttmpts_error' );
-		$lmtttmpts_hide_form = $hide_form ? true : false;
-	}
-	return $user;
 }
 
 /**
@@ -112,11 +106,7 @@ if ( ! function_exists( "lmtttmpts_check_ip" ) ) {
 
 		/* get plugin`s options */
 		if ( empty( $lmtttmpts_options ) ) {
-			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			if ( ! $lmtttmpts_options ) {
-				register_lmtttmpts_settings();
-				$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			}
+			register_lmtttmpts_settings();
 		}
 
 		/* get user`s IP */
@@ -167,11 +157,7 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 
 		/* get plugin`s options */
 		if ( empty( $lmtttmpts_options ) ) {
-			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			if ( ! $lmtttmpts_options ) {
-				register_lmtttmpts_settings();
-				$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			}
+			register_lmtttmpts_settings();
 		}
 
 		/* get necessary data */
@@ -456,20 +442,9 @@ if ( ! function_exists( 'lmtttmpts_send_email' ) ) {
 			array( "{$ip}", esc_url( admin_url( 'admin.php?page=limit-attempts.php' ) ), current_time( 'mysql' ), get_bloginfo( 'name' ), esc_url( site_url() ) ),
 			$message
 		);
-		add_filter( 'wp_mail_content_type', 'lmtttmpts_set_html_content_type' );
-		wp_mail( $to, wp_specialchars_decode( $subject, ENT_COMPAT ), wp_specialchars_decode( $message, ENT_COMPAT ) );
-		remove_filter( 'wp_mail_content_type', 'lmtttmpts_set_html_content_type' );
-	}
-}
-
-/**
- * Filter to transfer message in html format
- * @param   void
- * @return  string  content type of e-mail
- */
-if ( ! function_exists( 'lmtttmpts_set_html_content_type' ) ) {
-	function lmtttmpts_set_html_content_type() {
-		return 'text/html';
+		$headers  = 'MIME-Version: 1.0' . "\n";
+		$headers .= 'Content-type: text/html; charset=utf-8' . "\n";
+		wp_mail( $to, wp_specialchars_decode( $subject, ENT_COMPAT ), wp_specialchars_decode( $message, ENT_COMPAT ), $headers );
 	}
 }
 
@@ -484,11 +459,7 @@ if ( ! function_exists( 'lmtttmpts_login_scripts' ) ) {
 
 		/* get plugin`s options */
 		if ( empty( $lmtttmpts_options ) ) {
-			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			if ( ! $lmtttmpts_options ) {
-				register_lmtttmpts_settings();
-				$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			}
+			register_lmtttmpts_settings();
 		}
 
 		/*
@@ -527,11 +498,7 @@ if ( ! function_exists( 'lmtttmpts_signup_scripts' ) ) {
 
 		/* get plugin`s options */
 		if ( empty( $lmtttmpts_options ) ) {
-			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			if ( ! $lmtttmpts_options ) {
-				register_lmtttmpts_settings();
-				$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-			}
+			register_lmtttmpts_settings();
 		}
 
 		if ( 0 == $lmtttmpts_options['hide_login_form'] )
@@ -645,4 +612,3 @@ add_filter( 'allow_password_reset', 'lmtttmpts_form_check', 99999 );
 add_filter( 'registration_errors', 'lmtttmpts_form_check', 99999, 1 );
 add_action( 'login_head', 'lmtttmpts_login_scripts' );
 add_action( 'signup_header', 'lmtttmpts_signup_scripts' );
-?>

@@ -7,14 +7,14 @@
 if ( ! class_exists( 'WP_List_Table' ) )
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 
-if ( ! class_exists( 'Lmtttmpts_Blocked_list' ) ) {
-	class Lmtttmpts_Blocked_list extends WP_List_Table {
+if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
+	class Lmtttmpts_Blocked_List extends WP_List_Table {
 		function get_columns() {
 			/* adding collumns to table and their view */
 			$columns = array(
 				'cb'			=> '<input type="checkbox" />',
-				'ip'			=> __( 'Ip address', 'limit-attempts' ),
-				'block_till'	=> __( 'The lock expires', 'limit-attempts' )
+				'ip'			=> __( 'IP Address', 'limit-attempts' ),
+				'block_till'	=> __( 'Date Expires', 'limit-attempts' )
 			);
 			return $columns;
 		}
@@ -31,15 +31,17 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_list' ) ) {
 		function column_ip( $item ) {
 			/* adding action to 'ip' collumn */
 			$actions = array(
-				'reset_block'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&action=%s&lmtttmpts_reset_block=%s', $_REQUEST['page'], $_REQUEST['action'], $item['ip'] ), 'lmtttmpts_reset_block_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Reset block', 'limit-attempts' ) . '</a>'
+				'reset_block'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&lmtttmpts_reset_block=%s', $_REQUEST['page'], $item['ip'] ), 'lmtttmpts_reset_block_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Reset Block', 'limit-attempts' ) . '</a>',
+				'add_to_whitelist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&lmtttmpts_add_to_whitelist=%s', $_REQUEST['page'], $item['ip'] ) , 'lmtttmpts_add_to_whitelist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Add to Whitelist', 'limit-attempts' ) . '</a>'
 			);
-			return sprintf('%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
+			return sprintf( '%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 		}
 
 		function get_bulk_actions() {
 			/* adding bulk action */
 			$actions = array(
-				'reset_blocks'	=> __( 'Reset block', 'limit-attempts' )
+				'reset_blocks'		=> __( 'Reset Block', 'limit-attempts' ),
+				'add_to_whitelist'	=> __( 'Add to Whitelist', 'limit-attempts' )
 			);
 			return $actions;
 		}
@@ -268,9 +270,41 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_list' ) ) {
 				'empty_ip_list'					=> __( 'No address has been selected', 'limit-attempts' ),
 				'block_reset_done'				=> __( 'Block has been reset for', 'limit-attempts' ),
 				'block_reset_error'				=> __( 'Error while reseting block for', 'limit-attempts' ),
+				'single_add_to_whitelist_done'	=> __( 'IP address was added to whitelist', 'limit-attempts' ),
+				'add_to_whitelist_done'			=> __( 'IP addresses were added to whitelist', 'limit-attempts' ),
 			);
 			/* Realization action in table with blocked addresses */
-			if ( isset( $_REQUEST['lmtttmpts_reset_block'] ) && check_admin_referer( 'lmtttmpts_reset_block_' . $_REQUEST['lmtttmpts_reset_block'], 'lmtttmpts_nonce_name' ) ) {
+			if ( isset( $_GET['lmtttmpts_add_to_whitelist'] ) && check_admin_referer( 'lmtttmpts_add_to_whitelist_' . $_GET['lmtttmpts_add_to_whitelist'], 'lmtttmpts_nonce_name' ) ) {
+				if ( filter_var( $_GET['lmtttmpts_add_to_whitelist'], FILTER_VALIDATE_IP ) ) {
+					$ip = $_GET['lmtttmpts_add_to_whitelist'];
+					$ip_int = sprintf( '%u', ip2long( $ip ) );
+					
+					/* single IP de-block */
+					$result_reset_block = $wpdb->update(
+						$wpdb->prefix . 'lmtttmpts_failed_attempts',
+						array( 'block' => false ),
+						array( 'ip_int' => sprintf( '%u', $ip_int ) ),
+						array( '%s' ),
+						array( '%s' )
+					);
+					/* single IP add to whitelist */
+					if ( false !== $result_reset_block ) {
+						$wpdb->insert(
+							$wpdb->prefix . 'lmtttmpts_whitelist',
+							array(
+								'ip' => $ip,
+								'add_time' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) )
+							)
+						);
+
+						$action_message['done'] = $message_list['single_add_to_whitelist_done'] . ':&nbsp;' . esc_html( $ip );
+
+						if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
+							do_action( 'lmtttmpts_htaccess_hook_for_reset_block', $ip ); /* hook for deblocking by Htaccess */
+						}
+					}
+				}
+			} elseif ( isset( $_REQUEST['lmtttmpts_reset_block'] ) && check_admin_referer( 'lmtttmpts_reset_block_' . $_REQUEST['lmtttmpts_reset_block'], 'lmtttmpts_nonce_name' ) ) {
 				/* single IP de-block */
 				$result_reset_block = $wpdb->update(
 					$wpdb->prefix . 'lmtttmpts_failed_attempts',
@@ -339,7 +373,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_list' ) ) {
 					if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])?(\.?(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[-0-9])?){0,3}?$/', $search_request ) )
 						$action_message['done'] .= ( empty( $action_message['done'] ) ? '' : '<br/>' ) . __( 'Search results for', 'limit-attempts' ) . '&nbsp;' . $search_request;
 					else
-						$action_message['error'] .= ( empty( $action_message['error'] ) ? '' : '<br/>' ) . __( 'Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255.', 'limit-attempts' );
+						$action_message['error'] .= ( empty( $action_message['error'] ) ? '' : '<br/>' ) . sprintf( __( 'Wrong format or it does not lie in range %s.', 'limit-attempts' ), '0.0.0.0 - 255.255.255.255' );
 				}
 			}
 
@@ -356,19 +390,16 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_list' ) ) {
 if ( ! function_exists( 'lmtttmpts_display_blocked' ) ) {
 	function lmtttmpts_display_blocked( $plugin_basename ) { ?>
 		<div id="lmtttmpts_blocked" class="lmtttmpts_list">
-			<?php $lmtttmpts_blocked_list = new Lmtttmpts_Blocked_list();
+			<?php $lmtttmpts_blocked_list = new Lmtttmpts_Blocked_List();
 			$lmtttmpts_blocked_list->action_message();
 			$lmtttmpts_blocked_list->prepare_items(); ?>
 			<form method="get" action="admin.php">
 				<?php $lmtttmpts_blocked_list->search_box( __( 'Search IP', 'limit-attempts' ), 'search_blocked_ip' );?>
-				<input type="hidden" name="page" value="limit-attempts.php" />
-				<input type="hidden" name="action" value="blocked" />
+				<input type="hidden" name="page" value="limit-attempts-blocked.php" />
 			</form>
-			<form method="post" action="admin.php?page=limit-attempts.php&amp;action=blocked">
+			<form method="post" action="">
 				<?php $lmtttmpts_blocked_list->display(); ?>
 			</form>
 		</div>
 	<?php }
 }
-
-?>

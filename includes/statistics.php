@@ -14,9 +14,9 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 			/* adding collumns to table and their view */
 			$columns = array(
 				'cb'				=> '<input type="checkbox" />',
-				'ip'				=> __( 'Ip address', 'limit-attempts' ),
-				'failed_attempts'	=> __( 'Number of failed attempts', 'limit-attempts' ),
-				'block_quantity'	=> __( 'Number of blocks', 'limit-attempts' ),
+				'ip'				=> __( 'Ip Address', 'limit-attempts' ),
+				'failed_attempts'	=> __( 'Failed Attempts', 'limit-attempts' ),
+				'block_quantity'	=> __( 'Blocks', 'limit-attempts' ),
 				'status'			=> __( 'Status', 'limit-attempts' )
 			);
 			return $columns;
@@ -61,7 +61,7 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 		}
 
 		function prepare_items() { /* preparing table items */
-			global $wpdb, $lmtttmpts_options;
+			global $wpdb;
 			$prefix = $wpdb->prefix . 'lmtttmpts_';
 			$part_ip = isset( $_REQUEST['s'] ) ? trim( htmlspecialchars( $_REQUEST['s'] ) ) : '';
 			/* query for total number of IPs */
@@ -274,7 +274,7 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 		}
 
 		function action_message() {
-			global $wpdb, $lmtttmpts_options;
+			global $wpdb;
 			$action_message = array(
 				'error' 			=> false,
 				'done'  			=> false,
@@ -335,7 +335,7 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 					if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])?(\.?(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[-0-9])?){0,3}?$/', $search_request ) )
 						$action_message['done'] .= ( empty( $action_message['done'] ) ? '' : '<br/>' ) . __( 'Search results for', 'limit-attempts' ) . '&nbsp;' . $search_request;
 					else
-						$action_message['error'] .= ( empty( $action_message['error'] ) ? '' : '<br/>' ) . __( 'Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255.', 'limit-attempts' );
+						$action_message['error'] .= ( empty( $action_message['error'] ) ? '' : '<br/>' ) . sprintf( __( 'Wrong format or it does not lie in range %s.', 'limit-attempts' ), '0.0.0.0 - 255.255.255.255' );
 				}
 			}
 
@@ -351,36 +351,36 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 
 if ( ! function_exists( 'lmtttmpts_display_statistics' ) ) {
 	function lmtttmpts_display_statistics( $plugin_basename ) {
+		global $lmtttmpts_options, $lmtttmpts_plugin_info, $wp_version;
+
 		if ( isset( $_POST['lmtttmpts_clear_statistics_complete'] ) && check_admin_referer( $plugin_basename, 'lmtttmpts_nonce_name' ) ) { ?>
 			<div id="lmtttmpts_clear_statistics_confirm">
 				<p><?php _e( 'Are you sure you want to delete all statistics entries?', 'limit-attempts' ) ?></p>
-				<form method="post" action="admin.php?page=limit-attempts.php&amp;action=statistics" style="margin-bottom: 10px;">
-					<button class="button" name="lmtttmpts_clear_statistics_complete_confirm"><?php _e( 'Yes, delete these entries', 'limit-attempts' ) ?></button>
-					<button class="button" name="lmtttmpts_clear_statistics_complete_deny"><?php _e( 'No, go back to the Statistics page', 'limit-attempts' ) ?></button>
+				<form method="post" action="" style="margin-bottom: 10px;">
+					<button class="button button-primary" name="lmtttmpts_clear_statistics_complete_confirm"><?php _e( 'Yes, delete these entries', 'limit-attempts' ) ?></button>
+					<button class="button button-secondary" name="lmtttmpts_clear_statistics_complete_deny"><?php _e( 'No, go back to the Statistics page', 'limit-attempts' ) ?></button>
 					<?php wp_nonce_field( $plugin_basename, 'lmtttmpts_nonce_name' ); ?>
 				</form>
 			</div>
-		<?php } else { ?>
+		<?php } else {
+			lmtttmpts_display_advertising( 'summaries' ); ?>
 			<div id="lmtttmpts_statistics" class="lmtttmpts_list">
 				<?php $lmtttmpts_statistics_list = new Lmtttmpts_Statistics();
 				$lmtttmpts_statistics_list->action_message();
 				$lmtttmpts_statistics_list->prepare_items(); ?>
 				<form method="get" action="admin.php">
 					<?php $lmtttmpts_statistics_list->search_box( __( 'Search IP', 'limit-attempts' ), 'search_statistics_ip' ); ?>
-					<input type="hidden" name="page" value="limit-attempts.php" />
-					<input type="hidden" name="action" value="statistics" />
+					<input type="hidden" name="page" value="limit-attempts-statistics.php" />
 				</form>
-				<form method="post" action="admin.php?page=limit-attempts.php&amp;action=statistics">
+				<form method="post" action="">
 					<input type="hidden" name="lmtttmpts_clear_statistics_complete" />
 					<input type="submit" class="button" value="<?php _e( 'Clear Statistics', 'limit-attempts' ) ?>" />
 					<?php wp_nonce_field( $plugin_basename, 'lmtttmpts_nonce_name' ); ?>
 				</form>
-				<form method="post" action="admin.php?page=limit-attempts.php&amp;action=statistics">
+				<form method="post" action="">
 					<?php $lmtttmpts_statistics_list->display(); ?>
 				</form>
 			</div>
 		<?php }
 	}
 }
-
-?>

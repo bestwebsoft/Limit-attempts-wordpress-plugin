@@ -2,719 +2,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Limit Attempts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-27 16:14+0300\n"
+"POT-Creation-Date: 2017-03-15 13:16+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Damian Dąbrowski <contact@codester.pl>\n"
 "Language-Team: Damian Dąbrowski <contact@codester.pl>\n"
-"Language: pl_PL\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _e;__;_n:1,2;_x;_ex:1,2c\n"
 "X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../limit-attempts.php:39 ../limit-attempts.php:682
-msgid "Limit Attempts Settings"
-msgstr "Limit Attempts - Ustawienia"
-
-#: ../limit-attempts.php:329
-msgid ""
-"Limit Attempts interaction with Htaccess was turned off since you are using "
-"an outdated Htaccess plugin version. If you want to keep using this "
-"interaction, please update Htaccess plugin at least to v 1.6.2."
+#: ../includes/blacklist.php:16 ../includes/statistics.php:17
+#: ../includes/whitelist.php:16
+msgid "Ip Address"
 msgstr ""
-"Współpraca Limit Attempts z Htaccess została wyłączona ze względu na "
-"nieaktualną wersję Htaccess. Jeśli chcesz utrzymać współpracę między "
-"wtyczkami zainstaluj najnowszą wersję Htaccess - v 1.6.2"
 
-#: ../limit-attempts.php:427 ../limit-attempts.php:443
-#: ../limit-attempts.php:684
-msgid "Settings"
-msgstr "Ustawienia"
+#: ../includes/blacklist.php:17 ../includes/whitelist.php:17
+msgid "Date Added"
+msgstr ""
 
-#: ../limit-attempts.php:444
-msgid "FAQ"
-msgstr "FAQ"
-
-#: ../limit-attempts.php:445
-msgid "Support"
-msgstr "Pomoc"
-
-#: ../limit-attempts.php:466 ../limit-attempts.php:799
-#: ../limit-attempts.php:1131 ../limit-attempts.php:1167
-msgid "Close"
-msgstr "Zamknij"
-
-#: ../limit-attempts.php:469
-msgid "Add"
-msgstr "Dodaj"
-
-#: ../limit-attempts.php:470
+#: ../includes/blacklist.php:34 ../includes/blacklist.php:42
+#: ../includes/pro-tab.php:27 ../includes/whitelist.php:34
+#: ../includes/whitelist.php:42
 msgid "Delete"
 msgstr "Usuń"
 
-#: ../limit-attempts.php:475
-msgid "Enter IP"
-msgstr "Podaj IP"
-
-#: ../limit-attempts.php:478
-msgid "Allowed formats"
-msgstr "Dozwolone formaty"
-
-#: ../limit-attempts.php:481
-msgid "Allowed diapason"
-msgstr "Dozwolone zmienne:"
-
-#: ../limit-attempts.php:484 ../limit-attempts.php:495
-msgid "Allowed separators"
-msgstr "Dozwolone separatory"
-
-#: ../limit-attempts.php:485 ../limit-attempts.php:495
-msgid "a comma"
-msgstr "przecinek"
-
-#: ../limit-attempts.php:485 ../limit-attempts.php:495
-msgid "semicolon"
-msgstr "średnik"
-
-#: ../limit-attempts.php:485
-msgid "ordinary space, tab, new line or carriage return"
-msgstr "spacja, tabulacja, znak nowej linii, powrót karetki"
-
-#: ../limit-attempts.php:492
-msgid "Reason for IP"
-msgstr "Powód"
-
-#: ../limit-attempts.php:495
-msgid "tab, new line or carriage return"
-msgstr "spacja, tabulacja, znak nowej linii, powrót karetki"
-
-#: ../limit-attempts.php:503
-msgid "Select country"
-msgstr "Wybierz kraj"
-
-#: ../limit-attempts.php:507
-msgid "Reason for country"
-msgstr "Powód"
-
-#: ../limit-attempts.php:514 ../limit-attempts.php:828
-#: ../limit-attempts.php:1154 ../limit-attempts.php:1226
-#: ../includes/pro-tab.php:82 ../includes/pro-tab.php:106
-msgid "Unlock premium options by upgrading to Pro version"
-msgstr "Odblokuj dodatkowe opcje przez aktualizację do wersji PRO."
-
-#: ../limit-attempts.php:515 ../limit-attempts.php:829
-#: ../limit-attempts.php:1155 ../limit-attempts.php:1227
-#: ../includes/pro-tab.php:83 ../includes/pro-tab.php:107
-msgid "Learn More"
-msgstr "Czytaj dalej"
-
-#: ../limit-attempts.php:662
-msgid "Settings saved."
-msgstr "Ustawienia zostały zapisane."
-
-#: ../limit-attempts.php:679
-msgid "All plugin settings were restored."
-msgstr "Wszystkie ustawienia wtyczki zostały przywrócone."
-
-#: ../limit-attempts.php:685
-msgid "Blocked IP"
-msgstr "Zablokowane adresy IP"
-
-#: ../limit-attempts.php:686
-msgid "Blacklist"
-msgstr "Czarna lista"
-
-#: ../limit-attempts.php:687
-msgid "Whitelist"
-msgstr "Biała lista"
-
-#: ../limit-attempts.php:688
-msgid "Log"
-msgstr "Dziennik"
-
-#: ../limit-attempts.php:689
-msgid "Statistics"
-msgstr "Statystyki"
-
-#: ../limit-attempts.php:690
-msgid "Summaries"
-msgstr "Podsumowanie"
-
-#: ../limit-attempts.php:691
-msgid "Go PRO"
-msgstr "Wersja PRO"
-
-#: ../limit-attempts.php:713
-msgid "Block address"
-msgstr "Blokada adresu"
-
-#: ../limit-attempts.php:716 ../limit-attempts.php:723
-msgid "for"
-msgstr "na okres"
-
-#: ../limit-attempts.php:717 ../limit-attempts.php:724
-#: ../limit-attempts.php:744 ../limit-attempts.php:751
-#: ../limit-attempts.php:763 ../limit-attempts.php:770
-#: ../limit-attempts.php:1667 ../includes/front-end-functions.php:603
-#: ../includes/front-end-functions.php:624
-msgid "day"
-msgid_plural "days"
-msgstr[0] "dnia"
-msgstr[1] "dni"
-msgstr[2] "dni"
-
-#: ../limit-attempts.php:718 ../limit-attempts.php:725
-#: ../limit-attempts.php:745 ../limit-attempts.php:752
-#: ../limit-attempts.php:764 ../limit-attempts.php:771
-#: ../limit-attempts.php:1671 ../includes/front-end-functions.php:607
-msgid "hour"
-msgid_plural "hours"
-msgstr[0] "godziny"
-msgstr[1] "godzin"
-msgstr[2] "godzin"
-
-#: ../limit-attempts.php:719 ../limit-attempts.php:726
-#: ../limit-attempts.php:746 ../limit-attempts.php:753
-#: ../limit-attempts.php:765 ../limit-attempts.php:772
-#: ../limit-attempts.php:1675 ../includes/front-end-functions.php:611
-msgid "minute"
-msgid_plural "minutes"
-msgstr[0] "minuty"
-msgstr[1] "minut"
-msgstr[2] "minut"
-
-#: ../limit-attempts.php:720 ../limit-attempts.php:731
-#: ../limit-attempts.php:747 ../limit-attempts.php:766
-#: ../limit-attempts.php:787
-msgid "Edit"
-msgstr "Edytuj"
-
-#: ../limit-attempts.php:729 ../limit-attempts.php:734
-#: ../limit-attempts.php:785 ../limit-attempts.php:790
-#, fuzzy
-msgctxt "number"
-msgid "after"
-msgstr "po"
-
-#: ../limit-attempts.php:730 ../limit-attempts.php:735
-msgid "failed attempt"
-msgid_plural "failed attempts"
-msgstr[0] "nieudanej próbie"
-msgstr[1] "nieudanych próbach"
-msgstr[2] "nieudanych próbach"
-
-#: ../limit-attempts.php:740
-#, fuzzy
-msgid "Reset the number of"
-msgstr "Liczba blokad"
-
-#: ../limit-attempts.php:743 ../limit-attempts.php:750
-msgid "failed attempts"
-msgstr "nieudanych próbach"
-
-#: ../limit-attempts.php:743 ../limit-attempts.php:750
-#: ../limit-attempts.php:762 ../limit-attempts.php:769
-#: ../limit-attempts.php:1202
-msgid "after"
-msgstr "po"
-
-#: ../limit-attempts.php:757
-msgid ""
-"Time to reset the number of failed attempts after the last failed attempt"
-msgstr ""
-
-#: ../limit-attempts.php:762 ../limit-attempts.php:769
-#, fuzzy
-msgid "blockings"
-msgstr "blokadzie"
-
-#: ../limit-attempts.php:776
-msgid "Time to reset the number of blockings after the last blocking"
-msgstr ""
-
-#: ../limit-attempts.php:782
-msgid "Add to the blacklist"
-msgstr "Dodaj do czarnej listy"
-
-#: ../limit-attempts.php:786 ../limit-attempts.php:791
-#, fuzzy
-msgid "blocking"
-msgid_plural "blockings"
-msgstr[0] "blokadzie"
-msgstr[1] "blokadach"
-msgstr[2] "blokadach"
-
-#: ../limit-attempts.php:803
-msgid "If user tried to log in with a non-existent username"
-msgstr ""
-"W przypadku próby logowania z wykorzystaniem nieistniejącej nazwy użytkownika"
-
-#: ../limit-attempts.php:806
-msgid "according to \"Block address\" and \"Add to the blacklist\" options"
-msgstr "odwołaj się do ustawień listy"
-
-#: ../limit-attempts.php:807
-msgid "block address immediately"
-msgstr "natychmiastowo blokuj adres"
-
-#: ../limit-attempts.php:808
-msgid "add to the blacklist immediately"
-msgstr "natychmiastowo dodaj adres do czarnej listy"
-
-#: ../limit-attempts.php:813
-msgid "Remove log entries that are over"
-msgstr "Usuń wpisy z dziennika po upływie"
-
-#: ../limit-attempts.php:815 ../limit-attempts.php:838
-msgid "days"
-msgstr "dni"
-
-#: ../limit-attempts.php:816
-msgid "Set \"0\" if you do not want to clear the log."
-msgstr "Ustaw \"0\" jeśli nie chcesz czyścić wpisów w dzienniku."
-
-#: ../limit-attempts.php:817
-msgid "Current size of DB table"
-msgstr "Obecny rozmiar tablicy w bazie danych"
-
-#: ../limit-attempts.php:817
-msgid "Mb"
-msgstr "Mb"
-
-#: ../limit-attempts.php:822 ../limit-attempts.php:1149
-msgid "If you upgrade to Pro version all your settings will be saved."
-msgstr ""
-"Przy aktualizacji do wersji PRO wszystkie twoje ustawienia zostaną "
-"zapamiętane."
-
-#: ../limit-attempts.php:836
-msgid "Remove statistics entry in case no failed attempts occurred for"
-msgstr ""
-"Usuń adres ze statystyk w przypadku braku logowań zakończonych "
-"niepowodzeniem w przeciągu"
-
-#: ../limit-attempts.php:839
-msgid "Set \"0\" if you do not want to clear the statistics."
-msgstr "Ustaw \"0\" jeśli nie chcesz czyścić statystyk."
-
-#: ../limit-attempts.php:843
-msgid "Error messages"
-msgstr "Komunikat o błędach"
-
-#: ../limit-attempts.php:845 ../limit-attempts.php:924
-msgid "Hide"
-msgstr "Ukryj"
-
-#: ../limit-attempts.php:846 ../limit-attempts.php:925
-msgid "Show"
-msgstr "Pokaż"
-
-#: ../limit-attempts.php:851 ../limit-attempts.php:856
-msgid "For invalid attempt"
-msgstr "Dla nieudanej próby"
-
-#: ../limit-attempts.php:852 ../limit-attempts.php:857
-msgid "For blocked user"
-msgstr "Dla zablokowanego użytkownika"
-
-#: ../limit-attempts.php:853 ../limit-attempts.php:858
-msgid "For blacklisted user"
-msgstr "Dla użytkownika z czarnej listy"
-
-#: ../limit-attempts.php:863 ../limit-attempts.php:876
-#: ../limit-attempts.php:890 ../limit-attempts.php:944
-#: ../limit-attempts.php:958 ../limit-attempts.php:975
-#: ../limit-attempts.php:992
-msgid "Allowed Variables:"
-msgstr "Dozwolone zmienne:"
-
-#: ../limit-attempts.php:865
-msgid "display quantity of allowed attempts"
-msgstr "wyświetla ilość prób, które pozostały"
-
-#: ../limit-attempts.php:867 ../limit-attempts.php:881
-#: ../limit-attempts.php:894 ../limit-attempts.php:983
-#: ../limit-attempts.php:1000
-msgid "Restore default message"
-msgstr "Przywróć wiadomość domyślną"
-
-#: ../limit-attempts.php:871 ../limit-attempts.php:885
-#: ../limit-attempts.php:898 ../limit-attempts.php:953
-#: ../limit-attempts.php:967 ../limit-attempts.php:987
-#: ../limit-attempts.php:1004
-msgid "You can use standard HTML tags and attributes."
-msgstr "Możesz wykorzystać standardowe tagi i atrybuty HTML."
-
-#: ../limit-attempts.php:878
-msgid "display date when block is removed"
-msgstr "wyświetla czas kiedy użytkownik zostanie odblokowany"
-
-#: ../limit-attempts.php:879
-msgid "display administrator&rsquo;s e-mail for feedback"
-msgstr "wyświetla adres administratora w celu udzielenia wsparcia"
-
-#: ../limit-attempts.php:892
-msgid "display administrators e-mail for feedback"
-msgstr "wyświetla adres e-mail administratora by móc udzielić wsparcia"
-
-#: ../limit-attempts.php:904
-msgid "Send email with notification"
-msgstr "Wyślij wiadomość z powiadomieniem"
-
-#: ../limit-attempts.php:909
-msgid "Email to user's address"
-msgstr "Wiadomość na adres użytkownika"
-
-#: ../limit-attempts.php:911
-msgid "Choose a username"
-msgstr "Wybierz użytkownika"
-
-#: ../limit-attempts.php:918
-msgid "Email to another address"
-msgstr "Wiadomość na inny adres"
-
-#: ../limit-attempts.php:922
-msgid "Additional options for email with notification"
-msgstr "Dodatkowe opcje do wiadomości z powiadomieniem"
-
-#: ../limit-attempts.php:931 ../limit-attempts.php:935
-msgid "Email to admistrator when user is blocked"
-msgstr "Wiadomość do administratora kiedy użytkownik zostanie zablokowany"
-
-#: ../limit-attempts.php:932 ../limit-attempts.php:936
-msgid "Email to admistrator when user is blacklisted"
-msgstr ""
-"Wiadomość do administratora kiedy użytkownik zostanie umieszczony na czarnej "
-"liście"
-
-#: ../limit-attempts.php:940
-msgid "Subject"
-msgstr "Temat"
-
-#: ../limit-attempts.php:946
-msgid "display blocked IP address"
-msgstr "wyświetla zablokowany adres IP"
-
-#: ../limit-attempts.php:947 ../limit-attempts.php:961
-#: ../limit-attempts.php:980 ../limit-attempts.php:997
-msgid "display name of your site"
-msgstr "wyświetla nazwę strony"
-
-#: ../limit-attempts.php:949 ../limit-attempts.php:963
-msgid "Restore default subject"
-msgstr "Przywróć domyślny temat"
-
-#: ../limit-attempts.php:960
-msgid "display blacklisted IP address"
-msgstr "wyświetla zablokowane adresy IP"
-
-#: ../limit-attempts.php:971
-msgid "Message"
-msgstr "Wiadomość"
-
-#: ../limit-attempts.php:977
-msgid "display IP address that is blocked"
-msgstr "wyświetla adres IP, który został zablokowany"
-
-#: ../limit-attempts.php:978 ../limit-attempts.php:995
-msgid "display link for Limit Attempts plugin on your site"
-msgstr "wyświetla link do wtyczki Limit Attempts na twojej stronie"
-
-#: ../limit-attempts.php:979
-msgid "display date and time when IP address was blocked"
-msgstr "wyświetla czas kiedy adres IP został zablokowany"
-
-#: ../limit-attempts.php:981 ../limit-attempts.php:998
-msgid "display your site's URL"
-msgstr "wyświetla adres twojej strony"
-
-#: ../limit-attempts.php:994
-msgid "display IP address that is added to the blacklist"
-msgstr "wyświetla adres IP, który został dodany do czarnej listy"
-
-#: ../limit-attempts.php:996
-msgid "display date and time when IP address was blacklisted"
-msgstr "wyświetla czas kiedy adres IP został dodany do czarnej listy"
-
-#: ../limit-attempts.php:1010
-msgid "Hide login/register/lostpassword forms for blocked or blacklisted IPs"
-msgstr ""
-"Ukryj formularz logowania/rejestracji/przywracania hasła dla użytkowników "
-"zablokowanych i znajdujących się na czarnej liście"
-
-#: ../limit-attempts.php:1016
-msgid "Htaccess plugin"
-msgstr "Wtyczka Htaccess"
-
-#: ../limit-attempts.php:1024 ../limit-attempts.php:1027
-#: ../limit-attempts.php:1031 ../limit-attempts.php:1038
-#: ../limit-attempts.php:1045 ../limit-attempts.php:1074
-#: ../limit-attempts.php:1078 ../limit-attempts.php:1088
-#: ../limit-attempts.php:1096 ../limit-attempts.php:1116
-#: ../limit-attempts.php:1123
-#, fuzzy, php-format
-msgid "Using %s"
-msgstr "Wykorzystaj"
-
-#: ../limit-attempts.php:1032 ../limit-attempts.php:1079
-#: ../limit-attempts.php:1101
-#, fuzzy, php-format
-msgid "Update %s at least to %s"
-msgstr "Aktualizuj Htaccess do wersji v 1.6.2"
-
-#: ../limit-attempts.php:1039 ../limit-attempts.php:1117
-#, php-format
-msgid "Activate %s"
-msgstr "Aktywuj %s"
-
-#: ../limit-attempts.php:1046 ../limit-attempts.php:1124
-#, fuzzy, php-format
-msgid "Download %s"
-msgstr "Pobierz Htaccess"
-
-#: ../limit-attempts.php:1051
-msgid ""
-"When you turn on this option, all IPs from the blocked list and from the "
-"blacklist will be added to the direction \"deny from\" of file .htaccess. IP "
-"addresses, which then will be added to the blocked list or to the blacklist, "
-"also will be added to the direction \"deny from\" of the file .htaccess "
-"automatically"
-msgstr ""
-"W przypadku uruchomienia tej opcji wszystkie zablokowane adresy oraz te "
-"znajdujące się na czarnej liście zostanę przekazane sekcji 'zabroń z' w "
-"pliku .htaccess. Wszystkie nowe adresy również zostaną natychmiastowo "
-"przeniesione do pliku htaccess"
-
-#: ../limit-attempts.php:1055
-msgid "Allow Htaccess plugin block IP to reduce the database workload."
-msgstr ""
-"Pozwól Htaccess na blokowanie adresów IP w celu zmniejszenia rozmiaru bazy "
-"danych."
-
-#: ../limit-attempts.php:1059
-msgid "Captcha plugin"
-msgstr "Wtyczka Captcha"
-
-#: ../limit-attempts.php:1072 ../limit-attempts.php:1086
-#: ../limit-attempts.php:1094 ../includes/pro-tab.php:63
-msgid "Login form"
-msgstr "Formularz logowania"
-
-#: ../limit-attempts.php:1100
-msgid "Using Captcha powered by"
-msgstr "Wykorzystaj Captcha stworzone przez"
-
-#: ../limit-attempts.php:1127
-msgid "Consider the incorrect captcha input as an invalid attempt."
-msgstr "Zliczaj błędne kody Captcha jako nieudane próby."
-
-#: ../limit-attempts.php:1135
-msgid "Registration form"
-msgstr "Formularz rejestracji"
-
-#: ../limit-attempts.php:1136
-msgid "Reset Password form"
-msgstr "Formularz resetowania hasła"
-
-#: ../limit-attempts.php:1137
-msgid "Comments form"
-msgstr "Formularz komentarzy"
-
-#: ../limit-attempts.php:1140
-msgid "Buddypress registration form"
-msgstr "Formularz rejestracji BuddyPress"
-
-#: ../limit-attempts.php:1141
-msgid "Buddypress comments form"
-msgstr "Formularz komentarzy BuddyPress"
-
-#: ../limit-attempts.php:1142
-msgid "Buddypress \"Create a Group\" form"
-msgstr "Formularz \"Stwórz grupę\" dla BuddyPress"
-
-#: ../limit-attempts.php:1144
-#, fuzzy
-msgid "WooCommerce Login form"
-msgstr "Formularz komentarzy"
-
-#: ../limit-attempts.php:1145
-msgid "WooCommerce Register form"
-msgstr ""
-
-#: ../limit-attempts.php:1146
-#, fuzzy
-msgid "WooCommerce Lost Password form"
-msgstr "Formularz resetowania hasła"
-
-#: ../limit-attempts.php:1147
-msgid "WooCommerce Checkout Billing form"
-msgstr ""
-
-#: ../limit-attempts.php:1150
-#, php-format
-msgid "You also need %s to use these options."
-msgstr "Potrzebujesz również %s by wykorzystać te opcje."
-
-#: ../limit-attempts.php:1171
-msgid "Update GeoIP"
-msgstr "Aktualizuj GeoIP"
-
-#: ../limit-attempts.php:1174
-msgid "every"
-msgstr "co"
-
-#: ../limit-attempts.php:1174 ../includes/front-end-functions.php:630
-msgid "months"
-msgstr "miesiące"
-
-#: ../limit-attempts.php:1176 ../limit-attempts.php:1204
-msgid "Update now"
-msgstr "Aktualizuj teraz"
-
-#: ../limit-attempts.php:1181
-msgid ""
-"This option allows you to download lists with registered IP addresses all "
-"over the world to the database (from"
-msgstr ""
-"Ta opcja zezwala na pobieranie listy adresów IP zarejestrowanych na całym "
-"świecie do bazy danych (z"
-
-#: ../limit-attempts.php:1184
-msgid ""
-"With this, you receive an information about each IP address, and to which "
-"country it belongs to. You can select the desired frequency for IP database "
-"updating"
-msgstr ""
-"Dzięki temu otrzymujesz informację na temat każdego adres IP, oraz "
-"informację z którego kraju pochodzi. Możesz wybrać żądaną częstotliwość "
-"aktualizacji bazy danych"
-
-#: ../limit-attempts.php:1187
-msgid ""
-"If you need to update GeoIP immediately, please click on the \"Update now\" "
-"button and wait until the operation is finished"
-msgstr ""
-"Jeśli potrzebujesz natychmiastowej aktualizacji bazy proszę nacisnąć "
-"\"Aktualizuj teraz\" i poczekać do zakończenia operacji"
-
-#: ../limit-attempts.php:1190
-msgid "Read more about"
-msgstr "Przeczytaj więcej o"
-
-#: ../limit-attempts.php:1194 ../limit-attempts.php:1219
-msgid "Last update was carried out"
-msgstr "ostatnia aktualizacja"
-
-#: ../limit-attempts.php:1199
-#, fuzzy
-msgid "Update whitelist and blacklist"
-msgstr "Dodaj do czarnej listy"
-
-#: ../limit-attempts.php:1202
-#, fuzzy
-msgid "updates of GeoIP"
-msgstr "Aktualizuj GeoIP"
-
-#: ../limit-attempts.php:1209
-#, fuzzy
-msgid ""
-"This option allows you to update your whitelist and blacklist to establish "
-"IP address belonging. You can select the desired frequency for updating"
-msgstr ""
-"Dzięki temu otrzymujesz informację na temat każdego adres IP, oraz "
-"informację z którego kraju pochodzi. Możesz wybrać żądaną częstotliwość "
-"aktualizacji bazy danych"
-
-#: ../limit-attempts.php:1212
-#, fuzzy
-msgid "Please note"
-msgstr "Proszę, przejdź do"
-
-#: ../limit-attempts.php:1212
-msgid ""
-"because of the potentially large amount of information being processed, "
-"automatically updating will occur in parts in background mode"
-msgstr ""
-
-#: ../limit-attempts.php:1215
-#, fuzzy
-msgid ""
-"If you need to update the whitelist and blacklist completely and "
-"immediately, please click on the \"Update now\" button and wait until the "
-"operation is finished"
-msgstr ""
-"Jeśli potrzebujesz natychmiastowej aktualizacji bazy proszę nacisnąć "
-"\"Aktualizuj teraz\" i poczekać do zakończenia operacji"
-
-#: ../limit-attempts.php:1234
-msgid "Save Changes"
-msgstr "Zapisz zmiany"
-
-#: ../limit-attempts.php:1266 ../limit-attempts.php:1696
-#: ../includes/blacklist.php:260 ../includes/whitelist.php:261
-#: ../includes/blocked.php:267 ../includes/statistics.php:287
-msgid "Notice:"
-msgstr "Uwaga:"
-
-#: ../limit-attempts.php:1266
-msgid ""
-"Limit Login Attempts plugin is activated on your site, as well as Limit "
-"Attempts plugin. Please note that Limit Attempts ensures maximum security "
-"when no similar plugins are activated. Using other plugins that limit user's "
-"login attempts at the same time may lead to undesirable behaviour on your WP "
-"site."
-msgstr ""
-"Na twojej stronie znajduje się włączona wtyczka Limit Login Attemps, "
-"niestety koliduje to z ustawieniami Limit Attemps. Proszę wziąć pod uwagę, "
-"że Limit Attemps gwarantuje największą skuteczność jeśli strona nie posiada "
-"włączonej podobnej wtyczki. Jednoczesne wykorzystywanie kilku wtyczek o "
-"podobnym działaniu może wywołać niepożądane zachowania na twojej stronie."
-
-#: ../limit-attempts.php:1293
-msgid "ATTENTION!"
-msgstr "UWAGA!"
-
-#: ../limit-attempts.php:1296
-msgid "Read and Understood"
-msgstr "Przeczytaj i zapamiętaj"
-
-#: ../limit-attempts.php:1373
-msgid "Addresses per page"
-msgstr "Adresy na stronę"
-
-#: ../limit-attempts.php:1698
-msgid "Subject has been restored to default"
-msgstr "Przywrócono domyślny temat"
-
-#: ../limit-attempts.php:1700
-msgid "Message has been restored to default"
-msgstr "Przywrócono domyślną wiadomość"
-
-#: ../limit-attempts.php:1702
-msgid "Changes are not saved"
-msgstr "Zmiany nie zostały zapisane"
-
-#: ../includes/blacklist.php:16 ../includes/whitelist.php:16
-#: ../includes/blocked.php:16 ../includes/statistics.php:17
-msgid "Ip address"
-msgstr "Adresy IP"
-
-#: ../includes/blacklist.php:17 ../includes/whitelist.php:17
-msgid "Date added"
-msgstr "Data dodania"
-
-#: ../includes/blacklist.php:34 ../includes/blacklist.php:42
-msgid "Remove from blacklist"
-msgstr "Usuń z czarnej listy"
-
-#: ../includes/blacklist.php:138 ../includes/whitelist.php:139
-#: ../includes/blocked.php:145 ../includes/statistics.php:165
+#: ../includes/blacklist.php:138 ../includes/blocked.php:147
+#: ../includes/statistics.php:165 ../includes/whitelist.php:139
 #, php-format
 msgid "%s item"
 msgid_plural "%s items"
@@ -722,177 +42,777 @@ msgstr[0] "%s element"
 msgstr[1] "%s elementy"
 msgstr[2] "%s elementów"
 
-#: ../includes/blacklist.php:185 ../includes/whitelist.php:186
-#: ../includes/blocked.php:192 ../includes/statistics.php:212
+#: ../includes/blacklist.php:185 ../includes/blocked.php:194
+#: ../includes/statistics.php:212 ../includes/whitelist.php:186
 msgid "First page"
 msgstr "Pierwsza strona"
 
-#: ../includes/blacklist.php:195 ../includes/whitelist.php:196
-#: ../includes/blocked.php:202 ../includes/statistics.php:222
+#: ../includes/blacklist.php:195 ../includes/blocked.php:204
+#: ../includes/statistics.php:222 ../includes/whitelist.php:196
 msgid "Previous page"
 msgstr "Poprzednia stona"
 
 #: ../includes/blacklist.php:202 ../includes/blacklist.php:205
-#: ../includes/whitelist.php:203 ../includes/whitelist.php:206
-#: ../includes/blocked.php:209 ../includes/blocked.php:212
+#: ../includes/blocked.php:211 ../includes/blocked.php:214
 #: ../includes/statistics.php:229 ../includes/statistics.php:232
+#: ../includes/whitelist.php:203 ../includes/whitelist.php:206
 msgid "Current Page"
 msgstr "Obecna strona"
 
-#: ../includes/blacklist.php:211 ../includes/whitelist.php:212
-#: ../includes/blocked.php:218 ../includes/statistics.php:238
+#: ../includes/blacklist.php:211 ../includes/blocked.php:220
+#: ../includes/statistics.php:238 ../includes/whitelist.php:212
 #, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s z %2$s"
 
-#: ../includes/blacklist.php:218 ../includes/whitelist.php:219
-#: ../includes/blocked.php:225 ../includes/statistics.php:245
+#: ../includes/blacklist.php:218 ../includes/blocked.php:227
+#: ../includes/statistics.php:245 ../includes/whitelist.php:219
 msgid "Next page"
 msgstr "Następna strona"
 
-#: ../includes/blacklist.php:228 ../includes/whitelist.php:229
-#: ../includes/blocked.php:235 ../includes/statistics.php:255
+#: ../includes/blacklist.php:228 ../includes/blocked.php:237
+#: ../includes/statistics.php:255 ../includes/whitelist.php:229
 msgid "Last page"
 msgstr "Ostatnia strona"
 
-#: ../includes/blacklist.php:261 ../includes/whitelist.php:262
-msgid "ERROR:"
-msgstr "BŁĄD:"
+#: ../includes/blacklist.php:274 ../includes/blocked.php:269
+#: ../includes/edit-list-form.php:66 ../includes/edit-list-form.php:69
+#: ../includes/edit-list-form.php:98 ../includes/edit-list-form.php:101
+#: ../includes/statistics.php:287 ../includes/whitelist.php:275
+#: ../limit-attempts.php:527 ../limit-attempts.php:563
+msgid "Notice:"
+msgstr "Uwaga:"
 
-#: ../includes/blacklist.php:262 ../includes/whitelist.php:263
-#: ../includes/blocked.php:268 ../includes/statistics.php:288
+#: ../includes/blacklist.php:274 ../includes/blocked.php:270
+#: ../includes/statistics.php:288 ../includes/whitelist.php:275
 msgid "No address has been selected"
 msgstr "Nie zaznaczono żadnego adresu"
 
-#: ../includes/blacklist.php:263 ../includes/whitelist.php:264
-msgid "You must type IP address"
-msgstr "Musisz podać adres IP"
-
-#: ../includes/blacklist.php:264 ../includes/whitelist.php:265
-msgid "Wrong format or it does not lie in diapason 0.0.0.0 - 255.255.255.255."
-msgstr ""
-"Zły format lub adres nie mieści się w przedziale 0.0.0.0 - 255.255.255.255"
-
-#: ../includes/blacklist.php:265
-msgid "has been added to blacklist"
-msgstr "został dodany do czarnej listy"
-
-#: ../includes/blacklist.php:266
-msgid "can&rsquo;t be added to blacklist."
-msgstr "nie może zostać dodany do czarnej listy"
-
-#: ../includes/blacklist.php:267
-msgid "This IP address has already been added to blacklist"
-msgstr "Podany adres IP został już umieszczony na czarnej liście"
-
-#: ../includes/blacklist.php:268
-msgid "This IP address is in whitelist too, please check this to avoid errors"
-msgstr ""
-"Podany adres IP został już umieszczony na białej liście, proszę sprawdzić "
-"podłoże błędu."
-
-#: ../includes/blacklist.php:269
-msgid "has been deleted from blacklist"
-msgstr "został usunięty z czarnej listy"
-
-#: ../includes/blacklist.php:270
-msgid "have been deleted from blacklist"
-msgstr "zostanie usunięty z czarnej listy"
-
-#: ../includes/blacklist.php:271
+#: ../includes/blacklist.php:279
 msgid "Error while deleting from blacklist"
 msgstr "Wystąpił błąd w czasie usuwania adresu z czarnej listy"
 
-#: ../includes/blacklist.php:338 ../includes/whitelist.php:338
-#: ../includes/blocked.php:340 ../includes/statistics.php:336
+#: ../includes/blacklist.php:282
+msgid "has been deleted from blacklist"
+msgstr "został usunięty z czarnej listy"
+
+#: ../includes/blacklist.php:282
+msgid "have been deleted from blacklist"
+msgstr "zostanie usunięty z czarnej listy"
+
+#: ../includes/blacklist.php:293 ../includes/blocked.php:374
+#: ../includes/statistics.php:336 ../includes/whitelist.php:292
 msgid "Search results for"
 msgstr "Wyszukaj wyników dla"
 
-#: ../includes/blacklist.php:340 ../includes/whitelist.php:340
-#: ../includes/blocked.php:342 ../includes/statistics.php:338
-msgid "Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255."
+#: ../includes/blacklist.php:295 ../includes/blocked.php:376
+#: ../includes/edit-list-form.php:87 ../includes/edit-list-form.php:117
+#: ../includes/statistics.php:338 ../includes/whitelist.php:294
+#, php-format
+msgid "Wrong format or it does not lie in range %s."
 msgstr ""
-"Zły format lub adres nie mieści się w przedziale 0.0.0.0 - 255.255.255.255."
 
-#: ../includes/blacklist.php:361
-msgid "Add IP to blacklist"
-msgstr "Dodaj adres IP do czarnej listy"
-
-#: ../includes/blacklist.php:367 ../includes/whitelist.php:380
-msgid "Allowed formats:"
-msgstr "Dozwolone formaty"
-
-#: ../includes/blacklist.php:374 ../includes/whitelist.php:387
-#: ../includes/blocked.php:363 ../includes/statistics.php:369
-#: ../includes/pro-tab.php:19
-msgid "Search IP"
-msgstr "Szukaj adresu"
-
-#: ../includes/whitelist.php:34 ../includes/whitelist.php:42
-msgid "Remove from whitelist"
-msgstr "Usuń z białej listy"
-
-#: ../includes/whitelist.php:266
-msgid "has been added to whitelist"
-msgstr "został dodany do białej listy"
-
-#: ../includes/whitelist.php:267
-msgid "can&rsquo;t be added to whitelist."
-msgstr "nie może zostać dodany do białej listy"
-
-#: ../includes/whitelist.php:268
-msgid "This IP address has already been added to whitelist"
-msgstr "Podany adres IP został już umieszczony na białej liście"
-
-#: ../includes/whitelist.php:269
-msgid "This IP address is in blacklist too, please check this to avoid errors"
+#: ../includes/blocked.php:16
+msgid "IP Address"
 msgstr ""
-"Podany adres IP został już umieszczony na czarnej liście, proszę sprawdzić "
-"podłoże błędu."
-
-#: ../includes/whitelist.php:270
-msgid "has been deleted from whitelist"
-msgstr "został usunięty z białej listy"
-
-#: ../includes/whitelist.php:271
-msgid "have been deleted from whitelist"
-msgstr "zostanie usunięty z białej listy"
-
-#: ../includes/whitelist.php:272
-msgid "Error while deleting from whitelist"
-msgstr "Wystąpił błąd w czasie usuwania adresu z białej listy"
-
-#: ../includes/whitelist.php:367
-msgid "My IP"
-msgstr "Mój adres"
-
-#: ../includes/whitelist.php:373
-msgid "Add IP to whitelist"
-msgstr "Dodaj adres IP do białej listy"
 
 #: ../includes/blocked.php:17
-msgid "The lock expires"
-msgstr "Blokada wygasła"
+msgid "Date Expires"
+msgstr ""
 
-#: ../includes/blocked.php:34 ../includes/blocked.php:42
-msgid "Reset block"
-msgstr "Resetuj blokadę"
+#: ../includes/blocked.php:34 ../includes/blocked.php:43
+msgid "Reset Block"
+msgstr ""
 
-#: ../includes/blocked.php:269
+#: ../includes/blocked.php:35 ../includes/blocked.php:44
+msgid "Add to Whitelist"
+msgstr ""
+
+#: ../includes/blocked.php:271
 msgid "Block has been reset for"
 msgstr "Blokada została zresetowana dla"
 
-#: ../includes/blocked.php:270
+#: ../includes/blocked.php:272
 msgid "Error while reseting block for"
 msgstr "Wystąpił błąd w czasie resetowania blokady dla"
 
+#: ../includes/blocked.php:273
+msgid "IP address was added to whitelist"
+msgstr ""
+
+#: ../includes/blocked.php:274
+msgid "IP addresses were added to whitelist"
+msgstr ""
+
+#: ../includes/blocked.php:397 ../includes/edit-list-form.php:40
+#: ../includes/pro-tab.php:70 ../includes/statistics.php:372
+msgid "Search IP"
+msgstr "Szukaj adresu"
+
+#: ../includes/class-lmtttmpts-settings.php:25 ../limit-attempts.php:41
+#: ../limit-attempts.php:490 ../limit-attempts.php:506
+#: ../limit-attempts.php:524
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: ../includes/class-lmtttmpts-settings.php:26
+msgid "Errors"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:27
+msgid "Notifications"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:28
+msgid "Misc"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:29
+msgid "Custom Code"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:30
+msgid "License Key"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:158 ../limit-attempts.php:996
+msgid "Email notifications have been restored to default."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:161 ../limit-attempts.php:999
+msgid "Messages have been restored to default."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:170
+msgid "Settings saved."
+msgstr "Ustawienia zapisane"
+
+#: ../includes/class-lmtttmpts-settings.php:195 ../limit-attempts.php:40
+#: ../limit-attempts.php:41
+msgid "Limit Attempts Settings"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:200
+msgid "Block IP Address After"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:202
+msgid "attempt"
+msgid_plural "attempts"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: ../includes/class-lmtttmpts-settings.php:203
+#, php-format
+msgid "Number of failed attempts (default is %d)."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:207
+msgid "Block IP Address For"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:210
+#: ../includes/class-lmtttmpts-settings.php:216
+#: ../includes/class-lmtttmpts-settings.php:229
+#: ../includes/class-lmtttmpts-settings.php:235
+#: ../includes/class-lmtttmpts-settings.php:248
+#: ../includes/class-lmtttmpts-settings.php:254
+#: ../includes/front-end-functions.php:570
+#: ../includes/front-end-functions.php:591 ../limit-attempts.php:964
+msgid "day"
+msgid_plural "days"
+msgstr[0] "dnia"
+msgstr[1] "dni"
+msgstr[2] "dni"
+
+#: ../includes/class-lmtttmpts-settings.php:211
+#: ../includes/class-lmtttmpts-settings.php:217
+#: ../includes/class-lmtttmpts-settings.php:230
+#: ../includes/class-lmtttmpts-settings.php:236
+#: ../includes/class-lmtttmpts-settings.php:249
+#: ../includes/class-lmtttmpts-settings.php:255
+#: ../includes/front-end-functions.php:574 ../limit-attempts.php:968
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] "godziny"
+msgstr[1] "godzin"
+msgstr[2] "godzin"
+
+#: ../includes/class-lmtttmpts-settings.php:212
+#: ../includes/class-lmtttmpts-settings.php:218
+#: ../includes/class-lmtttmpts-settings.php:231
+#: ../includes/class-lmtttmpts-settings.php:237
+#: ../includes/class-lmtttmpts-settings.php:250
+#: ../includes/class-lmtttmpts-settings.php:256
+#: ../includes/front-end-functions.php:578 ../limit-attempts.php:972
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] "minuty"
+msgstr[1] "minut"
+msgstr[2] "minut"
+
+#: ../includes/class-lmtttmpts-settings.php:213
+#: ../includes/class-lmtttmpts-settings.php:232
+#: ../includes/class-lmtttmpts-settings.php:251
+msgid "Edit"
+msgstr "Edytuj"
+
+#: ../includes/class-lmtttmpts-settings.php:221
+#, php-format
+msgid "Time IP address will be blocked for (default is %d)."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:226
+msgid "Reset Failed Attempts After"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:240
+msgid "Time after which the failed attempts will be reset."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:245
+msgid "Reset Blocking After"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:259
+msgid "Time after which the blocking will be reset."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:264
+msgid "Blacklist IP Address After"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:266
+#, fuzzy
+msgid "blocking"
+msgid_plural "blockings"
+msgstr[0] "blokadzie"
+msgstr[1] "blokadach"
+msgstr[2] "blokadach"
+
+#: ../includes/class-lmtttmpts-settings.php:267
+msgid "Number of blocking after which the IP address will be blacklisted."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:274
+#: ../includes/class-lmtttmpts-settings.php:414
+#: ../includes/class-lmtttmpts-settings.php:617
+#: ../includes/class-lmtttmpts-settings.php:652 ../includes/pro-tab.php:20
+msgid "Close"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:278
+msgid "Non-Existing Username Login Attempts Action"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:283
+msgid "Default"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:288
+msgid "Block"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:293
+msgid "Blacklist"
+msgstr "Czarna lista"
+
+#: ../includes/class-lmtttmpts-settings.php:296
+msgid ""
+"Detect login attempts for non-existing username and apply actions (default "
+"will block and/or blacklist IP addresses based on the settings above)."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:306
+msgid "Hide Forms"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:308
+msgid ""
+"Enable to hide login, registration, reset password forms for blocked or "
+"blacklisted IP addresses."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:312
+msgid "Htaccess Plugin"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:323
+#: ../includes/class-lmtttmpts-settings.php:366
+#: ../includes/class-lmtttmpts-settings.php:381
+#: ../includes/class-lmtttmpts-settings.php:390
+#, php-format
+msgid "Go to %s Settings"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:328
+#: ../includes/class-lmtttmpts-settings.php:371
+#: ../includes/class-lmtttmpts-settings.php:395
+#, fuzzy, php-format
+msgid "Update %s at least to %s"
+msgstr "Aktualizuj Htaccess do wersji v 1.6.2"
+
+#: ../includes/class-lmtttmpts-settings.php:334
+#: ../includes/class-lmtttmpts-settings.php:402
+msgid "Activate"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:338
+#: ../includes/class-lmtttmpts-settings.php:408
+msgid "Install Now"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:342
+msgid "Enable to reduce database workload."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:345
+msgid ""
+"When you turn on this option, all IPs from the blocked list and from the "
+"blacklist will be added to the direction \"deny from\" of file .htaccess. IP "
+"addresses which will be added to the blocked list or to the blacklist after "
+"that, also will be added to the direction \"deny from\" of the file ."
+"htaccess automatically."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:349
+msgid "Captcha Plugin"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:363
+#: ../includes/class-lmtttmpts-settings.php:378
+#: ../includes/class-lmtttmpts-settings.php:387 ../includes/pro-tab.php:110
+msgid "Login form"
+msgstr "Formularz logowania"
+
+#: ../includes/class-lmtttmpts-settings.php:366
+#: ../includes/class-lmtttmpts-settings.php:381
+#: ../includes/class-lmtttmpts-settings.php:390
+#: ../includes/class-lmtttmpts-settings.php:395
+#: ../includes/class-lmtttmpts-settings.php:402
+#: ../includes/class-lmtttmpts-settings.php:408
+msgid ""
+"Incorrect captcha for selected forms will be considered as an invalid "
+"attempt."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:418
+msgid "Registration form"
+msgstr "Formularz rejestracji"
+
+#: ../includes/class-lmtttmpts-settings.php:419
+msgid "Reset Password form"
+msgstr "Formularz resetowania hasła"
+
+#: ../includes/class-lmtttmpts-settings.php:420
+msgid "Comments form"
+msgstr "Formularz komentarzy"
+
+#: ../includes/class-lmtttmpts-settings.php:423
+msgid "Buddypress registration form"
+msgstr "Formularz rejestracji BuddyPress"
+
+#: ../includes/class-lmtttmpts-settings.php:424
+msgid "Buddypress comments form"
+msgstr "Formularz komentarzy BuddyPress"
+
+#: ../includes/class-lmtttmpts-settings.php:425
+msgid "Buddypress \"Create a Group\" form"
+msgstr "Formularz \"Stwórz grupę\" dla BuddyPress"
+
+#: ../includes/class-lmtttmpts-settings.php:427
+#, fuzzy
+msgid "WooCommerce Login form"
+msgstr "Formularz resetowania hasła"
+
+#: ../includes/class-lmtttmpts-settings.php:428
+#, fuzzy
+msgid "WooCommerce Register form"
+msgstr "Formularz resetowania hasła"
+
+#: ../includes/class-lmtttmpts-settings.php:429
+#, fuzzy
+msgid "WooCommerce Lost Password form"
+msgstr "Formularz resetowania hasła"
+
+#: ../includes/class-lmtttmpts-settings.php:430
+#, fuzzy
+msgid "WooCommerce Checkout Billing form"
+msgstr "Formularz resetowania hasła"
+
+#: ../includes/class-lmtttmpts-settings.php:432
+#, php-format
+msgid "You also need %s to use these options."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:448
+msgid "Error Messages Settings"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:453
+msgid "Invalid Attempt"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:457
+#: ../includes/class-lmtttmpts-settings.php:467
+#: ../includes/class-lmtttmpts-settings.php:478
+#: ../includes/class-lmtttmpts-settings.php:536
+#: ../includes/class-lmtttmpts-settings.php:543
+#: ../includes/class-lmtttmpts-settings.php:558
+#: ../includes/class-lmtttmpts-settings.php:565
+msgid "Allowed Variables:"
+msgstr "Dozwolone zmienne:"
+
+#: ../includes/class-lmtttmpts-settings.php:458
+msgid "quantity of attempts left"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:463 ../limit-attempts.php:43
+msgid "Blocked"
+msgstr "zablokowany"
+
+#: ../includes/class-lmtttmpts-settings.php:468
+msgid "blocking time"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:469
+#: ../includes/class-lmtttmpts-settings.php:479
+msgid "administrator&rsquo;s email address"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:474
+#: ../includes/edit-list-form.php:30
+msgid "Blacklisted"
+msgstr "Dodane do czarnej listy"
+
+#: ../includes/class-lmtttmpts-settings.php:484
+msgid "Restore Default Error Messages"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:486
+msgid "Restore Error Messages"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:498
+msgid "Email Notifications Settings"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:503
+msgid "Email Notifications"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:505
+msgid "Enable to receive email notifications."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:509
+msgid "Send Email Notifications to"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:514
+msgid "Choose a username"
+msgstr "Wybierz użytkownika"
+
+#: ../includes/class-lmtttmpts-settings.php:527
+msgid "Select an existing administrator or a custom email."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:531
+msgid "Block Notifications"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:533
+#: ../includes/class-lmtttmpts-settings.php:555
+msgid "Subject"
+msgstr "Temat"
+
+#: ../includes/class-lmtttmpts-settings.php:537
+#: ../includes/class-lmtttmpts-settings.php:544
+msgid "blocked IP address"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:538
+#: ../includes/class-lmtttmpts-settings.php:547
+#: ../includes/class-lmtttmpts-settings.php:560
+#: ../includes/class-lmtttmpts-settings.php:569
+msgid "website name"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:540
+#: ../includes/class-lmtttmpts-settings.php:562
+msgid "Message"
+msgstr "Wiadomość"
+
+#: ../includes/class-lmtttmpts-settings.php:545
+#: ../includes/class-lmtttmpts-settings.php:567
+msgid "Limit Attempts plugin link"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:546
+#: ../includes/class-lmtttmpts-settings.php:568
+msgid "date and time when IP address was blocked"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:548
+#: ../includes/class-lmtttmpts-settings.php:570
+msgid "website URL"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:553
+msgid "Blacklist Notifications"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:559
+#: ../includes/class-lmtttmpts-settings.php:566
+msgid "blacklisted IP address"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:575
+msgid "Restore Default Email Notifications"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:577
+msgid "Restore Email Notifications"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:621
+msgid "Remove Log Entries Older Then"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:624
+#: ../includes/class-lmtttmpts-settings.php:639
+msgid "days"
+msgstr "dni"
+
+#: ../includes/class-lmtttmpts-settings.php:625
+msgid "Set \"0\" if you do not want to clear the log."
+msgstr "Ustaw \"0\" jeśli nie chcesz czyścić wpisów w dzienniku."
+
+#: ../includes/class-lmtttmpts-settings.php:636
+msgid "Remove Stats Entries Older Than"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:641
+msgid "Set \"0\" if you do not want to clear the statistics."
+msgstr "Ustaw \"0\" jeśli nie chcesz czyścić statystyk."
+
+#: ../includes/class-lmtttmpts-settings.php:643
+#, php-format
+msgid "Current size of DB table is %s"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:643
+msgid "Mb"
+msgstr "Mb"
+
+#: ../includes/class-lmtttmpts-settings.php:656
+msgid "Update GeoIP Every"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:659
+#: ../includes/front-end-functions.php:597
+msgid "months"
+msgstr "miesiące"
+
+#: ../includes/class-lmtttmpts-settings.php:660
+#: ../includes/class-lmtttmpts-settings.php:669
+msgid "Update Now"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:665
+msgid "Update White- & Blacklist After"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:668
+msgid "updates of GeoIP"
+msgstr "aktualizacjach GeoIP"
+
+#: ../includes/edit-list-form.php:18 ../includes/edit-list-form.php:25
+msgid "Edit List"
+msgstr ""
+
+#: ../includes/edit-list-form.php:32
+msgid "Whitelisted"
+msgstr ""
+
+#: ../includes/edit-list-form.php:63 ../includes/edit-list-form.php:94
+msgid "ERROR:"
+msgstr "BŁĄD:"
+
+#: ../includes/edit-list-form.php:63 ../includes/edit-list-form.php:94
+msgid "You must type IP address"
+msgstr "Musisz podać adres IP"
+
+#: ../includes/edit-list-form.php:66
+msgid "This IP address has already been added to whitelist"
+msgstr ""
+
+#: ../includes/edit-list-form.php:69
+msgid "This IP address is in blacklist too, please check this to avoid errors"
+msgstr ""
+
+#: ../includes/edit-list-form.php:79
+msgid "has been added to whitelist"
+msgstr "został dodany do białej listy"
+
+#: ../includes/edit-list-form.php:83 ../includes/edit-list-form.php:87
+msgid "can't be added to whitelist."
+msgstr ""
+
+#: ../includes/edit-list-form.php:98
+msgid "This IP address has already been added to blacklist"
+msgstr ""
+
+#: ../includes/edit-list-form.php:101
+msgid "This IP address is in whitelist too, please check this to avoid errors"
+msgstr ""
+
+#: ../includes/edit-list-form.php:106
+msgid "has been added to blacklist"
+msgstr "został dodany do czarnej listy"
+
+#: ../includes/edit-list-form.php:112 ../includes/edit-list-form.php:117
+msgid "can't be added to blacklist."
+msgstr ""
+
+#: ../includes/edit-list-form.php:131
+msgid "Add IP"
+msgstr ""
+
+#: ../includes/edit-list-form.php:137
+msgid "My IP"
+msgstr "Mój adres"
+
+#: ../includes/edit-list-form.php:142
+msgid "Allowed formats:"
+msgstr ""
+
+#: ../includes/front-end-functions.php:557
+msgid ""
+"some time. Try to reload the page. Perhaps, you already have been unlocked"
+msgstr ""
+"czasami. Spróbuj odświeżyć stronę, możliwie, że zostałeś już odblokowany"
+
+#: ../includes/front-end-functions.php:566
+msgid "week"
+msgid_plural "weeks"
+msgstr[0] "tydzień"
+msgstr[1] "tygodnie"
+msgstr[2] "tygodni"
+
+#: ../includes/front-end-functions.php:582
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "sekunda"
+msgstr[1] "sekundy"
+msgstr[2] "sekund"
+
+#: ../includes/front-end-functions.php:592
+msgid "month"
+msgid_plural "months"
+msgstr[0] "miesiąc"
+msgstr[1] "miesiące"
+msgstr[2] "miesięcy"
+
+#: ../includes/front-end-functions.php:602
+msgid "year"
+msgid_plural "years"
+msgstr[0] "rok"
+msgstr[1] "lata"
+msgstr[2] "lat"
+
+#: ../includes/pro-tab.php:26
+msgid "Add"
+msgstr "Dodaj"
+
+#: ../includes/pro-tab.php:32
+msgid "Enter IP"
+msgstr "Podaj IP"
+
+#: ../includes/pro-tab.php:33
+msgid "Allowed formats"
+msgstr "Dozwolone formaty"
+
+#: ../includes/pro-tab.php:34
+msgid "Allowed range"
+msgstr "Dozwolony zakres"
+
+#: ../includes/pro-tab.php:37 ../includes/pro-tab.php:44
+msgid "Allowed separators"
+msgstr "Dozwolone separatory"
+
+#: ../includes/pro-tab.php:37 ../includes/pro-tab.php:44
+msgid "a comma"
+msgstr "przecinek"
+
+#: ../includes/pro-tab.php:37 ../includes/pro-tab.php:44
+msgid "semicolon"
+msgstr "średnik"
+
+#: ../includes/pro-tab.php:37
+msgid "ordinary space, tab, new line or carriage return"
+msgstr "spacja, tabulacja, znak nowej linii, powrót karetki"
+
+#: ../includes/pro-tab.php:43
+msgid "Reason for IP"
+msgstr "Powód"
+
+#: ../includes/pro-tab.php:44
+msgid "tab, new line or carriage return"
+msgstr "spacja, tabulacja, znak nowej linii, powrót karetki"
+
+#: ../includes/pro-tab.php:51
+msgid "Select country"
+msgstr "Wybierz kraj"
+
+#: ../includes/pro-tab.php:55
+msgid "Reason for country"
+msgstr "Powód"
+
+#: ../includes/pro-tab.php:72
+msgid "Clear Log"
+msgstr "Wyczyść dziennik"
+
+#: ../includes/pro-tab.php:76 ../includes/pro-tab.php:118
+msgid "Delete log entry"
+msgstr "Usuń wpis z dziennika"
+
+#: ../includes/pro-tab.php:87 ../includes/pro-tab.php:97
+msgid "IP address"
+msgstr "Adresy IP"
+
+#: ../includes/pro-tab.php:88 ../includes/pro-tab.php:98
+msgid "Internet Hostname"
+msgstr "Nazwa hosta"
+
+#: ../includes/pro-tab.php:89 ../includes/pro-tab.php:99
+msgid "Event"
+msgstr "Zdarzenie"
+
+#: ../includes/pro-tab.php:90 ../includes/pro-tab.php:100
+msgid "Form"
+msgstr "Formularz"
+
+#: ../includes/pro-tab.php:91 ../includes/pro-tab.php:101
+msgid "Event time"
+msgstr "Czas zdarzenia"
+
+#: ../includes/pro-tab.php:109
+msgid "Failed attempt"
+msgstr "Nieudana próba"
+
+#: ../includes/pro-tab.php:129 ../limit-attempts.php:56
+msgid "Upgrade to Pro"
+msgstr ""
+
 #: ../includes/statistics.php:18
-msgid "Number of failed attempts"
-msgstr "Liczba nieudanych prób"
+msgid "Failed Attempts"
+msgstr ""
 
 #: ../includes/statistics.php:19
-msgid "Number of blocks"
-msgstr "Liczba blokad"
+msgid "Blocks"
+msgstr ""
 
 #: ../includes/statistics.php:20
 msgid "Status"
@@ -904,11 +824,11 @@ msgstr "Usuń wpis statystyk"
 
 #: ../includes/statistics.php:114
 msgid "blacklisted"
-msgstr "dodanych do czarnej listy"
+msgstr "zbanowani"
 
 #: ../includes/statistics.php:117
 msgid "whitelisted"
-msgstr "dodanych do białej listy"
+msgstr "niebanowalni"
 
 #: ../includes/statistics.php:120
 msgid "blocked"
@@ -916,7 +836,7 @@ msgstr "zablokowany"
 
 #: ../includes/statistics.php:123
 msgid "not blocked"
-msgstr "niezablokowany"
+msgstr "zablokowany"
 
 #: ../includes/statistics.php:289
 msgid "Statistics has been cleared completely"
@@ -932,11 +852,11 @@ msgstr "Wystąpił błąd w czasie czyszczenia statystyk"
 
 #: ../includes/statistics.php:292
 msgid "Selected statistics entry (entries) has been deleted"
-msgstr "Zaznaczony wpis ze statystyk został usunięty"
+msgstr "Zaznaczony wpis (wpisy) został/y usunięt/e ze statystyk"
 
 #: ../includes/statistics.php:293
 msgid "Error while deleting statistics entry (entries)"
-msgstr "Wystąpił błąd w czasie wpisy statystyk"
+msgstr "Wystąpił błąd w czasie usuwania wpisu (wpisów) ze statystyk"
 
 #: ../includes/statistics.php:322 ../includes/statistics.php:325
 msgid "Total"
@@ -947,110 +867,846 @@ msgid "entry"
 msgid_plural "entries"
 msgstr[0] "wpis"
 msgstr[1] "wpisy"
-msgstr[2] "wpisów"
+msgstr[2] "wpisy"
 
-#: ../includes/statistics.php:356
+#: ../includes/statistics.php:358
 msgid "Are you sure you want to delete all statistics entries?"
 msgstr "Czy na pewno chcesz usunąć wszystkie wpisy ze statystyk?"
 
-#: ../includes/statistics.php:358
+#: ../includes/statistics.php:360
 msgid "Yes, delete these entries"
 msgstr "Tak, usuń te wpisy"
 
-#: ../includes/statistics.php:359
+#: ../includes/statistics.php:361
 msgid "No, go back to the Statistics page"
 msgstr "Wróć do strony ze statystykami"
 
-#: ../includes/statistics.php:375
+#: ../includes/statistics.php:377
 msgid "Clear Statistics"
 msgstr "Czyść statystyki"
 
-#: ../includes/front-end-functions.php:590
-msgid ""
-"some time. Try to reload the page. Perhaps, you already have been unlocked"
+#: ../includes/whitelist.php:280
+msgid "Error while deleting from whitelist"
+msgstr "Wystąpił błąd w czasie usuwania adresu z białej listy"
+
+#: ../includes/whitelist.php:283
+msgid "has been deleted from whitelist"
+msgstr "został usunięty z białej listy"
+
+#: ../includes/whitelist.php:283
+msgid "have been deleted from whitelist"
+msgstr "zostanie usunięty z białej listy"
+
+#: ../limit-attempts.php:43
+msgid "Limit Attempts Blocked"
 msgstr ""
-"czasami. Spróbuj odświeżyć stronę, możliwie, że zostałeś już odblokowany"
 
-#: ../includes/front-end-functions.php:599
-msgid "week"
-msgid_plural "weeks"
-msgstr[0] "tydzień"
-msgstr[1] "tygodnie"
-msgstr[2] "tygodni"
+#: ../limit-attempts.php:45
+msgid "Limit Attempts Black- & Whitelisted"
+msgstr ""
 
-#: ../includes/front-end-functions.php:615
-msgid "second"
-msgid_plural "seconds"
-msgstr[0] "sekunda"
-msgstr[1] "sekundy"
-msgstr[2] "sekund"
+#: ../limit-attempts.php:45
+msgid "Black- & Whitelisted"
+msgstr ""
 
-#: ../includes/front-end-functions.php:625
-msgid "month"
-msgid_plural "months"
-msgstr[0] "miesiąc"
-msgstr[1] "miesiące"
-msgstr[2] "miesięcy"
+#: ../limit-attempts.php:48
+msgid "Limit Attempts Logs"
+msgstr ""
 
-#: ../includes/front-end-functions.php:635
-msgid "year"
-msgid_plural "years"
-msgstr[0] "rok"
-msgstr[1] "lata"
-msgstr[2] "lat"
+#: ../limit-attempts.php:48
+msgid "Logs"
+msgstr ""
 
-#: ../includes/pro-tab.php:23
-msgid "Clear Log"
-msgstr "Wyczyść dziennik"
+#: ../limit-attempts.php:50
+msgid "Limit Attempts Statistics"
+msgstr ""
 
-#: ../includes/pro-tab.php:29 ../includes/pro-tab.php:71
-msgid "Delete log entry"
-msgstr "Usuń wpis dziennika"
+#: ../limit-attempts.php:50
+msgid "Statistics"
+msgstr "Statystyki"
 
-#: ../includes/pro-tab.php:40 ../includes/pro-tab.php:50
-msgid "IP address"
-msgstr "Adresy IP"
+#: ../limit-attempts.php:165 ../limit-attempts.php:459
+#, php-format
+msgid "Retries before lock: %s."
+msgstr ""
 
-#: ../includes/pro-tab.php:41 ../includes/pro-tab.php:51
-msgid "Internet Hostname"
-msgstr "Nazwa hosta"
+#: ../limit-attempts.php:166 ../limit-attempts.php:460
+#, php-format
+msgid "Too many retries. You have been blocked for %s."
+msgstr ""
 
-#: ../includes/pro-tab.php:42 ../includes/pro-tab.php:52
-msgid "Event"
-msgstr "Zdarzenie"
+#: ../limit-attempts.php:167 ../limit-attempts.php:461
+msgid ""
+"You've been added to blacklist. Please contact administrator to resolve this "
+"problem."
+msgstr ""
 
-#: ../includes/pro-tab.php:43 ../includes/pro-tab.php:53
-msgid "Form"
-msgstr "Formularz"
+#: ../limit-attempts.php:169 ../limit-attempts.php:462
+#, php-format
+msgid "%s has been blocked on %s"
+msgstr ""
 
-#: ../includes/pro-tab.php:44 ../includes/pro-tab.php:54
-msgid "Event time"
-msgstr "Czas zdarzenia"
+#: ../limit-attempts.php:170 ../limit-attempts.php:463
+#, php-format
+msgid "%s has been added to the blacklist on %s"
+msgstr ""
 
-#: ../includes/pro-tab.php:62
-msgid "Failed attempt"
-msgstr "Nieudana próba"
+#: ../limit-attempts.php:171 ../limit-attempts.php:464
+#, php-format
+msgid ""
+"IP %s has been blocked automatically on %s due to the excess of login "
+"attempts on your website %s."
+msgstr ""
 
-#: ../includes/pro-tab.php:99
-msgid "For last 24 hours the plugin prevented * hacking attempts."
-msgstr "W ciągu ostatniej doby wtyczka zapobiegła * próbom ataku"
+#: ../limit-attempts.php:171 ../limit-attempts.php:172
+#: ../limit-attempts.php:464 ../limit-attempts.php:465
+#, php-format
+msgid "Using the plugin %s"
+msgstr ""
 
-#: ../includes/pro-tab.php:100
-msgid "For last month the plugin prevented * hacking attempts."
-msgstr "W ciągu ostatniego miesiąca wtyczka zapobiegła * próbom ataku"
+#: ../limit-attempts.php:172 ../limit-attempts.php:465
+#, php-format
+msgid ""
+"IP %s has been added automatically to the blacklist on %s due to the excess "
+"of locks quantity on your website %s."
+msgstr ""
 
-#: ../includes/pro-tab.php:101
-msgid "For last half-year the plugin prevented * hacking attempts."
-msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom ataku"
+#: ../limit-attempts.php:344
+#, php-format
+msgid ""
+"Limit Attempts interaction with Htaccess was turned off since you are using "
+"an outdated Htaccess plugin version. If you want to keep using this "
+"interaction, please update Htaccess plugin at least to v%s."
+msgstr ""
+
+#: ../limit-attempts.php:507
+msgid "FAQ"
+msgstr "FAQ"
+
+#: ../limit-attempts.php:508
+msgid "Support"
+msgstr "Pomoc"
+
+#: ../limit-attempts.php:524
+msgid "Network"
+msgstr "Sieć"
+
+#: ../limit-attempts.php:525
+msgid "Please enable JavaScript in Your browser."
+msgstr ""
+
+#: ../limit-attempts.php:527
+msgid "This option will replace all current settings on separate sites."
+msgstr ""
+"Ta opcja spowoduje zastąpienie wszystkich bieżących ustawień na oddzielnych "
+"stronach."
+
+#: ../limit-attempts.php:563
+msgid ""
+"Limit Login Attempts plugin is activated on your site, as well as Limit "
+"Attempts plugin. Please note that Limit Attempts ensures maximum security "
+"when no similar plugins are activated. Using other plugins that limit user's "
+"login attempts at the same time may lead to undesirable behaviour on your WP "
+"site."
+msgstr ""
+
+#: ../limit-attempts.php:590
+msgid "ATTENTION!"
+msgstr "UWAGA!"
+
+#: ../limit-attempts.php:593
+msgid "Read and Understood"
+msgstr "Przeczytaj i zapamiętaj"
+
+#: ../limit-attempts.php:670
+msgid "Addresses per page"
+msgstr "Ilość adresów na stronę"
+
+#: ../limit-attempts.php:1002
+msgid "Notice"
+msgstr "Uwaga"
+
+#: ../limit-attempts.php:1002
+msgid "Changes are not saved."
+msgstr ""
+
+#~ msgid "can&rsquo;t be added to blacklist."
+#~ msgstr "nie może zostać dodany do czarnej listy"
+
+#~ msgid "Add IP to blacklist"
+#~ msgstr "Dodaj adres IP do czarnej listy"
+
+#~ msgid "The block expires"
+#~ msgstr "Blokada wygada"
+
+#~ msgid "Reset block"
+#~ msgstr "Resetuj blokadę"
+
+#~ msgid "can&rsquo;t be added to whitelist."
+#~ msgstr "nie może zostać dodany do białej listy"
+
+#~ msgid "Blocked IP"
+#~ msgstr "Zablokowane adresy IP"
+
+#~ msgid "Whitelist"
+#~ msgstr "Biała lista"
+
+#~ msgid "Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255."
+#~ msgstr ""
+#~ "Zły format lub adres nie mieści się w przedziale 0.0.0.0 - "
+#~ "255.255.255.255."
+
+#~ msgid "Login form (Captcha)"
+#~ msgstr "Formularz logowania (Captcha)"
+
+#~ msgid "Contact form"
+#~ msgstr "Formularz kontaktowy"
+
+#~ msgid "Subscriber"
+#~ msgstr "Subskrybent"
+
+#~ msgid "Contact Form 7"
+#~ msgstr "Contact Form 7"
+
+#~ msgid "Warning"
+#~ msgstr "Uwaga"
+
+#~ msgid "plugin contains deprecated functions that will be removed"
+#~ msgstr "Wtyczka zawiera nieaktualne funkcje, które zostaną usunięte"
+
+#~ msgid "in the future"
+#~ msgstr "w przyszłości"
+
+#~ msgid "after"
+#~ msgstr "po"
+
+#~ msgid "has compatibility problems with"
+#~ msgstr "wystąpiły problemy kompatybilności z"
+
+#~ msgid "You need to update this plugin for correct work with"
+#~ msgstr "Wymagana jest aktualizacja wtyczki do poprawnej współpracy z"
+
+#~ msgid "Country"
+#~ msgstr "Kraj"
+
+#~ msgid "Range from"
+#~ msgstr "Początek zakresu"
+
+#~ msgid "Range to"
+#~ msgstr "Koniec zakresu"
+
+#~ msgid "Reason"
+#~ msgstr "Powód"
+
+#, fuzzy
+#~ msgid "Update"
+#~ msgstr "Aktualizuj teraz"
+
+#~ msgid "Unknown form"
+#~ msgstr "Nieznany formularz"
+
+#~ msgid "Automatically added after %s block."
+#~ msgid_plural "Automatically added after %s blocks."
+#~ msgstr[0] "Dodany automatycznie po %s blokadzie."
+#~ msgstr[1] "Dodany automatycznie po %s blokadach."
+#~ msgstr[2] "Dodany automatycznie po %s blokadach."
+
+#~ msgid "Last form:"
+#~ msgstr "Ostatnio formularz:"
+
+#~ msgid "Automatically added, because the user has entered the wrong username"
+#~ msgstr "Dodany automatycznie, ponieważ użytkownik podał zły login"
+
+#~ msgid "Form:"
+#~ msgstr "Formularz"
+
+#, fuzzy
+#~ msgid "The reason for %s has been updated successfully"
+#~ msgstr "Listy zostały zostały zaktualizowane poprawnie"
+
+#, fuzzy
+#~ msgid "Error while updating reason for"
+#~ msgstr "Wystąpił błąd w czasie resetowania blokady dla"
+
+#~ msgid "The block started"
+#~ msgstr "Czas rozpoczęcia blokady"
+
+#~ msgid "Total number of failed attempts / last form"
+#~ msgstr "Łączna liczba nieudanych prób"
+
+#~ msgid ""
+#~ "It is prohibited to view Limit Attempts Pro settings on this site in the "
+#~ "Limit Attempts Pro network settings."
+#~ msgstr ""
+#~ "Zabrania się wyświetlania ustawień wtyczki na tej stronie ustawieniach "
+#~ "sieci Limit Attempts Pro."
+
+#~ msgid ""
+#~ "It is prohibited to change Limit Attempts Pro settings on this site in "
+#~ "the Limit Attempts Pro network settings."
+#~ msgstr ""
+#~ "Zabrania się zmiany ustawień wtyczki na tej stronie ustawieniach sieci "
+#~ "Limit Attempts Pro."
+
+#~ msgid "Apply network settings"
+#~ msgstr "Aktywuj ustawienia sieci"
+
+#~ msgid "Apply to all sites and use by default"
+#~ msgstr "Aktywuj dla wszystkich stron i ustaw jako domyślne"
+
+#~ msgid "All current settings on separate sites will be replaced"
+#~ msgstr ""
+#~ "Wszystkie obecne ustawienia na oddzielnych stronach zostaną zastąpione"
+
+#~ msgid "By default"
+#~ msgstr "Domyślnie"
+
+#~ msgid "Settings will be applied to newly added websites by default"
+#~ msgstr "Ustawienia zostaną dodane do nowych stron domyślnie"
+
+#~ msgid "Do not apply"
+#~ msgstr "Nie aktywuj"
+
+#~ msgid "Change the settings on separate sites of the multisite only"
+#~ msgstr "Zmień ustawienia na oddzielnych stronach tylko przy multisite"
+
+#~ msgid "Never been updated yet"
+#~ msgstr "nigdy nie aktualizowano"
+
+#~ msgid "Edit blacklist"
+#~ msgstr "Edytuj czarną listę"
+
+#~ msgid "Edit whitelist"
+#~ msgstr "Edytuj białą listę"
+
+#~ msgid "IP-address(es) were successfully added to the database"
+#~ msgstr "Adres został dodany do bazy danych"
+
+#~ msgid "Invalid data. See allowed formats"
+#~ msgstr "Niepoprawne dane. Sprawdź dozwolone formaty"
+
+#~ msgid "Range"
+#~ msgstr "Zakres"
+
+#~ msgid "is allready in database"
+#~ msgstr "znajduje się już w bazie danych"
+
+#~ msgid "is invalid format. See allowed formats"
+#~ msgstr "ma niedozwolony format. Sprawdź dozwolone formaty"
+
+#~ msgid "Can not add IP-addresses of country"
+#~ msgstr "Nie można dodać adresów państwa"
+
+#~ msgid "Your IP-address was successfully removed from the database"
+#~ msgstr "Twój adres IP został usunięty z bazy danych"
+
+#~ msgid "IP-address(es) were successfully removed from the database"
+#~ msgstr "Adres IP został usunięty z bazy danych"
+
+#~ msgid "Unknown action"
+#~ msgstr "Nieznana operacja"
+
+#~ msgid ""
+#~ "Please enable javascript in order to be able to manage lists of IP "
+#~ "according to the selected country"
+#~ msgstr ""
+#~ "Proszę zezwolić stronie na wykorzystywanie skryptów JavaScript w celu "
+#~ "uruchomienia opcji zarządzania listą IP w zależności od kraju"
+
+#~ msgid "Step 1 of 3: Loading data to the server"
+#~ msgstr "Krok 1 z 3: Ładowanie danych na serwer"
+
+#~ msgid "Step 2 of 3: Creating of temporary files"
+#~ msgstr "Krok 2 z 3: Tworzenie plików tymczasowych"
+
+#~ msgid "Step 3 of 3: Loading data to the database... Processed"
+#~ msgstr "Krok 3 z 3: Ładowanie danych do bazy... Przetwarzanie..."
+
+#~ msgid "Table loading was finished successfully."
+#~ msgstr "Ładowanie tablicy zakończyło się pomyślnie"
+
+#~ msgid "Table loading was held with errors."
+#~ msgstr "Ładowanie tablicy zostało wstrzymane przez nieoczekiwane błędy"
+
+#~ msgid "Country table is not loaded yet"
+#~ msgstr "Lista krajów nie została jeszcze załadowana"
+
+#~ msgid "Last update was carried out"
+#~ msgstr "ostatnia aktualizacja"
+
+#~ msgid ""
+#~ "This option is common to all subdomains.%sWe recommend you do not change "
+#~ "this option without the consent of the administrator of your network."
+#~ msgstr ""
+#~ "Ta opcja jest wspólna dla wszystkich subdoment. %s Zalecamy nie zmieniać "
+#~ "tej opcji bez wiedzy administratora sieci"
+
+#~ msgid ""
+#~ "Not enough rights to import data from the *.csv files. Table loading is "
+#~ "impossible."
+#~ msgstr ""
+#~ "Nie masz wystarczających uprawnień by zaimportować dane z pliku *.csv"
+
+#~ msgid ""
+#~ "Some errors occurred during last table loading. Table was not loaded."
+#~ msgstr ""
+#~ "Wystąpiły błędy podczas ostatniego ładowania tablicy. Tablica nie została "
+#~ "załadowana."
+
+#~ msgid "Last table loading was held with errors."
+#~ msgstr ""
+#~ "Ostatnie ładowanie tablicy zostało wstrzymane przez nieoczekiwane błędy"
+
+#~ msgid "Can not get GeoIP data. Please, try again."
+#~ msgstr "Nie można uzyskać danych GeoIP. Proszę spróbować ponownie."
+
+#~ msgid ""
+#~ "Import was successful, but failed to delete file GeoLite2-Country-CSV.zip"
+#~ msgstr ""
+#~ "Import zakończył się powodzeniem, jednak wystąpiły błędy przy usuwaniu "
+#~ "pliku GeoLite2-Country-CSV.zip"
+
+#~ msgid "Can not get GeoIP data. Please, upload the files manually by link"
+#~ msgstr ""
+#~ "Nie udało się porać danych GeoIP. Proszę wrzucić dane manualnie, poprzez "
+#~ "podanie linku"
+
+#~ msgid "For more info see"
+#~ msgstr "Znajdź więcej informacji w"
+
+#~ msgid "Limit Attempts plugin FAQ"
+#~ msgstr "Limit Attempts FAQ"
+
+#~ msgid "Not enough rights to save the archive into the folder"
+#~ msgstr "Nie masz wystarczających uprawnień by zapisać archiwum do folderu"
+
+#~ msgid "Error while clearing log completely"
+#~ msgstr "Wystąpił błąd w czasie czyszczenia dziennika"
+
+#~ msgid "Log has been cleared completely"
+#~ msgstr "Dziennik został opróżniony"
+
+#~ msgid "Log is already empty"
+#~ msgstr "Dziennik jest pusty"
+
+#~ msgid "Selected log entry (entries) has been deleted"
+#~ msgstr "Zaznaczony wpis został usunięty z dziennika"
+
+#~ msgid "No log entry has been selected"
+#~ msgstr "Nie zaznaczono żadnego wpisu"
+
+#~ msgid "Error while deleting log entry (entries)"
+#~ msgstr "Wystąpił błąd podczas usuwania wpisu (wpisów) z dziennika"
+
+#~ msgid "Are you sure you want to delete all log entries?"
+#~ msgstr "Czy na pewno chcesz usunąć wszystkie wpisy z dziennika?"
+
+#~ msgid "No, go back to the Log page"
+#~ msgstr "Wróć do dziennika"
+
+#~ msgid "Forms not found."
+#~ msgstr "Nie znaleziono formularza."
+
+#~ msgid "For last 24 hours the plugin prevented %s hacking attempts."
+#~ msgstr "W ciągu ostatniej doby wtyczka zapobiegła %s próbom ataku"
+
+#~ msgid "For last month the plugin prevented %s hacking attempts."
+#~ msgstr "W ciągu ostatniego miesiąca wtyczka zapobiegła %s próbom ataku"
+
+#~ msgid "For last half-year the plugin prevented %s hacking attempts."
+#~ msgstr ""
+#~ "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła %s próbom ataku"
+
+#~ msgid "Back"
+#~ msgstr "Powrót"
+
+#~ msgid "All attempts"
+#~ msgstr "Wszystkie próby"
+
+#~ msgid "Failed attempts"
+#~ msgstr "Nieudane próby"
+
+#~ msgid "does not need to be updated"
+#~ msgstr "nie wymaga aktualizacji"
+
+#~ msgid "In progress"
+#~ msgstr "W trakcie"
+
+#~ msgid "Start. Please, wait"
+#~ msgstr "Start. Proszę czekać"
+
+#~ msgid "Processed"
+#~ msgstr "Przetworzono"
+
+#~ msgid "Blacklist and Whitelist were updated successfully"
+#~ msgstr "Listy zostały zostały zaktualizowane poprawnie"
+
+#~ msgid ""
+#~ "IP-addresses of the selected country were successfully added to the "
+#~ "database"
+#~ msgstr ""
+#~ "IP-addresses of the selected country were successfully added to the "
+#~ "database"
+
+#~ msgid ""
+#~ "Limit Attempts Pro interaction with Htaccess was turned off since you are "
+#~ "using an outdated Htaccess plugin version. If you want to keep using this "
+#~ "interaction, please update Htaccess plugin at least to v 1.6.2."
+#~ msgstr ""
+#~ "Współpraca Limit Attempts Pro z Htaccess została wyłączona ze względu na "
+#~ "nieaktualną wersję Htaccess. Jeśli chcesz utrzymać współpracę między "
+#~ "wtyczkami zainstaluj najnowszą wersję Htaccess - v 1.6.2"
+
+#~ msgid ""
+#~ "Limit Login Attempts plugin is activated on your site, as well as Limit "
+#~ "Attempts Pro plugin. Please note that Limit Attempts Pro ensures maximum "
+#~ "security when no similar plugins are activated. Using other plugins that "
+#~ "limit user's login attempts at the same time may lead to undesirable "
+#~ "behaviour on your WP site."
+#~ msgstr ""
+#~ "Na twojej stronie znajduje się włączona wtyczka Limit Login Attemps, "
+#~ "niestety koliduje to z ustawieniami Limit Attemps Pro. Proszę wziąć pod "
+#~ "uwagę, że Limit Attemps Pro gwarantuje największą skuteczność jeśli "
+#~ "strona nie posiada włączonej podobnej wtyczki. Jednoczesne "
+#~ "wykorzystywanie kilku wtyczek o podobnym działaniu może wywołać "
+#~ "niepożądane zachowania na twojej stronie."
+
+#~ msgid "Limit Attempts Pro Settings"
+#~ msgstr "Limit Attempts - Ustawienia"
+
+#~ msgid "Subject have been restored to default"
+#~ msgstr "Przywrócono domyślny temat"
+
+#~ msgid "Message have been restored to default"
+#~ msgstr "Przywrócono domyślną wiadomość"
+
+#~ msgid "All plugin settings were restored."
+#~ msgstr "Wszystkie ustawienia wtyczki zostały przywrócone."
+
+#~ msgid "Log"
+#~ msgstr "Dziennik"
+
+#~ msgid "Summaries"
+#~ msgstr "Podsumowanie"
+
+#~ msgid "Allow to change the settings on separate websites"
+#~ msgstr "Zezwól na zmianę ustawień na oddzielnych stronach"
+
+#~ msgid "Allow to view the settings on separate websites"
+#~ msgstr "Zezwól na wyświetlanie ustawień na oddzielnych stronach"
+
+#~ msgid "Block address"
+#~ msgstr "Blokada adresu"
+
+#~ msgid "for"
+#~ msgstr "na okres"
+
+#, fuzzy
+#~ msgctxt "number"
+#~ msgid "after"
+#~ msgstr "po"
+
+#~ msgid "failed attempt"
+#~ msgid_plural "failed attempts"
+#~ msgstr[0] "nieudanej próbie"
+#~ msgstr[1] "nieudanych próbach"
+#~ msgstr[2] "nieudanych próbach"
+
+#, fuzzy
+#~ msgid "Reset the number of"
+#~ msgstr "Ilość blokad"
+
+#~ msgid "failed attempts"
+#~ msgstr "nieudanych próbach"
+
+#, fuzzy
+#~ msgid ""
+#~ "Time to reset the number of failed attempts after the last failed attempt"
+#~ msgstr "Łączna liczba nieudanych prób"
+
+#, fuzzy
+#~ msgid "blockings"
+#~ msgstr "blokadzie"
+
+#~ msgid "Add to the blacklist"
+#~ msgstr "Dodaj do czarnej listy"
+
+#~ msgid "If user tried to log in with a non-existent username"
+#~ msgstr ""
+#~ "W przypadku próby logowania z wykorzystaniem nieistniejącej nazwy "
+#~ "użytkownika"
+
+#~ msgid "according to \"Block address\" and \"Add to the blacklist\" options"
+#~ msgstr "odwołaj się do ustawień listy"
+
+#~ msgid "block address immediately"
+#~ msgstr "natychmiastowo blokuj adres"
+
+#~ msgid "add to the blacklist immediately"
+#~ msgstr "natychmiastowo dodaj adres do czarnej listy"
+
+#~ msgid "Remove log entries that are over"
+#~ msgstr "Usuń wpisy z dziennika po upływie"
+
+#~ msgid "Current size of DB table"
+#~ msgstr "Obecny rozmiar tablicy w bazie danych"
+
+#~ msgid "Remove statistics entry in case no failed attempts occurred for"
+#~ msgstr ""
+#~ "Usuń adres ze statystyk w przypadku braku logowań zakończonych "
+#~ "niepowodzeniem w przeciągu"
+
+#~ msgid "Error messages"
+#~ msgstr "Komunikaty"
+
+#~ msgid "Hide"
+#~ msgstr "Ukryj"
+
+#~ msgid "Show"
+#~ msgstr "Pokaż"
+
+#~ msgid "For invalid attempt"
+#~ msgstr "Dla nieudanej próby"
+
+#~ msgid "For blocked user"
+#~ msgstr "Dla zablokowanego użytkownika"
+
+#~ msgid "For blacklisted user"
+#~ msgstr "Dla użytkownika z czarnej listy"
+
+#~ msgid "For non-existent blacklisted user"
+#~ msgstr "Dla nieistniejącego użytkownika z czarnej listy"
+
+#~ msgid "For non-existent blocked user"
+#~ msgstr "Dla nieistniejącego zablokowanego użytkownika"
+
+#~ msgid "display quantity of allowed attempts"
+#~ msgstr "wyświetla ilość prób, które pozostały"
+
+#~ msgid "Restore default message"
+#~ msgstr "Przywróć wiadomość domyślną"
+
+#~ msgid "You can use standard HTML tags and attributes."
+#~ msgstr "Możesz wykorzystać standardowe tagi i atrybuty HTML."
+
+#~ msgid "display date when block is removed"
+#~ msgstr "wyświetla czas kiedy użytkownik zostanie odblokowany"
+
+#~ msgid "display administrator&rsquo;s email for feedback"
+#~ msgstr "wyświetla adres administratora w celu udzielenia wsparcia"
+
+#~ msgid "Send email with notification"
+#~ msgstr "Wyślij wiadomość z powiadomieniem"
+
+#~ msgid "Email to user's address"
+#~ msgstr "Wiadomość na adres użytkownika"
+
+#~ msgid "Email to another address"
+#~ msgstr "Wiadomość na inny adres"
+
+#~ msgid "Additional options for email with notification"
+#~ msgstr "Dodatkowe opcje do wiadomości z powiadomieniem"
+
+#~ msgid "Email to admistrator when user is blocked"
+#~ msgstr "Wiadomość do administratora kiedy użytkownik zostanie zablokowany"
+
+#~ msgid "Email to admistrator when user is blacklisted"
+#~ msgstr ""
+#~ "Wiadomość do administratora kiedy użytkownik zostanie umieszczony na "
+#~ "czarnej liście"
+
+#~ msgid "display blocked IP address"
+#~ msgstr "wyświetla zablokowany adres IP"
+
+#~ msgid "display name of your site"
+#~ msgstr "wyświetla nazwę strony"
+
+#~ msgid "Restore default subject"
+#~ msgstr "Przywróć domyślny temat"
+
+#~ msgid "display blacklisted IP address"
+#~ msgstr "wyświetla zablokowane adresy IP"
+
+#~ msgid "display IP address that is blocked"
+#~ msgstr "wyświetla adres IP, który został zablokowany"
+
+#~ msgid "display link for Limit Attempts Pro plugin on your site"
+#~ msgstr "wyświetla link do wtyczki Limit Attempts Pro na twojej stronie"
+
+#~ msgid "display date and time when IP address was blocked"
+#~ msgstr "wyświetla czas kiedy adres IP został zablokowany"
+
+#~ msgid "display your site's URL"
+#~ msgstr "wyświetla adres twojej strony"
+
+#~ msgid "display IP address that is added to the blacklist"
+#~ msgstr "wyświetla adres IP, który został dodany do czarnej listy"
+
+#~ msgid "display date and time when IP address was blacklisted"
+#~ msgstr "wyświetla czas kiedy adres IP został dodany do czarnej listy"
+
+#~ msgid "Htaccess plugin"
+#~ msgstr "Wtyczka Htaccess"
+
+#, fuzzy
+#~ msgid "Using %s"
+#~ msgstr "Używasz"
+
+#~ msgid "Activate %s"
+#~ msgstr "Aktywuj %s"
+
+#, fuzzy
+#~ msgid "Download %s"
+#~ msgstr "Pobierz Htaccess"
+
+#~ msgid ""
+#~ "When you turn on this option, all IPs from the blocked list and from the "
+#~ "blacklist will be added to the direction \"deny from\" of file .htaccess. "
+#~ "IP addresses, which then will be added to the blocked list or to the "
+#~ "blacklist, also will be added to the direction \"deny from\" of the file ."
+#~ "htaccess automatically"
+#~ msgstr ""
+#~ "W przypadku uruchomienia tej opcji wszystkie zablokowane adresy oraz te "
+#~ "znajdujące się na czarnej liście zostanę przekazane sekcji 'zabroń z' w "
+#~ "pliku .htaccess. Wszystkie nowe adresy również zostaną natychmiastowo "
+#~ "przeniesione do pliku htaccess"
+
+#~ msgid "Allow Htaccess plugin block IP to reduce the database workload."
+#~ msgstr ""
+#~ "Pozwól Htaccess na blokowanie adresów IP w celu zmniejszenia rozmiaru "
+#~ "bazy danych."
+
+#~ msgid "Captcha plugin"
+#~ msgstr "Wtyczka Captcha"
+
+#~ msgid "Consider the incorrect captcha input as an invalid attempt"
+#~ msgstr "Zliczaj błędne kody Captcha jako nieudane próby."
+
+#~ msgid ""
+#~ "Hide login/register/lostpassword forms for blocked or blacklisted IPs"
+#~ msgstr ""
+#~ "Ukryj formularz logowania/rejestracji/przywracania hasła dla użytkowników "
+#~ "zablokowanych i znajdujących się na czarnej liście"
+
+#~ msgid "Update whitelist and blacklist"
+#~ msgstr "Aktualizuj listy"
+
+#~ msgid "Update now"
+#~ msgstr "Aktualizuj teraz"
+
+#~ msgid ""
+#~ "This option allows you to update your whitelist and blacklist to "
+#~ "establish IP address belonging. You can select the desired frequency for "
+#~ "updating"
+#~ msgstr ""
+#~ "Opcja ta pozwala na aktualizację list. Możesz ustawić własną "
+#~ "częstotliwość aktualizacji."
+
+#~ msgid "Please note"
+#~ msgstr "Uwaga:"
+
+#~ msgid ""
+#~ "because of the potentially large amount of information being processed, "
+#~ "automatically updating will occur in parts in background mode"
+#~ msgstr ""
+#~ "ze względu na możliwość wystąpienia dużej ilości danych do przetworzenia "
+#~ "proces zostanie uruchomiony w tle"
+
+#~ msgid ""
+#~ "If you need to update the whitelist and blacklist completely and "
+#~ "immediately, please click on the \"Update now\" button and wait until the "
+#~ "operation is finished"
+#~ msgstr ""
+#~ "Jeśli potrzebujesz wykonać aktualizację list w tej chwili naciśnij "
+#~ "przycisk \"Aktualizuj teraz\" i poczekać do końca operacji"
+
+#~ msgid ""
+#~ "Due to the fact that JavaScript is disabled, whitelist and blacklist will "
+#~ "be updated via wp_cron"
+#~ msgstr ""
+#~ "Z uwagi na fakt, że zablokowano JavaScript listy zostaną zaktualizowane "
+#~ "przy użyciu wp_cron"
+
+#~ msgid "Read more about"
+#~ msgstr "Przeczytaj więcej o"
+
+#~ msgid "Save Changes"
+#~ msgstr "Zapisz zmiany"
+
+#~ msgid "Subject has been restored to default"
+#~ msgstr "Przywrócono domyślny temat"
+
+#~ msgid "Message has been restored to default"
+#~ msgstr "Przywrócono domyślną wiadomość"
+
+#~ msgid "Changes are not saved"
+#~ msgstr "Zmiany nie zostały zapisane"
+
+#~ msgid "Update GeoIP"
+#~ msgstr "Aktualizuj GeoIP"
+
+#~ msgid "every"
+#~ msgstr "co"
+
+#~ msgid ""
+#~ "This option allows you to download lists with registered IP addresses all "
+#~ "over the world to the database (from"
+#~ msgstr ""
+#~ "Ta opcja zezwala na pobieranie listy adresów IP zarejestrowanych na całym "
+#~ "świecie do bazy danych (z"
+
+#~ msgid ""
+#~ "With this, you receive an information about each IP address, and to which "
+#~ "country it belongs to. You can select the desired frequency for IP "
+#~ "database updating"
+#~ msgstr ""
+#~ "Dzięki temu otrzymujesz informację na temat każdego adres IP, oraz "
+#~ "informację z którego kraju pochodzi. Możesz wybrać żądaną częstotliwość "
+#~ "aktualizacji bazy danych"
+
+#~ msgid ""
+#~ "If you need to update GeoIP immediately, please click on the \"Update now"
+#~ "\" button and wait until the operation is finished"
+#~ msgstr ""
+#~ "Jeśli potrzebujesz natychmiastowej aktualizacji bazy proszę nacisnąć "
+#~ "\"Aktualizuj teraz\" i poczekać do zakończenia operacji"
+
+#~ msgid ""
+#~ "Due to the fact that JavaScript is disabled, GeoIP will be updated via "
+#~ "wp_cron"
+#~ msgstr ""
+#~ "Z uwagi na fakt, że zablokowano JavaScript GeoIP zostanie zaktuwalizowane "
+#~ "przy użyciu wp_cron"
+
+#~ msgid "Date added"
+#~ msgstr "Data dodania"
+
+#~ msgid "Remove from blacklist"
+#~ msgstr "Usuń z czarnej listy"
+
+#~ msgid "Added to blacklist"
+#~ msgstr "Dodany do czarnej listy"
+
+#~ msgid "Remove from whitelist"
+#~ msgstr "Usuń z białej listy"
+
+#~ msgid "Number of failed attempts"
+#~ msgstr "Ilość nieudanych prób"
+
+#~ msgid "Number of blocks"
+#~ msgstr "Ilość blokad"
 
 #, fuzzy
 #~ msgid "Reset the number of failed attempts"
-#~ msgstr "Liczba nieudanych prób"
+#~ msgstr "Ilość nieudanych prób"
 
 #, fuzzy
 #~ msgctxt "time"
 #~ msgid "after"
 #~ msgstr "po"
+
+#~ msgid "has old version"
+#~ msgstr "starsza wersja"
 
 #~ msgid "hours"
 #~ msgstr "godziny"
@@ -1061,8 +1717,13 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ msgid "blocks"
 #~ msgstr "blokadach"
 
-#~ msgid "Notice"
-#~ msgstr "Uwaga"
+#, fuzzy
+#~ msgid "WooCommerce Lost Password Form"
+#~ msgstr "Formularz resetowania hasła"
+
+#, fuzzy
+#~ msgid " WooCommerce Lost Password Form"
+#~ msgstr "Formularz resetowania hasła"
 
 #~ msgid ""
 #~ "With such \"Block address\" and \"Add to the blacklist\" options` "
@@ -1084,11 +1745,17 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ msgid "Activate Htaccess"
 #~ msgstr "Aktywuj Htaccess"
 
+#~ msgid "Update Subscriber at least to v.1.1.3"
+#~ msgstr "Aktualuzuj Subscriber do wersji v 1.1.3"
+
 #~ msgid "Using Captcha Pro powered by"
 #~ msgstr "Wykorzystaj Captcha Pro stworzone przez"
 
 #~ msgid "Update Captcha Pro at least to v.1.4.4"
 #~ msgstr "Aktualizuj Captcha Pro do wersji v 1.4.4"
+
+#~ msgid "Using Captcha powered by"
+#~ msgstr "Wykorzystaj Captcha stworzone przez"
 
 #~ msgid "Update Captcha at least to v.4.0.2"
 #~ msgstr "Aktualizuj Captcha do wersji v 4.0.2"
@@ -1099,14 +1766,51 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ msgid "Download Captcha"
 #~ msgstr "Pobierz Captcha"
 
-#~ msgid "Contact form by BestWebSoft"
-#~ msgstr "Contact form by BestWebSoft"
+#, fuzzy
+#~ msgid "No country has been selected"
+#~ msgstr "Nie zaznaczono żadnego wpisu"
 
-#~ msgid "Subscriber by BestWebSoft"
-#~ msgstr "Subscriber by BestWebSoft"
+#, fuzzy
+#~ msgid ""
+#~ "Wrong format or it does not lie in range 0.0.0.0 - 255.255.255.255. "
+#~ "Allowed formats:"
+#~ msgstr ""
+#~ "Zły format lub adres nie mieści się w przedziale 0.0.0.0 - "
+#~ "255.255.255.255. Dozwolone formaty"
 
-#~ msgid "Contact Form 7"
-#~ msgstr "Contact Form 7"
+#~ msgid "have been added to blacklist"
+#~ msgstr "zostanie usunięty z czarnej listy"
+
+#~ msgid "This IP address or mask has already been added to blacklist"
+#~ msgstr "Podany adres IP lub maska znajduje się już na czarnej liście"
+
+#, fuzzy
+#~ msgid "This country has already been added to blacklist"
+#~ msgstr "Podany adres IP lub maska znajduje się już na czarnej liście"
+
+#~ msgid ""
+#~ "This IP address or mask is in whitelist too, please check this to avoid "
+#~ "errors"
+#~ msgstr ""
+#~ "Podany adres IP został już umieszczony na białej liście, proszę sprawdzić "
+#~ "podłoże błędu."
+
+#~ msgid "have been added to whitelist"
+#~ msgstr "zostanie usunięty z białej listy"
+
+#~ msgid "This IP address or mask has already been added to whitelist"
+#~ msgstr "Podany adres IP lub maska znajduje się już na białej liście"
+
+#, fuzzy
+#~ msgid "This country address or mask has already been added to whitelist"
+#~ msgstr "Podany adres IP lub maska znajduje się już na białej liście"
+
+#~ msgid ""
+#~ "This IP address or mask is in blacklist too, please check this to avoid "
+#~ "errors"
+#~ msgstr ""
+#~ "Podany adres IP został już umieszczony na czarnej liście, proszę "
+#~ "sprawdzić podłoże błędu."
 
 #~ msgid ""
 #~ "Allowed retries must be numeric, it was automatically changed to the "
@@ -1182,7 +1886,7 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ "Days to reset the number of tries must be numeric, it was automatically "
 #~ "changed to the previous value"
 #~ msgstr ""
-#~ "Ilość dni do czasu resetu ilości prób musi być wartością liczbową, "
+#~ "Ilość dni do czasu resetu ilości prób muszą być wartością liczbową, "
 #~ "automatycznie przywrócono poprzednią wartość"
 
 #~ msgid ""
@@ -1196,7 +1900,7 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ "Hours to reset the number of tries must be numeric, it was automatically "
 #~ "changed to the previous value"
 #~ msgstr ""
-#~ "Ilość godzin do czasu resetu ilości prób musi być wartością liczbową, "
+#~ "Ilość godzin do czasu resetu ilości prób muszą być wartością liczbową, "
 #~ "automatycznie przywrócono poprzednią wartość"
 
 #~ msgid ""
@@ -1224,7 +1928,7 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ "Minutes to reset the number of tries can&rsquo;t be negative, it was "
 #~ "automatically changed to the previous value"
 #~ msgstr ""
-#~ "Ilość minut do czasu resetu ilości prób nie może być mniejsza od zera, "
+#~ "Ilość minut do czasu resetu ilości prób muszą być wartością liczbową, "
 #~ "automatycznie przywrócono poprzednią wartość"
 
 #~ msgid ""
@@ -1301,21 +2005,35 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ "Minutes to reset the number of locks can&rsquo;t be more than 59, it was "
 #~ "automatically changed to the max value"
 #~ msgstr ""
-#~ "Ilość minut do czasu resetu ilości blokad nie może być większa niż 59, "
+#~ "Ilość minut do czasu resetu ilości blokad nie może być mniejsza od zera, "
 #~ "automatycznie przywrócono poprzednią wartość"
 
 #~ msgid ""
-#~ "Days to clear statistics must be numeric, it was automatically changed to "
+#~ "Days to clear the log must be numeric, it was automatically changed to "
 #~ "the previous value"
 #~ msgstr ""
-#~ "Ilość dni odstępu między czyszczeniem statystyk musi być wartością "
-#~ "liczbowa, automatycznie przywrócono poprzednią wartość"
+#~ "Ilość dni przetrzymywania wpisów w dzienniku musi być wartością liczbowa, "
+#~ "automatycznie przywrócono poprzednią wartość"
 
 #~ msgid ""
-#~ "Days to clear statistics can&rsquo;t be negative, it was automatically "
+#~ "Days to clear the log can&rsquo;t be negative, it was automatically "
 #~ "changed to the previous value"
 #~ msgstr ""
-#~ "Ilość dni odstępu między czyszczeniem statystyk nie może być mniejsza od "
+#~ "Ilość dni przetrzymywania wpisów w dzienniku nie może być mniejsza od "
+#~ "zera, automatycznie przywrócono poprzednią wartość"
+
+#~ msgid ""
+#~ "'Days to remove statistics entry' must be numeric, it was automatically "
+#~ "changed to the previous value"
+#~ msgstr ""
+#~ "'Ilość dni do usunięcia wpisu ze statystyk' musi być wartością liczbową, "
+#~ "automatycznie przywrócono poprzednią wartość"
+
+#~ msgid ""
+#~ "'Days to remove statistics entry' can't be negative, it was automatically "
+#~ "changed to the previous value"
+#~ msgstr ""
+#~ "'Ilość dni do usunięcia wpisu ze statystyk' nie może być mniejsza od "
 #~ "zera, automatycznie przywrócono poprzednią wartość"
 
 #~ msgid "Wrong email, it was automatically changed to the previous value"
@@ -1348,9 +2066,6 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ msgid "is in the following entries"
 #~ msgstr "znajduje się w następujących wpisach"
 
-#~ msgid "Go"
-#~ msgstr "Przejdź na"
-
 #~ msgid ""
 #~ "The plugin's settings have been changed. In order to save them please "
 #~ "don't forget to click the 'Save Changes' button."
@@ -1358,14 +2073,8 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ "Ustawienia wtyczki zostały zmienione. Nie zapomnij kliknąć na przycisk "
 #~ "'Zapisz zmiany' przed opuszczeniem strony."
 
-#~ msgid "Diapason from"
-#~ msgstr "Początek przedziału"
-
 #~ msgid "Diapason till"
-#~ msgstr "Koniec przedziału"
-
-#~ msgid "Limit Attempts"
-#~ msgstr "Limit Attempts"
+#~ msgstr "Konic przedziału"
 
 #~ msgid "requires"
 #~ msgstr "wymaga"
@@ -1380,98 +2089,58 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ msgid "Back to the WordPress"
 #~ msgstr "Wróć do WordPressa"
 
-#~ msgid "Wrong license key"
-#~ msgstr "Błędny klucz licencji"
-
 #~ msgid ""
 #~ "Something went wrong. Try again later. If the error will appear again, "
-#~ "please, contact us <a href=http://support.bestwebsoft.com>BestWebSoft</"
+#~ "please, contact us <a href=https://support.bestwebsoft.com>BestWebSoft</"
 #~ "a>. We are sorry for inconvenience."
 #~ msgstr ""
 #~ "Coś poszło nie tak jak powinno. Spróbuj ponownie później. Jeśli błędy "
 #~ "pojawią się ponownie daj nam znać - <a href=http://support.bestwebsoft."
 #~ "com>BestWebSoft</a>. Przepraszamy za niedogodności. "
 
+#~ msgid "Wrong license key!"
+#~ msgstr "Błędny klucz licencji!"
+
 #~ msgid "This license key is bind to another site"
 #~ msgstr "Ten klucz został przypisany do innej strony"
 
 #~ msgid ""
 #~ "This license key is valid, but Your license has expired. If you want to "
-#~ "use our plugin in future, you should extend the license."
+#~ "update our plugin in future, you should extend the license."
 #~ msgstr ""
 #~ "Twój klucz licencji jest poprawny, jednak już wygasł. Jeśli chcesz używać "
 #~ "naszej wtyczki w przyszłości powinieneś przedłużyć licencję."
 
+#~ msgid "Unfortunately, you have exceeded the number of available tries."
+#~ msgstr "Niestety, przekroczono liczbę dostępnych prób."
+
+#~ msgid "The license key is valid. Your license will expire on"
+#~ msgstr "Klucz licencji jest poprawny. Twoja licencja wygaśnie"
+
+#~ msgid "The license key is valid."
+#~ msgstr "Klucz licencji jest poprawny."
+
+#~ msgid "Please, enter your license key"
+#~ msgstr "Podaj swój klucz licencji"
+
 #~ msgid ""
-#~ "Unfortunately, you have exceeded the number of available tries. Please, "
-#~ "upload the plugin manually."
+#~ "If needed you can check if the license key is correct or reenter it in "
+#~ "the field below. You can find your license key on your personal page - "
+#~ "Client area - on our website"
 #~ msgstr ""
-#~ "Niestety, przekroczono liczbę dostępnych prób. Proszę przesłać wtyczki "
-#~ "ręcznie."
-
-#~ msgid "Failed to open the zip archive. Please, upload the plugin manually"
-#~ msgstr "Nieudało się otworzyć archiwum zip. Proszę dodać wtyczkę manualnie."
+#~ "Jeśli istnieje taka potrzeba możesz sprawdzić klucz licencji lub wpisać "
+#~ "go ponownie w polu poniżej. Możesz znaleźć swój klucz licencji na "
+#~ "przygotowanej dla ciebie karcie w - Client area - na naszej stronie"
 
 #~ msgid ""
-#~ "Your server does not support either ZipArchive or Phar. Please, upload "
-#~ "the plugin manually"
+#~ "(your username is the email you specify when purchasing the product). If "
+#~ "necessary, please submit \"Lost your password?\" request."
 #~ msgstr ""
-#~ "Twój serwer nie ma wsparcia dla ZipArchive ani Phar. Proszę dodać wtyczkę "
-#~ "manualnie."
+#~ "(twój login to adres email podany podczas zakupu produktu). Jeśli nie "
+#~ "pamiętasz hasła wypełnij formularz  \"Lost your password?\"."
 
-#~ msgid ""
-#~ "Failed to download the zip archive. Please, upload the plugin manually"
-#~ msgstr ""
-#~ "Wystąpił problem przy pobieraniu archiwum zip. Spróbuj dodać wtyczkę "
-#~ "manualnie."
-
-#~ msgid ""
-#~ "Something went wrong. Try again later or upload the plugin manually. We "
-#~ "are sorry for inconvienience."
-#~ msgstr ""
-#~ "Coś poszło nie tak. Spróbuj ponownie później lub wrzuć wtyczkę ręcznie. "
-#~ "Przepraszamy za niedogodności."
-
-#~ msgid "Please, enter Your license key"
-#~ msgstr "Podaj swój numer licencji"
-
-#~ msgid ""
-#~ "Congratulations! The PRO version of the plugin is successfully download "
-#~ "and activated."
-#~ msgstr "Gratulacje! Wersja PRO została pomyślnie pobrana i aktywowana."
-
-#~ msgid "the setting page"
-#~ msgstr "strona z ustawieniami"
-
-#~ msgid "You will be redirected automatically in 5 seconds."
-#~ msgstr "Zostaniesz przekierowany automatycznie w ciągu 5 sekund."
-
-#~ msgid "You can download and activate"
-#~ msgstr "Możesz pobrać i aktywować wersję"
-
-#~ msgid "version of this plugin by entering Your license key."
-#~ msgstr "swojej wtyczki przez podanie klucza licencji."
-
-#~ msgid ""
-#~ "You can find your license key on your personal page Client area, by "
-#~ "clicking on the link"
-#~ msgstr ""
-#~ "Możesz znaleźć swój klucz licencji na spersonalizowanej dla Ciebie "
-#~ "stronie klienta, poprzez kliknięcie na link"
-
-#~ msgid ""
-#~ "(your username is the email you specify when purchasing the product)."
-#~ msgstr "(twój login to adres email podany podczas zakupu produktu)."
-
-#~ msgid "Activate"
-#~ msgstr "Aktywuj"
-
-#~ msgid ""
-#~ "Unfortunately, you have exceeded the number of available tries per day. "
-#~ "Please, upload the plugin manually."
-#~ msgstr ""
-#~ "Niestety, przekroczono liczbę dostępnych prób na dzień dzisiejszy. Proszę "
-#~ "przesłać wtyczki ręcznie."
+#~ msgid "Check license key"
+#~ msgstr "Sprawdź klucz licencji"
 
 #~ msgid "If you enjoy our plugin, please give it 5 stars on WordPress"
 #~ msgstr "Jeśli podoba Ci się nasza wtyczka daj nam 5 gwiazdek"
@@ -1483,12 +2152,38 @@ msgstr "W ciągu ostatnich sześciu miesięcy wtyczka zapobiegła * próbom atak
 #~ msgstr "Jeśli coś jest nie tak jak powinno, prosimy dać nam znać"
 
 #~ msgid ""
-#~ "It's time to upgrade your <strong>Limit Attempts</strong> to <strong>PRO</"
-#~ "strong> version"
+#~ "WARNING: We have noticed illegal use of our plugin by you. We strongly "
+#~ "recommend you to solve the problem within 24 hours, otherwise the plugin "
+#~ "will be deactivated. Please go to your personal"
 #~ msgstr ""
-#~ "Czas na aktualizację <strong>Limit Attempts</strong> do wersji "
-#~ "<strong>PRO</strong>"
+#~ "UWAGA: Odnotowaliśmy, że wykorzystujesz naszą wtyczkę w sposób "
+#~ "nielegalny. Radzimy rozwiązać powyższy problem w przeciągu 24 godzin, w "
+#~ "przeciwnym wypadku wtyczka zostanie zablokowana. Prosimy przejść do "
+#~ "ustawień"
 
-#~ msgid "Extend standard plugin functionality with new great options"
+#~ msgid ""
+#~ "(your username is the email you specify when purchasing the product), "
+#~ "where you can make the necessary changes."
 #~ msgstr ""
-#~ "Rozszerz podstawowe funkcje wtyczki o nowe wspaniałe funkcjonalności"
+#~ "(twój login to adres email podany przy zakupie produktu), gdzie możesz "
+#~ "dokonać niezbędnych zmian."
+
+#~ msgid ""
+#~ "Your license has expired. To continue getting top-priority support and "
+#~ "plugin updates you should extend it."
+#~ msgstr ""
+#~ "Twoja licencja wygasła. Aby zachować szybki dostęp do wsparcia i "
+#~ "aktualizacji powinieneś ją przedłużyć."
+
+#~ msgid "Learn more"
+#~ msgstr "Czytaj dalej"
+
+#~ msgid "You license for"
+#~ msgstr "Twoja licencja na"
+
+#~ msgid "expires on"
+#~ msgstr "wygasa"
+
+#~ msgid "and you won't be granted TOP-PRIORITY SUPPORT or UPDATES."
+#~ msgstr ""
+#~ "i nie będziesz miał już dostępu do SZYBKIEJ POMOCY oraz do AKTUALIZACJI."
