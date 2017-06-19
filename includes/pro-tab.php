@@ -60,9 +60,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 								</div>
 							<?php } elseif ( 'summaries' == $what ) { ?>
 								<div>
-									<img class="lmtttmpts_activity" src="<?php echo plugins_url( '../images/activity.png', __FILE__ ); ?>" alt="" />
 									<img class="lmtttmpts_attempts" src="<?php echo plugins_url( '../images/attempts.png', __FILE__ ); ?>" alt="" />
-									<div class="clear"></div>
 								</div>							
 							<?php } elseif ( 'log' == $what ) { ?>
 								<p class="search-box">

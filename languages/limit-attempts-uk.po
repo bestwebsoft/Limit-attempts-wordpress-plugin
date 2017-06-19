@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Limit Attempts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-14 17:41+0200\n"
+"POT-Creation-Date: 2017-06-19 09:18+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: BestWebSoft team <wp@bestwebsoft.com>\n"
 "Language-Team: bestwebsoft.com <support@bestwebsoft.com>\n"
@@ -80,7 +80,7 @@ msgstr "Остання сторінка"
 #: ../includes/edit-list-form.php:66 ../includes/edit-list-form.php:69
 #: ../includes/edit-list-form.php:98 ../includes/edit-list-form.php:101
 #: ../includes/statistics.php:287 ../includes/whitelist.php:275
-#: ../limit-attempts.php:527 ../limit-attempts.php:563
+#: ../limit-attempts.php:501 ../limit-attempts.php:537
 msgid "Notice:"
 msgstr "Увага:"
 
@@ -151,8 +151,8 @@ msgid "Search IP"
 msgstr "Шукати IP"
 
 #: ../includes/class-lmtttmpts-settings.php:25 ../limit-attempts.php:41
-#: ../limit-attempts.php:490 ../limit-attempts.php:506
-#: ../limit-attempts.php:524
+#: ../limit-attempts.php:464 ../limit-attempts.php:480
+#: ../limit-attempts.php:498
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -176,11 +176,11 @@ msgstr "Користувацький код"
 msgid "License Key"
 msgstr "Ліцензійний ключ"
 
-#: ../includes/class-lmtttmpts-settings.php:158 ../limit-attempts.php:996
+#: ../includes/class-lmtttmpts-settings.php:158 ../limit-attempts.php:970
 msgid "Email notifications have been restored to default."
 msgstr "Емейл повідомлення були відновлені до налаштувань за замовчуванням."
 
-#: ../includes/class-lmtttmpts-settings.php:161 ../limit-attempts.php:999
+#: ../includes/class-lmtttmpts-settings.php:161 ../limit-attempts.php:973
 msgid "Messages have been restored to default."
 msgstr "Повідомлення були відновлені до налаштувань за замовчуванням."
 
@@ -221,7 +221,7 @@ msgstr "Блокувати IP-адресу на"
 #: ../includes/class-lmtttmpts-settings.php:248
 #: ../includes/class-lmtttmpts-settings.php:254
 #: ../includes/front-end-functions.php:570
-#: ../includes/front-end-functions.php:591 ../limit-attempts.php:964
+#: ../includes/front-end-functions.php:591 ../limit-attempts.php:938
 msgid "day"
 msgid_plural "days"
 msgstr[0] "день"
@@ -235,7 +235,7 @@ msgstr[3] "день"
 #: ../includes/class-lmtttmpts-settings.php:236
 #: ../includes/class-lmtttmpts-settings.php:249
 #: ../includes/class-lmtttmpts-settings.php:255
-#: ../includes/front-end-functions.php:574 ../limit-attempts.php:968
+#: ../includes/front-end-functions.php:574 ../limit-attempts.php:942
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "годину"
@@ -249,7 +249,7 @@ msgstr[3] "годину"
 #: ../includes/class-lmtttmpts-settings.php:237
 #: ../includes/class-lmtttmpts-settings.php:250
 #: ../includes/class-lmtttmpts-settings.php:256
-#: ../includes/front-end-functions.php:578 ../limit-attempts.php:972
+#: ../includes/front-end-functions.php:578 ../limit-attempts.php:946
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "хвилину"
@@ -265,8 +265,9 @@ msgstr "Редагувати"
 
 #: ../includes/class-lmtttmpts-settings.php:221
 #, php-format
-msgid "Time IP address will be blocked for (default is %d)."
-msgstr "Час, на який IP-адресу буде заблоковано (за замовчуванням - %d)."
+msgid "Time IP address will be blocked for (default is %d minutes)."
+msgstr ""
+"Час, на який IP-адресу буде заблоковано (за замовчуванням - %d хвилин)."
 
 #: ../includes/class-lmtttmpts-settings.php:226
 msgid "Reset Failed Attempts After"
@@ -946,17 +947,17 @@ msgstr "Limit Attempts Статистика"
 msgid "Statistics"
 msgstr "Статистика"
 
-#: ../limit-attempts.php:165 ../limit-attempts.php:459
+#: ../limit-attempts.php:165 ../limit-attempts.php:433
 #, php-format
 msgid "Retries before lock: %s."
 msgstr "Спроб до блокування: %s."
 
-#: ../limit-attempts.php:166 ../limit-attempts.php:460
+#: ../limit-attempts.php:166 ../limit-attempts.php:434
 #, php-format
 msgid "Too many retries. You have been blocked for %s."
 msgstr "Занадто багато спроб. Ви заблоковані на %s."
 
-#: ../limit-attempts.php:167 ../limit-attempts.php:461
+#: ../limit-attempts.php:167 ../limit-attempts.php:435
 msgid ""
 "You've been added to blacklist. Please contact administrator to resolve this "
 "problem."
@@ -964,17 +965,17 @@ msgstr ""
 "Ви додані в чорний список. Для вирішення цієї проблеми зверніться до "
 "адміністратора."
 
-#: ../limit-attempts.php:169 ../limit-attempts.php:462
+#: ../limit-attempts.php:169 ../limit-attempts.php:436
 #, php-format
 msgid "%s has been blocked on %s"
 msgstr "%s була заблокована на %s"
 
-#: ../limit-attempts.php:170 ../limit-attempts.php:463
+#: ../limit-attempts.php:170 ../limit-attempts.php:437
 #, php-format
 msgid "%s has been added to the blacklist on %s"
 msgstr "%s була додана в чорний список на %s"
 
-#: ../limit-attempts.php:171 ../limit-attempts.php:464
+#: ../limit-attempts.php:171 ../limit-attempts.php:438
 #, php-format
 msgid ""
 "IP %s has been blocked automatically on %s due to the excess of login "
@@ -984,12 +985,12 @@ msgstr ""
 "%s."
 
 #: ../limit-attempts.php:171 ../limit-attempts.php:172
-#: ../limit-attempts.php:464 ../limit-attempts.php:465
+#: ../limit-attempts.php:438 ../limit-attempts.php:439
 #, php-format
 msgid "Using the plugin %s"
 msgstr "Використовуючи плагін %s"
 
-#: ../limit-attempts.php:172 ../limit-attempts.php:465
+#: ../limit-attempts.php:172 ../limit-attempts.php:439
 #, php-format
 msgid ""
 "IP %s has been added automatically to the blacklist on %s due to the excess "
@@ -998,7 +999,7 @@ msgstr ""
 "IP% s автоматично додана в чорний список %s через перевищення спроб входу на "
 "ваш сайт %s."
 
-#: ../limit-attempts.php:344
+#: ../limit-attempts.php:326
 #, php-format
 msgid ""
 "Limit Attempts interaction with Htaccess was turned off since you are using "
@@ -1009,27 +1010,27 @@ msgstr ""
 "плагінами Limit Attempts та Htaccess було вимкнено. Якщо ви бажаєте "
 "відновити взаємодію, будь ласка, оновіть плагін Htaccess до версії %s."
 
-#: ../limit-attempts.php:507
+#: ../limit-attempts.php:481
 msgid "FAQ"
 msgstr "FAQ"
 
-#: ../limit-attempts.php:508
+#: ../limit-attempts.php:482
 msgid "Support"
 msgstr "Техпідтримка"
 
-#: ../limit-attempts.php:524
+#: ../limit-attempts.php:498
 msgid "Network"
 msgstr "Мережеві"
 
-#: ../limit-attempts.php:525
+#: ../limit-attempts.php:499
 msgid "Please enable JavaScript in Your browser."
 msgstr "Будь ласка, увімкніть JavaScript у вашому браузері."
 
-#: ../limit-attempts.php:527
+#: ../limit-attempts.php:501
 msgid "This option will replace all current settings on separate sites."
 msgstr "Ця настройка замінить усі поточні настройки окремих сайтів."
 
-#: ../limit-attempts.php:563
+#: ../limit-attempts.php:537
 msgid ""
 "Limit Login Attempts plugin is activated on your site, as well as Limit "
 "Attempts plugin. Please note that Limit Attempts ensures maximum security "
@@ -1043,25 +1044,28 @@ msgstr ""
 "Нехтування цією простою порадою може призвести до вкрай небажаних наслідків "
 "для вашого сайту."
 
-#: ../limit-attempts.php:590
+#: ../limit-attempts.php:564
 msgid "ATTENTION!"
 msgstr "УВАГА!"
 
-#: ../limit-attempts.php:593
+#: ../limit-attempts.php:567
 msgid "Read and Understood"
 msgstr "Ознайомлений"
 
-#: ../limit-attempts.php:670
+#: ../limit-attempts.php:644
 msgid "Addresses per page"
 msgstr "Адрес на сторінці"
 
-#: ../limit-attempts.php:1002
+#: ../limit-attempts.php:976
 msgid "Notice"
 msgstr "Увага"
 
-#: ../limit-attempts.php:1002
+#: ../limit-attempts.php:976
 msgid "Changes are not saved."
 msgstr "Налаштування не збережені."
+
+#~ msgid "Time IP address will be blocked for (default is %d)."
+#~ msgstr "Час, на який IP-адресу буде заблоковано (за замовчуванням - %d)."
 
 #~ msgid "block reset date"
 #~ msgstr "дата, коли блокування буде знято"

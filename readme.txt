@@ -2,9 +2,9 @@
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
-Requires at least: 3.8
-Tested up to: 4.7.3
-Stable tag: 1.1.8
+Requires at least: 3.9
+Tested up to: 4.8
+Stable tag: 1.1.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -98,22 +98,16 @@ Some of these translations are not complete. We are constantly adding new featur
 
 = Recommended Plugins =
 
-* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=1babc7691c564636f8fddb7698f8f43e) - Automatically check and update WordPress core with all installed plugins to the latest versions. Manual mode, email notifications and backups of all your files and database before updating.
+* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=1babc7691c564636f8fddb7698f8f43e) - Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
 * [Captcha](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c) - Protect WordPress website forms from spam entries by means of math logic.
 * [Htaccess](https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd) - Protect WordPress website - allow and deny access for certain IP addresses, hostnames, etc.
-
-= Donate =
-
-Donations play an important role in supporting open-source projects. We greatly appreciate any donation you can make to help us continue further development of free products.
-
-[Donate Now](https://bestwebsoft.com/donate/)
 
 == Installation ==
 
 1. Upload the `limit-attempts` folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "BWS Panel" > "Limit Attempts".
-4. Set your own options or use defaylts, create, if you need, whitelist or/and blacklist.
+3. You can adjust the necessary settings using your WordPress admin panel in "Limit Attempts".
+4. Set your own options or use defaults, create, if you need, whitelist or/and blacklist.
 
 [View a Step-by-step Instruction on Limit Attempts Installation](https://docs.google.com/document/d/1zBn8PxGMR7v6hWJgT2vogwzP_rzJ6IipbxACnmuNa6E/)
 
@@ -203,7 +197,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
-= V1.1.8 - 15.03.2017 =
+= V1.1.9 - 19.06.2017 =
+* Update : All functionality for wordpress 4.8 was updated.
+* Pro : Statistic displaying has been updated.
+
+= V1.1.8 - 17.03.2017 =
 * NEW: An ability to add IP address to the Whitelist from the Blocked List.
 * Update : The plugin settings page has been updated.
 
@@ -294,6 +292,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.1.9 =
+* Usability improved.
 
 = V1.1.8 =
 * Usability improved.

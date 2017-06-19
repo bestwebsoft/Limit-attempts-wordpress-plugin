@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.1.8
+Version: 1.1.9
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
@@ -43,7 +43,7 @@ if ( ! function_exists( 'add_lmtttmpts_admin_menu' ) ) {
 		add_submenu_page( 'limit-attempts.php', __( 'Limit Attempts Blocked', 'limit-attempts' ), __( 'Blocked', 'limit-attempts' ), 'manage_options', 'limit-attempts-blocked.php', 'lmtttmpts_settings_page' );
 
 		add_submenu_page( 'limit-attempts.php', __( 'Limit Attempts Black- & Whitelisted', 'limit-attempts' ), __( 'Black- & Whitelisted', 'limit-attempts' ), 'manage_options', 'limit-attempts-black-and-whitelist.php', 'lmtttmpts_settings_page' );
-		
+
 		if ( ! bws_hide_premium_options_check( $lmtttmpts_options ) )
 			add_submenu_page( 'limit-attempts.php', __( 'Limit Attempts Logs', 'limit-attempts' ), __( 'Logs', 'limit-attempts' ), 'manage_options', 'limit-attempts-log.php', 'lmtttmpts_settings_page' );
 
@@ -52,10 +52,10 @@ if ( ! function_exists( 'add_lmtttmpts_admin_menu' ) ) {
 		add_submenu_page( 'limit-attempts.php', 'BWS Panel', 'BWS Panel', 'manage_options', 'lmtttmpts-bws-panel', 'bws_add_menu_render' );
 
 		if ( isset( $submenu['limit-attempts.php'] ) )
-			$submenu['limit-attempts.php'][] = array( 
+			$submenu['limit-attempts.php'][] = array(
 				'<span style="color:#d86463"> ' . __( 'Upgrade to Pro', 'limit-attempts' ) . '</span>',
 				'manage_options',
-				'http://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=fdac994c203b41e499a2818c409ff2bc&pn=140&v=' . $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version );
+				'https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=fdac994c203b41e499a2818c409ff2bc&pn=140&v=' . $lmtttmpts_plugin_info["Version"] . '&wp_v=' . $wp_version );
 
 		add_action( "load-$hook", 'lmtttmpts_screen_options' );
 	}
@@ -87,7 +87,7 @@ if ( ! function_exists( 'lmtttmpts_plugin_init' ) ) {
 		}
 
 		/* check WordPress version */
-		bws_wp_min_version_check( $plugin_basename, $lmtttmpts_plugin_info, '3.8' );
+		bws_wp_min_version_check( $plugin_basename, $lmtttmpts_plugin_info, '3.9' );
 
 		$lmtttmpts_page = array(
 			'limit-attempts.php',
@@ -409,7 +409,7 @@ if ( ! function_exists( 'lmtttmpts_get_options_default' ) ) {
 		global $lmtttmpts_plugin_info;
 
 		/*email addres that was setting Settings -> General -> E-mail Address */
-		$email_address = get_bloginfo( 'admin_email' ); 
+		$email_address = get_bloginfo( 'admin_email' );
 
 		$options_default = array(
 			'plugin_option_version'			=> $lmtttmpts_plugin_info["Version"],
@@ -489,9 +489,9 @@ if ( ! function_exists( 'lmtttmpts_register_plugin_links' ) ) {
  * Function for display limit attempts settings page in the admin area
  */
 if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
-	function lmtttmpts_settings_page() { 
+	function lmtttmpts_settings_page() {
 		global $lmtttmpts_plugin_info; ?>
-		<div class="wrap">			
+		<div class="wrap">
 			<?php if ( 'limit-attempts.php' == $_GET['page'] ) { /* Showing settings tab */
 				require_once( dirname( __FILE__ ) . '/includes/class-lmtttmpts-settings.php' );
 				$page = new Lmtttmpts_Settings_Tabs( plugin_basename( __FILE__ ) ); ?>
@@ -510,7 +510,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 					</div>
 				<?php } elseif ( 'limit-attempts-black-and-whitelist.php' == $_GET['page'] ) {
 					require_once( dirname( __FILE__ ) . '/includes/edit-list-form.php' );
-					lmtttmpts_display_list();				
+					lmtttmpts_display_list();
 				} else {
 					preg_match('/limit-attempts-(.*?).php/', esc_attr( $_GET['page'] ), $page_name ); ?>
 					<h1><?php echo get_admin_page_title(); ?></h1>
@@ -518,7 +518,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 						require_once( dirname( __FILE__ ) . '/includes/' . $page_name[1] . '.php' );
 						call_user_func_array( 'lmtttmpts_display_' . $page_name[1], array( plugin_basename( __FILE__ ) ) );
 					}
-				}				
+				}
 				bws_plugin_reviews_block( $lmtttmpts_plugin_info['Name'], 'limit-attempts' );
 			} ?>
 		</div>
@@ -969,7 +969,7 @@ if ( ! function_exists( 'lmtttmpts_restore_default_message' ) ) {
 				unset( $default_messages['failed_message'], $default_messages['blocked_message'], $default_messages['blacklisted_message'] );
 				$output_message = __( 'Email notifications have been restored to default.', 'limit-attempts' );
 			} else {
-				unset( $default_messages['email_subject'], $default_messages['email_subject_blacklisted'], $default_messages['email_blocked'], $default_messages['email_blacklisted'] );				
+				unset( $default_messages['email_subject'], $default_messages['email_subject_blacklisted'], $default_messages['email_blocked'], $default_messages['email_blacklisted'] );
 				$output_message = __( 'Messages have been restored to default.', 'limit-attempts' );
 			}
 			/* set notice message, check what was changed - subject or body of the message */

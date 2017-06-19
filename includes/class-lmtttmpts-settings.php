@@ -218,7 +218,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 							<label><input id="lmtttmpts-minutes-of-lock-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $this->options['minutes_of_lock']; ?>" name="lmtttmpts_minutes_of_lock" /> <?php echo _n( 'minute', 'minutes', $this->options['minutes_of_lock'], 'limit-attempts' ); ?></label>
 						</fieldset>
 						<div class="bws_info">
-							<?php printf( __( 'Time IP address will be blocked for (default is %d).', 'limit-attempts' ), 5 ); ?>
+							<?php printf( __( 'Time IP address will be blocked for (default is %d minutes).', 'limit-attempts' ), 5 ); ?>
 						</div>
 					</td>
 				</tr>

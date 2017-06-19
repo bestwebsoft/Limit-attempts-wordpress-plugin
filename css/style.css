@@ -60,22 +60,8 @@ tr.lmtttmpts_blocked,
 .lmtttmpts_edit_list_form table {
 	padding: 5px 5px 5px 5px;
 }
-.lmtttmpts_activity,
 .lmtttmpts_attempts {
-	width: 50%;
-}
-.lmtttmpts_activity {
-	float: left;
-}
-.lmtttmpts_attempts {
-	float: right;
-}
-@media only screen and ( max-width: 950px ) {
-	.lmtttmpts_activity,
-	.lmtttmpts_attempts {
-		width: 100%;
-		float: none;
-	}
+	width: 100%;
 }
 @media only screen and ( max-width: 785px ) {
 	.lmtttmpts_list p.search-box {
