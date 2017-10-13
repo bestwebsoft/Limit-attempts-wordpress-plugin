@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Limit Attempts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-19 09:18+0300\n"
+"POT-Creation-Date: 2017-10-02 15:53+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: BestWebSoft team <wp@bestwebsoft.com>\n"
 "Language-Team: bestwebsoft.com <support@bestwebsoft.com>\n"
@@ -14,8 +14,8 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;_n:1,2;_x;_ex:1,2c\n"
 "X-Poedit-Basepath: .\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n%10==1 && n%100!=11) ? 3 : "
-"((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../includes/blacklist.php:16 ../includes/statistics.php:17
@@ -41,7 +41,6 @@ msgid_plural "%s items"
 msgstr[0] "%s елемент"
 msgstr[1] "%s елементи"
 msgstr[2] "%s елементів"
-msgstr[3] "%s елемент"
 
 #: ../includes/blacklist.php:185 ../includes/blocked.php:194
 #: ../includes/statistics.php:212 ../includes/whitelist.php:186
@@ -80,7 +79,7 @@ msgstr "Остання сторінка"
 #: ../includes/edit-list-form.php:66 ../includes/edit-list-form.php:69
 #: ../includes/edit-list-form.php:98 ../includes/edit-list-form.php:101
 #: ../includes/statistics.php:287 ../includes/whitelist.php:275
-#: ../limit-attempts.php:501 ../limit-attempts.php:537
+#: ../limit-attempts.php:496 ../limit-attempts.php:532
 msgid "Notice:"
 msgstr "Увага:"
 
@@ -101,14 +100,14 @@ msgstr "було видалено з чорного списку"
 msgid "have been deleted from blacklist"
 msgstr "були видалені з чорного списку"
 
-#: ../includes/blacklist.php:293 ../includes/blocked.php:374
-#: ../includes/statistics.php:336 ../includes/whitelist.php:292
+#: ../includes/blacklist.php:294 ../includes/blocked.php:374
+#: ../includes/statistics.php:336 ../includes/whitelist.php:296
 msgid "Search results for"
 msgstr "Результати пошуку для"
 
-#: ../includes/blacklist.php:295 ../includes/blocked.php:376
+#: ../includes/blacklist.php:296 ../includes/blocked.php:376
 #: ../includes/edit-list-form.php:87 ../includes/edit-list-form.php:117
-#: ../includes/statistics.php:338 ../includes/whitelist.php:294
+#: ../includes/statistics.php:338 ../includes/whitelist.php:298
 #, php-format
 msgid "Wrong format or it does not lie in range %s."
 msgstr "Формат невірний або не належить діапазону %s."
@@ -146,13 +145,13 @@ msgid "IP addresses were added to whitelist"
 msgstr "IP-адреси було додано в білий список"
 
 #: ../includes/blocked.php:397 ../includes/edit-list-form.php:40
-#: ../includes/pro-tab.php:70 ../includes/statistics.php:372
+#: ../includes/pro-tab.php:68 ../includes/statistics.php:372
 msgid "Search IP"
 msgstr "Шукати IP"
 
 #: ../includes/class-lmtttmpts-settings.php:25 ../limit-attempts.php:41
-#: ../limit-attempts.php:464 ../limit-attempts.php:480
-#: ../limit-attempts.php:498
+#: ../limit-attempts.php:459 ../limit-attempts.php:475
+#: ../limit-attempts.php:493
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -176,156 +175,152 @@ msgstr "Користувацький код"
 msgid "License Key"
 msgstr "Ліцензійний ключ"
 
-#: ../includes/class-lmtttmpts-settings.php:158 ../limit-attempts.php:970
+#: ../includes/class-lmtttmpts-settings.php:170 ../limit-attempts.php:976
 msgid "Email notifications have been restored to default."
 msgstr "Емейл повідомлення були відновлені до налаштувань за замовчуванням."
 
-#: ../includes/class-lmtttmpts-settings.php:161 ../limit-attempts.php:973
+#: ../includes/class-lmtttmpts-settings.php:173 ../limit-attempts.php:979
 msgid "Messages have been restored to default."
 msgstr "Повідомлення були відновлені до налаштувань за замовчуванням."
 
-#: ../includes/class-lmtttmpts-settings.php:170
+#: ../includes/class-lmtttmpts-settings.php:182
 msgid "Settings saved."
 msgstr "Налаштування збережено"
 
-#: ../includes/class-lmtttmpts-settings.php:195 ../limit-attempts.php:40
+#: ../includes/class-lmtttmpts-settings.php:207 ../limit-attempts.php:40
 #: ../limit-attempts.php:41
 msgid "Limit Attempts Settings"
 msgstr "Налаштування Limit Attempts"
 
-#: ../includes/class-lmtttmpts-settings.php:200
+#: ../includes/class-lmtttmpts-settings.php:212
 msgid "Block IP Address After"
 msgstr "Блокувати IP-адресу Після"
 
-#: ../includes/class-lmtttmpts-settings.php:202
+#: ../includes/class-lmtttmpts-settings.php:214
 msgid "attempt"
 msgid_plural "attempts"
 msgstr[0] "спроби"
 msgstr[1] "спроб"
 msgstr[2] "спроб"
-msgstr[3] "спроба"
 
-#: ../includes/class-lmtttmpts-settings.php:203
+#: ../includes/class-lmtttmpts-settings.php:215
 #, php-format
 msgid "Number of failed attempts (default is %d)."
 msgstr "Кількість невдалих спроб (за замовчуванням - %d)."
 
-#: ../includes/class-lmtttmpts-settings.php:207
+#: ../includes/class-lmtttmpts-settings.php:219
 msgid "Block IP Address For"
 msgstr "Блокувати IP-адресу на"
 
-#: ../includes/class-lmtttmpts-settings.php:210
-#: ../includes/class-lmtttmpts-settings.php:216
-#: ../includes/class-lmtttmpts-settings.php:229
-#: ../includes/class-lmtttmpts-settings.php:235
-#: ../includes/class-lmtttmpts-settings.php:248
-#: ../includes/class-lmtttmpts-settings.php:254
-#: ../includes/front-end-functions.php:570
-#: ../includes/front-end-functions.php:591 ../limit-attempts.php:938
+#: ../includes/class-lmtttmpts-settings.php:222
+#: ../includes/class-lmtttmpts-settings.php:228
+#: ../includes/class-lmtttmpts-settings.php:241
+#: ../includes/class-lmtttmpts-settings.php:247
+#: ../includes/class-lmtttmpts-settings.php:260
+#: ../includes/class-lmtttmpts-settings.php:266
+#: ../includes/front-end-functions.php:567
+#: ../includes/front-end-functions.php:588 ../limit-attempts.php:944
 msgid "day"
 msgid_plural "days"
 msgstr[0] "день"
 msgstr[1] "дні"
 msgstr[2] "днів"
-msgstr[3] "день"
 
-#: ../includes/class-lmtttmpts-settings.php:211
-#: ../includes/class-lmtttmpts-settings.php:217
-#: ../includes/class-lmtttmpts-settings.php:230
-#: ../includes/class-lmtttmpts-settings.php:236
-#: ../includes/class-lmtttmpts-settings.php:249
-#: ../includes/class-lmtttmpts-settings.php:255
-#: ../includes/front-end-functions.php:574 ../limit-attempts.php:942
+#: ../includes/class-lmtttmpts-settings.php:223
+#: ../includes/class-lmtttmpts-settings.php:229
+#: ../includes/class-lmtttmpts-settings.php:242
+#: ../includes/class-lmtttmpts-settings.php:248
+#: ../includes/class-lmtttmpts-settings.php:261
+#: ../includes/class-lmtttmpts-settings.php:267
+#: ../includes/front-end-functions.php:571 ../limit-attempts.php:948
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "годину"
 msgstr[1] "години"
 msgstr[2] "годин"
-msgstr[3] "годину"
 
-#: ../includes/class-lmtttmpts-settings.php:212
-#: ../includes/class-lmtttmpts-settings.php:218
-#: ../includes/class-lmtttmpts-settings.php:231
-#: ../includes/class-lmtttmpts-settings.php:237
-#: ../includes/class-lmtttmpts-settings.php:250
-#: ../includes/class-lmtttmpts-settings.php:256
-#: ../includes/front-end-functions.php:578 ../limit-attempts.php:946
+#: ../includes/class-lmtttmpts-settings.php:224
+#: ../includes/class-lmtttmpts-settings.php:230
+#: ../includes/class-lmtttmpts-settings.php:243
+#: ../includes/class-lmtttmpts-settings.php:249
+#: ../includes/class-lmtttmpts-settings.php:262
+#: ../includes/class-lmtttmpts-settings.php:268
+#: ../includes/front-end-functions.php:575 ../limit-attempts.php:952
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "хвилину"
 msgstr[1] "хвилини"
 msgstr[2] "хвилин"
-msgstr[3] "хвилину"
 
-#: ../includes/class-lmtttmpts-settings.php:213
-#: ../includes/class-lmtttmpts-settings.php:232
-#: ../includes/class-lmtttmpts-settings.php:251
+#: ../includes/class-lmtttmpts-settings.php:225
+#: ../includes/class-lmtttmpts-settings.php:244
+#: ../includes/class-lmtttmpts-settings.php:263
 msgid "Edit"
 msgstr "Редагувати"
 
-#: ../includes/class-lmtttmpts-settings.php:221
+#: ../includes/class-lmtttmpts-settings.php:233
 #, php-format
 msgid "Time IP address will be blocked for (default is %d minutes)."
 msgstr ""
 "Час, на який IP-адресу буде заблоковано (за замовчуванням - %d хвилин)."
 
-#: ../includes/class-lmtttmpts-settings.php:226
+#: ../includes/class-lmtttmpts-settings.php:238
 msgid "Reset Failed Attempts After"
 msgstr "Скинути Невірні Спроби Після"
 
-#: ../includes/class-lmtttmpts-settings.php:240
+#: ../includes/class-lmtttmpts-settings.php:252
 msgid "Time after which the failed attempts will be reset."
 msgstr "Час, після якого невірні спроби будуть обнулені."
 
-#: ../includes/class-lmtttmpts-settings.php:245
+#: ../includes/class-lmtttmpts-settings.php:257
 msgid "Reset Blocking After"
 msgstr "Скинути Блокування Після"
 
-#: ../includes/class-lmtttmpts-settings.php:259
+#: ../includes/class-lmtttmpts-settings.php:271
 msgid "Time after which the blocking will be reset."
 msgstr "Час, після якого блокування буде прибрано."
 
-#: ../includes/class-lmtttmpts-settings.php:264
+#: ../includes/class-lmtttmpts-settings.php:276
 msgid "Blacklist IP Address After"
 msgstr "Додавати IP-адресу в Чорний список Після"
 
-#: ../includes/class-lmtttmpts-settings.php:266
+#: ../includes/class-lmtttmpts-settings.php:278
 msgid "blocking"
 msgid_plural "blockings"
 msgstr[0] "блокування"
 msgstr[1] "блокувань"
 msgstr[2] "блокувань"
-msgstr[3] "блокування"
 
-#: ../includes/class-lmtttmpts-settings.php:267
+#: ../includes/class-lmtttmpts-settings.php:279
 msgid "Number of blocking after which the IP address will be blacklisted."
 msgstr ""
 "Кількість блокуваннь, після яких IP-адресу буде занесено в чорний список."
 
-#: ../includes/class-lmtttmpts-settings.php:274
-#: ../includes/class-lmtttmpts-settings.php:414
-#: ../includes/class-lmtttmpts-settings.php:617
-#: ../includes/class-lmtttmpts-settings.php:652 ../includes/pro-tab.php:20
+#: ../includes/class-lmtttmpts-settings.php:286
+#: ../includes/class-lmtttmpts-settings.php:430
+#: ../includes/class-lmtttmpts-settings.php:530
+#: ../includes/class-lmtttmpts-settings.php:749
+#: ../includes/class-lmtttmpts-settings.php:784 ../includes/pro-tab.php:20
 msgid "Close"
 msgstr "Закрити"
 
-#: ../includes/class-lmtttmpts-settings.php:278
+#: ../includes/class-lmtttmpts-settings.php:290
 msgid "Non-Existing Username Login Attempts Action"
 msgstr "Дія, коли користувач спробував увійти під неіснуючим іменем"
 
-#: ../includes/class-lmtttmpts-settings.php:283
+#: ../includes/class-lmtttmpts-settings.php:295
 msgid "Default"
 msgstr "Стандартно"
 
-#: ../includes/class-lmtttmpts-settings.php:288
+#: ../includes/class-lmtttmpts-settings.php:300
 msgid "Block"
 msgstr "Блокування"
 
-#: ../includes/class-lmtttmpts-settings.php:293
+#: ../includes/class-lmtttmpts-settings.php:305
 msgid "Blacklist"
 msgstr "Чорний список"
 
-#: ../includes/class-lmtttmpts-settings.php:296
+#: ../includes/class-lmtttmpts-settings.php:308
 msgid ""
 "Detect login attempts for non-existing username and apply actions (default "
 "will block and/or blacklist IP addresses based on the settings above)."
@@ -334,52 +329,58 @@ msgstr ""
 "дію (Стандартне блокуватиме і/або додаватиме в чорний список IP-адресу "
 "відповідно до налаштувань вище)."
 
-#: ../includes/class-lmtttmpts-settings.php:306
+#: ../includes/class-lmtttmpts-settings.php:318
 msgid "Hide Forms"
 msgstr "Сховати Форми"
 
-#: ../includes/class-lmtttmpts-settings.php:308
+#: ../includes/class-lmtttmpts-settings.php:320
 msgid ""
-"Enable to hide login, registration, reset password forms for blocked or "
+"Enable to hide login, registration, reset password forms from blocked or "
 "blacklisted IP addresses."
 msgstr ""
 "Увімкніть, щоб сховати форми аутентифікації, скидання пароля і реєстрації "
 "для заблокованих IP-адрес або IP-адрес з чорного списку."
 
-#: ../includes/class-lmtttmpts-settings.php:312
+#: ../includes/class-lmtttmpts-settings.php:324
 msgid "Htaccess Plugin"
 msgstr "Плагін Htaccess"
 
-#: ../includes/class-lmtttmpts-settings.php:323
-#: ../includes/class-lmtttmpts-settings.php:366
-#: ../includes/class-lmtttmpts-settings.php:381
-#: ../includes/class-lmtttmpts-settings.php:390
+#: ../includes/class-lmtttmpts-settings.php:335
+#: ../includes/class-lmtttmpts-settings.php:382
+#: ../includes/class-lmtttmpts-settings.php:397
+#: ../includes/class-lmtttmpts-settings.php:406
+#: ../includes/class-lmtttmpts-settings.php:488
+#: ../includes/class-lmtttmpts-settings.php:506
 #, php-format
 msgid "Go to %s Settings"
 msgstr "Перейти до Налаштувань %s"
 
-#: ../includes/class-lmtttmpts-settings.php:328
-#: ../includes/class-lmtttmpts-settings.php:371
-#: ../includes/class-lmtttmpts-settings.php:395
+#: ../includes/class-lmtttmpts-settings.php:340
+#: ../includes/class-lmtttmpts-settings.php:387
+#: ../includes/class-lmtttmpts-settings.php:411
+#: ../includes/class-lmtttmpts-settings.php:493
+#: ../includes/class-lmtttmpts-settings.php:511
 #, php-format
 msgid "Update %s at least to %s"
 msgstr "Оновіть %s як мінімум до версії %s"
 
-#: ../includes/class-lmtttmpts-settings.php:334
-#: ../includes/class-lmtttmpts-settings.php:402
+#: ../includes/class-lmtttmpts-settings.php:346
+#: ../includes/class-lmtttmpts-settings.php:418
+#: ../includes/class-lmtttmpts-settings.php:518
 msgid "Activate"
 msgstr "Активувати"
 
-#: ../includes/class-lmtttmpts-settings.php:338
-#: ../includes/class-lmtttmpts-settings.php:408
+#: ../includes/class-lmtttmpts-settings.php:350
+#: ../includes/class-lmtttmpts-settings.php:424
+#: ../includes/class-lmtttmpts-settings.php:524
 msgid "Install Now"
 msgstr "Встановити Зараз"
 
-#: ../includes/class-lmtttmpts-settings.php:342
+#: ../includes/class-lmtttmpts-settings.php:354
 msgid "Enable to reduce database workload."
 msgstr "Увімкніть для зменшення навантаження на базу даних."
 
-#: ../includes/class-lmtttmpts-settings.php:345
+#: ../includes/class-lmtttmpts-settings.php:357
 msgid ""
 "When you turn on this option, all IPs from the blocked list and from the "
 "blacklist will be added to the direction \"deny from\" of file .htaccess. IP "
@@ -393,251 +394,323 @@ msgstr ""
 "IP плагіну, будуть автоматично додаватись до директиви \"deny from\"файлу ."
 "htaccess."
 
-#: ../includes/class-lmtttmpts-settings.php:349
+#: ../includes/class-lmtttmpts-settings.php:361
 msgid "Captcha Plugin"
 msgstr "Плагін Captcha"
 
-#: ../includes/class-lmtttmpts-settings.php:363
-#: ../includes/class-lmtttmpts-settings.php:378
-#: ../includes/class-lmtttmpts-settings.php:387 ../includes/pro-tab.php:110
+#: ../includes/class-lmtttmpts-settings.php:379
+#: ../includes/class-lmtttmpts-settings.php:394
+#: ../includes/class-lmtttmpts-settings.php:403
+#: ../includes/class-lmtttmpts-settings.php:485
+#: ../includes/class-lmtttmpts-settings.php:503 ../includes/pro-tab.php:108
 msgid "Login form"
 msgstr "Форма логіну"
 
-#: ../includes/class-lmtttmpts-settings.php:366
-#: ../includes/class-lmtttmpts-settings.php:381
-#: ../includes/class-lmtttmpts-settings.php:390
-#: ../includes/class-lmtttmpts-settings.php:395
-#: ../includes/class-lmtttmpts-settings.php:402
-#: ../includes/class-lmtttmpts-settings.php:408
+#: ../includes/class-lmtttmpts-settings.php:382
+#: ../includes/class-lmtttmpts-settings.php:397
+#: ../includes/class-lmtttmpts-settings.php:406
+#: ../includes/class-lmtttmpts-settings.php:411
+#: ../includes/class-lmtttmpts-settings.php:418
+#: ../includes/class-lmtttmpts-settings.php:424
 msgid ""
 "Incorrect captcha for selected forms will be considered as an invalid "
 "attempt."
 msgstr "Невірно введена капча буде вважатися невірної спробою."
 
-#: ../includes/class-lmtttmpts-settings.php:418
+#: ../includes/class-lmtttmpts-settings.php:435
+#: ../includes/class-lmtttmpts-settings.php:535
 msgid "Registration form"
 msgstr "Форма реєстрації"
 
-#: ../includes/class-lmtttmpts-settings.php:419
+#: ../includes/class-lmtttmpts-settings.php:436
 msgid "Reset Password form"
 msgstr "Форма відновлення паролю"
 
-#: ../includes/class-lmtttmpts-settings.php:420
+#: ../includes/class-lmtttmpts-settings.php:437
+#: ../includes/class-lmtttmpts-settings.php:537
 msgid "Comments form"
 msgstr "Форма коментарів"
 
-#: ../includes/class-lmtttmpts-settings.php:423
+#: ../includes/class-lmtttmpts-settings.php:440
 msgid "Buddypress registration form"
 msgstr "Форма реєстрації Buddypress"
 
-#: ../includes/class-lmtttmpts-settings.php:424
-msgid "Buddypress comments form"
-msgstr "Форма коментарів Buddypress"
-
-#: ../includes/class-lmtttmpts-settings.php:425
+#: ../includes/class-lmtttmpts-settings.php:441
 msgid "Buddypress \"Create a Group\" form"
 msgstr "Форма \"Створити групу\" Buddypress"
 
-#: ../includes/class-lmtttmpts-settings.php:427
+#: ../includes/class-lmtttmpts-settings.php:443
+#: ../includes/class-lmtttmpts-settings.php:548
 msgid "WooCommerce Login form"
 msgstr "Форма логіну плагіна WooCommerce"
 
-#: ../includes/class-lmtttmpts-settings.php:428
+#: ../includes/class-lmtttmpts-settings.php:444
 msgid "WooCommerce Register form"
 msgstr "Форма реєстрації плагіна WooCommerce"
 
-#: ../includes/class-lmtttmpts-settings.php:429
+#: ../includes/class-lmtttmpts-settings.php:445
 msgid "WooCommerce Lost Password form"
 msgstr "Форма відновлення пароля плагіна WooCommerce"
 
-#: ../includes/class-lmtttmpts-settings.php:430
+#: ../includes/class-lmtttmpts-settings.php:446
 msgid "WooCommerce Checkout Billing form"
 msgstr "Форма заказу плагіна WooCommerce"
 
-#: ../includes/class-lmtttmpts-settings.php:432
+#: ../includes/class-lmtttmpts-settings.php:455
+#: ../includes/class-lmtttmpts-settings.php:564
 #, php-format
 msgid "You also need %s to use these options."
 msgstr "Вам також потрібен плагін %s для того, щоб скористатися цими опціями."
 
-#: ../includes/class-lmtttmpts-settings.php:448
+#: ../includes/class-lmtttmpts-settings.php:465
+msgid "Google Captcha Plugin"
+msgstr "Плагін Google Captcha"
+
+#: ../includes/class-lmtttmpts-settings.php:488
+#: ../includes/class-lmtttmpts-settings.php:506
+#: ../includes/class-lmtttmpts-settings.php:511
+#: ../includes/class-lmtttmpts-settings.php:518
+#: ../includes/class-lmtttmpts-settings.php:524
+msgid ""
+"Failed reCAPTCHA validation for selected forms will be considered as an "
+"invalid attempt."
+msgstr "Невірно введена reCAPTCHA буде вважатися невдалою спробою."
+
+#: ../includes/class-lmtttmpts-settings.php:536
+msgid "Reset password form"
+msgstr "Форма відновлення паролю"
+
+#: ../includes/class-lmtttmpts-settings.php:541
+msgid "Jetpack Contact Form"
+msgstr "Контактна форма плагіна Jetpack"
+
+#: ../includes/class-lmtttmpts-settings.php:543
+msgid "bbPress New Topic form"
+msgstr "Форма нової теми плагіна bbPress"
+
+#: ../includes/class-lmtttmpts-settings.php:544
+msgid "bbPress Reply form"
+msgstr "Форма відповіді плагіна bbPress"
+
+#: ../includes/class-lmtttmpts-settings.php:545
+msgid "BuddyPress Registration form"
+msgstr "Форма реєстрації плагіна BuddyPress"
+
+#: ../includes/class-lmtttmpts-settings.php:546
+msgid "BuddyPress Comments form"
+msgstr "Форма коментарів плагіна BuddyPress"
+
+#: ../includes/class-lmtttmpts-settings.php:547
+msgid "BuddyPress Add New Group form"
+msgstr "Форма \"Додати нову групу\" плагіна BuddyPress"
+
+#: ../includes/class-lmtttmpts-settings.php:549
+msgid "WooCommerce Registration form"
+msgstr "Форма реєстрації плагіна WooCommerce"
+
+#: ../includes/class-lmtttmpts-settings.php:550
+msgid "WooCommerce Reset password form"
+msgstr "Форма відновлення пароля плагіна WooCommerce"
+
+#: ../includes/class-lmtttmpts-settings.php:551
+msgid "WooCommerce Checkout form"
+msgstr "Форма оформлення замовлення плагіна WooCommerce"
+
+#: ../includes/class-lmtttmpts-settings.php:552
+msgid "wpForo Login form"
+msgstr "Форма логіна плагіна wpForo"
+
+#: ../includes/class-lmtttmpts-settings.php:553
+msgid "wpForo Registration form"
+msgstr "Форма реєстрації плагина wpForo"
+
+#: ../includes/class-lmtttmpts-settings.php:554
+msgid "wpForo New Topic form"
+msgstr "Форма нової теми плагіна wpForo"
+
+#: ../includes/class-lmtttmpts-settings.php:555
+msgid "wpForo Reply form"
+msgstr "Форма відповіді плагина wpForo"
+
+#: ../includes/class-lmtttmpts-settings.php:580
 msgid "Error Messages Settings"
 msgstr "Налаштування емейл повідомлень"
 
-#: ../includes/class-lmtttmpts-settings.php:453
+#: ../includes/class-lmtttmpts-settings.php:585
 msgid "Invalid Attempt"
 msgstr "Невірна Спроба"
 
-#: ../includes/class-lmtttmpts-settings.php:457
-#: ../includes/class-lmtttmpts-settings.php:467
-#: ../includes/class-lmtttmpts-settings.php:478
-#: ../includes/class-lmtttmpts-settings.php:536
-#: ../includes/class-lmtttmpts-settings.php:543
-#: ../includes/class-lmtttmpts-settings.php:558
-#: ../includes/class-lmtttmpts-settings.php:565
+#: ../includes/class-lmtttmpts-settings.php:589
+#: ../includes/class-lmtttmpts-settings.php:599
+#: ../includes/class-lmtttmpts-settings.php:610
+#: ../includes/class-lmtttmpts-settings.php:668
+#: ../includes/class-lmtttmpts-settings.php:675
+#: ../includes/class-lmtttmpts-settings.php:690
+#: ../includes/class-lmtttmpts-settings.php:697
 msgid "Allowed Variables:"
 msgstr "Дозволені змінні:"
 
-#: ../includes/class-lmtttmpts-settings.php:458
+#: ../includes/class-lmtttmpts-settings.php:590
 msgid "quantity of attempts left"
 msgstr "кількість дозволених спроб"
 
-#: ../includes/class-lmtttmpts-settings.php:463 ../limit-attempts.php:43
+#: ../includes/class-lmtttmpts-settings.php:595 ../limit-attempts.php:43
 msgid "Blocked"
 msgstr "Заблокований"
 
-#: ../includes/class-lmtttmpts-settings.php:468
+#: ../includes/class-lmtttmpts-settings.php:600
 msgid "blocking time"
 msgstr "час блокування"
 
-#: ../includes/class-lmtttmpts-settings.php:469
-#: ../includes/class-lmtttmpts-settings.php:479
+#: ../includes/class-lmtttmpts-settings.php:601
+#: ../includes/class-lmtttmpts-settings.php:611
 msgid "administrator&rsquo;s email address"
 msgstr "емейл адміністратора"
 
-#: ../includes/class-lmtttmpts-settings.php:474
+#: ../includes/class-lmtttmpts-settings.php:606
 #: ../includes/edit-list-form.php:30
 msgid "Blacklisted"
 msgstr "в чорному списку"
 
-#: ../includes/class-lmtttmpts-settings.php:484
+#: ../includes/class-lmtttmpts-settings.php:616
 msgid "Restore Default Error Messages"
 msgstr "Відновити стандартні повідомлення про помилки"
 
-#: ../includes/class-lmtttmpts-settings.php:486
+#: ../includes/class-lmtttmpts-settings.php:618
 msgid "Restore Error Messages"
 msgstr "Відновити повідомлення про помилки"
 
-#: ../includes/class-lmtttmpts-settings.php:498
+#: ../includes/class-lmtttmpts-settings.php:630
 msgid "Email Notifications Settings"
 msgstr "Налаштування повідомлень"
 
-#: ../includes/class-lmtttmpts-settings.php:503
+#: ../includes/class-lmtttmpts-settings.php:635
 msgid "Email Notifications"
 msgstr "Повідомлення"
 
-#: ../includes/class-lmtttmpts-settings.php:505
+#: ../includes/class-lmtttmpts-settings.php:637
 msgid "Enable to receive email notifications."
 msgstr "Увімкніть, щоб отримувати емейл повідомлення."
 
-#: ../includes/class-lmtttmpts-settings.php:509
+#: ../includes/class-lmtttmpts-settings.php:641
 msgid "Send Email Notifications to"
 msgstr "Відправляти повідомлення на"
 
-#: ../includes/class-lmtttmpts-settings.php:514
+#: ../includes/class-lmtttmpts-settings.php:646
 msgid "Choose a username"
 msgstr "Оберіть користувача"
 
-#: ../includes/class-lmtttmpts-settings.php:527
+#: ../includes/class-lmtttmpts-settings.php:659
 msgid "Select an existing administrator or a custom email."
 msgstr "Оберіть існуючого адміністратора або користувацький емейл."
 
-#: ../includes/class-lmtttmpts-settings.php:531
+#: ../includes/class-lmtttmpts-settings.php:663
 msgid "Block Notifications"
 msgstr "Повідомлення при блокуванні"
 
-#: ../includes/class-lmtttmpts-settings.php:533
-#: ../includes/class-lmtttmpts-settings.php:555
+#: ../includes/class-lmtttmpts-settings.php:665
+#: ../includes/class-lmtttmpts-settings.php:687
 msgid "Subject"
 msgstr "Тема "
 
-#: ../includes/class-lmtttmpts-settings.php:537
-#: ../includes/class-lmtttmpts-settings.php:544
+#: ../includes/class-lmtttmpts-settings.php:669
+#: ../includes/class-lmtttmpts-settings.php:676
 msgid "blocked IP address"
 msgstr "заблокована IP-адреса"
 
-#: ../includes/class-lmtttmpts-settings.php:538
-#: ../includes/class-lmtttmpts-settings.php:547
-#: ../includes/class-lmtttmpts-settings.php:560
-#: ../includes/class-lmtttmpts-settings.php:569
+#: ../includes/class-lmtttmpts-settings.php:670
+#: ../includes/class-lmtttmpts-settings.php:679
+#: ../includes/class-lmtttmpts-settings.php:692
+#: ../includes/class-lmtttmpts-settings.php:701
 msgid "website name"
 msgstr "назва сайту"
 
-#: ../includes/class-lmtttmpts-settings.php:540
-#: ../includes/class-lmtttmpts-settings.php:562
+#: ../includes/class-lmtttmpts-settings.php:672
+#: ../includes/class-lmtttmpts-settings.php:694
 msgid "Message"
 msgstr "Повідомлення"
 
-#: ../includes/class-lmtttmpts-settings.php:545
-#: ../includes/class-lmtttmpts-settings.php:567
+#: ../includes/class-lmtttmpts-settings.php:677
+#: ../includes/class-lmtttmpts-settings.php:699
 msgid "Limit Attempts plugin link"
 msgstr "посилання на плагін Limit Attempts"
 
-#: ../includes/class-lmtttmpts-settings.php:546
-#: ../includes/class-lmtttmpts-settings.php:568
+#: ../includes/class-lmtttmpts-settings.php:678
+#: ../includes/class-lmtttmpts-settings.php:700
 msgid "date and time when IP address was blocked"
 msgstr "дата та час, коли IP-адресу було додану до чорного списку"
 
-#: ../includes/class-lmtttmpts-settings.php:548
-#: ../includes/class-lmtttmpts-settings.php:570
+#: ../includes/class-lmtttmpts-settings.php:680
+#: ../includes/class-lmtttmpts-settings.php:702
 msgid "website URL"
 msgstr "URL сайту"
 
-#: ../includes/class-lmtttmpts-settings.php:553
+#: ../includes/class-lmtttmpts-settings.php:685
 msgid "Blacklist Notifications"
 msgstr "Повідомлення при додаванні в чорний список"
 
-#: ../includes/class-lmtttmpts-settings.php:559
-#: ../includes/class-lmtttmpts-settings.php:566
+#: ../includes/class-lmtttmpts-settings.php:691
+#: ../includes/class-lmtttmpts-settings.php:698
 msgid "blacklisted IP address"
 msgstr " IP-адреса, додана до чорного списку"
 
-#: ../includes/class-lmtttmpts-settings.php:575
+#: ../includes/class-lmtttmpts-settings.php:707
 msgid "Restore Default Email Notifications"
 msgstr "Відновити стандартні емейл повідомлення"
 
-#: ../includes/class-lmtttmpts-settings.php:577
+#: ../includes/class-lmtttmpts-settings.php:709
 msgid "Restore Email Notifications"
 msgstr "Відновити емейл повідомлення"
 
-#: ../includes/class-lmtttmpts-settings.php:621
+#: ../includes/class-lmtttmpts-settings.php:753
 msgid "Remove Log Entries Older Then"
 msgstr "Видаляти записи журналу, які старше"
 
-#: ../includes/class-lmtttmpts-settings.php:624
-#: ../includes/class-lmtttmpts-settings.php:639
+#: ../includes/class-lmtttmpts-settings.php:756
+#: ../includes/class-lmtttmpts-settings.php:771
 msgid "days"
 msgstr "днів"
 
-#: ../includes/class-lmtttmpts-settings.php:625
+#: ../includes/class-lmtttmpts-settings.php:757
 msgid "Set \"0\" if you do not want to clear the log."
 msgstr "Виберіть \"0\", якщо ви не хочете очищати журнал."
 
-#: ../includes/class-lmtttmpts-settings.php:636
+#: ../includes/class-lmtttmpts-settings.php:768
 msgid "Remove Stats Entries Older Than"
 msgstr "Видаляти записи статистики, які старше"
 
-#: ../includes/class-lmtttmpts-settings.php:641
+#: ../includes/class-lmtttmpts-settings.php:773
 msgid "Set \"0\" if you do not want to clear the statistics."
 msgstr "Виберіть \"0\", якщо ви не хочете очищати статистику."
 
-#: ../includes/class-lmtttmpts-settings.php:643
+#: ../includes/class-lmtttmpts-settings.php:775
 #, php-format
 msgid "Current size of DB table is %s"
 msgstr "Поточний розмір таблиці БД %s"
 
-#: ../includes/class-lmtttmpts-settings.php:643
+#: ../includes/class-lmtttmpts-settings.php:775
 msgid "Mb"
 msgstr "Мб"
 
-#: ../includes/class-lmtttmpts-settings.php:656
+#: ../includes/class-lmtttmpts-settings.php:788
 msgid "Update GeoIP Every"
 msgstr "Оновити GeoIP кожен(кожні)"
 
-#: ../includes/class-lmtttmpts-settings.php:659
-#: ../includes/front-end-functions.php:597
+#: ../includes/class-lmtttmpts-settings.php:791
+#: ../includes/front-end-functions.php:594
 msgid "months"
 msgstr "місяць(і)"
 
-#: ../includes/class-lmtttmpts-settings.php:660
-#: ../includes/class-lmtttmpts-settings.php:669
+#: ../includes/class-lmtttmpts-settings.php:792
+#: ../includes/class-lmtttmpts-settings.php:801
 msgid "Update Now"
 msgstr "Оновити Зараз"
 
-#: ../includes/class-lmtttmpts-settings.php:665
+#: ../includes/class-lmtttmpts-settings.php:797
 msgid "Update White- & Blacklist After"
 msgstr "Оновити білий і чорний список після"
 
-#: ../includes/class-lmtttmpts-settings.php:668
+#: ../includes/class-lmtttmpts-settings.php:800
 msgid "updates of GeoIP"
 msgstr "оновлень GeoIP"
 
@@ -685,7 +758,7 @@ msgstr ""
 "Ця IP адреса знаходиться також і у білому списку. Будь ласка, для уникнення "
 "помилки, перевірте ще раз"
 
-#: ../includes/edit-list-form.php:106
+#: ../includes/edit-list-form.php:108
 msgid "has been added to blacklist"
 msgstr "було внесено до чорного списку"
 
@@ -705,43 +778,39 @@ msgstr "Мій IP"
 msgid "Allowed formats:"
 msgstr "Допустимі формати:"
 
-#: ../includes/front-end-functions.php:557
+#: ../includes/front-end-functions.php:554
 msgid ""
 "some time. Try to reload the page. Perhaps, you already have been unlocked"
 msgstr ""
 "де-який час. Спробуйте перезавантажити сторінку. Можливо, Ви вже розблоковані"
 
-#: ../includes/front-end-functions.php:566
+#: ../includes/front-end-functions.php:563
 msgid "week"
 msgid_plural "weeks"
 msgstr[0] "тиждень"
 msgstr[1] "тижні"
 msgstr[2] "тижнів"
-msgstr[3] "тиждень"
 
-#: ../includes/front-end-functions.php:582
+#: ../includes/front-end-functions.php:579
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "секунда"
 msgstr[1] "секунди"
 msgstr[2] "секунд"
-msgstr[3] "секунда"
 
-#: ../includes/front-end-functions.php:592
+#: ../includes/front-end-functions.php:589
 msgid "month"
 msgid_plural "months"
 msgstr[0] "місяць(і)"
 msgstr[1] "місяцьі"
 msgstr[2] "місяцьів"
-msgstr[3] "місяць"
 
-#: ../includes/front-end-functions.php:602
+#: ../includes/front-end-functions.php:599
 msgid "year"
 msgid_plural "years"
 msgstr[0] "рік"
 msgstr[1] "роки"
 msgstr[2] "років"
-msgstr[3] "рік"
 
 #: ../includes/pro-tab.php:26
 msgid "Add"
@@ -791,39 +860,39 @@ msgstr "Оберіть країну"
 msgid "Reason for country"
 msgstr "Причина для країни"
 
-#: ../includes/pro-tab.php:72
+#: ../includes/pro-tab.php:70
 msgid "Clear Log"
 msgstr "Очистити журнал"
 
-#: ../includes/pro-tab.php:76 ../includes/pro-tab.php:118
+#: ../includes/pro-tab.php:74 ../includes/pro-tab.php:116
 msgid "Delete log entry"
 msgstr "Видалити запис журналу"
 
-#: ../includes/pro-tab.php:87 ../includes/pro-tab.php:97
+#: ../includes/pro-tab.php:85 ../includes/pro-tab.php:95
 msgid "IP address"
 msgstr "IP адреса"
 
-#: ../includes/pro-tab.php:88 ../includes/pro-tab.php:98
+#: ../includes/pro-tab.php:86 ../includes/pro-tab.php:96
 msgid "Internet Hostname"
 msgstr "Назва хостингу"
 
-#: ../includes/pro-tab.php:89 ../includes/pro-tab.php:99
+#: ../includes/pro-tab.php:87 ../includes/pro-tab.php:97
 msgid "Event"
 msgstr "Подія"
 
-#: ../includes/pro-tab.php:90 ../includes/pro-tab.php:100
+#: ../includes/pro-tab.php:88 ../includes/pro-tab.php:98
 msgid "Form"
 msgstr "Форма"
 
-#: ../includes/pro-tab.php:91 ../includes/pro-tab.php:101
+#: ../includes/pro-tab.php:89 ../includes/pro-tab.php:99
 msgid "Event time"
 msgstr "Час події"
 
-#: ../includes/pro-tab.php:109
+#: ../includes/pro-tab.php:107
 msgid "Failed attempt"
 msgstr "Невдала спроба"
 
-#: ../includes/pro-tab.php:129 ../limit-attempts.php:56
+#: ../includes/pro-tab.php:127 ../limit-attempts.php:56
 msgid "Upgrade to Pro"
 msgstr "Оновитися на Pro"
 
@@ -889,7 +958,6 @@ msgid_plural "entries"
 msgstr[0] "запис"
 msgstr[1] "записи"
 msgstr[2] "записів"
-msgstr[3] "запис"
 
 #: ../includes/statistics.php:358
 msgid "Are you sure you want to delete all statistics entries?"
@@ -947,17 +1015,17 @@ msgstr "Limit Attempts Статистика"
 msgid "Statistics"
 msgstr "Статистика"
 
-#: ../limit-attempts.php:165 ../limit-attempts.php:433
+#: ../limit-attempts.php:165 ../limit-attempts.php:428
 #, php-format
 msgid "Retries before lock: %s."
 msgstr "Спроб до блокування: %s."
 
-#: ../limit-attempts.php:166 ../limit-attempts.php:434
+#: ../limit-attempts.php:166 ../limit-attempts.php:429
 #, php-format
 msgid "Too many retries. You have been blocked for %s."
 msgstr "Занадто багато спроб. Ви заблоковані на %s."
 
-#: ../limit-attempts.php:167 ../limit-attempts.php:435
+#: ../limit-attempts.php:167 ../limit-attempts.php:430
 msgid ""
 "You've been added to blacklist. Please contact administrator to resolve this "
 "problem."
@@ -965,17 +1033,17 @@ msgstr ""
 "Ви додані в чорний список. Для вирішення цієї проблеми зверніться до "
 "адміністратора."
 
-#: ../limit-attempts.php:169 ../limit-attempts.php:436
+#: ../limit-attempts.php:169 ../limit-attempts.php:431
 #, php-format
 msgid "%s has been blocked on %s"
 msgstr "%s була заблокована на %s"
 
-#: ../limit-attempts.php:170 ../limit-attempts.php:437
+#: ../limit-attempts.php:170 ../limit-attempts.php:432
 #, php-format
 msgid "%s has been added to the blacklist on %s"
 msgstr "%s була додана в чорний список на %s"
 
-#: ../limit-attempts.php:171 ../limit-attempts.php:438
+#: ../limit-attempts.php:171 ../limit-attempts.php:433
 #, php-format
 msgid ""
 "IP %s has been blocked automatically on %s due to the excess of login "
@@ -985,12 +1053,12 @@ msgstr ""
 "%s."
 
 #: ../limit-attempts.php:171 ../limit-attempts.php:172
-#: ../limit-attempts.php:438 ../limit-attempts.php:439
+#: ../limit-attempts.php:433 ../limit-attempts.php:434
 #, php-format
 msgid "Using the plugin %s"
 msgstr "Використовуючи плагін %s"
 
-#: ../limit-attempts.php:172 ../limit-attempts.php:439
+#: ../limit-attempts.php:172 ../limit-attempts.php:434
 #, php-format
 msgid ""
 "IP %s has been added automatically to the blacklist on %s due to the excess "
@@ -999,7 +1067,7 @@ msgstr ""
 "IP% s автоматично додана в чорний список %s через перевищення спроб входу на "
 "ваш сайт %s."
 
-#: ../limit-attempts.php:326
+#: ../limit-attempts.php:321
 #, php-format
 msgid ""
 "Limit Attempts interaction with Htaccess was turned off since you are using "
@@ -1010,27 +1078,27 @@ msgstr ""
 "плагінами Limit Attempts та Htaccess було вимкнено. Якщо ви бажаєте "
 "відновити взаємодію, будь ласка, оновіть плагін Htaccess до версії %s."
 
-#: ../limit-attempts.php:481
+#: ../limit-attempts.php:476
 msgid "FAQ"
 msgstr "FAQ"
 
-#: ../limit-attempts.php:482
+#: ../limit-attempts.php:477
 msgid "Support"
 msgstr "Техпідтримка"
 
-#: ../limit-attempts.php:498
+#: ../limit-attempts.php:493
 msgid "Network"
 msgstr "Мережеві"
 
-#: ../limit-attempts.php:499
+#: ../limit-attempts.php:494
 msgid "Please enable JavaScript in Your browser."
 msgstr "Будь ласка, увімкніть JavaScript у вашому браузері."
 
-#: ../limit-attempts.php:501
+#: ../limit-attempts.php:496
 msgid "This option will replace all current settings on separate sites."
 msgstr "Ця настройка замінить усі поточні настройки окремих сайтів."
 
-#: ../limit-attempts.php:537
+#: ../limit-attempts.php:532
 msgid ""
 "Limit Login Attempts plugin is activated on your site, as well as Limit "
 "Attempts plugin. Please note that Limit Attempts ensures maximum security "
@@ -1044,23 +1112,23 @@ msgstr ""
 "Нехтування цією простою порадою може призвести до вкрай небажаних наслідків "
 "для вашого сайту."
 
-#: ../limit-attempts.php:564
+#: ../limit-attempts.php:559
 msgid "ATTENTION!"
 msgstr "УВАГА!"
 
-#: ../limit-attempts.php:567
+#: ../limit-attempts.php:562
 msgid "Read and Understood"
 msgstr "Ознайомлений"
 
-#: ../limit-attempts.php:644
+#: ../limit-attempts.php:639
 msgid "Addresses per page"
 msgstr "Адрес на сторінці"
 
-#: ../limit-attempts.php:976
+#: ../limit-attempts.php:982
 msgid "Notice"
 msgstr "Увага"
 
-#: ../limit-attempts.php:976
+#: ../limit-attempts.php:982
 msgid "Changes are not saved."
 msgstr "Налаштування не збережені."
 
@@ -1142,9 +1210,6 @@ msgstr "Налаштування не збережені."
 
 #~ msgid "Subscriber"
 #~ msgstr "Subscriber"
-
-#~ msgid "Contact Form 7"
-#~ msgstr "Contact Form 7"
 
 #~ msgid "Warning"
 #~ msgstr "Увага"

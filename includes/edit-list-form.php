@@ -7,8 +7,8 @@
 if ( ! function_exists( 'lmtttmpts_display_list' ) ) {
 	function lmtttmpts_display_list() {
 		global $wpdb, $wp_version;
-		$list = isset( $_GET['list'] ) && 'whitelist' == $_GET['list'] ? 'whitelist' : 'blacklist'; 
-		require_once( dirname( __FILE__ ) . '/' . $list . '.php' ); 
+		$list = isset( $_GET['list'] ) && 'whitelist' == $_GET['list'] ? 'whitelist' : 'blacklist';
+		require_once( dirname( __FILE__ ) . '/' . $list . '.php' );
 		$list_table = 'whitelist' == $list ? new Lmtttmpts_Whitelist() : new Lmtttmpts_Blacklist();
 		$blacklist_count = $wpdb->get_var( "SELECT COUNT(*) FROM `{$wpdb->prefix}lmtttmpts_blacklist`" );
 		$whitelist_count = $wpdb->get_var( "SELECT COUNT(*) FROM `{$wpdb->prefix}lmtttmpts_whitelist`" );
@@ -20,7 +20,7 @@ if ( ! function_exists( 'lmtttmpts_display_list' ) ) {
 			<hr class="wp-header-end">
 		<?php } else { ?>
 			<h1>
-				<?php echo get_admin_page_title(); 
+				<?php echo get_admin_page_title();
 				if ( ! isset( $_GET['action'] ) && ! isset( $_GET['edit_action'] ) ) { ?>
 					<a class="page-title-action" href="admin.php?page=limit-attempts-black-and-whitelist.php&amp;list=<?php echo $list; ?>&amp;action=edit"><?php _e( 'Edit List', 'limit-attempts' ); ?></a>
 				<?php } ?>
@@ -33,7 +33,7 @@ if ( ! function_exists( 'lmtttmpts_display_list' ) ) {
 		</ul>
 		<div class="clear"></div>
 		<div id="lmtttmpts_<?php echo $list; ?>" class="lmtttmpts_list">
-			<?php lmtttmpts_edit_list();			
+			<?php lmtttmpts_edit_list();
 			$list_table->action_message();
 			$list_table->prepare_items(); ?>
 			<form method="get" action="admin.php">
@@ -44,7 +44,7 @@ if ( ! function_exists( 'lmtttmpts_display_list' ) ) {
 			<form method="post" action="admin.php?page=limit-attempts-black-and-whitelist.php&list=<?php echo $list; ?>">
 				<?php $list_table->display(); ?>
 			</form>
-		</div>	
+		</div>
 	<?php }
 }
 
@@ -72,8 +72,8 @@ if ( ! function_exists( 'lmtttmpts_edit_list' ) ) {
 						$flag = true;
 					}
 
+					lmtttmpts_remove_from_blocked_list( $add_ip );
 					if ( false !== lmtttmpts_add_ip_to_whitelist( $add_ip ) ) {
-						lmtttmpts_remove_from_blocked_list( $add_ip );
 						if ( ! empty( $message ) )
 							$message .= '<br />';
 						$message .= $add_ip . '&nbsp;' . __( 'has been added to whitelist', 'limit-attempts' );
@@ -97,15 +97,15 @@ if ( ! function_exists( 'lmtttmpts_edit_list' ) ) {
 					if ( lmtttmpts_is_ip_in_table( $add_to_blacklist_ip, 'blacklist' ) ) {
 						$message .= __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'This IP address has already been added to blacklist', 'limit-attempts' ) . ' - ' . $add_to_blacklist_ip;
 					} else {
-						if ( lmtttmpts_is_ip_in_table( $add_to_blacklist_ip, 'whitelist' ) )
+						if ( lmtttmpts_is_ip_in_table( $add_to_blacklist_ip, 'whitelist' ) ) {
 							$message .= __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'This IP address is in whitelist too, please check this to avoid errors', 'limit-attempts' ) . ' - ' . $add_to_blacklist_ip;
+						}
+
+						lmtttmpts_remove_from_blocked_list( $add_to_blacklist_ip );
 						if ( false !== lmtttmpts_add_ip_to_blacklist( $add_to_blacklist_ip ) ) {
-							lmtttmpts_remove_from_blocked_list( $add_to_blacklist_ip );
 							if ( ! empty( $message ) )
 								$message .= '<br />';
 							$message .= $add_to_blacklist_ip . '&nbsp;' . __( 'has been added to blacklist', 'limit-attempts' );
-							if ( 1 == $lmtttmpts_options["block_by_htaccess"] )
-								do_action( 'lmtttmpts_htaccess_hook_for_block', $add_to_blacklist_ip );
 						} else {
 							if ( ! empty( $error ) )
 								$error .= '<br />';
@@ -124,7 +124,7 @@ if ( ! function_exists( 'lmtttmpts_edit_list' ) ) {
 		<?php }
 		if ( ! empty( $message ) ) { ?>
 			<div class="updated inline"><p><?php echo $message; ?></p></div>
-		<?php }		
+		<?php }
 		if ( ( isset( $_GET['action'] ) && 'edit' == $_GET['action'] ) || isset( $_GET['edit_action'] ) || ! empty( $error ) ) { ?>
 			<form id="lmtttmpts_edit_list_form" action="admin.php?page=limit-attempts-black-and-whitelist.php&amp;list=<?php echo $lmtttmpts_table; ?>" method="post">
 				<input type="text" maxlength="31" name="lmtttmpts_add_to_<?php echo $lmtttmpts_table; ?>" />
@@ -140,11 +140,11 @@ if ( ! function_exists( 'lmtttmpts_edit_list' ) ) {
 				<?php } ?>
 				<div>
 					<span class="bws_info" style="display: inline-block;margin: 10px 0;"><?php _e( "Allowed formats:", 'limit-attempts' ); ?><code>192.168.0.1</code></span>
-				</div>							
-				<input type="hidden" name="lmtttmpts_table" value="<?php echo $lmtttmpts_table; ?>" />				
+				</div>
+				<input type="hidden" name="lmtttmpts_table" value="<?php echo $lmtttmpts_table; ?>" />
 				<?php wp_nonce_field( 'limit-attempts/limit-attempts.php', 'lmtttmpts_nonce_name' ); ?>
 			</form>
-			<?php lmtttmpts_display_advertising( $lmtttmpts_table ); ?>	
+			<?php lmtttmpts_display_advertising( $lmtttmpts_table ); ?>
 		<?php }
 	}
 }

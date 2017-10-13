@@ -59,9 +59,14 @@
 <li>Reason</li>
 </ul>
 </li>
-<li>Compatible with <a href="https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c" rel="nofollow">Captcha Pro</a>:
+<li>Compatible with <a href="https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c" rel="nofollow">Captcha Pro</a> and <a href="https://codecanyon.net/item/captcha-plus/9656420" rel="nofollow">Captcha Plus</a>:
 <ul>
-<li>Consider the incorrect captcha input as an invalid attempt for the forms compatible with Captcha Pro</li>
+<li>Consider the incorrect captcha input as an invalid attempt for the forms compatible with Captcha</li>
+</ul>
+</li>
+<li>Compatible with <a href="https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935" rel="nofollow">reCAPTCHA</a>:
+<ul>
+<li>Consider failed reCAPTCHA validation as an invalid attempt for the forms compatible with reCAPTCHA plugin</li>
 </ul>
 </li>
 <li>Set the option for non-existent username log in:

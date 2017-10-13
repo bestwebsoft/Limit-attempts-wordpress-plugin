@@ -278,7 +278,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 				if ( filter_var( $_GET['lmtttmpts_add_to_whitelist'], FILTER_VALIDATE_IP ) ) {
 					$ip = $_GET['lmtttmpts_add_to_whitelist'];
 					$ip_int = sprintf( '%u', ip2long( $ip ) );
-					
+
 					/* single IP de-block */
 					$result_reset_block = $wpdb->update(
 						$wpdb->prefix . 'lmtttmpts_failed_attempts',
@@ -300,7 +300,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 						$action_message['done'] = $message_list['single_add_to_whitelist_done'] . ':&nbsp;' . esc_html( $ip );
 
 						if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
-							do_action( 'lmtttmpts_htaccess_hook_for_reset_block', $ip ); /* hook for deblocking by Htaccess */
+							do_action( 'lmtttmpts_htaccess_hook_for_add_to_whitelist', $ip );
 						}
 					}
 				}
@@ -319,7 +319,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 					$action_message['done'] = $message_list['block_reset_done'] . '&nbsp;' . esc_html( $_REQUEST['lmtttmpts_reset_block'] );
 
 					if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
-						do_action( 'lmtttmpts_htaccess_hook_for_reset_block', $_REQUEST['lmtttmpts_reset_block'] ); /* hook for deblocking by Htaccess */
+						do_action( 'lmtttmpts_htaccess_hook_for_reset_block', trim( $_REQUEST['lmtttmpts_reset_block'] ) ); /* hook for deblocking by Htaccess */
 					}
 				} else {
 					/* if error */

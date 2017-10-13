@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
 Requires at least: 3.9
-Tested up to: 4.8
-Stable tag: 1.1.9
+Tested up to: 4.8.2
+Stable tag: 1.2.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -59,8 +59,10 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 > 	* Range from
 > 	* Range to
 > 	* Reason
-> * Compatible with [Captcha Pro](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c):
-> 	* Consider the incorrect captcha input as an invalid attempt for the forms compatible with Captcha Pro
+> * Compatible with [Captcha Pro](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c) and [Captcha Plus](https://codecanyon.net/item/captcha-plus/9656420):
+> 	* Consider the incorrect captcha input as an invalid attempt for the forms compatible with Captcha
+> * Compatible with [reCAPTCHA](https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935):
+> 	* Consider failed reCAPTCHA validation as an invalid attempt for the forms compatible with reCAPTCHA plugin
 > * Set the option for non-existent username log in:
 > 	* According to time and login attempts set for Block- and Blacklist
 > 	* Block IP immediately
@@ -197,6 +199,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
+= V1.2.0 - 13.10.2017 =
+* Update : All functionality for wordpress 4.8.2 has been updated.
+* PRO : Compatibility with the Google Captcha (reCAPTCHA) by BestWebSoft has been added.
+
 = V1.1.9 - 19.06.2017 =
 * Update : All functionality for wordpress 4.8 was updated.
 * Pro : Statistic displaying has been updated.
@@ -292,6 +298,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.2.0 =
+* The compatibility with new WordPress version updated.
 
 = V1.1.9 =
 * Usability improved.

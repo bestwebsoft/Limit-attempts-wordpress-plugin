@@ -281,6 +281,10 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 					} else {
 						$done_ips = (array)$ip_list;
 						$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? __( 'has been deleted from whitelist', 'limit-attempts' ) : __( 'have been deleted from whitelist', 'limit-attempts' ) );
+
+						if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
+							do_action( 'lmtttmpts_htaccess_hook_for_delete_from_whitelist', $done_ips );
+						}
 					}
 				}
 			}
@@ -288,10 +292,11 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 			if ( isset( $_REQUEST['s'] ) ) {
 				$search_request = esc_html( trim( $_REQUEST['s'] ) );
 				if ( ! empty( $search_request ) ) {
-					if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])?(\.?(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[-0-9])?){0,3}?$/', $search_request ) )
+					if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])?(\.?(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[-0-9])?){0,3}?$/', $search_request ) ) {
 						$action_message['done'] .= ( empty( $action_message['done'] ) ? '' : '<br/>' ) . __( 'Search results for', 'limit-attempts' ) . '&nbsp;' . $search_request;
-					else
+					} else {
 						$action_message['error'] .= ( empty( $action_message['error'] ) ? '' : '<br/>' ) .sprintf( __( 'Wrong format or it does not lie in range %s.', 'limit-attempts' ), '0.0.0.0 - 255.255.255.255' );
+					}
 				}
 			}
 

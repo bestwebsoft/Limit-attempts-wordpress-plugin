@@ -62,7 +62,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				if ( ! function_exists( 'get_plugins' ) )
 					require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 				$this->all_plugins = get_plugins();
-			} 
+			}
 			if ( ! $this->active_plugins ) {
 				if ( $this->is_multisite ) {
 					$this->active_plugins = (array) array_keys( get_site_option( 'active_sitewide_plugins', array() ) );
@@ -105,21 +105,28 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				}
 				$this->options["days_to_clear_statistics"] = $_POST["lmtttmpts_days_to_clear_statistics"];
 			}
-			
+
 			$this->options['hide_login_form'] = isset( $_POST['lmtttmpts_hide_login_form'] ) ? 1: 0;
 
 			/* Updating options of interaction with Htaccess plugin */
 			$htaccess_is_active = 0 < count( preg_grep( '/htaccess\/htaccess.php/', $this->active_plugins ) ) || 0 < count( preg_grep( '/htaccess-pro\/htaccess-pro.php/', $this->active_plugins ) ) ? true : false;
 			if ( isset( $_POST['lmtttmpts_block_by_htaccess'] ) ) {
 				if ( $htaccess_is_active && 0 == $this->options['block_by_htaccess'] ) {
-					$blocked_ips = $wpdb->get_col( "SELECT `ip` FROM `{$wpdb->prefix}lmtttmpts_blacklist`" );
-					if ( is_array( $blocked_ips ) && ! empty( $blocked_ips ) )
+					$blocked_ips = $wpdb->get_col( "SELECT `ip` FROM `{$wpdb->prefix}lmtttmpts_blacklist`;" );
+					if ( is_array( $blocked_ips ) && ! empty( $blocked_ips ) ) {
 						do_action( 'lmtttmpts_htaccess_hook_for_block', $blocked_ips );
+					}
+
+					$whitelisted_ips = $wpdb->get_col( "SELECT `ip` FROM `{$wpdb->prefix}lmtttmpts_whitelist`;" );
+					if ( is_array( $whitelisted_ips ) && ! empty( $whitelisted_ips ) ) {
+						do_action( 'lmtttmpts_htaccess_hook_for_add_to_whitelist', $whitelisted_ips );
+					}
 				}
 				$this->options['block_by_htaccess'] = 1;
 			} else {
-				if ( $htaccess_is_active && 1 == $this->options['block_by_htaccess'] )
+				if ( $htaccess_is_active && 1 == $this->options['block_by_htaccess'] ) {
 					do_action( 'lmtttmpts_htaccess_hook_for_delete_all' );
+				}
 				$this->options['block_by_htaccess'] = 0;
 			}
 
@@ -128,6 +135,11 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				$this->options['login_form_captcha_check'] = $_POST['lmtttmpts_login_form_captcha_check'];
 			else
 				unset( $this->options['login_form_captcha_check'] );
+
+			if ( isset( $_POST['lmtttmpts_login_form_recaptcha_check'] ) )
+				$this->options['login_form_recaptcha_check'] = $_POST['lmtttmpts_login_form_recaptcha_check'];
+			else
+				unset( $this->options['login_form_recaptcha_check'] );
 
 			/* Updating options with notify by email options */
 			$this->options['notify_email'] = isset( $_POST['lmtttmpts_notify_email'] ) && ! empty( $_POST['lmtttmpts_email_blacklisted'] ) && ! empty( $_POST['lmtttmpts_email_blocked'] ) ? true : false;
@@ -157,7 +169,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					unset( $default_messages['failed_message'], $default_messages['blocked_message'], $default_messages['blacklisted_message'] );
 					$message = __( 'Email notifications have been restored to default.', 'limit-attempts' ) . '<br />';
 				} else {
-					unset( $default_messages['email_subject'], $default_messages['email_subject_blacklisted'], $default_messages['email_blocked'], $default_messages['email_blacklisted'] );				
+					unset( $default_messages['email_subject'], $default_messages['email_subject_blacklisted'], $default_messages['email_blocked'], $default_messages['email_blacklisted'] );
 					$message = __( 'Messages have been restored to default.', 'limit-attempts' ) . '<br />';
 				}
 				foreach ( $default_messages as $key => $value ) {
@@ -165,7 +177,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				}
 			}
 
-			$this->options = array_map( 'stripslashes_deep', $this->options );					
+			$this->options = array_map( 'stripslashes_deep', $this->options );
 
 			$message .= __( 'Settings saved.', 'limit-attempts' );
 
@@ -194,7 +206,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 			} ?>
 			<h3 class="bws_tab_label"><?php _e( 'Limit Attempts Settings', 'limit-attempts' ); ?></h3>
 			<?php $this->help_phrase(); ?>
-			<hr>			
+			<hr>
 			<table class="form-table lmtttmpts_settings_form">
 				<tr>
 					<th><?php _e( 'Block IP Address After', 'limit-attempts' ); ?></th>
@@ -279,7 +291,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 								<td>
 									<fieldset>
 										<label>
-											<input disabled="disabled" checked="checked" type="radio" name="lmtttmpts_action_with_not_existed_user" value="default" /> 
+											<input disabled="disabled" checked="checked" type="radio" name="lmtttmpts_action_with_not_existed_user" value="default" />
 											<?php _e( 'Default', 'limit-attempts' ); ?>
 										</label>
 										<br />
@@ -305,7 +317,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				<tr>
 					<th><?php _e( 'Hide Forms', 'limit-attempts' ); ?></th>
 					<td>
-						<input type="checkbox" name="lmtttmpts_hide_login_form" value="1"<?php checked( 1, $this->options['hide_login_form'] ); ?> /> <span class="bws_info"><?php _e( 'Enable to hide login, registration, reset password forms for blocked or blacklisted IP addresses.', 'limit-attempts' ); ?></span>
+						<input type="checkbox" name="lmtttmpts_hide_login_form" value="1"<?php checked( 1, $this->options['hide_login_form'] ); ?> /> <span class="bws_info"><?php _e( 'Enable to hide login, registration, reset password forms from blocked or blacklisted IP addresses.', 'limit-attempts' ); ?></span>
 					</td>
 				</tr>
 				<tr>
@@ -322,18 +334,18 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 										$attr .= ' checked="checked"';
 									$status_message = ' <a href="' . network_admin_url( $htaccess_settings_link ) . '">' . sprintf( __( 'Go to %s Settings', 'limit-attempts' ), 'Htaccess' ) . '</a>';
 								} else {
-									$attr = ' disabled="disabled"'; 
+									$attr = ' disabled="disabled"';
 									if ( 1 == $this->options["block_by_htaccess"] )
 										$attr .= ' checked="checked"';
 									$status_message = ' <a href="' . self_admin_url( '/plugins.php' ) . '">' . sprintf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Htaccess', 'v.1.6.2' ) . '</a>';
 								}
 							} else {
-								$attr = ' disabled="disabled"'; 
+								$attr = ' disabled="disabled"';
 								if ( 1 == $this->options["block_by_htaccess"] )
 									$attr .= ' checked="checked"';
 								$status_message = ' <a href="' . self_admin_url( '/plugins.php' ) . '">' . __( 'Activate', 'limit-attempts' ) . '</a>';
 							}
-						} else { 
+						} else {
 							$attr = ' disabled="disabled"';
 							$status_message = ' <a href="https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=d349566ffcac58d885e8dc9ff34c6174">' . __( 'Install Now', 'limit-attempts' ) . '</a>';
 						} ?>
@@ -350,25 +362,29 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					<td>
 						<fieldset>
 							<?php if (
-								array_key_exists( 'captcha/captcha.php', $this->all_plugins ) ||
+								/*array_key_exists( 'captcha-bws/captcha-bws.php', $this->all_plugins ) ||*/
 								array_key_exists( 'captcha-plus/captcha-plus.php', $this->all_plugins ) ||
 								array_key_exists( 'captcha-pro/captcha_pro.php', $this->all_plugins )
 							) {
-								if ( 0 < count( preg_grep( '/captcha\/captcha.php/', $this->active_plugins ) ) || 0 < count( preg_grep( '/captcha-pro\/captcha_pro.php/', $this->active_plugins ) ) || 0 < count( preg_grep( '/captcha-plus\/captcha-plus.php/', $this->active_plugins ) ) ) {
+								if (
+									/*0 < count( preg_grep( '/captcha-bws\/captcha-bws.php/', $this->active_plugins ) ) ||*/
+									0 < count( preg_grep( '/captcha-pro\/captcha_pro.php/', $this->active_plugins ) ) ||
+									0 < count( preg_grep( '/captcha-plus\/captcha-plus.php/', $this->active_plugins ) )
+								) {
 									if ( 0 < count( preg_grep( '/captcha-pro\/captcha_pro.php/', $this->active_plugins ) ) ) {
 										if ( isset( $this->all_plugins['captcha-pro/captcha_pro.php']['Version'] ) && $this->all_plugins['captcha-pro/captcha_pro.php']['Version'] >= '1.4.4' ) { ?>
 											<!-- Checkbox for Login form captcha checking -->
 											<label>
 												<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
 												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
-											</label>											
+											</label>
 											<div class="bws_info">
 												<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?>  <a href="<?php echo self_admin_url( 'admin.php?page=captcha_pro.php' ); ?>"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'Captcha Pro' ); ?></a>
 											</div>
 										<?php } else { ?>
 											<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
 											<span class="bws_info">
-												<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Captcha Pro', 'v.1.4.4' ); ?></a>
+												<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Captcha Pro', 'v1.4.4' ); ?></a>
 											</span>
 										<?php }
 									} elseif ( 0 < count( preg_grep( '/captcha-plus\/captcha-plus.php/', $this->active_plugins ) ) ) {
@@ -381,7 +397,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 											<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=captcha-plus.php"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'Captcha Plus' ); ?></a>
 										</div>
 									<?php } else {
-										if ( isset( $this->all_plugins['captcha/captcha.php']['Version'] ) && $this->all_plugins['captcha/captcha.php']['Version'] >= '4.0.2' ) { ?>
+										if ( isset( $this->all_plugins['captcha-bws/captcha-bws.php']['Version'] ) && $this->all_plugins['captcha-bws/captcha-bws.php']['Version'] >= '5.0.0' ) { ?>
 											<label>
 												<input type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options['login_form_captcha_check'] ) ) echo 'checked="checked"'; ?> />
 												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
@@ -392,7 +408,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 										<?php } else { ?>
 											<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
 											<span class="bws_info">
-												<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Captcha', 'v.4.0.2' ); ?></a>
+												<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Captcha', 'v4.0.2' ); ?></a>
 											</span>
 										<?php }
 									}
@@ -403,7 +419,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 									</span>
 								<?php }
 							} else { ?>
-								<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" /> 
+								<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" />
 								<span class="bws_info">
 									<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=6edfbbf264c8ee2d45ecb91d0994c89e"><?php _e( 'Install Now', 'limit-attempts' ); ?></a>
 								</span>
@@ -415,29 +431,145 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 										<div class="bws_table_bg"></div>
 										<div class="bws_pro_version">
 											<fieldset>
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Registration form', 'limit-attempts' ); ?></span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Reset Password form', 'limit-attempts' ); ?></span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Comments form', 'limit-attempts' ); ?></span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> Contact Form by BestWebSoft</span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> Subscriber by BestWebSoft</span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress registration form', 'limit-attempts' ); ?></span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress comments form', 'limit-attempts' ); ?></span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'Buddypress "Create a Group" form', 'limit-attempts' ); ?></span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> Contact Form 7</span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'WooCommerce Login form', 'limit-attempts' ); ?></span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'WooCommerce Register form', 'limit-attempts' ); ?></span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'WooCommerce Lost Password form', 'limit-attempts' ); ?></span></label><br />
-													<label><input disabled="disabled" type="checkbox" /><span> <?php _e( 'WooCommerce Checkout Billing form', 'limit-attempts' ); ?></span></label>
+													<?php $captcha_pro_forms = array(
+													__( 'Registration form', 'limit-attempts' ),
+													__( 'Reset Password form', 'limit-attempts' ),
+													__( 'Comments form', 'limit-attempts' ),
+													'Contact Form by BestWebSoft',
+													'Subscriber by BestWebSoft',
+													__( 'Buddypress registration form', 'limit-attempts' ),
+													__( 'Buddypress "Create a Group" form', 'limit-attempts' ),
+													'Contact Form 7',
+													__( 'WooCommerce Login form', 'limit-attempts' ),
+													__( 'WooCommerce Register form', 'limit-attempts' ),
+													__( 'WooCommerce Lost Password form', 'limit-attempts' ),
+													__( 'WooCommerce Checkout Billing form', 'limit-attempts' )
+												);
+												foreach ( $captcha_pro_forms as $form_name ) {
+													printf(
+														'<label><input disabled="disabled" type="checkbox" /><span> %s</span></label><br />',
+														$form_name
+													);
+												} ?>
 											</fieldset>
 											<p style="position: relative;z-index: 2;"><strong>* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=da48686c77c832045c113eb82447d40d&pn=140&v=' . $this->plugins_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">Captcha Pro</a>' ); ?></strong></p>
 										</div>
 									</div>
 									<?php $this->bws_pro_block_links(); ?>
 								</div>
-							<?php } ?>					
+							<?php } ?>
 						</fieldset>
 					</td>
-				</tr>										
+				</tr>
+				<tr>
+					<th><?php _e( 'Google Captcha Plugin', 'limit-attempts' ); ?></th>
+					<td>
+						<fieldset>
+							<?php if (
+								array_key_exists( 'google-captcha/google-captcha.php', $this->all_plugins ) ||
+								array_key_exists( 'google-captcha-pro/google-captcha-pro.php', $this->all_plugins )
+							) {
+								if (
+									/*0 < count( preg_grep( '/captcha-bws\/captcha-bws.php/', $this->active_plugins ) ) ||*/
+									0 < count( preg_grep( '/google-captcha\/google-captcha.php/', $this->active_plugins ) ) ||
+									0 < count( preg_grep( '/google-captcha-pro\/google-captcha-pro.php/', $this->active_plugins ) )
+								) {
+									if ( 0 < count( preg_grep( '/google-captcha-pro\/google-captcha-pro.php/', $this->active_plugins ) ) ) {
+										if (
+											isset( $this->all_plugins['google-captcha-pro/google-captcha-pro.php']['Version'] ) &&
+											version_compare( $this->all_plugins['google-captcha-pro/google-captcha-pro.php']['Version'], '1.32', '>=' )
+										) { ?>
+											<!-- Checkbox for Login form captcha checking -->
+											<label>
+												<input type="checkbox" name="lmtttmpts_login_form_recaptcha_check" value="1" <?php if ( ! empty( $this->options['login_form_recaptcha_check'] ) ) echo 'checked="checked"'; ?> />
+												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
+											</label>
+											<div class="bws_info">
+												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?>  <a href="<?php echo self_admin_url( 'admin.php?page=google-captcha-pro.php' ); ?>"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'Google Captcha Pro' ); ?></a>
+											</div>
+										<?php } else { ?>
+											<input disabled="disabled" type="checkbox" />
+											<span class="bws_info">
+												<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Google Captcha Pro', 'v1.32' ); ?></a>
+											</span>
+										<?php }
+									} else {
+										if (
+											isset( $this->all_plugins['google-captcha/google-captcha.php']['Version'] ) &&
+											version_compare( $this->all_plugins['google-captcha/google-captcha.php']['Version'], '1.32', '>=' )
+										) { ?>
+											<label>
+												<input type="checkbox" name="lmtttmpts_login_form_recaptcha_check" value="1" <?php if ( isset( $this->options['login_form_recaptcha_check'] ) ) echo 'checked="checked"'; ?> />
+												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
+											</label>
+											<div class="bws_info">
+												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=google-captcha.php"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'Google Captcha' ); ?></a>
+											</div>
+										<?php } else { ?>
+											<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
+											<span class="bws_info">
+												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Google Captcha', 'v1.32' ); ?></a>
+											</span>
+										<?php }
+									}
+								} else { /* if no plugin is active */ ?>
+									<input disabled="disabled" type="checkbox" />
+									<span class="bws_info">
+										<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php _e( 'Activate', 'limit-attempts' ); ?></a>
+									</span>
+								<?php }
+							} else { ?>
+								<input disabled="disabled" type="checkbox" />
+								<span class="bws_info">
+									<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935&pn=140&v=<?php echo $this->plugins_info['Version'] . '&wp_v=' . $wp_version; ?>" target="_blank"><?php _e( 'Install Now', 'limit-attempts' ); ?></a>
+								</span>
+							<?php }
+							if ( ! $this->hide_pro_tabs ) { ?>
+								<div class="bws_pro_version_bloc">
+									<div class="bws_pro_version_table_bloc">
+										<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'limit-attempts' ); ?>"></button>
+										<div class="bws_table_bg"></div>
+										<div class="bws_pro_version">
+											<fieldset>
+												<?php $recaptcha_pro_forms = array(
+													__( 'Registration form', 'limit-attempts' ),
+													__( 'Reset password form', 'limit-attempts' ),
+													__( 'Comments form', 'limit-attempts' ),
+													'Contact Form',
+													'Contact Form 7',
+													'Fast Secure Contact Form',
+													__( 'Jetpack Contact Form', 'limit-attempts' ),
+													'Subscriber',
+													__( 'bbPress New Topic form', 'limit-attempts' ),
+													__( 'bbPress Reply form', 'limit-attempts' ),
+													__( 'BuddyPress Registration form', 'limit-attempts' ),
+													__( 'BuddyPress Comments form', 'limit-attempts' ),
+													__( 'BuddyPress Add New Group form', 'limit-attempts' ),
+													__( 'WooCommerce Login form', 'limit-attempts' ),
+													__( 'WooCommerce Registration form', 'limit-attempts' ),
+													__( 'WooCommerce Reset password form', 'limit-attempts' ),
+													__( 'WooCommerce Checkout form', 'limit-attempts' ),
+													__( 'wpForo Login form', 'limit-attempts' ),
+													__( 'wpForo Registration form', 'limit-attempts' ),
+													__( 'wpForo New Topic form', 'limit-attempts' ),
+													__( 'wpForo Reply form', 'limit-attempts'),
+												);
+												foreach ( $recaptcha_pro_forms as $form_name ) {
+													printf(
+														'<label><input disabled="disabled" type="checkbox" /><span> %s</span></label><br />',
+														$form_name
+													);
+												} ?>
+											</fieldset>
+											<p style="position: relative;z-index: 2;"><strong>* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935&pn=140&v=' . $this->plugins_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">Google Captcha Pro</a>' ); ?></strong></p>
+										</div>
+									</div>
+									<?php $this->bws_pro_block_links(); ?>
+								</div>
+							<?php } ?>
+						</fieldset>
+					</td>
+				</tr>
 			</table>
 		<?php }
 
@@ -485,19 +617,19 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					<td>
 						<button class="button-secondary" name="lmtttmpts_return_default" value="error"><?php _e( 'Restore Error Messages', 'limit-attempts' ) ?></button>
 					</td>
-				</tr>					
+				</tr>
 			</table>
 		<?php }
 
 		/**
 		 *
 		 */
-		public function tab_notifications() { 
+		public function tab_notifications() {
 			/* get admins for emails */
 			$userslogin = get_users( 'blog_id=' . $GLOBALS['blog_id'] . '&role=administrator' ); ?>
 			<h3 class="bws_tab_label"><?php _e( 'Email Notifications Settings', 'limit-attempts' ); ?></h3>
 			<?php $this->help_phrase(); ?>
-			<hr>			
+			<hr>
 			<table class="form-table lmtttmpts_settings_form">
 				<tr>
 					<th><?php _e( 'Email Notifications', 'limit-attempts' ); ?></th>
@@ -584,7 +716,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 		 * Display custom options on the 'misc' tab
 		 * @access public
 		 */
-		public function additional_misc_options_affected() { 
+		public function additional_misc_options_affected() {
 			global $wpdb, $lmtttmpts_country_table;
 			/* get DB size or update if it's empty 1 hour old or more */
 			if ( empty( $this->options['db_size'] ) || ( $this->options['db_size']['last_updated_timestamp'] + 3600 ) < time() ) {
@@ -669,7 +801,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 										<div style="margin-top: 10px;"><input disabled="disabled" type="submit" class="button" value="<?php _e( 'Update Now', 'limit-attempts' ); ?>" /></div>
 									</fieldset>
 								</td>
-							</tr>	
+							</tr>
 						</table>
 					</div>
 					<?php $this->bws_pro_block_links(); ?>

@@ -280,8 +280,9 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
 					} else {
 						$done_ips = (array)$ip_list;
 						$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? __( 'has been deleted from blacklist', 'limit-attempts' ) : __( 'have been deleted from blacklist', 'limit-attempts' ) );
-						if ( 1 == $lmtttmpts_options["block_by_htaccess"] )
+						if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
 							do_action( 'lmtttmpts_htaccess_hook_for_reset_block', $done_ips );
+						}
 					}
 				}
 			}

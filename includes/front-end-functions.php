@@ -288,14 +288,9 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 					if ( ! wp_next_scheduled( 'lmtttmpts_event_for_reset_block' ) )
 						wp_schedule_single_event( $block_till_time, 'lmtttmpts_event_for_reset_block' );
 
-					/**
-					 * interaction with Htaccess plugin for blocking
-					 * hook for blocking by Htaccess
-					 * @deprecated since 1.1.7
-					 *
-					 *if ( 1 == $lmtttmpts_options["block_by_htaccess"] )
-					 *	do_action( 'lmtttmpts_htaccess_hook_for_block', $ip );
-					 */
+					if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
+						do_action( 'lmtttmpts_htaccess_hook_for_block', $ip );
+					}
 
 					/* send e-mail to admin */
 					if ( $lmtttmpts_options['notify_email'] ) {
@@ -309,6 +304,7 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 					/* create new WP_ERROR object to skip brute force */
 					if ( $wp_error )
 						$user = new WP_Error();
+
 				} else {
 					/* event: auto_blacklisted */
 					/* getting an error message */
@@ -324,8 +320,9 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 					 * interaction with Htaccess plugin for blocking
 					 * hook for blocking by Htaccess
 					 */
-					if ( 1 == $lmtttmpts_options["block_by_htaccess"] )
+					if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
 						do_action( 'lmtttmpts_htaccess_hook_for_block', $ip );
+					}
 					/*
 					 * update blacklist
 					 */

@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.1.9
+Version: 1.2.0
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
@@ -224,7 +224,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 				`block_quantity` INT(3) NOT NULL DEFAULT '0',
 				`block_till` DATETIME,
 				PRIMARY KEY (`id`)
-				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
 		}
 		/* Query for create table with all number of failed attempts and block quantity, block status and time when addres will be deblocked */
@@ -237,7 +237,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 				`block_quantity` INT(3) NOT NULL DEFAULT '0',
 				`last_failed_attempt` TIMESTAMP,
 				PRIMARY KEY (`id`)
-				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
 		}
 		/* Query for create table with whitelisted addresses */
@@ -247,7 +247,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 				`ip` CHAR(31) NOT NULL UNIQUE,
 				`add_time` DATETIME,
 				PRIMARY KEY (`id`)
-				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
 		}
 		/* Query for create table with blacklisted addresse */
@@ -257,7 +257,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 				`ip` CHAR(31) NOT NULL UNIQUE,
 				`add_time` DATETIME,
 				PRIMARY KEY (`id`)
-				) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
 		}
 	}
@@ -304,10 +304,7 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 			}
 
 			/* check if old version of htaccess is used */
-			if (
-				isset( $lmtttmpts_options['block_by_htaccess'] ) &&
-				0 !== $lmtttmpts_options['block_by_htaccess']
-			) {
+			if ( ! empty( $lmtttmpts_options['block_by_htaccess'] ) ) {
 				if ( ! function_exists( 'get_plugins' ) )
 					require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 				$all_plugins = get_plugins();
@@ -319,9 +316,7 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 					if ( ! $htccss_plugin_info )
 						$htccss_plugin_info = get_plugin_data( plugin_dir_path( dirname( __FILE__ ) ) . 'htaccess/htaccess.php' );
 					if ( $htccss_plugin_info["Version"] < '1.6.2' ) {
-						if ( is_plugin_active( 'htaccess/htaccess.php' ) ) {
-							do_action( 'lmtttmpts_htaccess_hook_for_delete_all' );
-						}
+						do_action( 'lmtttmpts_htaccess_hook_for_delete_all' );
 						$lmtttmpts_options['block_by_htaccess'] == 0;
 						$lmtttmpts_options['htaccess_notice']   = sprintf( __( "Limit Attempts interaction with Htaccess was turned off since you are using an outdated Htaccess plugin version. If you want to keep using this interaction, please update Htaccess plugin at least to v%s.", 'limit-attempts' ), '1.6.2' );
 					}
@@ -667,6 +662,9 @@ if ( ! function_exists( 'lmtttmpts_remove_from_blocked_list' ) ) {
 			array( 'block' => 0 ),
 			array( 'ip' => $ip )
 		);
+		if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
+			do_action( 'lmtttmpts_htaccess_hook_for_reset_block', $ip );
+		}
 		wp_clear_scheduled_hook( 'lmtttmpts_event_for_reset_block_quantity', array( $ip ) );
 	}
 }
@@ -684,11 +682,11 @@ if ( ! function_exists( 'lmtttmpts_is_ip_in_table' ) ) {
 		/* for whitelist and blacklist tables needs different method */
 			/* if $ip variable is ip mask */
 			$is_in = $wpdb->get_var( $wpdb->prepare(
-				"SELECT `ip` FROM `" . $prefix . $table . "` WHERE `ip` = %s ", $ip
+				"SELECT `ip` FROM `" . $prefix . $table . "` WHERE `ip` = %s;", $ip
 			) );
 		} else { /* for other tables */
 			$is_in = $wpdb->get_var( $wpdb->prepare(
-				'SELECT `ip` FROM %1$s WHERE `ip_int` = %2$s ', $prefix . $table, $ip_int
+				'SELECT `ip` FROM ' . $prefix . $table . ' WHERE `ip_int` = %s;', $ip_int
 			) );
 		}
 		return $is_in;
@@ -717,6 +715,9 @@ if ( ! function_exists( 'lmtttmpts_add_ip_to_blacklist' ) ) {
 					),
 					'%s' /* all '%s' because max value in '%d' is 2147483647 */
 				);
+				if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
+					do_action( 'lmtttmpts_htaccess_hook_for_block', $ip );
+				}
 				return $result;
 			} else {
 				return false;
@@ -749,11 +750,16 @@ if ( ! function_exists( 'lmtttmpts_add_ip_to_whitelist' ) ) {
 					),
 					'%s' /* all '%s' because max value in '%d' is 2147483647 */
 				);
+				if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
+					do_action( 'lmtttmpts_htaccess_hook_for_add_to_whitelist', $ip );
+				}
 				return $result;
 			} else {
 				return false;
 			}
 		}
+
+		return false;
 	}
 }
 
@@ -1009,8 +1015,8 @@ if ( ! function_exists( 'lmtttmpts_plugin_uninstall' ) ) {
 		}
 
 		require_once( dirname( __FILE__ ) . '/bws_menu/bws_include.php' );
-		bws_include_init( plugin_basename( __FILE___ ) );
-		bws_delete_plugin( plugin_basename( __FILE___ ) );
+		bws_include_init( plugin_basename( __FILE__ ) );
+		bws_delete_plugin( plugin_basename( __FILE__ ) );
 	}
 }
 
