@@ -145,7 +145,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 			$this->options['notify_email'] = isset( $_POST['lmtttmpts_notify_email'] ) && ! empty( $_POST['lmtttmpts_email_blacklisted'] ) && ! empty( $_POST['lmtttmpts_email_blocked'] ) ? true : false;
 			if ( isset( $_POST['lmtttmpts_mailto'] ) ) {
 				$this->options['mailto'] = $_POST['lmtttmpts_mailto'];
-				if ( 'admin' == $_POST['lmtttmpts_mailto'] ) {
+				if ( 'admin' == $_POST['lmtttmpts_mailto'] && isset( $_POST['lmtttmpts_user_email_address'] ) ) {
 					$this->options['email_address'] = $_POST['lmtttmpts_user_email_address'];
 				} elseif ( 'custom' == $_POST['lmtttmpts_mailto'] && isset( $_POST['lmtttmpts_email_address'] ) && is_email( $_POST['lmtttmpts_email_address'] ) ) {
 					$this->options['email_address'] = $_POST['lmtttmpts_email_address'];

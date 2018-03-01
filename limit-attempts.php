@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.2.0
+Version: 1.2.1
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
@@ -317,8 +317,8 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 						$htccss_plugin_info = get_plugin_data( plugin_dir_path( dirname( __FILE__ ) ) . 'htaccess/htaccess.php' );
 					if ( $htccss_plugin_info["Version"] < '1.6.2' ) {
 						do_action( 'lmtttmpts_htaccess_hook_for_delete_all' );
-						$lmtttmpts_options['block_by_htaccess'] == 0;
-						$lmtttmpts_options['htaccess_notice']   = sprintf( __( "Limit Attempts interaction with Htaccess was turned off since you are using an outdated Htaccess plugin version. If you want to keep using this interaction, please update Htaccess plugin at least to v%s.", 'limit-attempts' ), '1.6.2' );
+						$lmtttmpts_options['block_by_htaccess']	== 0;
+						$lmtttmpts_options['htaccess_notice']	= sprintf( __( "Limit Attempts interaction with Htaccess was turned off since you are using an outdated Htaccess plugin version. If you want to keep using this interaction, please update Htaccess plugin at least to v%s.", 'limit-attempts' ), '1.6.2' );
 					}
 				}
 			}
@@ -453,7 +453,7 @@ if ( ! function_exists( 'lmtttmpts_plugin_action_links' ) ) {
 			/* Static so we don't call plugin_basename on every plugin row. */
 			static $this_plugin;
 			if ( ! $this_plugin )
-				$this_plugin = plugin_basename(__FILE__);
+				$this_plugin = plugin_basename( __FILE__ );
 
 			if ( $file == $this_plugin ) {
 				$settings_link = '<a href="admin.php?page=limit-attempts.php">' . __( 'Settings', 'limit-attempts' ) . '</a>';
@@ -507,7 +507,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 					require_once( dirname( __FILE__ ) . '/includes/edit-list-form.php' );
 					lmtttmpts_display_list();
 				} else {
-					preg_match('/limit-attempts-(.*?).php/', esc_attr( $_GET['page'] ), $page_name ); ?>
+					preg_match( '/limit-attempts-(.*?).php/', esc_attr( $_GET['page'] ), $page_name ); ?>
 					<h1><?php echo get_admin_page_title(); ?></h1>
 					<?php if ( file_exists( dirname( __FILE__ ) . '/includes/' . $page_name[1] . '.php' ) ) {
 						require_once( dirname( __FILE__ ) . '/includes/' . $page_name[1] . '.php' );
@@ -543,14 +543,14 @@ if ( ! function_exists( 'lmtttmpts_show_notices' ) ) {
 
 		/* Need to update Htaccess */
 		/* if option 'htaccess_notice' is not empty and we are on the 'right' page */
-		if ( ! empty( $lmtttmpts_options['htaccess_notice'] ) && ( $hook_suffix == 'plugins.php' || $hook_suffix == 'update-core.php' || ( isset( $_REQUEST['page'] ) && in_array( $_REQUEST['page'], array( 'limit-attempts.php', 'htaccess.php' ) ) ) ) ) {
+		if ( ! empty( $lmtttmpts_options['htaccess_notice'] ) && ( 'plugins.php' == $hook_suffix || 'update-core.php' == $hook_suffix || ( isset( $_REQUEST['page'] ) && in_array( $_REQUEST['page'], array( 'limit-attempts.php', 'htaccess.php' ) ) ) ) ) {
 			/* Save data for settings page */
-			if ( isset( $_REQUEST['lmtttmpts_htaccess_notice_submit'] ) && check_admin_referer( plugin_basename(__FILE__), 'lmtttmpts_htaccess_notice_nonce_name' ) ) {
+			if ( isset( $_REQUEST['lmtttmpts_htaccess_notice_submit'] ) && check_admin_referer( plugin_basename( __FILE__ ), 'lmtttmpts_htaccess_notice_nonce_name' ) ) {
 				$lmtttmpts_options['htaccess_notice'] = '';
 				update_option( 'lmtttmpts_options', $lmtttmpts_options );
 			} else {
 				/* get action_slug */
-				$action_slug = ( $hook_suffix == 'plugins.php' || $hook_suffix == 'update-core.php' ) ? $hook_suffix : 'admin.php?page=' . $_REQUEST['page']; ?>
+				$action_slug = ( 'plugins.php' == $hook_suffix || 'update-core.php' == $hook_suffix ) ? $hook_suffix : 'admin.php?page=' . $_REQUEST['page']; ?>
 				<div class="updated" style="padding: 0; margin: 0; border: none; background: none;">
 					<div class="bws_banner_on_plugin_page">
 						<form method="post" action="<?php echo $action_slug; ?>">
@@ -607,8 +607,8 @@ if ( ! function_exists( 'lmtttmpts_get_ip' ) ) {
 if ( !function_exists( 'lmtttmpts_is_ip_blocked' ) ) {
 	function lmtttmpts_is_ip_blocked( $ip ) {
 		global $wpdb;
-		$ip_int  = sprintf( '%u', ip2long( $ip ) );
-		$ip_info = $wpdb->get_row(
+		$ip_int		= sprintf( '%u', ip2long( $ip ) );
+		$ip_info	= $wpdb->get_row(
 			"SELECT
 				`failed_attempts`,
 				`block_quantity`,
@@ -628,17 +628,17 @@ if ( ! function_exists( 'lmtttmpts_screen_options' ) ) {
 	function lmtttmpts_screen_options() {
 		$screen = get_current_screen();
 		$args = array(
-			'id' 			=> 'lmtttmpts',
-			'section' 		=> '200538789'
+			'id'			=> 'lmtttmpts',
+			'section'		=> '200538789'
 		);
 		bws_help_tab( $screen, $args );
 
 		if ( isset( $_GET['action'] ) && 'go_pro' != $_GET['action'] ) {
 			$option = 'per_page';
 			$args = array(
-				'label'   => __( 'Addresses per page', 'limit-attempts' ),
-				'default' => 20,
-				'option'  => 'addresses_per_page'
+				'label'		=> __( 'Addresses per page', 'limit-attempts' ),
+				'default'	=> 20,
+				'option'	=> 'addresses_per_page'
 			);
 			add_screen_option( $option, $args );
 		}
@@ -656,7 +656,7 @@ if ( ! function_exists( 'lmtttmpts_table_set_option' ) ) {
  */
 if ( ! function_exists( 'lmtttmpts_remove_from_blocked_list' ) ) {
 	function lmtttmpts_remove_from_blocked_list( $ip ) {
-		global $wpdb;
+		global $wpdb, $lmtttmpts_options;
 		$wpdb->update(
 			"{$wpdb->prefix}lmtttmpts_failed_attempts",
 			array( 'block' => 0 ),
@@ -678,7 +678,7 @@ if ( ! function_exists( 'lmtttmpts_is_ip_in_table' ) ) {
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
 		/* integer value for our IP */
 		$ip_int = sprintf( '%u', ip2long( $ip ) );
-		if ( $table == 'whitelist' || $table == 'blacklist' ) {
+		if ( 'whitelist' == $table || 'blacklist' == $table ) {
 		/* for whitelist and blacklist tables needs different method */
 			/* if $ip variable is ip mask */
 			$is_in = $wpdb->get_var( $wpdb->prepare(
@@ -710,7 +710,7 @@ if ( ! function_exists( 'lmtttmpts_add_ip_to_blacklist' ) ) {
 				$result = $wpdb->insert(
 					$prefix . 'blacklist',
 					array(
-						'ip' 			=> $ip,
+						'ip'			=> $ip,
 						'add_time'		=> date( 'Y-m-d H:i:s', current_time( 'timestamp' ) )
 					),
 					'%s' /* all '%s' because max value in '%d' is 2147483647 */
@@ -745,7 +745,7 @@ if ( ! function_exists( 'lmtttmpts_add_ip_to_whitelist' ) ) {
 				$result = $wpdb->insert(
 					$prefix . 'whitelist',
 					array(
-						'ip' 			=> $ip,
+						'ip'			=> $ip,
 						'add_time'		=> date( 'Y-m-d H:i:s', current_time( 'timestamp' ) )
 					),
 					'%s' /* all '%s' because max value in '%d' is 2147483647 */
@@ -831,9 +831,9 @@ if ( ! function_exists( 'lmtttmpts_reset_block' ) ) {
 		if ( empty( $lmtttmpts_options ) )
 			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
 
-		$unlocking_timestamp =  date( 'Y-m-d H:i:s', ( current_time( 'timestamp' ) + 60 ) );
-		$current_timestamp = date( 'Y-m-d H:i:s', ( current_time( 'timestamp' ) ) );
-		$blockeds = $wpdb->get_results( "SELECT `ip_int`, `ip` FROM `{$wpdb->prefix}lmtttmpts_failed_attempts` WHERE `block_till` <= '{$unlocking_timestamp}' and `block` = '1'", ARRAY_A );
+		$unlocking_timestamp	= date( 'Y-m-d H:i:s', ( current_time( 'timestamp' ) + 60 ) );
+		$current_timestamp		= date( 'Y-m-d H:i:s', ( current_time( 'timestamp' ) ) );
+		$blockeds				= $wpdb->get_results( "SELECT `ip_int`, `ip` FROM `{$wpdb->prefix}lmtttmpts_failed_attempts` WHERE `block_till` <= '{$unlocking_timestamp}' and `block` = '1'", ARRAY_A );
 
 		if ( ! empty( $blockeds ) ) {
 			foreach ( $blockeds as $blocked ) {
@@ -893,7 +893,7 @@ if ( ! function_exists( 'lmtttmpts_login_form_captcha_checking' ) ) {
 			$lmtttmpts_options = get_option( 'lmtttmpts_options' );
 		}
 		if ( is_multisite() ) {
-			$active_plugins = (array) array_keys( get_site_option( 'active_sitewide_plugins', array() ) );
+			$active_plugins = ( array ) array_keys( get_site_option( 'active_sitewide_plugins', array() ) );
 			$active_plugins = array_merge( $active_plugins , get_option( 'active_plugins' ) );
 		} else {
 			$active_plugins = get_option( 'active_plugins' );
@@ -914,10 +914,10 @@ if ( ! function_exists( 'lmtttmpts_login_form_captcha_checking' ) ) {
 
 /**
  * Check plugin`s "block/blacklist" options
- * @param      array    $option  plugin`s options
- * @return     mixed             the minimum period of time necessary for the user`s IP to be added to the blacklist or false
+ * @param		array		$option	plugin`s options
+ * @return		mixed		the minimum period of time necessary for the user`s IP to be added to the blacklist or false
  */
-if ( ! function_exists( 'lmtttmpts_check_block_options' ) )  {
+if ( ! function_exists( 'lmtttmpts_check_block_options' ) ) {
 	function lmtttmpts_check_block_options( $option ) {
 		/*
 		 * Over what period of time the user can be blocked
@@ -932,21 +932,22 @@ if ( ! function_exists( 'lmtttmpts_check_block_options' ) )  {
 		 * The minimum period of time necessary for the user`s IP to be added to the blacklist
 		 */
 		$time_for_blacklist = intval(
-				( $option['days_to_reset_block'] * 86400 +
-				  $option['hours_to_reset_block'] * 3600 +
-				  $option['minutes_to_reset_block'] * 60
+				(
+					$option['days_to_reset_block'] * 86400 +
+					$option['hours_to_reset_block'] * 3600 +
+					$option['minutes_to_reset_block'] * 60
 				) /
 				$option['allowed_locks']
 			);
 
 		if ( $time_to_block > $time_for_blacklist ) {
-			$days    = intval( ( $time_to_block ) / 86400 );
-			$string  = ( 0 < $days ? '&nbsp;' . $days . '&nbsp;' . _n( 'day', 'days', $days, 'limit-attempts' ) : '' );
-			$sum     = $days * 86400;
+			$days	= intval( ( $time_to_block ) / 86400 );
+			$string	= ( 0 < $days ? '&nbsp;' . $days . '&nbsp;' . _n( 'day', 'days', $days, 'limit-attempts' ) : '' );
+			$sum	= $days * 86400;
 
-			$hours   = intval( ( $time_to_block - $sum ) / 3600 );
-			$string .= ( 0 < $hours ? '&nbsp;' . $hours . '&nbsp;' . _n( 'hour', 'hours', $hours, 'limit-attempts' ) : '' );
-			$sum    += $hours * 3600;
+			$hours	= intval( ( $time_to_block - $sum ) / 3600 );
+			$string	.= ( 0 < $hours ? '&nbsp;' . $hours . '&nbsp;' . _n( 'hour', 'hours', $hours, 'limit-attempts' ) : '' );
+			$sum	+= $hours * 3600;
 
 			$minutes = intval( ( $time_to_block - $sum ) / 60 ) + 1;
 			$string .= ( 0 < $minutes ? '&nbsp;' . $minutes . '&nbsp;' . _n( 'minute', 'minutes', $minutes, 'limit-attempts' ) : '' );
