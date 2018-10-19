@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
 Requires at least: 3.9
-Tested up to: 4.9.4
-Stable tag: 1.2.1
+Tested up to: 4.9.8
+Stable tag: 1.2.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
+= V1.2.2 - 19.10.2017 =
+* Update : The сompatibility with Captcha Pro by BestWebSoft has been improved.
+
 = V1.2.1 - 01.03.2017 =
 * Bugfix : The bug with saving settings on the multisite was fixed.
 * Bugfix : The bug with saving IP to whitelist or blacklist was fixed.
@@ -304,6 +307,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.2.2 =
+* Functionality improved.
 
 = V1.2.1 =
 * Bugs fixed.

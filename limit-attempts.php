@@ -4,14 +4,14 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.2.1
+Version: 1.2.2
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
 License: GPLv3 or later
 */
 
-/*  © Copyright 2017  BestWebSoft  ( https://support.bestwebsoft.com )
+/*  © Copyright 2018  BestWebSoft  ( https://support.bestwebsoft.com )
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -1061,6 +1061,16 @@ if ( ! function_exists( 'lmtttmpts_delete_options' ) ) {
 	}
 }
 
+if ( ! function_exists( 'lmtttmpt_deactivate' ) ) {
+    function lmtttmpt_deactivate() {
+        $cptch_options = get_option( 'cptch_options' );
+        if ( ! empty( $cptch_options )) {
+            $cptch_options['use_limit_attempts_whitelist'] = 0;
+            update_option('cptch_options' , $cptch_options );
+        }
+    }
+}
+
 /* installation */
 register_activation_hook( __FILE__, 'lmtttmpts_plugin_activate' );
 add_action( 'wpmu_new_blog', 'lmtttmpts_new_blog', 10, 6 );
@@ -1084,3 +1094,4 @@ add_action( 'lmtttmpts_daily_statistics_clear', 'lmtttmpts_clear_statistics_dail
 add_action( 'admin_notices', 'lmtttmpts_show_notices' );
 /* ajax function */
 add_action( 'wp_ajax_lmtttmpts_restore_default_message', 'lmtttmpts_restore_default_message' );
+register_deactivation_hook( __FILE__, 'lmtttmpt_deactivate' );
