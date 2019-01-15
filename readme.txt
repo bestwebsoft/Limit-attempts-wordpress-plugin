@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
 Requires at least: 3.9
-Tested up to: 4.9.8
-Stable tag: 1.2.2
+Tested up to: 5.0.2
+Stable tag: 1.2.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -199,6 +199,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
+= V1.2.3 - 15.01.2019 =
+* Update : All functionality was updated for WordPress 5.0.2.
+* Bugfix : Fixed small bags.
+
 = V1.2.2 - 19.10.2017 =
 * Update : The сompatibility with Captcha Pro by BestWebSoft has been improved.
 
@@ -307,6 +311,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.2.3 = 
+* Functionality improved.
+* Bugs fixed.
+* The compatibility with new WordPress version updated.
 
 = V1.2.2 =
 * Functionality improved.

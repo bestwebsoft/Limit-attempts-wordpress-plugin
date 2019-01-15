@@ -14,17 +14,9 @@ if ( ! function_exists( 'lmtttmpts_display_list' ) ) {
 		$whitelist_count = $wpdb->get_var( "SELECT COUNT(*) FROM `{$wpdb->prefix}lmtttmpts_whitelist`" );
 		if ( $wp_version >= '4.7' ) { ?>
 			<h1 class="wp-heading-inline"><?php echo get_admin_page_title(); ?></h1>
-			<?php if ( ! isset( $_GET['action'] ) && ! isset( $_GET['edit_action'] ) ) { ?>
-				<a class="page-title-action" href="admin.php?page=limit-attempts-black-and-whitelist.php&amp;list=<?php echo $list; ?>&amp;action=edit"><?php _e( 'Edit List', 'limit-attempts' ); ?></a>
-			<?php } ?>
 			<hr class="wp-header-end">
 		<?php } else { ?>
-			<h1>
-				<?php echo get_admin_page_title();
-				if ( ! isset( $_GET['action'] ) && ! isset( $_GET['edit_action'] ) ) { ?>
-					<a class="page-title-action" href="admin.php?page=limit-attempts-black-and-whitelist.php&amp;list=<?php echo $list; ?>&amp;action=edit"><?php _e( 'Edit List', 'limit-attempts' ); ?></a>
-				<?php } ?>
-			</h1>
+
 		<?php } ?>
 		<ul class="subsubsub">
 			<li><a<?php if ( 'blacklist' == $list ) echo ' class="current"'; ?> href="admin.php?page=limit-attempts-black-and-whitelist.php&amp;list=blacklist<?php if ( ( isset( $_GET['action'] ) && 'edit' == $_GET['action'] ) || isset( $_GET['edit_action'] ) ) echo '&amp;action=edit'; ?>"><?php _e( 'Blacklisted', 'limit-attempts' ); if ( ! empty( $blacklist_count ) ) echo ' (' . $blacklist_count . ')'; ?></a></li>
@@ -125,13 +117,13 @@ if ( ! function_exists( 'lmtttmpts_edit_list' ) ) {
 		if ( ! empty( $message ) ) { ?>
 			<div class="updated inline"><p><?php echo $message; ?></p></div>
 		<?php }
-		if ( ( isset( $_GET['action'] ) && 'edit' == $_GET['action'] ) || isset( $_GET['edit_action'] ) || ! empty( $error ) ) { ?>
-			<form id="lmtttmpts_edit_list_form" action="admin.php?page=limit-attempts-black-and-whitelist.php&amp;list=<?php echo $lmtttmpts_table; ?>" method="post">
+		if ( ! empty( $lmtttmpts_table ) ) { ?>
+            <form id="lmtttmpts_edit_list_form" action="admin.php?page=limit-attempts-black-and-whitelist.php&amp;list=<?php echo $lmtttmpts_table; ?>" method="post">
 				<input type="text" maxlength="31" name="lmtttmpts_add_to_<?php echo $lmtttmpts_table; ?>" />
 				<input class="button-primary" type="submit" value="<?php _e( 'Add IP', 'limit-attempts' ) ?>" />
 				<?php $my_ip = lmtttmpts_get_ip();
-				if ( ! empty( $my_ip ) && 'whitelist' == $_GET['list'] ) { ?>
-					<br />
+				if ( ! empty( $my_ip ) && isset( $_GET['list'])  && ('blacklist' != $_GET['list']) ) {?>
+                    <br />
 					<label>
 						<input type="checkbox" name="lmtttmpts_add_to_whitelist_my_ip" value="1" />
 						<?php _e( 'My IP', 'limit-attempts' ); ?>

@@ -4,14 +4,14 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.2.2
+Version: 1.2.3
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
 License: GPLv3 or later
 */
 
-/*  © Copyright 2018  BestWebSoft  ( https://support.bestwebsoft.com )
+/*  © Copyright 2019  BestWebSoft  ( https://support.bestwebsoft.com )
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -33,8 +33,8 @@ if ( ! is_admin() )
 /**
  * Function for adding menu and submenu
  */
-if ( ! function_exists( 'add_lmtttmpts_admin_menu' ) ) {
-	function add_lmtttmpts_admin_menu() {
+if ( ! function_exists( 'lmtttmpts_add_admin_menu' ) ) {
+	function lmtttmpts_add_admin_menu() {
 		global $lmtttmpts_options, $wp_version, $submenu, $lmtttmpts_plugin_info;
 
 		$hook = add_menu_page( __( 'Limit Attempts Settings', 'limit-attempts' ), 'Limit Attempts', 'manage_options', 'limit-attempts.php', 'lmtttmpts_settings_page', 'none' );
@@ -180,7 +180,23 @@ if ( ! function_exists( 'lmtttmpts_get_default_messages' ) ) {
  */
 if ( ! function_exists( 'lmtttmpts_plugin_activate' ) ) {
 	function lmtttmpts_plugin_activate( $networkwide ) {
-		if ( is_multisite() ) {
+        global $wpdb;
+	    if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+            /* check if it is a network activation - if so, run the activation function for each blog id */
+            if ( $networkwide ) {
+                $old_blog = $wpdb->blogid;
+                /* Get all blog ids */
+                $blogids = $wpdb->get_col( "SELECT `blog_id` FROM $wpdb->blogs" );
+                foreach ( $blogids as $blog_id ) {
+                    switch_to_blog( $blog_id );
+                    lmtttmpts_create_table();
+                }
+                switch_to_blog( $old_blog );
+                return;
+            }
+        }
+        lmtttmpts_create_table();
+	    if ( is_multisite() ) {
 			switch_to_blog( 1 );
 			register_uninstall_hook( __FILE__, 'lmtttmpts_plugin_uninstall' );
 			restore_current_blog();
@@ -214,8 +230,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		/* Query for create table with current number of failed attempts and block quantity, block status and time when addres will be deblocked */
-		if ( ! $wpdb->query( "SHOW TABLES LIKE '{$prefix}failed_attempts';" ) ) {
-			$sql = "CREATE TABLE `{$prefix}failed_attempts` (
+            $sql = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "lmtttmpts_failed_attempts` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				`ip` CHAR(31) NOT NULL,
 				`ip_int` BIGINT,
@@ -226,10 +241,8 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 				PRIMARY KEY (`id`)
 				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
-		}
 		/* Query for create table with all number of failed attempts and block quantity, block status and time when addres will be deblocked */
-		if ( ! $wpdb->query( "SHOW TABLES LIKE '{$prefix}all_failed_attempts';" ) ) {
-			$sql = "CREATE TABLE `{$prefix}all_failed_attempts` (
+			$sql = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "lmtttmpts_all_failed_attempts` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				`ip` CHAR(31) NOT NULL,
 				`ip_int` BIGINT,
@@ -239,27 +252,22 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 				PRIMARY KEY (`id`)
 				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
-		}
 		/* Query for create table with whitelisted addresses */
-		if ( ! $wpdb->query( "SHOW TABLES LIKE '{$prefix}whitelist';" ) ) {
-			$sql = "CREATE TABLE `{$prefix}whitelist` (
+			$sql = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "lmtttmpts_whitelist` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				`ip` CHAR(31) NOT NULL UNIQUE,
 				`add_time` DATETIME,
 				PRIMARY KEY (`id`)
 				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
-		}
 		/* Query for create table with blacklisted addresse */
-		if ( ! $wpdb->query( "SHOW TABLES LIKE '{$prefix}blacklist';" ) ) {
-			$sql = "CREATE TABLE `{$prefix}blacklist` (
+			$sql = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "lmtttmpts_blacklist` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				`ip` CHAR(31) NOT NULL UNIQUE,
 				`add_time` DATETIME,
 				PRIMARY KEY (`id`)
 				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
-		}
 	}
 }
 
@@ -1077,7 +1085,7 @@ add_action( 'wpmu_new_blog', 'lmtttmpts_new_blog', 10, 6 );
 add_action( 'delete_blog', 'lmtttmpts_delete_blog', 10 );
 add_action( 'plugins_loaded', 'lmtttmpts_plugins_loaded' );
 /* register */
-add_action( 'admin_menu', 'add_lmtttmpts_admin_menu' );
+add_action( 'admin_menu', 'lmtttmpts_add_admin_menu' );
 add_action( 'init', 'lmtttmpts_plugin_init' );
 add_action( 'admin_init', 'lmtttmpts_plugin_admin_init' );
 add_action( 'admin_head', 'lmtttmpts_admin_head' );
