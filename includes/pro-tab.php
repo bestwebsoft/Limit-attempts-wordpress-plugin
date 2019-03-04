@@ -83,7 +83,9 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 										<tr>
 											<th class="manage-column check-column" scope="col"><input disabled="disabled" type="checkbox" /></th>
 											<th class="manage-column column-primary" scope="col"><a href="#"><span><?php _e( 'IP address', 'limit-attempts' ); ?></span></a></th>
-											<th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Internet Hostname', 'limit-attempts' ); ?></span></a></th>
+                                            <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Login', 'limit-attempts' ); ?></span></a></th>
+                                            <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Password', 'limit-attempts' ); ?></span></a></th>
+                                            <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Hostname', 'limit-attempts' ); ?></span></a></th>
 											<th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Event', 'limit-attempts' ); ?></span></a></th>
 											<th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Form', 'limit-attempts' ); ?></span></a></th>
 											<th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Event time', 'limit-attempts' ); ?></a></th>
@@ -93,7 +95,9 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 										<tr>
 											<th class="manage-column check-column" scope="col"><input disabled="disabled" type="checkbox" /></th>
 											<th class="manage-column column-primary" scope="col"><a href="#"><span><?php _e( 'IP address', 'limit-attempts' ); ?></span></a></th>
-											<th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Internet Hostname', 'limit-attempts' ); ?></span></a></th>
+                                            <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Login', 'limit-attempts' ); ?></span></a></th>
+                                            <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Password', 'limit-attempts' ); ?></span></a></th>
+                                            <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Hostname', 'limit-attempts' ); ?></span></a></th>
 											<th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Event', 'limit-attempts' ); ?></span></a></th>
 											<th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Form', 'limit-attempts' ); ?></span></a></th>
 											<th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Event time', 'limit-attempts' ); ?></a></th>
@@ -103,7 +107,9 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 										<tr class="alternate">
 											<th class="check-column" scope="row"><input disabled="disabled" type="checkbox"></th>
 											<td class="column-primary">127.0.0.1</td>
-											<td>localhost</td>
+                                            <td>admin</td>
+                                            <td>123456</td>
+                                            <td>localhost</td>
 											<td><?php _e( 'Failed attempt', 'limit-attempts' ); ?></td>
 											<td><?php _e( 'Login form', 'limit-attempts' ); ?></td>
 											<td>November 25, 2014 11:55 am</td>

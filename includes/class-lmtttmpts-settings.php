@@ -308,7 +308,13 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 									<span class="bws_info"><?php _e( 'Detect login attempts for non-existing username and apply actions (default will block and/or blacklist IP addresses based on the settings above).', 'limit-attempts' ); ?></span>
 								</td>
 							</tr>
-						</table>
+                            <tr>
+                                <th><?php _e( 'Failed Login and Password', 'limit-attempts' ); ?></th>
+                                <td>
+                                    <input type="checkbox" name="lmtttmpts_enbl_login_pass" value="0"<?php checked( 0 ); ?> /> <span class="bws_info"><?php _e( 'Enable to save and display login and password that was used in the failed attempt.', 'limit-attempts' ); ?></span>
+                                </td>
+                            </tr>
+                        </table>
 					</div>
 					<?php $this->bws_pro_block_links(); ?>
 				</div>
@@ -750,7 +756,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 						<div class="bws_table_bg"></div>
 						<table class="form-table bws_pro_version">
 							<tr>
-								<th><?php _e( 'Remove Log Entries Older Then', 'limit-attempts' ); ?></th>
+								<th><?php _e( 'Remove Log Entries Older Than', 'limit-attempts' ); ?></th>
 								<td>
 									<fieldset>
 										<label><input disabled="disabled" type="number" min="0" max="999" step="1" maxlength="3" value="30" name="lmtttmpts_days_to_clear_log" /> <?php _e( 'days', 'limit-attempts' ) ?></label><br/>

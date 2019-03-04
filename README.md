@@ -4,6 +4,7 @@
 <p>Limit Attempts plugin is a security solution for WordPress which protects your website from spam and brute-force attacks. Limit the number of failed login attempts per user and block user IP for a certain period of time based on your settings. This will stop automated scripts to generate a large number of different combinations and hack your website.</p>
 <p>Manage black- and whitelists, receive email notifications, hide website forms for blocked or blacklisted IPs, and other advanced features which guarantees safety of your data.</p>
 <p>Secure your website today!</p>
+<p><a href="https://bestwebsoft.com/demo-for-limit-attempts/?ref=readme" rel="nofollow">View Demo</a></p>
 <p><span class="embed-youtube" style="text-align:center; display: block;"></span></p>
 <h4>Free Features</h4>
 <ul>
@@ -50,6 +51,7 @@
 <ul>
 <li>Add IP address ranges or IP masks to black- and whitelists</li>
 <li>Add certain country&#8217;s IP addresses to the black- and whitelist &#8211; GeoIP database</li>
+<li>An ability to save login and password after of failed attempts added [ NEW ] ?</li>
 <li>Manage total number of failed attempts with blocked list additional option</li>
 <li>Manage black- and whitelists with extended options:
 <ul>
@@ -79,6 +81,8 @@
 <li>Manage your log tab with:
 <ul>
 <li>IP address</li>
+<li>Username</li>
+<li>Password</li>
 <li>Internet Hostname</li>
 <li>Event</li>
 <li>Form</li>
@@ -109,6 +113,6 @@
 <h4>Recommended Plugins</h4>
 <ul>
 <li><a href="https://bestwebsoft.com/products/wordpress/plugins/updater/?k=1babc7691c564636f8fddb7698f8f43e" rel="nofollow">Updater</a> &#8211; Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.</li>
-<li><a href="https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c" rel="nofollow">Captcha</a> &#8211; Protect WordPress website forms from spam entries by means of math logic.</li>
+<li><a href="https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c" rel="nofollow">Captcha</a> &#8211; #1 super security anti-spam captcha plugin for WordPress forms.</li>
 <li><a href="https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd" rel="nofollow">Htaccess</a> &#8211; Protect WordPress website &#8211; allow and deny access for certain IP addresses, hostnames, etc.</li>
 </ul>

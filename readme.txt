@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
 Requires at least: 3.9
-Tested up to: 5.0.2
-Stable tag: 1.2.3
+Tested up to: 5.1
+Stable tag: 1.2.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -17,6 +17,8 @@ Limit Attempts plugin is a security solution for WordPress which protects your w
 Manage black- and whitelists, receive email notifications, hide website forms for blocked or blacklisted IPs, and other advanced features which guarantees safety of your data.
 
 Secure your website today!
+
+[View Demo](https://bestwebsoft.com/demo-for-limit-attempts/?ref=readme)
 
 https://www.youtube.com/watch?v=xZCTEjVfu4Q
 
@@ -53,6 +55,7 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 >
 > * Add IP address ranges or IP masks to black- and whitelists
 > * Add certain country's IP addresses to the black- and whitelist - GeoIP database
+> * An ability to save login and password after of failed attempts added [ NEW ] ?
 > * Manage total number of failed attempts with blocked list additional option
 > * Manage black- and whitelists with extended options:
 > 	* Country
@@ -69,6 +72,8 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 > 	* Blacklist IP immediately
 > * Manage your log tab with:
 > 	* IP address
+>	* Username
+>	* Password
 > 	* Internet Hostname
 > 	* Event
 > 	* Form
@@ -101,7 +106,7 @@ Some of these translations are not complete. We are constantly adding new featur
 = Recommended Plugins =
 
 * [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=1babc7691c564636f8fddb7698f8f43e) - Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
-* [Captcha](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c) - Protect WordPress website forms from spam entries by means of math logic.
+* [Captcha](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c) - #1 super security anti-spam captcha plugin for WordPress forms.
 * [Htaccess](https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd) - Protect WordPress website - allow and deny access for certain IP addresses, hostnames, etc.
 
 == Installation ==
@@ -198,6 +203,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 10. Tab with Statistics.
 
 == Changelog ==
+
+= V1.2.4 - 04.03.2019 = 
+* PRO : Ability to save the "Username" and "Password" which were used in the failed login attempts.
 
 = V1.2.3 - 15.01.2019 =
 * Update : All functionality was updated for WordPress 5.0.2.
@@ -311,6 +319,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.2.4 =
+* New features added.
 
 = V1.2.3 = 
 * Functionality improved.

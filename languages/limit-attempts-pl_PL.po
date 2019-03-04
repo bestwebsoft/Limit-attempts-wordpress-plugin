@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Limit Attempts\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-02 15:53+0300\n"
+"POT-Creation-Date: 2019-02-22 13:55+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Damian Dąbrowski <contact@codester.pl>\n"
 "Language-Team: Damian Dąbrowski <contact@codester.pl>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _e;__;_n:1,2;_x;_ex:1,2c\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ..\n"
@@ -77,10 +77,10 @@ msgid "Last page"
 msgstr "Ostatnia strona"
 
 #: ../includes/blacklist.php:274 ../includes/blocked.php:269
-#: ../includes/edit-list-form.php:66 ../includes/edit-list-form.php:69
-#: ../includes/edit-list-form.php:98 ../includes/edit-list-form.php:101
+#: ../includes/edit-list-form.php:58 ../includes/edit-list-form.php:61
+#: ../includes/edit-list-form.php:90 ../includes/edit-list-form.php:93
 #: ../includes/statistics.php:287 ../includes/whitelist.php:275
-#: ../limit-attempts.php:496 ../limit-attempts.php:532
+#: ../limit-attempts.php:504 ../limit-attempts.php:540
 msgid "Notice:"
 msgstr "Uwaga:"
 
@@ -107,7 +107,7 @@ msgid "Search results for"
 msgstr "Wyszukaj wyników dla"
 
 #: ../includes/blacklist.php:296 ../includes/blocked.php:376
-#: ../includes/edit-list-form.php:87 ../includes/edit-list-form.php:117
+#: ../includes/edit-list-form.php:79 ../includes/edit-list-form.php:109
 #: ../includes/statistics.php:338 ../includes/whitelist.php:298
 #, php-format
 msgid "Wrong format or it does not lie in range %s."
@@ -146,14 +146,14 @@ msgstr ""
 msgid "IP addresses were added to whitelist"
 msgstr ""
 
-#: ../includes/blocked.php:397 ../includes/edit-list-form.php:40
+#: ../includes/blocked.php:397 ../includes/edit-list-form.php:32
 #: ../includes/pro-tab.php:68 ../includes/statistics.php:372
 msgid "Search IP"
 msgstr "Szukaj adresu"
 
 #: ../includes/class-lmtttmpts-settings.php:25 ../limit-attempts.php:41
-#: ../limit-attempts.php:459 ../limit-attempts.php:475
-#: ../limit-attempts.php:493
+#: ../limit-attempts.php:467 ../limit-attempts.php:483
+#: ../limit-attempts.php:501
 msgid "Settings"
 msgstr "Ustawienia"
 
@@ -179,11 +179,11 @@ msgstr ""
 msgid "License Key"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:170 ../limit-attempts.php:976
+#: ../includes/class-lmtttmpts-settings.php:170 ../limit-attempts.php:985
 msgid "Email notifications have been restored to default."
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:173 ../limit-attempts.php:979
+#: ../includes/class-lmtttmpts-settings.php:173 ../limit-attempts.php:988
 msgid "Messages have been restored to default."
 msgstr ""
 
@@ -223,7 +223,7 @@ msgstr ""
 #: ../includes/class-lmtttmpts-settings.php:260
 #: ../includes/class-lmtttmpts-settings.php:266
 #: ../includes/front-end-functions.php:567
-#: ../includes/front-end-functions.php:588 ../limit-attempts.php:944
+#: ../includes/front-end-functions.php:588 ../limit-attempts.php:953
 msgid "day"
 msgid_plural "days"
 msgstr[0] "dnia"
@@ -236,7 +236,7 @@ msgstr[2] "dni"
 #: ../includes/class-lmtttmpts-settings.php:248
 #: ../includes/class-lmtttmpts-settings.php:261
 #: ../includes/class-lmtttmpts-settings.php:267
-#: ../includes/front-end-functions.php:571 ../limit-attempts.php:948
+#: ../includes/front-end-functions.php:571 ../limit-attempts.php:957
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "godziny"
@@ -249,7 +249,7 @@ msgstr[2] "godzin"
 #: ../includes/class-lmtttmpts-settings.php:249
 #: ../includes/class-lmtttmpts-settings.php:262
 #: ../includes/class-lmtttmpts-settings.php:268
-#: ../includes/front-end-functions.php:575 ../limit-attempts.php:952
+#: ../includes/front-end-functions.php:575 ../limit-attempts.php:961
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minuty"
@@ -300,10 +300,10 @@ msgid "Number of blocking after which the IP address will be blacklisted."
 msgstr ""
 
 #: ../includes/class-lmtttmpts-settings.php:286
-#: ../includes/class-lmtttmpts-settings.php:430
-#: ../includes/class-lmtttmpts-settings.php:530
-#: ../includes/class-lmtttmpts-settings.php:749
-#: ../includes/class-lmtttmpts-settings.php:784 ../includes/pro-tab.php:20
+#: ../includes/class-lmtttmpts-settings.php:436
+#: ../includes/class-lmtttmpts-settings.php:536
+#: ../includes/class-lmtttmpts-settings.php:755
+#: ../includes/class-lmtttmpts-settings.php:790 ../includes/pro-tab.php:20
 msgid "Close"
 msgstr ""
 
@@ -330,11 +330,21 @@ msgid ""
 "will block and/or blacklist IP addresses based on the settings above)."
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:318
+#: ../includes/class-lmtttmpts-settings.php:312
+msgid "Failed Login and Password"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:314
+msgid ""
+"Enable to save and display login and password that was used in the failed "
+"attempt."
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:324
 msgid "Hide Forms"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:320
+#: ../includes/class-lmtttmpts-settings.php:326
 #, fuzzy
 msgid ""
 "Enable to hide login, registration, reset password forms from blocked or "
@@ -343,46 +353,46 @@ msgstr ""
 "Ukryj formularz logowania/rejestracji/przywracania hasła dla użytkowników "
 "zablokowanych i znajdujących się na czarnej liście"
 
-#: ../includes/class-lmtttmpts-settings.php:324
+#: ../includes/class-lmtttmpts-settings.php:330
 msgid "Htaccess Plugin"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:335
-#: ../includes/class-lmtttmpts-settings.php:382
-#: ../includes/class-lmtttmpts-settings.php:397
-#: ../includes/class-lmtttmpts-settings.php:406
-#: ../includes/class-lmtttmpts-settings.php:488
-#: ../includes/class-lmtttmpts-settings.php:506
+#: ../includes/class-lmtttmpts-settings.php:341
+#: ../includes/class-lmtttmpts-settings.php:388
+#: ../includes/class-lmtttmpts-settings.php:403
+#: ../includes/class-lmtttmpts-settings.php:412
+#: ../includes/class-lmtttmpts-settings.php:494
+#: ../includes/class-lmtttmpts-settings.php:512
 #, php-format
 msgid "Go to %s Settings"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:340
-#: ../includes/class-lmtttmpts-settings.php:387
-#: ../includes/class-lmtttmpts-settings.php:411
-#: ../includes/class-lmtttmpts-settings.php:493
-#: ../includes/class-lmtttmpts-settings.php:511
+#: ../includes/class-lmtttmpts-settings.php:346
+#: ../includes/class-lmtttmpts-settings.php:393
+#: ../includes/class-lmtttmpts-settings.php:417
+#: ../includes/class-lmtttmpts-settings.php:499
+#: ../includes/class-lmtttmpts-settings.php:517
 #, fuzzy, php-format
 msgid "Update %s at least to %s"
 msgstr "Aktualizuj Htaccess do wersji v 1.6.2"
 
-#: ../includes/class-lmtttmpts-settings.php:346
-#: ../includes/class-lmtttmpts-settings.php:418
-#: ../includes/class-lmtttmpts-settings.php:518
+#: ../includes/class-lmtttmpts-settings.php:352
+#: ../includes/class-lmtttmpts-settings.php:424
+#: ../includes/class-lmtttmpts-settings.php:524
 msgid "Activate"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:350
-#: ../includes/class-lmtttmpts-settings.php:424
-#: ../includes/class-lmtttmpts-settings.php:524
+#: ../includes/class-lmtttmpts-settings.php:356
+#: ../includes/class-lmtttmpts-settings.php:430
+#: ../includes/class-lmtttmpts-settings.php:530
 msgid "Install Now"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:354
+#: ../includes/class-lmtttmpts-settings.php:360
 msgid "Enable to reduce database workload."
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:357
+#: ../includes/class-lmtttmpts-settings.php:363
 msgid ""
 "When you turn on this option, all IPs from the blocked list and from the "
 "blacklist will be added to the direction \"deny from\" of file .htaccess. IP "
@@ -391,399 +401,395 @@ msgid ""
 "htaccess automatically."
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:361
+#: ../includes/class-lmtttmpts-settings.php:367
 msgid "Captcha Plugin"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:379
-#: ../includes/class-lmtttmpts-settings.php:394
-#: ../includes/class-lmtttmpts-settings.php:403
-#: ../includes/class-lmtttmpts-settings.php:485
-#: ../includes/class-lmtttmpts-settings.php:503 ../includes/pro-tab.php:108
+#: ../includes/class-lmtttmpts-settings.php:385
+#: ../includes/class-lmtttmpts-settings.php:400
+#: ../includes/class-lmtttmpts-settings.php:409
+#: ../includes/class-lmtttmpts-settings.php:491
+#: ../includes/class-lmtttmpts-settings.php:509 ../includes/pro-tab.php:114
 msgid "Login form"
 msgstr "Formularz logowania"
 
-#: ../includes/class-lmtttmpts-settings.php:382
-#: ../includes/class-lmtttmpts-settings.php:397
-#: ../includes/class-lmtttmpts-settings.php:406
-#: ../includes/class-lmtttmpts-settings.php:411
-#: ../includes/class-lmtttmpts-settings.php:418
+#: ../includes/class-lmtttmpts-settings.php:388
+#: ../includes/class-lmtttmpts-settings.php:403
+#: ../includes/class-lmtttmpts-settings.php:412
+#: ../includes/class-lmtttmpts-settings.php:417
 #: ../includes/class-lmtttmpts-settings.php:424
+#: ../includes/class-lmtttmpts-settings.php:430
 msgid ""
 "Incorrect captcha for selected forms will be considered as an invalid "
 "attempt."
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:435
-#: ../includes/class-lmtttmpts-settings.php:535
+#: ../includes/class-lmtttmpts-settings.php:441
+#: ../includes/class-lmtttmpts-settings.php:541
 msgid "Registration form"
 msgstr "Formularz rejestracji"
 
-#: ../includes/class-lmtttmpts-settings.php:436
+#: ../includes/class-lmtttmpts-settings.php:442
 msgid "Reset Password form"
 msgstr "Formularz resetowania hasła"
 
-#: ../includes/class-lmtttmpts-settings.php:437
-#: ../includes/class-lmtttmpts-settings.php:537
+#: ../includes/class-lmtttmpts-settings.php:443
+#: ../includes/class-lmtttmpts-settings.php:543
 msgid "Comments form"
 msgstr "Formularz komentarzy"
 
-#: ../includes/class-lmtttmpts-settings.php:440
+#: ../includes/class-lmtttmpts-settings.php:446
 msgid "Buddypress registration form"
 msgstr "Formularz rejestracji BuddyPress"
 
-#: ../includes/class-lmtttmpts-settings.php:441
+#: ../includes/class-lmtttmpts-settings.php:447
 msgid "Buddypress \"Create a Group\" form"
 msgstr "Formularz \"Stwórz grupę\" dla BuddyPress"
 
-#: ../includes/class-lmtttmpts-settings.php:443
-#: ../includes/class-lmtttmpts-settings.php:548
+#: ../includes/class-lmtttmpts-settings.php:449
+#: ../includes/class-lmtttmpts-settings.php:554
 #, fuzzy
 msgid "WooCommerce Login form"
 msgstr "Formularz resetowania hasła"
 
-#: ../includes/class-lmtttmpts-settings.php:444
+#: ../includes/class-lmtttmpts-settings.php:450
 #, fuzzy
 msgid "WooCommerce Register form"
 msgstr "Formularz resetowania hasła"
 
-#: ../includes/class-lmtttmpts-settings.php:445
+#: ../includes/class-lmtttmpts-settings.php:451
 #, fuzzy
 msgid "WooCommerce Lost Password form"
 msgstr "Formularz resetowania hasła"
 
-#: ../includes/class-lmtttmpts-settings.php:446
+#: ../includes/class-lmtttmpts-settings.php:452
 #, fuzzy
 msgid "WooCommerce Checkout Billing form"
 msgstr "Formularz resetowania hasła"
 
-#: ../includes/class-lmtttmpts-settings.php:455
-#: ../includes/class-lmtttmpts-settings.php:564
+#: ../includes/class-lmtttmpts-settings.php:461
+#: ../includes/class-lmtttmpts-settings.php:570
 #, php-format
 msgid "You also need %s to use these options."
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:465
+#: ../includes/class-lmtttmpts-settings.php:471
 #, fuzzy
 msgid "Google Captcha Plugin"
 msgstr "Wtyczka Captcha"
 
-#: ../includes/class-lmtttmpts-settings.php:488
-#: ../includes/class-lmtttmpts-settings.php:506
-#: ../includes/class-lmtttmpts-settings.php:511
-#: ../includes/class-lmtttmpts-settings.php:518
+#: ../includes/class-lmtttmpts-settings.php:494
+#: ../includes/class-lmtttmpts-settings.php:512
+#: ../includes/class-lmtttmpts-settings.php:517
 #: ../includes/class-lmtttmpts-settings.php:524
+#: ../includes/class-lmtttmpts-settings.php:530
 msgid ""
 "Failed reCAPTCHA validation for selected forms will be considered as an "
 "invalid attempt."
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:536
+#: ../includes/class-lmtttmpts-settings.php:542
 #, fuzzy
 msgid "Reset password form"
 msgstr "Formularz resetowania hasła"
 
-#: ../includes/class-lmtttmpts-settings.php:541
+#: ../includes/class-lmtttmpts-settings.php:547
 #, fuzzy
 msgid "Jetpack Contact Form"
 msgstr "Contact Form 7"
 
-#: ../includes/class-lmtttmpts-settings.php:543
+#: ../includes/class-lmtttmpts-settings.php:549
 msgid "bbPress New Topic form"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:544
+#: ../includes/class-lmtttmpts-settings.php:550
 msgid "bbPress Reply form"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:545
+#: ../includes/class-lmtttmpts-settings.php:551
 #, fuzzy
 msgid "BuddyPress Registration form"
 msgstr "Formularz rejestracji BuddyPress"
 
-#: ../includes/class-lmtttmpts-settings.php:546
+#: ../includes/class-lmtttmpts-settings.php:552
 #, fuzzy
 msgid "BuddyPress Comments form"
 msgstr "Formularz komentarzy BuddyPress"
 
-#: ../includes/class-lmtttmpts-settings.php:547
+#: ../includes/class-lmtttmpts-settings.php:553
 #, fuzzy
 msgid "BuddyPress Add New Group form"
 msgstr "Formularz \"Stwórz grupę\" dla BuddyPress"
 
-#: ../includes/class-lmtttmpts-settings.php:549
+#: ../includes/class-lmtttmpts-settings.php:555
 #, fuzzy
 msgid "WooCommerce Registration form"
 msgstr "Formularz resetowania hasła"
 
-#: ../includes/class-lmtttmpts-settings.php:550
+#: ../includes/class-lmtttmpts-settings.php:556
 #, fuzzy
 msgid "WooCommerce Reset password form"
 msgstr "Formularz resetowania hasła"
 
-#: ../includes/class-lmtttmpts-settings.php:551
+#: ../includes/class-lmtttmpts-settings.php:557
 #, fuzzy
 msgid "WooCommerce Checkout form"
 msgstr "Formularz resetowania hasła"
 
-#: ../includes/class-lmtttmpts-settings.php:552
+#: ../includes/class-lmtttmpts-settings.php:558
 #, fuzzy
 msgid "wpForo Login form"
 msgstr "Formularz logowania"
 
-#: ../includes/class-lmtttmpts-settings.php:553
+#: ../includes/class-lmtttmpts-settings.php:559
 #, fuzzy
 msgid "wpForo Registration form"
 msgstr "Formularz rejestracji"
 
-#: ../includes/class-lmtttmpts-settings.php:554
+#: ../includes/class-lmtttmpts-settings.php:560
 msgid "wpForo New Topic form"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:555
+#: ../includes/class-lmtttmpts-settings.php:561
 msgid "wpForo Reply form"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:580
+#: ../includes/class-lmtttmpts-settings.php:586
 msgid "Error Messages Settings"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:585
+#: ../includes/class-lmtttmpts-settings.php:591
 msgid "Invalid Attempt"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:589
-#: ../includes/class-lmtttmpts-settings.php:599
-#: ../includes/class-lmtttmpts-settings.php:610
-#: ../includes/class-lmtttmpts-settings.php:668
-#: ../includes/class-lmtttmpts-settings.php:675
-#: ../includes/class-lmtttmpts-settings.php:690
-#: ../includes/class-lmtttmpts-settings.php:697
+#: ../includes/class-lmtttmpts-settings.php:595
+#: ../includes/class-lmtttmpts-settings.php:605
+#: ../includes/class-lmtttmpts-settings.php:616
+#: ../includes/class-lmtttmpts-settings.php:674
+#: ../includes/class-lmtttmpts-settings.php:681
+#: ../includes/class-lmtttmpts-settings.php:696
+#: ../includes/class-lmtttmpts-settings.php:703
 msgid "Allowed Variables:"
 msgstr "Dozwolone zmienne:"
 
-#: ../includes/class-lmtttmpts-settings.php:590
+#: ../includes/class-lmtttmpts-settings.php:596
 msgid "quantity of attempts left"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:595 ../limit-attempts.php:43
+#: ../includes/class-lmtttmpts-settings.php:601 ../limit-attempts.php:43
 msgid "Blocked"
 msgstr "zablokowany"
 
-#: ../includes/class-lmtttmpts-settings.php:600
+#: ../includes/class-lmtttmpts-settings.php:606
 msgid "blocking time"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:601
-#: ../includes/class-lmtttmpts-settings.php:611
+#: ../includes/class-lmtttmpts-settings.php:607
+#: ../includes/class-lmtttmpts-settings.php:617
 msgid "administrator&rsquo;s email address"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:606
-#: ../includes/edit-list-form.php:30
+#: ../includes/class-lmtttmpts-settings.php:612
+#: ../includes/edit-list-form.php:22
 msgid "Blacklisted"
 msgstr "Dodane do czarnej listy"
 
-#: ../includes/class-lmtttmpts-settings.php:616
+#: ../includes/class-lmtttmpts-settings.php:622
 msgid "Restore Default Error Messages"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:618
+#: ../includes/class-lmtttmpts-settings.php:624
 msgid "Restore Error Messages"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:630
+#: ../includes/class-lmtttmpts-settings.php:636
 msgid "Email Notifications Settings"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:635
+#: ../includes/class-lmtttmpts-settings.php:641
 msgid "Email Notifications"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:637
+#: ../includes/class-lmtttmpts-settings.php:643
 msgid "Enable to receive email notifications."
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:641
+#: ../includes/class-lmtttmpts-settings.php:647
 msgid "Send Email Notifications to"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:646
+#: ../includes/class-lmtttmpts-settings.php:652
 msgid "Choose a username"
 msgstr "Wybierz użytkownika"
 
-#: ../includes/class-lmtttmpts-settings.php:659
+#: ../includes/class-lmtttmpts-settings.php:665
 msgid "Select an existing administrator or a custom email."
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:663
+#: ../includes/class-lmtttmpts-settings.php:669
 msgid "Block Notifications"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:665
-#: ../includes/class-lmtttmpts-settings.php:687
+#: ../includes/class-lmtttmpts-settings.php:671
+#: ../includes/class-lmtttmpts-settings.php:693
 msgid "Subject"
 msgstr "Temat"
 
-#: ../includes/class-lmtttmpts-settings.php:669
-#: ../includes/class-lmtttmpts-settings.php:676
+#: ../includes/class-lmtttmpts-settings.php:675
+#: ../includes/class-lmtttmpts-settings.php:682
 msgid "blocked IP address"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:670
-#: ../includes/class-lmtttmpts-settings.php:679
-#: ../includes/class-lmtttmpts-settings.php:692
-#: ../includes/class-lmtttmpts-settings.php:701
+#: ../includes/class-lmtttmpts-settings.php:676
+#: ../includes/class-lmtttmpts-settings.php:685
+#: ../includes/class-lmtttmpts-settings.php:698
+#: ../includes/class-lmtttmpts-settings.php:707
 msgid "website name"
-msgstr ""
-
-#: ../includes/class-lmtttmpts-settings.php:672
-#: ../includes/class-lmtttmpts-settings.php:694
-msgid "Message"
-msgstr "Wiadomość"
-
-#: ../includes/class-lmtttmpts-settings.php:677
-#: ../includes/class-lmtttmpts-settings.php:699
-msgid "Limit Attempts plugin link"
 msgstr ""
 
 #: ../includes/class-lmtttmpts-settings.php:678
 #: ../includes/class-lmtttmpts-settings.php:700
+msgid "Message"
+msgstr "Wiadomość"
+
+#: ../includes/class-lmtttmpts-settings.php:683
+#: ../includes/class-lmtttmpts-settings.php:705
+msgid "Limit Attempts plugin link"
+msgstr ""
+
+#: ../includes/class-lmtttmpts-settings.php:684
+#: ../includes/class-lmtttmpts-settings.php:706
 msgid "date and time when IP address was blocked"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:680
-#: ../includes/class-lmtttmpts-settings.php:702
+#: ../includes/class-lmtttmpts-settings.php:686
+#: ../includes/class-lmtttmpts-settings.php:708
 msgid "website URL"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:685
+#: ../includes/class-lmtttmpts-settings.php:691
 msgid "Blacklist Notifications"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:691
-#: ../includes/class-lmtttmpts-settings.php:698
+#: ../includes/class-lmtttmpts-settings.php:697
+#: ../includes/class-lmtttmpts-settings.php:704
 msgid "blacklisted IP address"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:707
+#: ../includes/class-lmtttmpts-settings.php:713
 msgid "Restore Default Email Notifications"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:709
+#: ../includes/class-lmtttmpts-settings.php:715
 msgid "Restore Email Notifications"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:753
+#: ../includes/class-lmtttmpts-settings.php:759
 msgid "Remove Log Entries Older Then"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:756
-#: ../includes/class-lmtttmpts-settings.php:771
+#: ../includes/class-lmtttmpts-settings.php:762
+#: ../includes/class-lmtttmpts-settings.php:777
 msgid "days"
 msgstr "dni"
 
-#: ../includes/class-lmtttmpts-settings.php:757
+#: ../includes/class-lmtttmpts-settings.php:763
 msgid "Set \"0\" if you do not want to clear the log."
 msgstr "Ustaw \"0\" jeśli nie chcesz czyścić wpisów w dzienniku."
 
-#: ../includes/class-lmtttmpts-settings.php:768
+#: ../includes/class-lmtttmpts-settings.php:774
 msgid "Remove Stats Entries Older Than"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:773
+#: ../includes/class-lmtttmpts-settings.php:779
 msgid "Set \"0\" if you do not want to clear the statistics."
 msgstr "Ustaw \"0\" jeśli nie chcesz czyścić statystyk."
 
-#: ../includes/class-lmtttmpts-settings.php:775
+#: ../includes/class-lmtttmpts-settings.php:781
 #, php-format
 msgid "Current size of DB table is %s"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:775
+#: ../includes/class-lmtttmpts-settings.php:781
 msgid "Mb"
 msgstr "Mb"
 
-#: ../includes/class-lmtttmpts-settings.php:788
+#: ../includes/class-lmtttmpts-settings.php:794
 msgid "Update GeoIP Every"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:791
+#: ../includes/class-lmtttmpts-settings.php:797
 #: ../includes/front-end-functions.php:594
 msgid "months"
 msgstr "miesiące"
 
-#: ../includes/class-lmtttmpts-settings.php:792
-#: ../includes/class-lmtttmpts-settings.php:801
+#: ../includes/class-lmtttmpts-settings.php:798
+#: ../includes/class-lmtttmpts-settings.php:807
 msgid "Update Now"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:797
+#: ../includes/class-lmtttmpts-settings.php:803
 msgid "Update White- & Blacklist After"
 msgstr ""
 
-#: ../includes/class-lmtttmpts-settings.php:800
+#: ../includes/class-lmtttmpts-settings.php:806
 msgid "updates of GeoIP"
 msgstr "aktualizacjach GeoIP"
 
-#: ../includes/edit-list-form.php:18 ../includes/edit-list-form.php:25
-msgid "Edit List"
-msgstr ""
-
-#: ../includes/edit-list-form.php:32
+#: ../includes/edit-list-form.php:24
 #, fuzzy
 msgid "Whitelisted"
 msgstr "niebanowalni"
 
-#: ../includes/edit-list-form.php:63 ../includes/edit-list-form.php:94
+#: ../includes/edit-list-form.php:55 ../includes/edit-list-form.php:86
 msgid "ERROR:"
 msgstr "BŁĄD:"
 
-#: ../includes/edit-list-form.php:63 ../includes/edit-list-form.php:94
+#: ../includes/edit-list-form.php:55 ../includes/edit-list-form.php:86
 msgid "You must type IP address"
 msgstr "Musisz podać adres IP"
 
-#: ../includes/edit-list-form.php:66
+#: ../includes/edit-list-form.php:58
 msgid "This IP address has already been added to whitelist"
 msgstr ""
 
-#: ../includes/edit-list-form.php:69
+#: ../includes/edit-list-form.php:61
 msgid "This IP address is in blacklist too, please check this to avoid errors"
 msgstr ""
 
-#: ../includes/edit-list-form.php:79
+#: ../includes/edit-list-form.php:71
 msgid "has been added to whitelist"
 msgstr "został dodany do białej listy"
 
-#: ../includes/edit-list-form.php:83 ../includes/edit-list-form.php:87
+#: ../includes/edit-list-form.php:75 ../includes/edit-list-form.php:79
 msgid "can't be added to whitelist."
 msgstr ""
 
-#: ../includes/edit-list-form.php:98
+#: ../includes/edit-list-form.php:90
 msgid "This IP address has already been added to blacklist"
 msgstr ""
 
-#: ../includes/edit-list-form.php:101
+#: ../includes/edit-list-form.php:93
 msgid "This IP address is in whitelist too, please check this to avoid errors"
 msgstr ""
 
-#: ../includes/edit-list-form.php:108
+#: ../includes/edit-list-form.php:100
 msgid "has been added to blacklist"
 msgstr "został dodany do czarnej listy"
 
-#: ../includes/edit-list-form.php:112 ../includes/edit-list-form.php:117
+#: ../includes/edit-list-form.php:104 ../includes/edit-list-form.php:109
 msgid "can't be added to blacklist."
 msgstr ""
 
-#: ../includes/edit-list-form.php:131
+#: ../includes/edit-list-form.php:123
 msgid "Add IP"
 msgstr ""
 
-#: ../includes/edit-list-form.php:137
+#: ../includes/edit-list-form.php:129
 msgid "My IP"
 msgstr "Mój adres"
 
-#: ../includes/edit-list-form.php:142
+#: ../includes/edit-list-form.php:134
 #, fuzzy
 msgid "Allowed formats:"
 msgstr "Dozwolone formaty"
@@ -874,35 +880,47 @@ msgstr "Powód"
 msgid "Clear Log"
 msgstr "Wyczyść dziennik"
 
-#: ../includes/pro-tab.php:74 ../includes/pro-tab.php:116
+#: ../includes/pro-tab.php:74 ../includes/pro-tab.php:122
 msgid "Delete log entry"
 msgstr "Usuń wpis z dziennika"
 
-#: ../includes/pro-tab.php:85 ../includes/pro-tab.php:95
+#: ../includes/pro-tab.php:85 ../includes/pro-tab.php:97
 msgid "IP address"
 msgstr "Adresy IP"
 
-#: ../includes/pro-tab.php:86 ../includes/pro-tab.php:96
-msgid "Internet Hostname"
+#: ../includes/pro-tab.php:86 ../includes/pro-tab.php:98
+#, fuzzy
+#| msgid "Login form"
+msgid "Login"
+msgstr "Formularz logowania"
+
+#: ../includes/pro-tab.php:87 ../includes/pro-tab.php:99
+msgid "Password"
+msgstr ""
+
+#: ../includes/pro-tab.php:88 ../includes/pro-tab.php:100
+#, fuzzy
+#| msgid "Internet Hostname"
+msgid "Hostname"
 msgstr "Nazwa hosta"
 
-#: ../includes/pro-tab.php:87 ../includes/pro-tab.php:97
+#: ../includes/pro-tab.php:89 ../includes/pro-tab.php:101
 msgid "Event"
 msgstr "Zdarzenie"
 
-#: ../includes/pro-tab.php:88 ../includes/pro-tab.php:98
+#: ../includes/pro-tab.php:90 ../includes/pro-tab.php:102
 msgid "Form"
 msgstr "Formularz"
 
-#: ../includes/pro-tab.php:89 ../includes/pro-tab.php:99
+#: ../includes/pro-tab.php:91 ../includes/pro-tab.php:103
 msgid "Event time"
 msgstr "Czas zdarzenia"
 
-#: ../includes/pro-tab.php:107
+#: ../includes/pro-tab.php:113
 msgid "Failed attempt"
 msgstr "Nieudana próba"
 
-#: ../includes/pro-tab.php:127 ../limit-attempts.php:56
+#: ../includes/pro-tab.php:133 ../limit-attempts.php:56
 msgid "Upgrade to Pro"
 msgstr ""
 
@@ -1025,33 +1043,33 @@ msgstr ""
 msgid "Statistics"
 msgstr "Statystyki"
 
-#: ../limit-attempts.php:165 ../limit-attempts.php:428
+#: ../limit-attempts.php:165 ../limit-attempts.php:436
 #, php-format
 msgid "Retries before lock: %s."
 msgstr ""
 
-#: ../limit-attempts.php:166 ../limit-attempts.php:429
+#: ../limit-attempts.php:166 ../limit-attempts.php:437
 #, php-format
 msgid "Too many retries. You have been blocked for %s."
 msgstr ""
 
-#: ../limit-attempts.php:167 ../limit-attempts.php:430
+#: ../limit-attempts.php:167 ../limit-attempts.php:438
 msgid ""
 "You've been added to blacklist. Please contact administrator to resolve this "
 "problem."
 msgstr ""
 
-#: ../limit-attempts.php:169 ../limit-attempts.php:431
+#: ../limit-attempts.php:169 ../limit-attempts.php:439
 #, php-format
 msgid "%s has been blocked on %s"
 msgstr ""
 
-#: ../limit-attempts.php:170 ../limit-attempts.php:432
+#: ../limit-attempts.php:170 ../limit-attempts.php:440
 #, php-format
 msgid "%s has been added to the blacklist on %s"
 msgstr ""
 
-#: ../limit-attempts.php:171 ../limit-attempts.php:433
+#: ../limit-attempts.php:171 ../limit-attempts.php:441
 #, php-format
 msgid ""
 "IP %s has been blocked automatically on %s due to the excess of login "
@@ -1059,19 +1077,19 @@ msgid ""
 msgstr ""
 
 #: ../limit-attempts.php:171 ../limit-attempts.php:172
-#: ../limit-attempts.php:433 ../limit-attempts.php:434
+#: ../limit-attempts.php:441 ../limit-attempts.php:442
 #, php-format
 msgid "Using the plugin %s"
 msgstr ""
 
-#: ../limit-attempts.php:172 ../limit-attempts.php:434
+#: ../limit-attempts.php:172 ../limit-attempts.php:442
 #, php-format
 msgid ""
 "IP %s has been added automatically to the blacklist on %s due to the excess "
 "of locks quantity on your website %s."
 msgstr ""
 
-#: ../limit-attempts.php:321
+#: ../limit-attempts.php:329
 #, php-format
 msgid ""
 "Limit Attempts interaction with Htaccess was turned off since you are using "
@@ -1079,29 +1097,29 @@ msgid ""
 "interaction, please update Htaccess plugin at least to v%s."
 msgstr ""
 
-#: ../limit-attempts.php:476
+#: ../limit-attempts.php:484
 msgid "FAQ"
 msgstr "FAQ"
 
-#: ../limit-attempts.php:477
+#: ../limit-attempts.php:485
 msgid "Support"
 msgstr "Pomoc"
 
-#: ../limit-attempts.php:493
+#: ../limit-attempts.php:501
 msgid "Network"
 msgstr "Sieć"
 
-#: ../limit-attempts.php:494
+#: ../limit-attempts.php:502
 msgid "Please enable JavaScript in Your browser."
 msgstr ""
 
-#: ../limit-attempts.php:496
+#: ../limit-attempts.php:504
 msgid "This option will replace all current settings on separate sites."
 msgstr ""
 "Ta opcja spowoduje zastąpienie wszystkich bieżących ustawień na oddzielnych "
 "stronach."
 
-#: ../limit-attempts.php:532
+#: ../limit-attempts.php:540
 msgid ""
 "Limit Login Attempts plugin is activated on your site, as well as Limit "
 "Attempts plugin. Please note that Limit Attempts ensures maximum security "
@@ -1110,25 +1128,564 @@ msgid ""
 "site."
 msgstr ""
 
-#: ../limit-attempts.php:559
+#: ../limit-attempts.php:567
 msgid "ATTENTION!"
 msgstr "UWAGA!"
 
-#: ../limit-attempts.php:562
+#: ../limit-attempts.php:570
 msgid "Read and Understood"
 msgstr "Przeczytaj i zapamiętaj"
 
-#: ../limit-attempts.php:639
+#: ../limit-attempts.php:647
 msgid "Addresses per page"
 msgstr "Ilość adresów na stronę"
 
-#: ../limit-attempts.php:982
+#: ../limit-attempts.php:991
 msgid "Notice"
 msgstr "Uwaga"
 
-#: ../limit-attempts.php:982
+#: ../limit-attempts.php:991
 msgid "Changes are not saved."
 msgstr ""
+
+#~ msgid "requires"
+#~ msgstr "wymaga"
+
+#~ msgid ""
+#~ "or higher, that is why it has been deactivated! Please upgrade WordPress "
+#~ "and try again."
+#~ msgstr ""
+#~ "lub wyższej, z tego powodu wtyczka została wyłączona! Aktualizuj "
+#~ "WordPress i spróbuj ponownie."
+
+#~ msgid "Back to the WordPress"
+#~ msgstr "Wróć do WordPressa"
+
+#, fuzzy
+#~| msgid "Previous page"
+#~ msgid "Plugins page"
+#~ msgstr "Poprzednia stona"
+
+#, fuzzy
+#~| msgid "Rate the plugin"
+#~ msgid "Like the plugin?"
+#~ msgstr "Oceń tą wtyczkę"
+
+#, fuzzy
+#~| msgid "Rate the plugin"
+#~ msgid "Want to support the plugin?"
+#~ msgstr "Oceń tą wtyczkę"
+
+#, fuzzy
+#~| msgid ""
+#~| "WARNING: We have noticed illegal use of our plugin by you. We strongly "
+#~| "recommend you to solve the problem within 24 hours, otherwise the plugin "
+#~| "will be deactivated. Please go to your personal"
+#~ msgid ""
+#~ "You can use one license of the Pro plugin for one domain only. Please "
+#~ "check and edit your license or domain if necessary using your personal "
+#~ "Client Area. We strongly recommend you to solve the problem within 24 "
+#~ "hours, otherwise the Pro plugin will be deactivated."
+#~ msgstr ""
+#~ "UWAGA: Odnotowaliśmy, że wykorzystujesz naszą wtyczkę w sposób "
+#~ "nielegalny. Radzimy rozwiązać powyższy problem w przeciągu 24 godzin, w "
+#~ "przeciwnym wypadku wtyczka zostanie zablokowana. Prosimy przejść do "
+#~ "ustawień"
+
+#, fuzzy
+#~| msgid "Learn more"
+#~ msgid "Learn More"
+#~ msgstr "Czytaj dalej"
+
+#, fuzzy
+#~| msgid ""
+#~| "Your license has expired. To continue getting top-priority support and "
+#~| "plugin updates you should extend it."
+#~ msgid ""
+#~ "Notice: Your Pro Trial license has expired. To continue using the plugin, "
+#~ "you should buy a Pro license"
+#~ msgstr ""
+#~ "Twoja licencja wygasła. Aby zachować szybki dostęp do wsparcia i "
+#~ "aktualizacji powinieneś ją przedłużyć."
+
+#, fuzzy
+#~| msgid ""
+#~| "Your license has expired. To continue getting top-priority support and "
+#~| "plugin updates you should extend it."
+#~ msgid ""
+#~ "Your license has expired. To continue getting top-priority support and "
+#~ "plugin updates, you should extend it."
+#~ msgstr ""
+#~ "Twoja licencja wygasła. Aby zachować szybki dostęp do wsparcia i "
+#~ "aktualizacji powinieneś ją przedłużyć."
+
+#~ msgid "Learn more"
+#~ msgstr "Czytaj dalej"
+
+#, fuzzy
+#~| msgid "The license key is valid. Your license will expire on"
+#~ msgid "The Pro Trial license will expire on"
+#~ msgstr "Klucz licencji jest poprawny. Twoja licencja wygaśnie"
+
+#, fuzzy
+#~| msgid "for"
+#~ msgid "or"
+#~ msgstr "na okres"
+
+#, fuzzy
+#~| msgid "Please note"
+#~ msgid "Close notice"
+#~ msgstr "Uwaga:"
+
+#, fuzzy
+#~| msgid "has old version"
+#~ msgid "version!"
+#~ msgstr "starsza wersja"
+
+#, fuzzy
+#~| msgid "and you won't be granted TOP-PRIORITY SUPPORT or UPDATES."
+#~ msgid ""
+#~ "Your license key for %s expires on %s and you won't be granted TOP-"
+#~ "PRIORITY SUPPORT or UPDATES."
+#~ msgstr ""
+#~ "i nie będziesz miał już dostępu do SZYBKIEJ POMOCY oraz do AKTUALIZACJI."
+
+#, fuzzy
+#~| msgid "All plugin settings were restored."
+#~ msgid "The plugin's settings have been changed."
+#~ msgstr "Wszystkie ustawienia wtyczki zostały przywrócone."
+
+#~ msgid "Save Changes"
+#~ msgstr "Zapisz zmiany"
+
+#, fuzzy
+#~| msgid "Are you sure you want to delete all log entries?"
+#~ msgid "Are you sure you want to restore default settings?"
+#~ msgstr "Czy na pewno chcesz usunąć wszystkie wpisy z dziennika?"
+
+#, fuzzy
+#~| msgid "No, go back to the Statistics page"
+#~ msgid "No, go back to the settings page"
+#~ msgstr "Wróć do strony ze statystykami"
+
+#, fuzzy
+#~| msgid "Settings"
+#~ msgid "Shortcode settings"
+#~ msgstr "Ustawienia"
+
+#, fuzzy
+#~| msgid "For more info see"
+#~ msgid "For more information:"
+#~ msgstr "Znajdź więcej informacji w"
+
+#, fuzzy
+#~| msgid "Wrong license key!"
+#~ msgid "Wrong license key"
+#~ msgstr "Błędny klucz licencji!"
+
+#, fuzzy
+#~| msgid ""
+#~| "Something went wrong. Try again later. If the error will appear again, "
+#~| "please, contact us <a href=https://support.bestwebsoft.com>BestWebSoft</"
+#~| "a>. We are sorry for inconvenience."
+#~ msgid ""
+#~ "Something went wrong. Please try again later. If the error appears again, "
+#~ "please contact us"
+#~ msgstr ""
+#~ "Coś poszło nie tak jak powinno. Spróbuj ponownie później. Jeśli błędy "
+#~ "pojawią się ponownie daj nam znać - <a href=http://support.bestwebsoft."
+#~ "com>BestWebSoft</a>. Przepraszamy za niedogodności. "
+
+#, fuzzy
+#~| msgid "Wrong license key!"
+#~ msgid "Wrong license key."
+#~ msgstr "Błędny klucz licencji!"
+
+#, fuzzy
+#~| msgid "This license key is bind to another site"
+#~ msgid ""
+#~ "This license key is bound to another site. Change it via personal Client "
+#~ "Area."
+#~ msgstr "Ten klucz został przypisany do innej strony"
+
+#, fuzzy
+#~| msgid "Unfortunately, you have exceeded the number of available tries."
+#~ msgid ""
+#~ "Unfortunately, you have exceeded the number of available tries per day."
+#~ msgstr "Niestety, przekroczono liczbę dostępnych prób."
+
+#, fuzzy
+#~| msgid ""
+#~| "Your license has expired. To continue getting top-priority support and "
+#~| "plugin updates you should extend it."
+#~ msgid ""
+#~ "Unfortunately, Your license has expired. To continue getting top-priority "
+#~ "support and plugin updates, you should extend it in your %s"
+#~ msgstr ""
+#~ "Twoja licencja wygasła. Aby zachować szybki dostęp do wsparcia i "
+#~ "aktualizacji powinieneś ją przedłużyć."
+
+#~ msgid "The license key is valid."
+#~ msgstr "Klucz licencji jest poprawny."
+
+#, fuzzy
+#~| msgid "The license key is valid. Your license will expire on"
+#~ msgid "Your license will expire on"
+#~ msgstr "Klucz licencji jest poprawny. Twoja licencja wygaśnie"
+
+#, fuzzy
+#~| msgid ""
+#~| "Something went wrong. Try again later. If the error will appear again, "
+#~| "please, contact us <a href=https://support.bestwebsoft.com>BestWebSoft</"
+#~| "a>. We are sorry for inconvenience."
+#~ msgid ""
+#~ "Something went wrong. Try again later or upload the plugin manually. We "
+#~ "are sorry for inconvenience."
+#~ msgstr ""
+#~ "Coś poszło nie tak jak powinno. Spróbuj ponownie później. Jeśli błędy "
+#~ "pojawią się ponownie daj nam znać - <a href=http://support.bestwebsoft."
+#~ "com>BestWebSoft</a>. Przepraszamy za niedogodności. "
+
+#, fuzzy
+#~| msgid "Please, enter your license key"
+#~ msgid "Please enter your license key."
+#~ msgstr "Podaj swój klucz licencji"
+
+#, fuzzy
+#~| msgid "Mb"
+#~ msgid " Mb"
+#~ msgstr "Mb"
+
+#, fuzzy
+#~| msgid "Activate %s"
+#~ msgid "Active Theme"
+#~ msgstr "Aktywuj %s"
+
+#, fuzzy
+#~| msgid "Message"
+#~ msgid "Memory Usage"
+#~ msgstr "Wiadomość"
+
+#, fuzzy
+#~| msgid "has old version"
+#~ msgid "WP DB version"
+#~ msgstr "starsza wersja"
+
+#, fuzzy
+#~| msgid "Activate %s"
+#~ msgid "Active Plugins"
+#~ msgstr "Aktywuj %s"
+
+#, fuzzy
+#~| msgid "Status"
+#~ msgid "System status"
+#~ msgstr "Status"
+
+#~ msgid "Check license key"
+#~ msgstr "Sprawdź klucz licencji"
+
+#, fuzzy
+#~| msgid "Please, enter your license key"
+#~ msgid "Enter your license key"
+#~ msgstr "Podaj swój klucz licencji"
+
+#, fuzzy
+#~| msgid "Rate the plugin"
+#~ msgid "Installing the plugin"
+#~ msgstr "Oceń tą wtyczkę"
+
+#, fuzzy
+#~| msgid "Can not get GeoIP data. Please, upload the files manually by link"
+#~ msgid "Failed to open the zip archive. Please, upload the plugin manually"
+#~ msgstr ""
+#~ "Nie udało się porać danych GeoIP. Proszę wrzucić dane manualnie, poprzez "
+#~ "podanie linku"
+
+#, fuzzy
+#~| msgid "Table loading was finished successfully."
+#~ msgid "The plugin %s is successfully installed."
+#~ msgstr "Ładowanie tablicy zakończyło się pomyślnie"
+
+#, fuzzy
+#~| msgid "Can not get GeoIP data. Please, upload the files manually by link"
+#~ msgid "UploadDir is not writable. Please, upload the plugin manually"
+#~ msgstr ""
+#~ "Nie udało się porać danych GeoIP. Proszę wrzucić dane manualnie, poprzez "
+#~ "podanie linku"
+
+#, fuzzy
+#~| msgid "Activate %s"
+#~ msgid "Activate Plugin"
+#~ msgstr "Aktywuj %s"
+
+#, fuzzy
+#~| msgid "Search results for"
+#~ msgid "Filter results"
+#~ msgstr "Wyszukaj wyników dla"
+
+#, fuzzy
+#~| msgid "does not need to be updated"
+#~ msgid "Renew to get updates"
+#~ msgstr "nie wymaga aktualizacji"
+
+#, fuzzy
+#~| msgid "Update now"
+#~ msgid "Update to v %s"
+#~ msgstr "Aktualizuj teraz"
+
+#, fuzzy
+#~| msgid "Rate the plugin"
+#~ msgid "Activate this plugin"
+#~ msgstr "Oceń tą wtyczkę"
+
+#, fuzzy
+#~| msgid "Rate the plugin"
+#~ msgid "Install this plugin"
+#~ msgstr "Oceń tą wtyczkę"
+
+#, fuzzy
+#~| msgid "Support"
+#~ msgid "Send to support"
+#~ msgstr "Pomoc"
+
+#, fuzzy
+#~| msgid "expires on"
+#~ msgid "Expired on %s"
+#~ msgstr "wygasa"
+
+#, fuzzy
+#~| msgid "Activate %s"
+#~ msgid "Active"
+#~ msgstr "Aktywuj %s"
+
+#~ msgid "All plugin settings were restored."
+#~ msgstr "Wszystkie ustawienia wtyczki zostały przywrócone."
+
+#, fuzzy
+#~| msgid "Activate %s"
+#~ msgid "Activate custom %s code."
+#~ msgstr "Aktywuj %s"
+
+#, fuzzy
+#~| msgid "Read more about"
+#~ msgid "Learn more about %s"
+#~ msgstr "Przeczytaj więcej o"
+
+#, fuzzy
+#~| msgid ""
+#~| "It is prohibited to change Limit Attempts Pro settings on this site in "
+#~| "the Limit Attempts Pro network settings."
+#~ msgid ""
+#~ "It is prohibited to change %s settings on this site in the %s network "
+#~ "settings."
+#~ msgstr ""
+#~ "Zabrania się zmiany ustawień wtyczki na tej stronie ustawieniach sieci "
+#~ "Limit Attempts Pro."
+
+#, fuzzy
+#~| msgid ""
+#~| "It is prohibited to view Limit Attempts Pro settings on this site in the "
+#~| "Limit Attempts Pro network settings."
+#~ msgid ""
+#~ "It is prohibited to view %s settings on this site in the %s network "
+#~ "settings."
+#~ msgstr ""
+#~ "Zabrania się wyświetlania ustawień wtyczki na tej stronie ustawieniach "
+#~ "sieci Limit Attempts Pro."
+
+#, fuzzy
+#~| msgid "Settings"
+#~ msgid "Default Settings"
+#~ msgstr "Ustawienia"
+
+#, fuzzy
+#~| msgid "Settings"
+#~ msgid "Restore Settings"
+#~ msgstr "Ustawienia"
+
+#, fuzzy
+#~| msgid "This option will replace all current settings on separate sites."
+#~ msgid "This will restore plugin settings to defaults."
+#~ msgstr ""
+#~ "Ta opcja spowoduje zastąpienie wszystkich bieżących ustawień na "
+#~ "oddzielnych stronach."
+
+#, fuzzy
+#~| msgid "Settings saved."
+#~ msgid "Settings page"
+#~ msgstr "Ustawienia zapisane"
+
+#, fuzzy
+#~| msgid "Unfortunately, you have exceeded the number of available tries."
+#~ msgid ""
+#~ "Unfortunately, you have exceeded the number of available tries per day. "
+#~ "Please, upload the plugin manually."
+#~ msgstr "Niestety, przekroczono liczbę dostępnych prób."
+
+#, fuzzy
+#~| msgid ""
+#~| "If needed you can check if the license key is correct or reenter it in "
+#~| "the field below. You can find your license key on your personal page - "
+#~| "Client area - on our website"
+#~ msgid ""
+#~ "If necessary, you can check if the license key is correct or reenter it "
+#~ "in the field below."
+#~ msgstr ""
+#~ "Jeśli istnieje taka potrzeba możesz sprawdzić klucz licencji lub wpisać "
+#~ "go ponownie w polu poniżej. Możesz znaleźć swój klucz licencji na "
+#~ "przygotowanej dla ciebie karcie w - Client area - na naszej stronie"
+
+#, fuzzy
+#~| msgid "This license key is bind to another site"
+#~ msgid "This license key is bound to another site."
+#~ msgstr "Ten klucz został przypisany do innej strony"
+
+#~ msgid ""
+#~ "This license key is valid, but Your license has expired. If you want to "
+#~ "update our plugin in future, you should extend the license."
+#~ msgstr ""
+#~ "Twój klucz licencji jest poprawny, jednak już wygasł. Jeśli chcesz używać "
+#~ "naszej wtyczki w przyszłości powinieneś przedłużyć licencję."
+
+#~ msgid "Unfortunately, you have exceeded the number of available tries."
+#~ msgstr "Niestety, przekroczono liczbę dostępnych prób."
+
+#, fuzzy
+#~| msgid "The license key is valid."
+#~ msgid "The Pro Trial license key is valid."
+#~ msgstr "Klucz licencji jest poprawny."
+
+#, fuzzy
+#~| msgid ""
+#~| "Your license has expired. To continue getting top-priority support and "
+#~| "plugin updates you should extend it."
+#~ msgid ""
+#~ "Unfortunately, Your license has expired. To continue getting top-priority "
+#~ "support and plugin updates, you should extend it in your %s."
+#~ msgstr ""
+#~ "Twoja licencja wygasła. Aby zachować szybki dostęp do wsparcia i "
+#~ "aktualizacji powinieneś ją przedłużyć."
+
+#, fuzzy
+#~| msgid "Can not get GeoIP data. Please, upload the files manually by link"
+#~ msgid "Failed to open the zip archive. Please, upload the plugin manually."
+#~ msgstr ""
+#~ "Nie udało się porać danych GeoIP. Proszę wrzucić dane manualnie, poprzez "
+#~ "podanie linku"
+
+#, fuzzy
+#~| msgid "Can not get GeoIP data. Please, upload the files manually by link"
+#~ msgid "UploadDir is not writable. Please, upload the plugin manually."
+#~ msgstr ""
+#~ "Nie udało się porać danych GeoIP. Proszę wrzucić dane manualnie, poprzez "
+#~ "podanie linku"
+
+#, fuzzy
+#~| msgid "Please, enter your license key"
+#~ msgid "Please, enter Your license key"
+#~ msgstr "Podaj swój klucz licencji"
+
+#, fuzzy
+#~| msgid "Contact form"
+#~ msgid "Contact Support"
+#~ msgstr "Formularz kontaktowy"
+
+#, fuzzy
+#~| msgid "Rate the plugin"
+#~ msgid "What's the plugin name?"
+#~ msgstr "Oceń tą wtyczkę"
+
+#, fuzzy
+#~| msgid "Processed"
+#~ msgid "Processing"
+#~ msgstr "Przetworzono"
+
+#, fuzzy
+#~| msgid "Activate %s"
+#~ msgid "Deactivate"
+#~ msgstr "Aktywuj %s"
+
+#, fuzzy
+#~| msgid "Status"
+#~ msgid "System Status"
+#~ msgstr "Status"
+
+#~ msgid "Please, enter your license key"
+#~ msgstr "Podaj swój klucz licencji"
+
+#, fuzzy
+#~| msgid ""
+#~| "If needed you can check if the license key is correct or reenter it in "
+#~| "the field below. You can find your license key on your personal page - "
+#~| "Client area - on our website"
+#~ msgid ""
+#~ "If necessary, you can check if the license key is correct or reenter it "
+#~ "in the field below. You can find your license key on your personal page - "
+#~ "Client Area - on our website"
+#~ msgstr ""
+#~ "Jeśli istnieje taka potrzeba możesz sprawdzić klucz licencji lub wpisać "
+#~ "go ponownie w polu poniżej. Możesz znaleźć swój klucz licencji na "
+#~ "przygotowanej dla ciebie karcie w - Client area - na naszej stronie"
+
+#, fuzzy
+#~| msgid ""
+#~| "(your username is the email you specify when purchasing the product). If "
+#~| "necessary, please submit \"Lost your password?\" request."
+#~ msgid ""
+#~ "(your username is the email address specified during the purchase). If "
+#~ "necessary, please submit \"Lost your password?\" request."
+#~ msgstr ""
+#~ "(twój login to adres email podany podczas zakupu produktu). Jeśli nie "
+#~ "pamiętasz hasła wypełnij formularz  \"Lost your password?\"."
+
+#, fuzzy
+#~| msgid ""
+#~| "(your username is the email you specify when purchasing the product), "
+#~| "where you can make the necessary changes."
+#~ msgid "(your username is the email address specified during the purchase)."
+#~ msgstr ""
+#~ "(twój login to adres email podany przy zakupie produktu), gdzie możesz "
+#~ "dokonać niezbędnych zmian."
+
+#, fuzzy
+#~| msgid "Please note"
+#~ msgid "Please, go to"
+#~ msgstr "Uwaga:"
+
+#, fuzzy
+#~| msgid "All plugin settings were restored."
+#~ msgid "Restore all plugin settings to defaults"
+#~ msgstr "Wszystkie ustawienia wtyczki zostały przywrócone."
+
+#, fuzzy
+#~| msgid "Apply network settings"
+#~ msgid "Restore settings"
+#~ msgstr "Aktywuj ustawienia sieci"
+
+#, fuzzy
+#~| msgid "Table loading was finished successfully."
+#~ msgid "File %s edited successfully."
+#~ msgstr "Ładowanie tablicy zakończyło się pomyślnie"
+
+#, fuzzy
+#~| msgid "Not enough rights to save the archive into the folder"
+#~ msgid "Not enough permissions to create or update the file"
+#~ msgstr "Nie masz wystarczających uprawnień by zapisać archiwum do folderu"
+
+#, fuzzy
+#~| msgid "Not enough rights to save the archive into the folder"
+#~ msgid "Not enough permissions to create the file"
+#~ msgstr "Nie masz wystarczających uprawnień by zapisać archiwum do folderu"
+
+#, fuzzy
+#~| msgid "Edit"
+#~ msgid "Editing"
+#~ msgstr "Edytuj"
+
+#, fuzzy
+#~| msgid "Rate the plugin"
+#~ msgid "version of the plugin."
+#~ msgstr "Oceń tą wtyczkę"
 
 #~ msgid "can&rsquo;t be added to blacklist."
 #~ msgstr "nie może zostać dodany do czarnej listy"
@@ -1158,9 +1715,6 @@ msgstr ""
 
 #~ msgid "Login form (Captcha)"
 #~ msgstr "Formularz logowania (Captcha)"
-
-#~ msgid "Contact form"
-#~ msgstr "Formularz kontaktowy"
 
 #~ msgid "Subscriber"
 #~ msgstr "Subskrybent"
@@ -1230,23 +1784,6 @@ msgstr ""
 
 #~ msgid "Total number of failed attempts / last form"
 #~ msgstr "Łączna liczba nieudanych prób"
-
-#~ msgid ""
-#~ "It is prohibited to view Limit Attempts Pro settings on this site in the "
-#~ "Limit Attempts Pro network settings."
-#~ msgstr ""
-#~ "Zabrania się wyświetlania ustawień wtyczki na tej stronie ustawieniach "
-#~ "sieci Limit Attempts Pro."
-
-#~ msgid ""
-#~ "It is prohibited to change Limit Attempts Pro settings on this site in "
-#~ "the Limit Attempts Pro network settings."
-#~ msgstr ""
-#~ "Zabrania się zmiany ustawień wtyczki na tej stronie ustawieniach sieci "
-#~ "Limit Attempts Pro."
-
-#~ msgid "Apply network settings"
-#~ msgstr "Aktywuj ustawienia sieci"
 
 #~ msgid "Apply to all sites and use by default"
 #~ msgstr "Aktywuj dla wszystkich stron i ustaw jako domyślne"
@@ -1319,9 +1856,6 @@ msgstr ""
 #~ msgid "Step 3 of 3: Loading data to the database... Processed"
 #~ msgstr "Krok 3 z 3: Ładowanie danych do bazy... Przetwarzanie..."
 
-#~ msgid "Table loading was finished successfully."
-#~ msgstr "Ładowanie tablicy zakończyło się pomyślnie"
-
 #~ msgid "Table loading was held with errors."
 #~ msgstr "Ładowanie tablicy zostało wstrzymane przez nieoczekiwane błędy"
 
@@ -1363,19 +1897,8 @@ msgstr ""
 #~ "Import zakończył się powodzeniem, jednak wystąpiły błędy przy usuwaniu "
 #~ "pliku GeoLite2-Country-CSV.zip"
 
-#~ msgid "Can not get GeoIP data. Please, upload the files manually by link"
-#~ msgstr ""
-#~ "Nie udało się porać danych GeoIP. Proszę wrzucić dane manualnie, poprzez "
-#~ "podanie linku"
-
-#~ msgid "For more info see"
-#~ msgstr "Znajdź więcej informacji w"
-
 #~ msgid "Limit Attempts plugin FAQ"
 #~ msgstr "Limit Attempts FAQ"
-
-#~ msgid "Not enough rights to save the archive into the folder"
-#~ msgstr "Nie masz wystarczających uprawnień by zapisać archiwum do folderu"
 
 #~ msgid "Error while clearing log completely"
 #~ msgstr "Wystąpił błąd w czasie czyszczenia dziennika"
@@ -1394,9 +1917,6 @@ msgstr ""
 
 #~ msgid "Error while deleting log entry (entries)"
 #~ msgstr "Wystąpił błąd podczas usuwania wpisu (wpisów) z dziennika"
-
-#~ msgid "Are you sure you want to delete all log entries?"
-#~ msgstr "Czy na pewno chcesz usunąć wszystkie wpisy z dziennika?"
 
 #~ msgid "No, go back to the Log page"
 #~ msgstr "Wróć do dziennika"
@@ -1423,17 +1943,11 @@ msgstr ""
 #~ msgid "Failed attempts"
 #~ msgstr "Nieudane próby"
 
-#~ msgid "does not need to be updated"
-#~ msgstr "nie wymaga aktualizacji"
-
 #~ msgid "In progress"
 #~ msgstr "W trakcie"
 
 #~ msgid "Start. Please, wait"
 #~ msgstr "Start. Proszę czekać"
-
-#~ msgid "Processed"
-#~ msgstr "Przetworzono"
 
 #~ msgid "Blacklist and Whitelist were updated successfully"
 #~ msgstr "Listy zostały zostały zaktualizowane poprawnie"
@@ -1477,9 +1991,6 @@ msgstr ""
 #~ msgid "Message have been restored to default"
 #~ msgstr "Przywrócono domyślną wiadomość"
 
-#~ msgid "All plugin settings were restored."
-#~ msgstr "Wszystkie ustawienia wtyczki zostały przywrócone."
-
 #~ msgid "Log"
 #~ msgstr "Dziennik"
 
@@ -1494,9 +2005,6 @@ msgstr ""
 
 #~ msgid "Block address"
 #~ msgstr "Blokada adresu"
-
-#~ msgid "for"
-#~ msgstr "na okres"
 
 #, fuzzy
 #~ msgctxt "number"
@@ -1649,9 +2157,6 @@ msgstr ""
 #~ msgid "Using %s"
 #~ msgstr "Używasz"
 
-#~ msgid "Activate %s"
-#~ msgstr "Aktywuj %s"
-
 #, fuzzy
 #~ msgid "Download %s"
 #~ msgstr "Pobierz Htaccess"
@@ -1679,9 +2184,6 @@ msgstr ""
 #~ msgid "Update whitelist and blacklist"
 #~ msgstr "Aktualizuj listy"
 
-#~ msgid "Update now"
-#~ msgstr "Aktualizuj teraz"
-
 #~ msgid ""
 #~ "This option allows you to update your whitelist and blacklist to "
 #~ "establish IP address belonging. You can select the desired frequency for "
@@ -1689,9 +2191,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Opcja ta pozwala na aktualizację list. Możesz ustawić własną "
 #~ "częstotliwość aktualizacji."
-
-#~ msgid "Please note"
-#~ msgstr "Uwaga:"
 
 #~ msgid ""
 #~ "because of the potentially large amount of information being processed, "
@@ -1714,12 +2213,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Z uwagi na fakt, że zablokowano JavaScript listy zostaną zaktualizowane "
 #~ "przy użyciu wp_cron"
-
-#~ msgid "Read more about"
-#~ msgstr "Przeczytaj więcej o"
-
-#~ msgid "Save Changes"
-#~ msgstr "Zapisz zmiany"
 
 #~ msgid "Subject has been restored to default"
 #~ msgstr "Przywrócono domyślny temat"
@@ -1792,9 +2285,6 @@ msgstr ""
 #~ msgctxt "time"
 #~ msgid "after"
 #~ msgstr "po"
-
-#~ msgid "has old version"
-#~ msgstr "starsza wersja"
 
 #~ msgid "hours"
 #~ msgstr "godziny"
@@ -2164,114 +2654,11 @@ msgstr ""
 #~ msgid "Diapason till"
 #~ msgstr "Konic przedziału"
 
-#~ msgid "requires"
-#~ msgstr "wymaga"
-
-#~ msgid ""
-#~ "or higher, that is why it has been deactivated! Please upgrade WordPress "
-#~ "and try again."
-#~ msgstr ""
-#~ "lub wyższej, z tego powodu wtyczka została wyłączona! Aktualizuj "
-#~ "WordPress i spróbuj ponownie."
-
-#~ msgid "Back to the WordPress"
-#~ msgstr "Wróć do WordPressa"
-
-#~ msgid ""
-#~ "Something went wrong. Try again later. If the error will appear again, "
-#~ "please, contact us <a href=https://support.bestwebsoft.com>BestWebSoft</"
-#~ "a>. We are sorry for inconvenience."
-#~ msgstr ""
-#~ "Coś poszło nie tak jak powinno. Spróbuj ponownie później. Jeśli błędy "
-#~ "pojawią się ponownie daj nam znać - <a href=http://support.bestwebsoft."
-#~ "com>BestWebSoft</a>. Przepraszamy za niedogodności. "
-
-#~ msgid "Wrong license key!"
-#~ msgstr "Błędny klucz licencji!"
-
-#~ msgid "This license key is bind to another site"
-#~ msgstr "Ten klucz został przypisany do innej strony"
-
-#~ msgid ""
-#~ "This license key is valid, but Your license has expired. If you want to "
-#~ "update our plugin in future, you should extend the license."
-#~ msgstr ""
-#~ "Twój klucz licencji jest poprawny, jednak już wygasł. Jeśli chcesz używać "
-#~ "naszej wtyczki w przyszłości powinieneś przedłużyć licencję."
-
-#~ msgid "Unfortunately, you have exceeded the number of available tries."
-#~ msgstr "Niestety, przekroczono liczbę dostępnych prób."
-
-#~ msgid "The license key is valid. Your license will expire on"
-#~ msgstr "Klucz licencji jest poprawny. Twoja licencja wygaśnie"
-
-#~ msgid "The license key is valid."
-#~ msgstr "Klucz licencji jest poprawny."
-
-#~ msgid "Please, enter your license key"
-#~ msgstr "Podaj swój klucz licencji"
-
-#~ msgid ""
-#~ "If needed you can check if the license key is correct or reenter it in "
-#~ "the field below. You can find your license key on your personal page - "
-#~ "Client area - on our website"
-#~ msgstr ""
-#~ "Jeśli istnieje taka potrzeba możesz sprawdzić klucz licencji lub wpisać "
-#~ "go ponownie w polu poniżej. Możesz znaleźć swój klucz licencji na "
-#~ "przygotowanej dla ciebie karcie w - Client area - na naszej stronie"
-
-#~ msgid ""
-#~ "(your username is the email you specify when purchasing the product). If "
-#~ "necessary, please submit \"Lost your password?\" request."
-#~ msgstr ""
-#~ "(twój login to adres email podany podczas zakupu produktu). Jeśli nie "
-#~ "pamiętasz hasła wypełnij formularz  \"Lost your password?\"."
-
-#~ msgid "Check license key"
-#~ msgstr "Sprawdź klucz licencji"
-
 #~ msgid "If you enjoy our plugin, please give it 5 stars on WordPress"
 #~ msgstr "Jeśli podoba Ci się nasza wtyczka daj nam 5 gwiazdek"
-
-#~ msgid "Rate the plugin"
-#~ msgstr "Oceń tą wtyczkę"
 
 #~ msgid "If there is something wrong about it, please contact us"
 #~ msgstr "Jeśli coś jest nie tak jak powinno, prosimy dać nam znać"
 
-#~ msgid ""
-#~ "WARNING: We have noticed illegal use of our plugin by you. We strongly "
-#~ "recommend you to solve the problem within 24 hours, otherwise the plugin "
-#~ "will be deactivated. Please go to your personal"
-#~ msgstr ""
-#~ "UWAGA: Odnotowaliśmy, że wykorzystujesz naszą wtyczkę w sposób "
-#~ "nielegalny. Radzimy rozwiązać powyższy problem w przeciągu 24 godzin, w "
-#~ "przeciwnym wypadku wtyczka zostanie zablokowana. Prosimy przejść do "
-#~ "ustawień"
-
-#~ msgid ""
-#~ "(your username is the email you specify when purchasing the product), "
-#~ "where you can make the necessary changes."
-#~ msgstr ""
-#~ "(twój login to adres email podany przy zakupie produktu), gdzie możesz "
-#~ "dokonać niezbędnych zmian."
-
-#~ msgid ""
-#~ "Your license has expired. To continue getting top-priority support and "
-#~ "plugin updates you should extend it."
-#~ msgstr ""
-#~ "Twoja licencja wygasła. Aby zachować szybki dostęp do wsparcia i "
-#~ "aktualizacji powinieneś ją przedłużyć."
-
-#~ msgid "Learn more"
-#~ msgstr "Czytaj dalej"
-
 #~ msgid "You license for"
 #~ msgstr "Twoja licencja na"
-
-#~ msgid "expires on"
-#~ msgstr "wygasa"
-
-#~ msgid "and you won't be granted TOP-PRIORITY SUPPORT or UPDATES."
-#~ msgstr ""
-#~ "i nie będziesz miał już dostępu do SZYBKIEJ POMOCY oraz do AKTUALIZACJI."
