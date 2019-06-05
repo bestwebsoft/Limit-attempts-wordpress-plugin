@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.2.4
+Version: 1.2.5
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
@@ -44,8 +44,9 @@ if ( ! function_exists( 'lmtttmpts_add_admin_menu' ) ) {
 
 		add_submenu_page( 'limit-attempts.php', __( 'Limit Attempts Black- & Whitelisted', 'limit-attempts' ), __( 'Black- & Whitelisted', 'limit-attempts' ), 'manage_options', 'limit-attempts-black-and-whitelist.php', 'lmtttmpts_settings_page' );
 
-		if ( ! bws_hide_premium_options_check( $lmtttmpts_options ) )
-			add_submenu_page( 'limit-attempts.php', __( 'Limit Attempts Logs', 'limit-attempts' ), __( 'Logs', 'limit-attempts' ), 'manage_options', 'limit-attempts-log.php', 'lmtttmpts_settings_page' );
+		if ( ! bws_hide_premium_options_check( $lmtttmpts_options ) ) {
+            add_submenu_page('limit-attempts.php', __('Limit Attempts Logs', 'limit-attempts'), __('Logs', 'limit-attempts'), 'manage_options', 'limit-attempts-log.php', 'lmtttmpts_settings_page');
+        }
 
 		add_submenu_page( 'limit-attempts.php', __( 'Limit Attempts Statistics', 'limit-attempts' ), __( 'Statistics', 'limit-attempts' ), 'manage_options', 'limit-attempts-statistics.php', 'lmtttmpts_settings_page' );
 
@@ -230,7 +231,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		/* Query for create table with current number of failed attempts and block quantity, block status and time when addres will be deblocked */
-            $sql = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "lmtttmpts_failed_attempts` (
+            $sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "failed_attempts` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				`ip` CHAR(31) NOT NULL,
 				`ip_int` BIGINT,
@@ -242,7 +243,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
 		/* Query for create table with all number of failed attempts and block quantity, block status and time when addres will be deblocked */
-			$sql = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "lmtttmpts_all_failed_attempts` (
+			$sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "all_failed_attempts` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				`ip` CHAR(31) NOT NULL,
 				`ip_int` BIGINT,
@@ -253,7 +254,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
 		/* Query for create table with whitelisted addresses */
-			$sql = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "lmtttmpts_whitelist` (
+			$sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "whitelist` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				`ip` CHAR(31) NOT NULL UNIQUE,
 				`add_time` DATETIME,
@@ -261,7 +262,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 				) DEFAULT CHARSET=utf8;";
 			dbDelta( $sql );
 		/* Query for create table with blacklisted addresse */
-			$sql = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "lmtttmpts_blacklist` (
+			$sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "blacklist` (
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				`ip` CHAR(31) NOT NULL UNIQUE,
 				`add_time` DATETIME,

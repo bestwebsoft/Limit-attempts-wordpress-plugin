@@ -22,6 +22,14 @@
 			$( '#lmtttmpts-time-to-reset-block-display, #lmtttmpts-time-to-reset-block' ).toggleClass( 'lmtttmpts_hidden' );
 		});
 
+		/* write zero if input empty */
+		$( '[type = number]' ).on( 'change',function () {
+			var $this = $(this);
+			if( '' == $this.val() ){
+				$this.val( 0 );
+			}
+		});
+
 		/* time-of-lock */
 		var daysOfLock = $( '#lmtttmpts-days-of-lock-display' ).val(),
 			hoursOfLock = $( '#lmtttmpts-hours-of-lock-display' ).val(),

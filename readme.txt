@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
 Requires at least: 3.9
-Tested up to: 5.1
-Stable tag: 1.2.4
+Tested up to: 5.2.1
+Stable tag: 1.2.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,7 +14,7 @@ Protect WordPress website against brute force attacks. Limit rate of login attem
 
 Limit Attempts plugin is a security solution for WordPress which protects your website from spam and brute-force attacks. Limit the number of failed login attempts per user and block user IP for a certain period of time based on your settings. This will stop automated scripts to generate a large number of different combinations and hack your website.
 
-Manage black- and whitelists, receive email notifications, hide website forms for blocked or blacklisted IPs, and other advanced features which guarantees safety of your data.
+Manage black- and whitelists, receive email notifications, hide website forms for blocked or blacklisted IPs, and other advanced features which guarantee safety of your data.
 
 Secure your website today!
 
@@ -35,7 +35,7 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 * Manage your statistics list with:
 	* IP address
 	* Number of failed attempts
-	* Number of blocks
+	* Number of blockings
 	* Status
 * Customize error messages for:
 	* Invalid attempt
@@ -54,8 +54,9 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 > All features from Free version included plus:
 >
 > * Add IP address ranges or IP masks to black- and whitelists
+> * Add email address to the whitelist [NEW]
 > * Add certain country's IP addresses to the black- and whitelist - GeoIP database
-> * An ability to save login and password after of failed attempts added [ NEW ] ?
+> * An ability to save login and password after of failed attempts added
 > * Manage total number of failed attempts with blocked list additional option
 > * Manage black- and whitelists with extended options:
 > 	* Country
@@ -90,6 +91,7 @@ If you have a feature suggestion or idea you'd like to see in the plugin, we'd l
 
 * [[Doc] Installation](https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/)
 * [[Video] Installation Instruction](https://www.youtube.com/watch?v=BZ9WZ3G9ves)
+* [[Doc] How to Use](https://docs.google.com/document/d/1fbB5FZ8-wSxg85Huaiha5fUHjp1diEvKe9sOLzc8diQ/)
 
 = Help & Support =
 
@@ -203,6 +205,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 10. Tab with Statistics.
 
 == Changelog ==
+
+= V1.2.5 - 04.06.2019 =
+* PRO : Ability to add the email address to the Whitelist has been added.
+* Bugfix : Fixed small bags.
+* Update : BWS menu has been updated.
 
 = V1.2.4 - 04.03.2019 = 
 * PRO : Ability to save the "Username" and "Password" which were used in the failed login attempts.
@@ -319,6 +326,10 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.2.5 =
+* Bugs fixed.
+* Functionality improved.
 
 = V1.2.4 =
 * New features added.

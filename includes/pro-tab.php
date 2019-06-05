@@ -58,10 +58,91 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 										</tr>
 									</table>
 								</div>
+                            <?php } elseif ( 'whitelist_email' == $what ) { ?>
+                                <div class="lmtttmpts_edit_list_form">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <label><?php _e( 'Enter Email', 'limit-attempts' ); ?></label>
+                                                <?php $content = __( "Forbidden symbols", 'limit-attempts' ) . ':<br /><code>! # $ % & \' * + /=  ? ^ ` { | } ~</code>
+												<p>' . __( "Allowed separators", 'limit-attempts' ) . ':<br />' . __( 'a comma', 'limit-attempts' ) . '&nbsp;(<code>,</code>), ' . __( 'semicolon', 'limit-attempts' ) . ' (<code>;</code>), ' . __( 'ordinary space, tab, new line or carriage return', 'limit-attempts' ) . '</p>';
+                                                echo bws_add_help_box( $content ); ?>
+                                                <br>
+                                                <input type="text" disabled="disabled" />
+                                            </td>
+                                            <td>
+                                                <label><?php _e( 'Reason for Email', 'limit-attempts' ); ?></label>
+                                                <?php echo bws_add_help_box( __( "Allowed separators", 'limit-attempts' ) . ':<br />' . __( 'a comma', 'limit-attempts' ) . '&nbsp;(<code>,</code>), ' . __( 'semicolon', 'limit-attempts' ) . ' (<code>;</code>), ' . __( 'tab, new line or carriage return', 'limit-attempts' ) ); ?>
+                                                <br>
+                                                <input type="text" disabled="disabled" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label style="display:inline-block; padding-bottom: 10px;" disabled="disabled" for="lmtttmpts_my_email"><input type="checkbox" id="lmtttmpts_my_email" name="lmtttmpts_my_email" /><?php _e( 'My Email', 'limit-attempts' ); ?></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="position: relative;">
+                                                <input class="button-primary" type="submit" disabled="disabled" value="<?php _e( 'Save Changes', 'limit-attempts' ); ?>" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p class="search-box">
+                                    <input disabled="disabled" type="search" name="s" />
+                                    <input disabled="disabled" type="submit" value="<?php _e( 'Search Email', 'limit-attempts' ); ?>" class="button" />
+                                </p>
+                                <div class="tablenav top">
+                                    <div class="alignleft actions bulkactions">
+                                        <select disabled="disabled">
+                                            <option><?php _e( 'Bulk Actions', 'limit-attempts' ); ?></option>
+                                        </select>
+                                        <input disabled="disabled" type="submit" value="Apply" class="button action" />
+                                    </div>
+                                    <div class="tablenav-pages one-page"><span class="displaying-num">1 item</span></div>
+                                    <br class="clear">
+                                </div>
+                                <table class="wp-list-table widefat fixed">
+                                    <thead>
+                                    <tr>
+                                        <th class="manage-column check-column" scope="col"><input disabled="disabled" type="checkbox" /></th>
+                                        <th class="manage-column column-primary" scope="col"><a href="#"><span><?php _e( 'Email', 'limit-attempts' ); ?></span></a></th>
+                                        <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Reason', 'limit-attempts' ); ?></span></a></th>
+                                        <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Date Added', 'limit-attempts' ); ?></span></a></th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th class="manage-column check-column" scope="col"><input disabled="disabled" type="checkbox" /></th>
+                                        <th class="manage-column column-primary" scope="col"><a href="#"><span><?php _e( 'Email', 'limit-attempts' ); ?></span></a></th>
+                                        <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Reason', 'limit-attempts' ); ?></span></a></th>
+                                        <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Date Added', 'limit-attempts' ); ?></span></a></th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <tr class="alternate">
+                                        <th class="check-column" scope="row"><input disabled="disabled" type="checkbox"></th>
+                                        <td class="column-primary">example@example.com</td>
+                                        <td><?php _e( 'My Email', 'limit-attempts' ); ?></td>
+                                        <td>November 25, 2014 11:55 am</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="tablenav bottom">
+                                    <div class="alignleft actions bulkactions">
+                                        <select disabled="disabled">
+                                            <option><?php _e( 'Bulk Actions', 'limit-attempts' ); ?></option>
+                                        </select>
+                                        <input disabled="disabled" type="submit" value="Apply" class="button action" />
+                                    </div>
+                                    <div class="tablenav-pages one-page"><span class="displaying-num">1 item</span></div>
+                                    <br class="clear">
+                                </div>
 							<?php } elseif ( 'summaries' == $what ) { ?>
 								<div>
 									<img class="lmtttmpts_attempts" src="<?php echo plugins_url( '../images/attempts.png', __FILE__ ); ?>" alt="" />
-								</div>							
+								</div>
 							<?php } elseif ( 'log' == $what ) { ?>
 								<p class="search-box">
 									<input disabled="disabled" type="search" name="s" />

@@ -2,7 +2,7 @@
 ========================
 
 <p>Limit Attempts plugin is a security solution for WordPress which protects your website from spam and brute-force attacks. Limit the number of failed login attempts per user and block user IP for a certain period of time based on your settings. This will stop automated scripts to generate a large number of different combinations and hack your website.</p>
-<p>Manage black- and whitelists, receive email notifications, hide website forms for blocked or blacklisted IPs, and other advanced features which guarantees safety of your data.</p>
+<p>Manage black- and whitelists, receive email notifications, hide website forms for blocked or blacklisted IPs, and other advanced features which guarantee safety of your data.</p>
 <p>Secure your website today!</p>
 <p><a href="https://bestwebsoft.com/demo-for-limit-attempts/?ref=readme" rel="nofollow">View Demo</a></p>
 <p><span class="embed-youtube" style="text-align:center; display: block;"></span></p>
@@ -23,7 +23,7 @@
 <ul>
 <li>IP address</li>
 <li>Number of failed attempts</li>
-<li>Number of blocks</li>
+<li>Number of blockings</li>
 <li>Status</li>
 </ul>
 </li>
@@ -50,8 +50,9 @@
 <p>All features from Free version included plus:</p>
 <ul>
 <li>Add IP address ranges or IP masks to black- and whitelists</li>
+<li>Add email address to the whitelist [NEW]</li>
 <li>Add certain country&#8217;s IP addresses to the black- and whitelist &#8211; GeoIP database</li>
-<li>An ability to save login and password after of failed attempts added [ NEW ] ?</li>
+<li>An ability to save login and password after of failed attempts added</li>
 <li>Manage total number of failed attempts with blocked list additional option</li>
 <li>Manage black- and whitelists with extended options:
 <ul>
@@ -100,6 +101,7 @@
 <ul>
 <li><a href="https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/" rel="nofollow">[Doc] Installation</a></li>
 <li><a href="https://www.youtube.com/watch?v=BZ9WZ3G9ves" rel="nofollow">[Video] Installation Instruction</a></li>
+<li><a href="https://docs.google.com/document/d/1fbB5FZ8-wSxg85Huaiha5fUHjp1diEvKe9sOLzc8diQ/" rel="nofollow">[Doc] How to Use</a></li>
 </ul>
 <h4>Help &amp; Support</h4>
 <p>Visit our Help Center if you have any questions, our friendly Support Team is happy to help &#8211; <a href="https://support.bestwebsoft.com/" rel="nofollow">https://support.bestwebsoft.com/</a></p>

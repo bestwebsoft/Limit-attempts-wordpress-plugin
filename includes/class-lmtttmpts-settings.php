@@ -230,7 +230,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 							<label><input id="lmtttmpts-minutes-of-lock-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $this->options['minutes_of_lock']; ?>" name="lmtttmpts_minutes_of_lock" /> <?php echo _n( 'minute', 'minutes', $this->options['minutes_of_lock'], 'limit-attempts' ); ?></label>
 						</fieldset>
 						<div class="bws_info">
-							<?php printf( __( 'Time IP address will be blocked for (default is %d minutes).', 'limit-attempts' ), 5 ); ?>
+							<?php printf( __( 'Time IP address will be blocked for (default is %d hour %d minutes).', 'limit-attempts' ), 1, 30); ?>
 						</div>
 					</td>
 				</tr>
@@ -309,6 +309,23 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 								</td>
 							</tr>
                             <tr>
+                                <th><?php _e( 'Lists Priority', 'limit-attempts' ); ?></th>
+                                <td>
+                                    <fieldset>
+                                        <label>
+                                            <input disabled="disabled" type="radio" name="lmtttmpts_lists_priority" value="blacklist" checked="checked"/>
+                                            <?php _e( 'Blacklist', 'limit-attempts' ); ?>
+                                        </label>
+                                        <br />
+                                        <label>
+                                            <input disabled="disabled" type="radio" name="lmtttmpts_lists_priority" value="whitelist"  class="bws_option_affect" data-affect-show=".lmtttmpts_not_existed_user_message_blacklisted" data-affect-hide=".lmtttmpts_not_existed_user_message_block" />
+                                            <?php _e( 'Whitelist', 'limit-attempts' ); ?>
+                                        </label>
+                                    </fieldset>
+                                    <span class="bws_info"><?php _e( 'Choose the list which will be used if the user is in both lists (black and white).', 'limit-attempts' ); ?></span>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th><?php _e( 'Failed Login and Password', 'limit-attempts' ); ?></th>
                                 <td>
                                     <input type="checkbox" name="lmtttmpts_enbl_login_pass" value="0"<?php checked( 0 ); ?> /> <span class="bws_info"><?php _e( 'Enable to save and display login and password that was used in the failed attempt.', 'limit-attempts' ); ?></span>
@@ -368,12 +385,12 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					<td>
 						<fieldset>
 							<?php if (
-								/*array_key_exists( 'captcha-bws/captcha-bws.php', $this->all_plugins ) ||*/
+								array_key_exists( 'captcha-bws/captcha-bws.php', $this->all_plugins ) ||
 								array_key_exists( 'captcha-plus/captcha-plus.php', $this->all_plugins ) ||
 								array_key_exists( 'captcha-pro/captcha_pro.php', $this->all_plugins )
 							) {
 								if (
-									/*0 < count( preg_grep( '/captcha-bws\/captcha-bws.php/', $this->active_plugins ) ) ||*/
+									0 < count( preg_grep( '/captcha-bws\/captcha-bws.php/', $this->active_plugins ) ) ||
 									0 < count( preg_grep( '/captcha-pro\/captcha_pro.php/', $this->active_plugins ) ) ||
 									0 < count( preg_grep( '/captcha-plus\/captcha-plus.php/', $this->active_plugins ) )
 								) {
@@ -618,6 +635,32 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 						</div>
 					</td>
 				</tr>
+            </table>
+            <?php if ( ! $this->hide_pro_tabs ) { ?>
+                <div class="bws_pro_version_bloc">
+                    <div class="bws_pro_version_table_bloc">
+                        <button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'limit-attempts' ); ?>"></button>
+                        <div class="bws_table_bg"></div>
+                        <table class="form-table bws_pro_version">
+                            <tr>
+                                <th scope="row"><?php _e( 'Non-Existing Username', 'limit-attempts' ); ?></th>
+                                <td>
+                                    <div class="lmtttmpts_not_existed_user_message_block">
+                                        <textarea cols="10000"  rows="5" name="lmtttmpts_user_not_exists_blocked_message" disabled="disabled" ><?php _e( "You've been blocked for %DATE% because such username does not exist.", 'limit-attempts' ); ?></textarea>
+                                        <div class="bws_info">
+                                            <?php _e( 'Allowed Variables:', 'limit-attempts' ); ?><br/>
+                                            '%DATE%' - <?php _e( 'blocking time', 'limit-attempts' ); ?><br/>
+                                            '%MAIL%' - <?php _e( 'administrator&rsquo;s email address', 'limit-attempts' ); ?>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <?php $this->bws_pro_block_links(); ?>
+                </div>
+            <?php } ?>
+            <table class="form-table">
 				<tr>
 					<th scope="row"><?php _e( 'Restore Default Error Messages', 'limit-attempts' ); ?></th>
 					<td>

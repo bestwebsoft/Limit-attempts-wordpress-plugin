@@ -60,11 +60,8 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 			$count_query = "SELECT COUNT(*) FROM `" . $prefix . "whitelist`";
 			/* if search */
 			if ( isset( $_REQUEST['s'] ) ) {
-				$search_ip = sprintf( '%u', ip2long( str_replace( " ", "", $_REQUEST['s'] ) ) );
-				if ( 0 != $search_ip || preg_match( "/^(\.|\d)?(\.?[0-9]{1,3}?\.?){1,4}?(\.|\d)?$/i", $part_ip ) ) {
-					$count_query .= " WHERE ( `ip_from_int` <= " . $search_ip . " AND `ip_to_int`>= " . $search_ip. ") OR `ip` LIKE '%" . $part_ip . "%'";
-				}
-			}
+			    $count_query .= " WHERE `ip` LIKE '%" . $part_ip . "%'";
+            }
 			/* get the total number of IPs */
 			$totalitems = $wpdb->get_var( $count_query );
 			/* get the value of number of IPs on one page */
@@ -89,10 +86,7 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 			/* general query */
 			$query = "SELECT `ip`, `add_time` FROM `" . $prefix . "whitelist`";
 			if ( isset( $_REQUEST['s'] ) ) {
-				$search_ip = sprintf( '%u', ip2long( str_replace( " ", "", $_REQUEST['s'] ) ) );
-				if ( 0 != $search_ip ||  preg_match( "/^(\.|\d)?(\.?[0-9]{1,3}?\.?){1,4}?(\.|\d)?$/i", $part_ip ) ) {
-					$query .= " WHERE (`ip_from_int` <= " . $search_ip . " AND `ip_to_int`>= " . $search_ip. ") OR `ip` LIKE '%" . $part_ip . "%'";
-				}
+			    $query .= " WHERE `ip` LIKE '%" . $part_ip . "%'";
 			}
 			/* add calculated values (order and pagination) to our query */
 			$date_time_format  = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
