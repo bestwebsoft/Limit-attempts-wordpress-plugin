@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
 Requires at least: 3.9
-Tested up to: 5.2.1
-Stable tag: 1.2.5
+Tested up to: 5.2.2
+Stable tag: 1.2.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -206,6 +206,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 
 == Changelog ==
 
+= V1.2.6 - 04.09.2019 =
+* Update : The deactivation feedback has been changed. Misleading buttons have been removed.
+
 = V1.2.5 - 04.06.2019 =
 * PRO : Ability to add the email address to the Whitelist has been added.
 * Bugfix : Fixed small bags.
@@ -326,6 +329,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.2.6 =
+* Usability improved.
 
 = V1.2.5 =
 * Bugs fixed.
