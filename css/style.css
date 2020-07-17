@@ -63,6 +63,9 @@ tr.lmtttmpts_blocked,
 .lmtttmpts_attempts {
 	width: 100%;
 }
+.lmtttmpts_email_notifications_input {
+	max-width: 158px;
+}
 @media only screen and ( max-width: 785px ) {
 	.lmtttmpts_list p.search-box {
 		position: relative;

@@ -164,6 +164,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 										<tr>
 											<th class="manage-column check-column" scope="col"><input disabled="disabled" type="checkbox" /></th>
 											<th class="manage-column column-primary" scope="col"><a href="#"><span><?php _e( 'IP address', 'limit-attempts' ); ?></span></a></th>
+                                            <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Email', 'limit-attempts' ); ?></span></a></th>
                                             <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Login', 'limit-attempts' ); ?></span></a></th>
                                             <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Password', 'limit-attempts' ); ?></span></a></th>
                                             <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Hostname', 'limit-attempts' ); ?></span></a></th>
@@ -176,6 +177,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 										<tr>
 											<th class="manage-column check-column" scope="col"><input disabled="disabled" type="checkbox" /></th>
 											<th class="manage-column column-primary" scope="col"><a href="#"><span><?php _e( 'IP address', 'limit-attempts' ); ?></span></a></th>
+                                            <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Email', 'limit-attempts' ); ?></span></a></th>
                                             <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Login', 'limit-attempts' ); ?></span></a></th>
                                             <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Password', 'limit-attempts' ); ?></span></a></th>
                                             <th class="manage-column" scope="col"><a href="#"><span><?php _e( 'Hostname', 'limit-attempts' ); ?></span></a></th>
@@ -188,6 +190,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 										<tr class="alternate">
 											<th class="check-column" scope="row"><input disabled="disabled" type="checkbox"></th>
 											<td class="column-primary">127.0.0.1</td>
+                                            <td>example@gmail.com</td>
                                             <td>admin</td>
                                             <td>123456</td>
                                             <td>localhost</td>
@@ -207,7 +210,33 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 									<div class="tablenav-pages one-page"><span class="displaying-num">1 item</span></div>
 									<br class="clear">
 								</div>
-							<?php } ?>
+							<?php } elseif ( 'blacklist_email' == $what ) { ?>
+                                <div class="lmtttmpts_edit_list_form">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <label><?php _e( 'Enter Email', 'limit-attempts' ); ?></label>
+                                                <?php $content = __( "Forbidden symbols", 'limit-attempts' ) . ':<br /><code>! # $ % & \' * + /=  ? ^ ` { | } ~</code>
+                                                <p>' . __( "Allowed separators", 'limit-attempts' ) . ':<br />' . __( 'a comma', 'limit-attempts' ) . '&nbsp;(<code>,</code>), ' . __( 'semicolon', 'limit-attempts' ) . ' (<code>;</code>), ' . __( 'ordinary space, tab, new line or carriage return', 'limit-attempts' ) . '</p>';
+                                                echo bws_add_help_box( $content ); ?>
+                                                <br>
+                                                <textarea rows="2" cols="32" disabled></textarea>
+                                            </td>
+                                            <td>
+                                                <label><?php _e( 'Reason for Email', 'limit-attempts' ); ?></label>
+                                                <?php echo bws_add_help_box( __( "Allowed separators", 'limit-attempts' ) . ':<br />' . __( 'a comma', 'limit-attempts' ) . '&nbsp;(<code>,</code>), ' . __( 'semicolon', 'limit-attempts' ) . ' (<code>;</code>), ' . __( 'tab, new line or carriage return', 'limit-attempts' ) ); ?>
+                                                <br>
+                                                <textarea rows="2" cols="32" disabled></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="position: relative;">
+                                                <input class="button-primary" type="submit" disabled="disabled" value="<?php _e( 'Save Changes', 'limit-attempts' ); ?>" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                           <?php } ?>
 						</div>
 					</div>
 					<div class="bws_pro_version_tooltip">
@@ -217,6 +246,15 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 				</div>
 				<?php wp_nonce_field( plugin_basename( __FILE__ ), 'lmtttmpts_nonce_name' ); ?>
 			</form>
+		<?php } elseif ( 'log' == $what ) { ?>
+            <p>
+				<?php _e( 'This tab contains Pro options only.', 'limit-attempts' );
+				echo ' ' . sprintf(
+						__( '%sChange the settings%s to view the Pro options.', 'limit-attempts' ),
+						'<a href="admin.php?page=limit-attempts.php&bws_active_tab=misc">',
+						'</a>'
+					); ?>
+            </p>
 		<?php }
 	}
 }

@@ -1,5 +1,15 @@
 ( function( $ ) {
 	$( document ).ready( function() {
+
+		// for Contact Form option
+		$( '#restrict-sending-emails' ).change( function() {
+			if ( $( this ).is( ':checked' ) ) {
+				$( '.contact-form-checked' ).show();
+			} else {
+				$( '.contact-form-checked' ).hide();
+			}
+		} ).trigger('change');
+
 		/* hide zero values */
 		$( '.lmtttmpts-zero-value' ).addClass( 'lmtttmpts_hidden' );
 		/* hide "block/add to blacklist" time options at the page load */
@@ -21,6 +31,9 @@
 		$( '#lmtttmpts-time-to-reset-block-edit' ).click( function(){
 			$( '#lmtttmpts-time-to-reset-block-display, #lmtttmpts-time-to-reset-block' ).toggleClass( 'lmtttmpts_hidden' );
 		});
+		$( '#lmtttmpts-time-interval-for-cntctfrm-edit' ).click( function() {
+			$( '#lmtttmpts-time-interval-for-cntctfrm-display, #lmtttmpts-time-interval-for-cntctfrm' ).toggleClass( 'lmtttmpts_hidden' );
+		} );
 
 		/* write zero if input empty */
 		$( '[type = number]' ).on( 'change',function () {
@@ -45,7 +58,12 @@
 			/* time-to-reset-block */
 			daysToResetBlock = $( '#lmtttmpts-days-to-reset-block-display' ).val(),
 			hoursToResetBlock = $( '#lmtttmpts-hours-to-reset-block-display' ).val(),
-			minutesToResetBlock = $( '#lmtttmpts-minutes-to-reset-block-display' ).val();
+			minutesToResetBlock = $( '#lmtttmpts-minutes-to-reset-block-display' ).val(),
+		/* time-interval-for-cntctfrm */
+		daysTimeIntervalCntctfrm = $( '#lmtttmpts-days-time-interval-for-cntctfrm-display' ).val(),
+			hoursTimeIntervalCntctfrm = $( '#lmtttmpts-hours-time-interval-for-cntctfrm-display' ).val(),
+			minutesTimeIntervalCntctfrm = $( '#lmtttmpts-minutes-time-interval-for-cntctfrm-display' ).val(),
+			secondsTimeIntervalCntctfrm = $( '#lmtttmpts-seconds-time-interval-for-cntctfrm-display' ).val();
 		$( document ).click( function( event ) {
 			/* hide time-of-lock inputs if clicked outside and values not changed */
 			if ( ! $( event.target ).closest( "#lmtttmpts-time-of-lock-edit, #lmtttmpts-time-of-lock" ).length &&
@@ -82,6 +100,14 @@
 				minutesToResetBlock == $( '#lmtttmpts-minutes-to-reset-block-display' ).val() ) {
 				$( '#lmtttmpts-time-to-reset-block-display' ).removeClass( 'lmtttmpts_hidden' );
 				$( '#lmtttmpts-time-to-reset-block' ).addClass( 'lmtttmpts_hidden' );
+			};
+			if ( ! $( event.target ).closest( '#lmtttmpts-time-interval-for-cntctfrm-edit, #lmtttmpts-time-interval-for-cntctfrm' ).length &&
+				daysTimeIntervalCntctfrm == $( '#lmtttmpts-days-time-interval-for-cntctfrm-display' ).val() &&
+				hoursTimeIntervalCntctfrm == $( '#lmtttmpts-hours-time-interval-for-cntctfrm-display' ).val() &&
+				minutesTimeIntervalCntctfrm == $( '#lmtttmpts-minutes-time-interval-for-cntctfrm-display' ).val() &&
+				secondsTimeIntervalCntctfrm == $( '#lmtttmpts-seconds-time-interval-for-cntctfrm-display' ).val() ) {
+				$( '#lmtttmpts-time-interval-for-cntctfrm-display' ).removeClass( 'lmtttmpts_hidden' );
+				$( '#lmtttmpts-time-interval-for-cntctfrm' ).addClass( 'lmtttmpts_hidden' );
 			};
 			event.stopPropagation();
 		});

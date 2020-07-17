@@ -15,6 +15,7 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 			$columns = array(
 				'cb'				=> '<input type="checkbox" />',
 				'ip'				=> __( 'Ip Address', 'limit-attempts' ),
+				'email'				=> __( 'Email', 'limit-attempts' ),
 				'failed_attempts'	=> __( 'Failed Attempts', 'limit-attempts' ),
 				'block_quantity'	=> __( 'Blocks', 'limit-attempts' ),
 				'status'			=> __( 'Status', 'limit-attempts' )
@@ -33,7 +34,7 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 		function column_cb( $item ) {
 			/* customize displaying cb collumn */
 			return sprintf(
-				'<input type="checkbox" name="ip[]" value="%s" />', $item['ip']
+				'<input type="checkbox" name="id[]" value="%s" />', $item['id']
 			);
 		}
 
@@ -63,15 +64,26 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 		function prepare_items() { /* preparing table items */
 			global $wpdb;
 			$prefix = $wpdb->prefix . 'lmtttmpts_';
+			$where = '';
+
 			$part_ip = isset( $_REQUEST['s'] ) ? trim( htmlspecialchars( $_REQUEST['s'] ) ) : '';
-			/* query for total number of IPs */
-			$count_query = "SELECT COUNT(*) FROM `" . $prefix . "all_failed_attempts`";
+
 			if ( isset( $_REQUEST['s'] ) ) {
 				$search_ip = sprintf( '%u', ip2long( str_replace( " ", "", $_REQUEST['s'] ) ) );
 				if ( 0 != $search_ip || preg_match( "/^(\.|\d)?(\.?[0-9]{1,3}?\.?){1,4}?(\.|\d)?$/i", $part_ip ) ) {
-					$count_query .= " WHERE `ip_int` = " . $search_ip . " OR `ip` LIKE '%" . $part_ip . "%'";
+					$where = " WHERE ip_int = {$search_ip} OR ip LIKE '%{$part_ip}%' ";
 				}
 			}
+
+			/* query for total number of IPs */
+			$count_query = "
+                SELECT 
+                    COUNT(*) 
+                FROM 
+                    {$prefix}all_failed_attempts
+                {$where}
+            ";
+
 			/* get the total number of IPs */
 			$totalitems = $wpdb->get_var( $count_query );
 			/* get the value of number of IPs on one page */
@@ -95,14 +107,21 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 				$paged = $totalpages;
 			/* set pagination arguments */
 			$offset = ( $paged - 1 ) * $perpage;
+
 			/* general query */
-			$query = "SELECT `ip`, `failed_attempts`, `block_quantity` FROM `" . $prefix . "all_failed_attempts`";
-			if ( isset( $_REQUEST['s'] ) ) {
-				$search_ip = sprintf( '%u', ip2long( str_replace( " ", "", $_REQUEST['s'] ) ) );
-				if ( 0 != $search_ip || preg_match( "/^(\.|\d)?(\.?[0-9]{1,3}?\.?){1,4}?(\.|\d)?$/i", $part_ip ) ) {
-					$query .= " WHERE `ip_int` = " . $search_ip. " OR `ip` LIKE '%" . $part_ip . "%'";
-				}
-			}
+			$query = "
+                SELECT
+                    id, 
+                    ip,
+                    email,
+                    block, 
+                    failed_attempts, 
+                    block_quantity 
+                FROM 
+                    {$prefix}all_failed_attempts
+                    {$where}
+            ";
+
 			/* add calculated values (order and pagination) to our query */
 			$query .= " ORDER BY `" . $orderby . "` " . $order . " LIMIT " . $offset . "," . $perpage;
 			/* get data from 'all_failed_attempts' table */
@@ -110,13 +129,25 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 			if ( $statistics ) {
 				/* loop - we calculate and add 'status' column and class data */
 				foreach ( $statistics as &$statistic ) {
+
+					$get_email_arr = $wpdb->get_col( $wpdb->prepare( "
+                        SELECT 
+                            email 
+                        FROM 
+                            {$prefix}email_list 
+                        WHERE 
+                            id_failed_attempts_statistics = %s
+                    ", $statistic['id'] ) );
+
+					$statistic['email'] = ( $get_email_arr ) ? implode( '<br />', $get_email_arr ) : 'N/A';
+
 					if ( lmtttmpts_is_ip_in_table( $statistic['ip'], 'blacklist' ) ) {
 						$statistic['status'] = '<a href="?page=' . $_REQUEST['page'] . '&action=blacklist&s=' . $statistic['ip'] . '">' . __( 'blacklisted', 'limit-attempts' ) . '</a>';
 						$statistic['row_class'] = 'lmtttmpts_blacklist';
 					} elseif ( lmtttmpts_is_ip_in_table( $statistic['ip'], 'whitelist' ) ) {
 						$statistic['status'] = '<a href="?page=' . $_REQUEST['page'] . '&action=whitelist&s=' . $statistic['ip'] . '">' . __( 'whitelisted', 'limit-attempts' ) . '</a>';
 						$statistic['row_class'] = 'lmtttmpts_whitelist';
-					} elseif ( lmtttmpts_is_ip_blocked( $statistic['ip'] ) ) {
+					} elseif ( lmtttmpts_is_blocked( $statistic['ip'], $get_email_arr ) ) {
 						$statistic['status'] = '<a href="?page=' . $_REQUEST['page'] . '&action=blocked&s=' . $statistic['ip'] . '">' . __( 'blocked', 'limit-attempts' ) . '</a>';
 						$statistic['row_class'] = 'lmtttmpts_blocked';
 					} else {
@@ -136,6 +167,7 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 			/* setting default view for collumn items */
 			switch( $column_name ) {
 				case 'ip':
+				case 'email':
 				case 'failed_attempts':
 				case 'block_quantity':
 				case 'status':
@@ -308,15 +340,16 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 				}
 			} elseif ( ( ( isset( $_POST['action'] ) && $_POST['action'] == 'clear_statistics_for_ips' ) || ( isset ( $_POST['action2'] ) && $_POST['action2'] == 'clear_statistics_for_ips' ) ) && check_admin_referer( 'bulk-' . $this->_args['plural'] ) ) {
 				/* Clear some entries */
-				if ( isset( $_POST['ip'] ) ) {
+				if ( isset( $_POST['id'] ) ) {
 					/* if statistics entries exist */
-					$ips = $_POST['ip'];
+					$ids = $_POST['id'];
 					$error = $done = 0;
-					foreach ( $ips as $ip ) {
-						if ( false === lmtttmpts_clear_statistics( $ip ) )
+					foreach ( $ids as $id ) {
+						if ( false === lmtttmpts_clear_statistics( $id ) ) {
 							$error++;
-						else
+                        } else {
 							$done++;
+                        }
 					}
 					if ( 0 < $error ) {
 						$action_message['error'] = $lmtttmpts_message_list['clear_stats_for_ips_error'] . '. ' . __( 'Total', 'limit-attempts') . ': ' . $error . ' ' . _n( 'entry', 'entries', $error, 'limit-attempts' );

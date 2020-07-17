@@ -3,8 +3,6 @@
  * Displays the content on the plugin settings page
  */
 
-require_once( dirname( dirname( __FILE__ ) ) . '/bws_menu/class-bws-settings.php' );
-
 if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 	class Lmtttmpts_Settings_Tabs extends Bws_Settings_Tabs {
 		public $active_plugins;
@@ -38,8 +36,6 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				'options' 			 => $lmtttmpts_options,
 				'tabs' 				 => $tabs,
 				'wp_slug'			 => 'limit-attempts',
-				'pro_page' 			 => 'admin.php?page=limit-attempts-pro.php',
-				'bws_license_plugin' => 'limit-attempts-pro/limit-attempts-pro.php',
 				'link_key' 			 => 'fdac994c203b41e499a2818c409ff2bc',
 				'link_pn' 			 => '140'
 			) );
@@ -56,7 +52,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 		public function save_options() {
 			global $wpdb;
 
-			$message = '';
+			$message = $notice = $error = '';
 
 			if ( ! $this->all_plugins ) {
 				if ( ! function_exists( 'get_plugins' ) )
@@ -75,13 +71,14 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 			$numeric_options = array(
 				'allowed_retries', 'days_of_lock', 'hours_of_lock', 'minutes_of_lock',
 				'days_to_reset', 'hours_to_reset', 'minutes_to_reset', 'allowed_locks',
-				'days_to_reset_block', 'hours_to_reset_block', 'minutes_to_reset_block'
+				'days_to_reset_block', 'hours_to_reset_block', 'minutes_to_reset_block',
+				'letters_days', 'letters_hours', 'letters_minutes', 'letters_seconds'
 			);
 			$force_reset_block_event = false;
 			foreach ( $numeric_options as $option ) {
 				if ( isset( $_POST["lmtttmpts_{$option}"] ) && $_POST["lmtttmpts_{$option}"] != $this->options[ $option ] )
 					$force_reset_block_event = true;
-				$this->options[ $option ] = isset( $_POST["lmtttmpts_{$option}"] ) ? $_POST["lmtttmpts_{$option}"] : $this->options[ $option ];
+				$this->options[ $option ] = isset( $_POST["lmtttmpts_{$option}"] ) ? sanitize_text_field( $_POST["lmtttmpts_{$option}"] ) : $this->options[ $option ];
 			}
 			if ( $this->options['days_of_lock'] == 0 && $this->options['hours_of_lock'] == 0 && $this->options['minutes_of_lock'] == 0 )
 				$this->options['minutes_of_lock'] = 1;
@@ -89,6 +86,8 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				$this->options['minutes_to_reset'] = 1;
 			if ( $this->options['days_to_reset_block'] == 0 && $this->options['hours_to_reset_block'] == 0 && $this->options['minutes_to_reset_block'] == 0 )
 				$this->options['minutes_to_reset_block'] = 1;
+			if ( 0 == $this->options['letters_days'] && 0 == $this->options['letters_hours'] && 0 == $this->options['letters_minutes'] && 0 == $this->options['letters_seconds'] )
+				$this->options['letters_minutes'] = 1;
 
 			if ( $force_reset_block_event ) {
 				wp_clear_scheduled_hook( 'lmtttmpts_event_for_reset_block' );
@@ -103,7 +102,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 						wp_clear_scheduled_hook( "lmtttmpts_daily_statistics_clear" );
 					}
 				}
-				$this->options["days_to_clear_statistics"] = $_POST["lmtttmpts_days_to_clear_statistics"];
+				$this->options["days_to_clear_statistics"] = absint( $_POST["lmtttmpts_days_to_clear_statistics"] );
 			}
 
 			$this->options['hide_login_form'] = isset( $_POST['lmtttmpts_hide_login_form'] ) ? 1: 0;
@@ -131,24 +130,21 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 			}
 
 			/*Updating options of interaction with Captcha plugin in login form*/
-			if ( isset( $_POST['lmtttmpts_login_form_captcha_check'] ) )
-				$this->options['login_form_captcha_check'] = $_POST['lmtttmpts_login_form_captcha_check'];
-			else
-				unset( $this->options['login_form_captcha_check'] );
+			$this->options['login_form_captcha_check']      = isset( $_POST['lmtttmpts_login_form_captcha_check'] ) ? 1 : 0;
+			$this->options['login_form_recaptcha_check']    = isset( $_POST['lmtttmpts_login_form_recaptcha_check'] ) ? 1 : 0;
 
-			if ( isset( $_POST['lmtttmpts_login_form_recaptcha_check'] ) )
-				$this->options['login_form_recaptcha_check'] = $_POST['lmtttmpts_login_form_recaptcha_check'];
-			else
-				unset( $this->options['login_form_recaptcha_check'] );
+			// save CF options
+			$this->options['contact_form_restrict_sending_emails'] = ( isset( $_POST['lmtttmpts_contact_form'] ) ) ? 1 : 0;
+			$this->options['number_of_letters'] = ( isset( $_POST['lmtttmpts_number_of_letters'] ) ) ? absint( $_POST['lmtttmpts_number_of_letters'] ) : 1;
 
 			/* Updating options with notify by email options */
 			$this->options['notify_email'] = isset( $_POST['lmtttmpts_notify_email'] ) && ! empty( $_POST['lmtttmpts_email_blacklisted'] ) && ! empty( $_POST['lmtttmpts_email_blocked'] ) ? true : false;
 			if ( isset( $_POST['lmtttmpts_mailto'] ) ) {
 				$this->options['mailto'] = $_POST['lmtttmpts_mailto'];
 				if ( 'admin' == $_POST['lmtttmpts_mailto'] && isset( $_POST['lmtttmpts_user_email_address'] ) ) {
-					$this->options['email_address'] = $_POST['lmtttmpts_user_email_address'];
+					$this->options['email_address'] = sanitize_text_field( $_POST['lmtttmpts_user_email_address'] );
 				} elseif ( 'custom' == $_POST['lmtttmpts_mailto'] && isset( $_POST['lmtttmpts_email_address'] ) && is_email( $_POST['lmtttmpts_email_address'] ) ) {
-					$this->options['email_address'] = $_POST['lmtttmpts_email_address'];
+					$this->options['email_address'] = sanitize_email( $_POST['lmtttmpts_email_address'] );
 				}
 			}
 			/* array for saving and restoring default messages */
@@ -216,7 +212,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th><?php _e( 'Block IP Address For', 'limit-attempts' ); ?></th>
+					<th><?php _e( 'Block IP or Email Address For', 'limit-attempts' ); ?></th>
 					<td>
 						<fieldset id="lmtttmpts-time-of-lock-display" class="lmtttmpts_hidden lmtttmpts-display">
 							<label<?php if ( 0 == $this->options['days_of_lock'] ) echo ' class="lmtttmpts-zero-value"'; ?>><span class="lmtttmpts-unit-measure" ><?php echo $this->options['days_of_lock']; ?></span> <?php echo _n( 'day', 'days', $this->options['days_of_lock'], 'limit-attempts' ); ?></label>
@@ -230,7 +226,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 							<label><input id="lmtttmpts-minutes-of-lock-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $this->options['minutes_of_lock']; ?>" name="lmtttmpts_minutes_of_lock" /> <?php echo _n( 'minute', 'minutes', $this->options['minutes_of_lock'], 'limit-attempts' ); ?></label>
 						</fieldset>
 						<div class="bws_info">
-							<?php printf( __( 'Time IP address will be blocked for (default is %d hour %d minutes).', 'limit-attempts' ), 1, 30); ?>
+							<?php printf( __( 'Time IP or Email address will be blocked for (default is %d hour %d minutes).', 'limit-attempts' ), 1, 30); ?>
 						</div>
 					</td>
 				</tr>
@@ -273,10 +269,10 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th><?php _e( 'Blacklist IP Address After', 'limit-attempts' ); ?></th>
+					<th><?php _e( 'Blacklist IP or Email After', 'limit-attempts' ); ?></th>
 					<td>
 						<input type="number" min="1" max="99" step="1" maxlength="2" value="<?php echo $this->options['allowed_locks']; ?>" name="lmtttmpts_allowed_locks" /> <?php echo _n( 'blocking', 'blockings', $this->options['allowed_locks'], 'limit-attempts' ); ?>
-						<div class="bws_info"><?php _e( 'Number of blocking after which the IP address will be blacklisted.', 'limit-attempts' ); ?></div>
+						<div class="bws_info"><?php _e( 'Number of blocking after which the IP or Email address will be blacklisted.', 'limit-attempts' ); ?></div>
 					</td>
 				</tr>
 			</table>
@@ -328,7 +324,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
                             <tr>
                                 <th><?php _e( 'Failed Login and Password', 'limit-attempts' ); ?></th>
                                 <td>
-                                    <input type="checkbox" name="lmtttmpts_enbl_login_pass" value="0"<?php checked( 0 ); ?> /> <span class="bws_info"><?php _e( 'Enable to save and display login and password that was used in the failed attempt.', 'limit-attempts' ); ?></span>
+                                    <input type="checkbox" name="lmtttmpts_enbl_login_pass" value="0" disabled="disabled" /> <span class="bws_info"><?php _e( 'Enable to save and display login and password that was used in the failed attempt.', 'limit-attempts' ); ?></span>
                                 </td>
                             </tr>
                         </table>
@@ -485,7 +481,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th><?php _e( 'Google Captcha Plugin', 'limit-attempts' ); ?></th>
+					<th><?php _e( 'reCaptcha Plugin', 'limit-attempts' ); ?></th>
 					<td>
 						<fieldset>
 							<?php if (
@@ -508,12 +504,12 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 											</label>
 											<div class="bws_info">
-												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?>  <a href="<?php echo self_admin_url( 'admin.php?page=google-captcha-pro.php' ); ?>"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'Google Captcha Pro' ); ?></a>
+												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?>  <a href="<?php echo self_admin_url( 'admin.php?page=google-captcha-pro.php' ); ?>"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'reCaptcha Pro' ); ?></a>
 											</div>
 										<?php } else { ?>
 											<input disabled="disabled" type="checkbox" />
 											<span class="bws_info">
-												<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Google Captcha Pro', 'v1.32' ); ?></a>
+												<a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'reCaptcha Pro', 'v1.32' ); ?></a>
 											</span>
 										<?php }
 									} else {
@@ -526,12 +522,12 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 											</label>
 											<div class="bws_info">
-												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=google-captcha.php"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'Google Captcha' ); ?></a>
+												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=google-captcha.php"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'reCaptcha' ); ?></a>
 											</div>
 										<?php } else { ?>
 											<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
 											<span class="bws_info">
-												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Google Captcha', 'v1.32' ); ?></a>
+												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'reCaptcha', 'v1.32' ); ?></a>
 											</span>
 										<?php }
 									}
@@ -584,7 +580,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 													);
 												} ?>
 											</fieldset>
-											<p style="position: relative;z-index: 2;"><strong>* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935&pn=140&v=' . $this->plugins_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">Google Captcha Pro</a>' ); ?></strong></p>
+											<p style="position: relative;z-index: 2;"><strong>* <?php printf( __( 'You also need %s to use these options.', 'limit-attempts' ), '<a href="https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935&pn=140&v=' . $this->plugins_info["Version"] . '&wp_v=' . $wp_version . '" target="_blank">reCaptcha Pro</a>' ); ?></strong></p>
 										</div>
 									</div>
 									<?php $this->bws_pro_block_links(); ?>
@@ -593,6 +589,67 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 						</fieldset>
 					</td>
 				</tr>
+                <tr>
+                    <th><?php _e( 'Contact Form Plugin', 'limit-attempts' ); ?></th>
+                    <td>
+						<?php if (
+							array_key_exists( 'contact-form-plugin/contact_form.php', $this->all_plugins ) ||
+							array_key_exists( 'contact-form-pro/contact_form_pro.php', $this->all_plugins )
+						) {
+							$cf_is_installed = true;
+							if (
+								in_array( 'contact-form-plugin/contact_form.php', $this->active_plugins ) ||
+								in_array( 'contact-form-pro/contact_form_pro.php', $this->active_plugins )
+							) {
+								$cf_is_active = true;
+							}
+						}
+
+						$attrs = $plugin_notice = $checked = '';
+
+						if ( ! isset( $cf_is_installed ) ) {
+							$attrs = ' disabled="disabled"';
+							$plugin_notice = '<a href="https://bestwebsoft.com/products/wordpress/plugins/contact-form/?k=fc7e2e440918324853c2060dbe6d9dc9&pn=141' . '" target="_blank">' . __( 'Install Now', 'limit-attempts' ) . '</a>';
+						} elseif ( isset( $cf_is_installed ) && ! isset( $cf_is_active ) ) {
+							$attrs = ' disabled="disabled"';
+							$plugin_notice = '<a href="' . self_admin_url( 'plugins.php' ) . '">' . __( 'Activate', 'limit-attempts' ) . '</a>';
+						} else {
+							$checked = checked( $this->options['contact_form_restrict_sending_emails'], 1, false );
+						}
+
+						printf(
+							'<input type="checkbox" id="restrict-sending-emails" %s  name="lmtttmpts_contact_form" value="1" %s />',
+							$attrs,
+							$checked
+						); ?>
+                        <span class="bws_info"><?php echo __( 'Enable to restrict email sending.', 'limit-attempts' ) . ' ' . $plugin_notice; ?></span>
+                    </td>
+                </tr>
+                <tr class="contact-form-checked">
+                    <th><?php _e( 'Block Email Address After', 'limit-attempts' ); ?></th>
+                    <td>
+                        <input <?php echo $this->change_permission_attr; ?> type="number" max="99" step="1" maxlength="2" min="1" id="lmtttmpts-number-letters" name="lmtttmpts_number_of_letters" value="<?php echo $this->options['number_of_letters']; ?>" /> <?php echo _n( 'letter sending', 'letters sending', $this->options['number_of_letters'], 'limit-attempts' ); ?>
+                        <div class="bws_info"><?php _e( 'Number of the emails sent per indicated time interval. If spam comes from different emails and the same ip - ip will be blocked.', 'limit-attempts' ); ?></div>
+                    </td>
+                </tr>
+                <tr class="contact-form-checked">
+                    <th><?php _e( 'Time Interval', 'limit-attempts' ); ?></th>
+                    <td>
+                        <fieldset id="lmtttmpts-time-interval-for-cntctfrm-display" class="lmtttmpts_hidden lmtttmpts-display">
+                            <label <?php if ( 0 == $this->options['letters_days'] ) echo 'class="lmtttmpts-zero-value"'; ?> ><span class="lmtttmpts-unit-measure" ><?php echo $this->options['letters_days']; ?></span> <?php echo _n( 'day', 'days', $this->options['letters_days'], 'limit-attempts' ); ?></label>
+                            <label <?php if ( 0 == $this->options['letters_hours'] ) echo 'class="lmtttmpts-zero-value"'; ?> ><span class="lmtttmpts-unit-measure" ><?php echo $this->options['letters_hours']; ?></span> <?php echo _n( 'hour', 'hours', $this->options['letters_hours'], 'limit-attempts' ); ?></label>
+                            <label <?php if ( 0 == $this->options['letters_minutes'] ) echo 'class="lmtttmpts-zero-value"'; ?> ><span class="lmtttmpts-unit-measure" ><?php echo $this->options['letters_minutes']; ?></span> <?php echo _n( 'minute', 'minutes', $this->options['letters_minutes'], 'limit-attempts' ); ?></label>
+                            <label <?php if ( 0 == $this->options['letters_seconds'] ) echo 'class="lmtttmpts-zero-value"'; ?> ><span class="lmtttmpts-unit-measure" ><?php echo $this->options['letters_seconds']; ?></span> <?php echo _n( 'second', 'seconds', $this->options['letters_seconds'], 'limit-attempts' ); ?></label>
+                            <label id="lmtttmpts-time-interval-for-cntctfrm-edit" class="lmtttmpts-edit"><?php _e( 'Edit', 'limit-attempts' ); ?></label>
+                        </fieldset>
+                        <fieldset id="lmtttmpts-time-interval-for-cntctfrm" class="lmtttmpts-hidden-input">
+                            <label><input<?php echo $this->change_permission_attr; ?> id="lmtttmpts-days-time-interval-for-cntctfrm-display" type="number" max="999" min="0" step="1" maxlength="3" value="<?php echo $this->options['letters_days'] ; ?>" name="lmtttmpts_letters_days" /> <?php echo _n( 'day', 'days', $this->options['letters_days'], 'limit-attempts' ); ?></label>
+                            <label><input<?php echo $this->change_permission_attr; ?> id="lmtttmpts-hours-time-interval-for-cntctfrm-display" type="number" max="23" min="0" step="1" maxlength="2" value="<?php echo $this->options['letters_hours'] ; ?>" name="lmtttmpts_letters_hours" /> <?php echo _n( 'hour', 'hours', $this->options['letters_hours'], 'limit-attempts' ); ?></label>
+                            <label><input<?php echo $this->change_permission_attr; ?> id="lmtttmpts-minutes-time-interval-for-cntctfrm-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $this->options['letters_minutes'] ; ?>" name="lmtttmpts_letters_minutes" /> <?php echo _n( 'minute', 'minutes', $this->options['letters_minutes'], 'limit-attempts' ); ?></label>
+                            <label><input<?php echo $this->change_permission_attr; ?> id="lmtttmpts-seconds-time-interval-for-cntctfrm-display" type="number" max="59" min="0" step="1" maxlength="2" value="<?php echo $this->options['letters_seconds'] ; ?>" name="lmtttmpts_letters_seconds" /> <?php echo _n( 'second', 'seconds', $this->options['letters_seconds'], 'limit-attempts' ); ?></label>
+                        </fieldset>
+                    </td>
+                </tr>
 			</table>
 		<?php }
 
@@ -689,22 +746,24 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				<tr class="lmtttmpts_email_notifications">
 					<th><?php _e( 'Send Email Notifications to', 'limit-attempts' ) ?></th>
 					<td>
-						<label>
-							<input type="radio" id="lmtttmpts_user_mailto" name="lmtttmpts_mailto" value="admin" <?php checked( $this->options['mailto'], 'admin' ); ?> />
-							<select name="lmtttmpts_user_email_address">
-								<option disabled><?php _e( "Choose a username", 'limit-attempts' ); ?></option>
-								<?php foreach ( $userslogin as $key => $value ) {
-									if ( $value->data->user_email != '' ) { ?>
-										<option value="<?php echo $value->data->user_email; ?>" <?php selected( $value->data->user_email, $this->options['email_address'] ); ?>><?php echo $value->data->user_login; ?></option>
-									<?php }
-								} ?>
-							</select>
-						</label>
-						<br/>
-						<label>
-							<input type="radio" id="lmtttmpts_custom_mailto" name="lmtttmpts_mailto" value="custom" <?php checked( $this->options['mailto'], 'custom' ); ?> />
-							<input type="email" name="lmtttmpts_email_address" maxlength="100" value="<?php if ( $this->options['mailto'] == 'custom' ) echo $this->options['email_address']; ?>" />
-						</label>
+                        <fieldset>
+                            <label>
+                                <input type="radio" id="lmtttmpts_user_mailto" name="lmtttmpts_mailto" value="admin" <?php checked( $this->options['mailto'], 'admin' ); ?> />
+                                <select class="lmtttmpts_email_notifications_input" name="lmtttmpts_user_email_address">
+                                    <option disabled><?php _e( "Choose a username", 'limit-attempts' ); ?></option>
+                                    <?php foreach ( $userslogin as $key => $value ) {
+                                        if ( $value->data->user_email != '' ) { ?>
+                                            <option value="<?php echo $value->data->user_email; ?>" <?php selected( $value->data->user_email, $this->options['email_address'] ); ?>><?php echo $value->data->user_login; ?></option>
+                                        <?php }
+                                    } ?>
+                                </select>
+                            </label>
+                            <br/>
+                            <label>
+                                <input type="radio" id="lmtttmpts_custom_mailto" name="lmtttmpts_mailto" value="custom" <?php checked( $this->options['mailto'], 'custom' ); ?> />
+                                <input type="email" class="lmtttmpts_email_notifications_input" name="lmtttmpts_email_address" maxlength="100" value="<?php if ( $this->options['mailto'] == 'custom' ) echo $this->options['email_address']; ?>" />
+                            </label>
+                        </fieldset>
 						<div class="bws_info"><?php _e( 'Select an existing administrator or a custom email.', 'limit-attempts' ); ?></div>
 					</td>
 				</tr>
@@ -837,7 +896,9 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 								<th><?php _e( 'Update GeoIP Every', 'limit-attempts' ); ?></th>
 								<td>
 									<fieldset>
-										<input disabled="disabled" type="number" min="0" max="10" step="1" name="lmtttmpts_geo" value="0" />&nbsp;<?php _e( 'months', 'limit-attempts' ); ?>
+                                        <label><input disabled="disabled" type="number" min="0" max="10" step="1" name="lmtttmpts_geo" value="0" />&nbsp;<?php _e( 'months', 'limit-attempts' ); ?></label>
+                                        <br />
+                                        <span class="bws_info"><?php _e( 'Set "0" if you do not want to update GeoIP.', 'limit-attempts' ) ?></span>
 										<div style="margin-top: 10px;"><input disabled="disabled" type="submit" class="button" value="<?php _e( 'Update Now', 'limit-attempts' ); ?>" /></div>
 									</fieldset>
 								</td>

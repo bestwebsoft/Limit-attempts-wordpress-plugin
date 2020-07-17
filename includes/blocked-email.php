@@ -59,7 +59,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
 			/* if search */
 			if ( isset( $_REQUEST['s'] ) ) {
 				$search_email = trim( htmlspecialchars( $_REQUEST['s'] ) );
-				$and = " AND {$prefix}email_list.email LIKE '%{$search_email}%' ";
+				$and = " AND email LIKE '%{$search_email}%' ";
 			} else {
 				$and = '';
             }
@@ -67,12 +67,12 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
 			// query for count emails
 			$count_query = "
                 SELECT 
-                    COUNT( {$prefix}email_list.email )
-                FROM {$prefix}failed_attempts 
-                LEFT JOIN {$prefix}email_list 
-                    ON {$prefix}email_list.ip = {$prefix}failed_attempts.ip
-                WHERE {$prefix}failed_attempts.block = true
-                    AND {$prefix}failed_attempts.block_by = 'email'
+                    COUNT( email )
+                FROM 
+                    {$prefix}failed_attempts 
+                WHERE 
+                    block = TRUE AND 
+                    block_by = 'email'
                     {$and}
             ";
 
@@ -91,13 +91,13 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
 
 			$query = "
                 SELECT 
-                    {$prefix}email_list.email,
-                    {$prefix}failed_attempts.block_till
-                FROM {$prefix}failed_attempts 
-                LEFT JOIN {$prefix}email_list 
-                    ON {$prefix}email_list.ip = {$prefix}failed_attempts.ip 
-                WHERE {$prefix}failed_attempts.block = true
-                    AND {$prefix}failed_attempts.block_by = 'email' 
+                    email,
+                    block_till
+                FROM 
+                    {$prefix}failed_attempts 
+                WHERE 
+                    block = TRUE AND 
+                    block_by = 'email' 
                     {$and}
             ";
 
@@ -276,7 +276,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
 				'error_country'		=> false,
 				'wrong_ip_format'	=> ''
 			);
-			$error = $done = $result_reset_block = '';
+			$error = $done = $result_reset_block = $result_reset_block_stat = '';
 			$prefix = "{$wpdb->prefix}lmtttmpts_";
 			$message_list = array(
 				'notice'						=> __( 'Notice:', 'limit-attempts' ),
@@ -290,23 +290,37 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
                 isset( $_REQUEST['lmtttmpts_reset_block'] ) &&
                 check_admin_referer( 'lmtttmpts_reset_block_' . $_REQUEST['tab-action'], 'lmtttmpts_nonce_name' )
             ) {
-				// get ip of requested email
-				$ip_email = $wpdb->get_var( $wpdb->prepare( " 
-			    	SELECT ip FROM {$prefix}email_list WHERE email = %s
-            	", $_REQUEST['tab-action'] ) );
+
+				// get ip and id of requested email
+				$email_info = $wpdb->get_row( $wpdb->prepare( " 
+			    	SELECT 
+			    	    ip,
+			    	    id_failed_attempts_statistics 
+                    FROM 
+                        {$prefix}email_list 
+                    WHERE 
+                        email = %s
+            	", $_REQUEST['tab-action'] ), ARRAY_A );
 
 				/* single Email de-block */
-				if ( $ip_email ) {
+				if ( $email_info ) {
 					$result_reset_block = $wpdb->update(
 						$wpdb->prefix . 'lmtttmpts_failed_attempts',
-						array( 'block' => false ),
-						array( 'ip' => $ip_email, 'block_by' => 'email' ),
+						array( 'block' => false, 'block_till' => null, 'block_by'  => null ),
+						array( 'ip' => $email_info['ip'], 'block_by' => 'email' ),
 						array( '%s' ),
+						array( '%s' )
+					);
+
+					$result_reset_block_stat = $wpdb->update(
+						$wpdb->prefix . 'lmtttmpts_all_failed_attempts',
+						array( 'block' => false ),
+						array( 'id' => $email_info['id_failed_attempts_statistics'] ),
 						array( '%s' )
 					);
 				}
 
-				if ( false !== $result_reset_block ) {
+				if ( false !== $result_reset_block && false !== $result_reset_block_stat ) {
 					/* if operation with DB was succesful */
 					$action_message['done'] = $message_list['block_reset_done'] . '&nbsp;' . esc_html( $_REQUEST['tab-action'] );
 
@@ -329,19 +343,34 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
 					/* array for loop */
 					$emails = $_POST['email'];
 					foreach ( $emails as $email ) {
-						// get ip of requested email
-						$ip_email = $wpdb->get_var( $wpdb->prepare( " 
-			    			SELECT ip FROM {$prefix}email_list WHERE email = %s
-            			", $email ) );
+
+						// get ip and id of requested email
+						$email_info = $wpdb->get_row( $wpdb->prepare( " 
+			    			SELECT 
+			    			    ip 
+			    			    id_failed_attempts_statistics 
+                            FROM 
+			    			    {$prefix}email_list 
+                            WHERE 
+                                email = %s
+            			", $email ), ARRAY_A );
 
 						$result_reset_block = $wpdb->update(
 							$wpdb->prefix . 'lmtttmpts_failed_attempts',
-							array( 'block' => false ),
-							array( 'ip' => $ip_email, 'block_by' => 'email' ),
+							array( 'block' => false, 'block_till' => null, 'block_by' => null ),
+							array( 'ip' => $email_info['ip'], 'block_by' => 'email' ),
 							array( '%s' ),
 							array( '%s' )
 						);
-						if ( false !== $result_reset_block ) {
+
+						$result_reset_block_stat = $wpdb->update(
+							$wpdb->prefix . 'lmtttmpts_all_failed_attempts',
+							array( 'block' => false ),
+							array( 'id' => $email_info['id_failed_attempts_statistics'] ),
+							array( '%s' )
+						);
+
+						if ( false !== $result_reset_block && false !== $result_reset_block_stat ) {
 							/* if success */
 							$done .= empty( $done ) ? $email : ', ' . $email;
 							$done_reset_block[] = $email;

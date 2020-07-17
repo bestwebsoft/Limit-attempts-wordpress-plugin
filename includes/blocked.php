@@ -56,17 +56,32 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 		function prepare_items() {
 			/* preparing table items */
 			global $wpdb;
+
+			$and = '';
+
 			$prefix = $wpdb->prefix . 'lmtttmpts_';
 			$part_ip = isset( $_REQUEST['s'] ) ? trim( htmlspecialchars( $_REQUEST['s'] ) ) : '';
-			/* query for total number of IPs */
-			$count_query = "SELECT COUNT(*) FROM `" . $prefix . "failed_attempts` WHERE `block` = true";
+
 			/* if search */
 			if ( isset( $_REQUEST['s'] ) ) {
 				$search_ip = sprintf( '%u', ip2long( str_replace( " ", "", trim( $_REQUEST['s'] ) ) ) );
 				if ( 0 != $search_ip || preg_match( "/^(\.|\d)?(\.?[0-9]{1,3}?\.?){1,4}?(\.|\d)?$/i", $part_ip ) ) {
-					$count_query .= " AND `ip_int` = " . $search_ip ." OR `ip` LIKE '%" . $part_ip . "%'";
+					$and = " AND ( ip_int = {$search_ip} OR ip LIKE '%{$part_ip}%' ) ";
 				}
 			}
+
+			/* query for total number of IPs */
+			$count_query = "
+                SELECT 
+                    COUNT( ip )
+                FROM 
+                    {$prefix}failed_attempts 
+                WHERE 
+                    block = TRUE AND 
+                    block_by = 'ip'
+                    {$and}
+            ";
+
 			/* get the total number of IPs */
 			$totalitems = $wpdb->get_var( $count_query );
 			/* get the value of number of IPs on one page */
@@ -90,14 +105,18 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 			$offset  = ( $paged - 1 ) * $perpage;
 
 			/* general query */
-			$query = "SELECT `ip`, `block_till` FROM `" . $prefix . "failed_attempts` WHERE `block` = true";
-			/* if search */
-			if ( isset( $_REQUEST['s'] ) ) {
-				$search_ip = sprintf( '%u', ip2long( str_replace( " ", "", trim( $_REQUEST['s'] ) ) ) );
-				if ( 0 != $search_ip || preg_match( "/^(\.|\d)?(\.?[0-9]{1,3}?\.?){1,4}?(\.|\d)?$/i", $part_ip ) ) {
-					$query .= " AND ( `ip_int`={$search_ip} OR `ip` LIKE '%{$part_ip}%')";
-				}
-			}
+			$query = "
+                SELECT 
+                    ip, 
+                    block_till 
+                FROM 
+                    {$prefix}failed_attempts 
+                WHERE 
+                    block = TRUE AND 
+                    block_by = 'ip' 
+                    {$and}
+            ";
+
 			/* add calculated values (order and pagination) to our query */
 			$query .= " ORDER BY `" . $orderby. "` " . $order . " LIMIT " . $offset . "," . $perpage;
 			/* get data from our failed_attempts table - list of blocked IPs */
@@ -274,7 +293,10 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 				'add_to_whitelist_done'			=> __( 'IP addresses were added to whitelist', 'limit-attempts' ),
 			);
 			/* Realization action in table with blocked addresses */
-			if ( isset( $_GET['lmtttmpts_add_to_whitelist'] ) && check_admin_referer( 'lmtttmpts_add_to_whitelist_' . $_GET['lmtttmpts_add_to_whitelist'], 'lmtttmpts_nonce_name' ) ) {
+			if (
+                isset( $_GET['lmtttmpts_add_to_whitelist'] ) &&
+                check_admin_referer( 'lmtttmpts_add_to_whitelist_' . $_GET['lmtttmpts_add_to_whitelist'], 'lmtttmpts_nonce_name' )
+            ) {
 				if ( filter_var( $_GET['lmtttmpts_add_to_whitelist'], FILTER_VALIDATE_IP ) ) {
 					$ip = $_GET['lmtttmpts_add_to_whitelist'];
 					$ip_int = sprintf( '%u', ip2long( $ip ) );
@@ -282,10 +304,12 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 					/* single IP de-block */
 					$result_reset_block = $wpdb->update(
 						$wpdb->prefix . 'lmtttmpts_failed_attempts',
-						array( 'block' => false ),
-						array( 'ip_int' => sprintf( '%u', $ip_int ) ),
-						array( '%s' ),
-						array( '%s' )
+						array(
+							'block' => false,
+							'block_till' => null,
+							'block_by' => null
+						),
+						array( 'ip_int' => sprintf( '%u', $ip_int ) )
 					);
 					/* single IP add to whitelist */
 					if ( false !== $result_reset_block ) {
@@ -299,17 +323,20 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 
 						$action_message['done'] = $message_list['single_add_to_whitelist_done'] . ':&nbsp;' . esc_html( $ip );
 
-						if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
+						if ( $lmtttmpts_options['block_by_htaccess'] ) {
 							do_action( 'lmtttmpts_htaccess_hook_for_add_to_whitelist', $ip );
 						}
 					}
 				}
-			} elseif ( isset( $_REQUEST['lmtttmpts_reset_block'] ) && check_admin_referer( 'lmtttmpts_reset_block_' . $_REQUEST['lmtttmpts_reset_block'], 'lmtttmpts_nonce_name' ) ) {
+			} elseif (
+                isset( $_REQUEST['lmtttmpts_reset_block'] ) &&
+                check_admin_referer( 'lmtttmpts_reset_block_' . $_REQUEST['lmtttmpts_reset_block'], 'lmtttmpts_nonce_name' )
+            ) {
 				/* single IP de-block */
 				$result_reset_block = $wpdb->update(
 					$wpdb->prefix . 'lmtttmpts_failed_attempts',
-					array( 'block' => false ),
-					array( 'ip_int' => sprintf( '%u', ip2long( $_REQUEST['lmtttmpts_reset_block'] ) ) ),
+					array( 'block' => false, 'block_till' => null, 'block_by' => null ),
+					array( 'ip_int' => sprintf( '%u', ip2long( $_REQUEST['lmtttmpts_reset_block'] ) ), 'block_by' => 'ip' ),
 					array( '%s' ),
 					array( '%s' )
 				);
@@ -334,8 +361,8 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 					foreach ( $ips as $ip ) {
 						$result_reset_block = $wpdb->update(
 							$wpdb->prefix . 'lmtttmpts_failed_attempts',
-							array( 'block' => false ),
-							array( 'ip_int' => sprintf( '%u', ip2long( $ip ) ) ),
+							array( 'block' => false, 'block_till' => null, 'block_by' => null ),
+							array( 'ip_int' => sprintf( '%u', ip2long( $ip ) ), 'block_by' => 'ip' ),
 							array( '%s' ),
 							array( '%s' )
 						);
@@ -370,10 +397,11 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 			if ( isset( $_REQUEST['s'] ) ) {
 				$search_request = esc_html( trim( $_REQUEST['s'] ) );
 				if ( ! empty( $search_request ) ) {
-					if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])?(\.?(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[-0-9])?){0,3}?$/', $search_request ) )
+					if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])?(\.?(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[-0-9])?){0,3}?$/', $search_request ) ) {
 						$action_message['done'] .= ( empty( $action_message['done'] ) ? '' : '<br/>' ) . __( 'Search results for', 'limit-attempts' ) . '&nbsp;' . $search_request;
-					else
+					} else {
 						$action_message['error'] .= ( empty( $action_message['error'] ) ? '' : '<br/>' ) . sprintf( __( 'Wrong format or it does not lie in range %s.', 'limit-attempts' ), '0.0.0.0 - 255.255.255.255' );
+				    }
 				}
 			}
 
@@ -385,21 +413,4 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 			<?php }
 		}
 	}
-}
-
-if ( ! function_exists( 'lmtttmpts_display_blocked' ) ) {
-	function lmtttmpts_display_blocked( $plugin_basename ) { ?>
-		<div id="lmtttmpts_blocked" class="lmtttmpts_list">
-			<?php $lmtttmpts_blocked_list = new Lmtttmpts_Blocked_List();
-			$lmtttmpts_blocked_list->action_message();
-			$lmtttmpts_blocked_list->prepare_items(); ?>
-			<form method="get" action="admin.php">
-				<?php $lmtttmpts_blocked_list->search_box( __( 'Search IP', 'limit-attempts' ), 'search_blocked_ip' );?>
-				<input type="hidden" name="page" value="limit-attempts-blocked.php" />
-			</form>
-			<form method="post" action="">
-				<?php $lmtttmpts_blocked_list->display(); ?>
-			</form>
-		</div>
-	<?php }
 }

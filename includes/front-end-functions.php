@@ -30,25 +30,13 @@ if ( ! function_exists( 'lmtttmpts_authenticate' ) ) {
 				return $user;
 
 			$error_codes = $user->get_error_codes();
-			$is_blocked  =
-					is_array( $error_codes ) &&
-					array_intersect( $error_codes, array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' ) )
-				?
-					true
-				:
-					false;
+			$is_blocked  = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' ) );
+
 			if ( ! $is_blocked )
 				$user = lmtttmpts_handle_error( $user );
 
 			$error_codes = is_wp_error( $user ) ? $user->get_error_codes() : false;
-			$lmtttmpts_hide_form =
-					is_array( $error_codes ) &&
-					array_intersect( $error_codes, array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' ) ) &&
-					1 == $lmtttmpts_options['hide_login_form']
-				?
-					true
-				:
-					false;
+			$lmtttmpts_hide_form = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' ) ) && 1 == $lmtttmpts_options['hide_login_form'];
 		}
 
 		return $user;
@@ -100,9 +88,9 @@ if ( ! function_exists( 'lmtttmpts_form_check' ) ) {
  * @param      mixed       an instance of class WP_Error/WP_User or null
  * @return     mixed       an instance of class WP_Error/WP_User or null
  */
-if ( ! function_exists( "lmtttmpts_check_ip" ) ) {
+if ( ! function_exists( 'lmtttmpts_check_ip' ) ) {
 	function lmtttmpts_check_ip( $user = true ) {
-		global $wpdb, $lmtttmpts_options;
+		global $lmtttmpts_options;
 
 		/* get plugin`s options */
 		if ( empty( $lmtttmpts_options ) ) {
@@ -134,7 +122,7 @@ if ( ! function_exists( "lmtttmpts_check_ip" ) ) {
 					$ip_info['block_till'];
 			if ( ! is_wp_error( $user ) )
 				$user = new WP_Error();
-			$error = str_replace(
+				$error = str_replace(
 					array( '%DATE%', '%MAIL%' ),
 					array( lmtttmpts_block_time( $block_till ), $lmtttmpts_options['email_address'] ),
 					$lmtttmpts_options['blocked_message']
@@ -180,6 +168,7 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 				`{$prefix}failed_attempts`.`failed_attempts`,
 				`{$prefix}failed_attempts`.`block_quantity`,
 				`{$prefix}failed_attempts`.`block_till`,
+				`{$prefix}failed_attempts`.`block_by`,
 				`{$prefix}all_failed_attempts`.`failed_attempts` AS `stat_attempts_number`,
 				`{$prefix}all_failed_attempts`.`block_quantity` AS `stat_block_quantity`,
 				`{$prefix}blacklist`.`id` AS `in_blacklist`,
@@ -191,9 +180,15 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 				ON `{$prefix}blacklist`.`ip`='{$ip}'
 			LEFT JOIN `{$prefix}whitelist`
 				ON `{$prefix}whitelist`.`ip`='{$ip}'
-			WHERE `{$prefix}failed_attempts`.`ip_int`={$ip_int}
+			WHERE 
+				`{$prefix}failed_attempts`.`ip_int`={$ip_int} AND
+				`{$prefix}failed_attempts`.`block_by` = 'ip' OR 
+				`{$prefix}failed_attempts`.`block_by` IS NULL
 			LIMIT 1;"
 		);
+
+		$block_by = isset( $ip_info->block_by ) ? $ip_info->block_by : null;
+
 		/* if IP is in blacklist */
 		if ( isset( $ip_info[0]->in_blacklist ) && ! is_null( $ip_info[0]->in_blacklist ) ) {
 			$error = str_replace( '%MAIL%', $lmtttmpts_options['email_address'], $lmtttmpts_options['blacklisted_message'] );
@@ -207,10 +202,10 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 		/* if IP is blocked */
 		if ( isset( $ip_info[0]->blocked ) && '1' == $ip_info[0]->blocked ) {
 			$block_till =
-					isset( $ip_info[0]->block_till ) && ! empty( $ip_info[0]->block_till )
-				?
+				isset( $ip_info[0]->block_till ) && ! empty( $ip_info[0]->block_till )
+					?
 					$ip_info[0]->block_till
-				:
+					:
 					date( 'Y-m-d H:i:s', $block_till_time );
 			$error = str_replace( array( '%DATE%', '%MAIL%' ), array( lmtttmpts_block_time( $block_till ), $lmtttmpts_options['email_address'] ), $lmtttmpts_options['blocked_message'] );
 			$error = wp_specialchars_decode( $error, ENT_COMPAT );
@@ -251,6 +246,7 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 
 				$block		= 0;
 				$block_till	= null;
+				$block_by = null;
 
 				/* getting an error message */
 				$error_code	= 'lmtttmpts_failed_attempts';
@@ -269,6 +265,7 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 
 					$block		= 1;
 					$block_till	= date( 'Y-m-d H:i:s', $block_till_time );
+					$block_by = 'ip';
 
 					/* getting an error message */
 					$error_code	= 'lmtttmpts_blocked';
@@ -359,9 +356,10 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 						'failed_attempts'	=> $failed_attempts_number,
 						'block'				=> $block,
 						'block_quantity'	=> $block_quantity,
-						'block_till'		=> $block_till
+						'block_till'		=> $block_till,
+						'block_by' 		  	=> $block_by
 					),
-					array( 'ip_int'			=> $ip_int )
+					array( 'ip_int' => $ip_int, 'block_by' => null )
 				);
 			} else {
 				$wpdb->insert(
@@ -372,7 +370,8 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 						'failed_attempts'	=> $failed_attempts_number,
 						'block'				=> $block,
 						'block_quantity'	=> $block_quantity,
-						'block_till'		=> $block_till
+						'block_till'		=> $block_till,
+						'block_by' 		  	=> $block_by
 					)
 				);
 			}
@@ -415,6 +414,379 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 			$user->add( $error_code, $error );
 		}
 		return $user;
+	}
+}
+
+// computability with CF
+if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
+	function lmtttmpts_contact_form() {
+		global $wpdb, $lmtttmpts_options;
+
+		// get plugin's options
+		if ( empty( $lmtttmpts_options ) ) {
+			register_lmtttmpts_settings();
+		}
+
+		// some data
+		$ip						= lmtttmpts_get_ip();
+		$ip_int					= sprintf( '%u', ip2long( $ip ) );
+		$prefix					= "{$wpdb->prefix}lmtttmpts_";
+		$current_timestamp		= current_time( 'mysql' );
+		$timestamp				= time();
+		$attempts_reset_time	= $timestamp + $lmtttmpts_options['minutes_to_reset'] * 60 + $lmtttmpts_options['hours_to_reset'] * 3600 + $lmtttmpts_options['days_to_reset'] * 86400;
+		$block_till_time		= $timestamp + $lmtttmpts_options['minutes_of_lock'] * 60 + $lmtttmpts_options['hours_of_lock'] * 3600 + $lmtttmpts_options['days_of_lock'] * 86400;
+		$blocks_reset_time		= $block_till_time + $lmtttmpts_options['minutes_to_reset_block'] * 60 + $lmtttmpts_options['hours_to_reset_block'] * 3600 + $lmtttmpts_options['days_to_reset_block'] * 86400;
+		$email 					= sanitize_email( $_POST['cntctfrm_contact_email'] );
+		$letters_time_interval 	= $lmtttmpts_options['letters_days'] * 86400 + $lmtttmpts_options['letters_hours'] * 3600 + $lmtttmpts_options['letters_minutes'] * 60 + $lmtttmpts_options['letters_seconds'];
+		$error					= $where = '';
+		$block                  = 0;
+
+		// get info
+		$email_info = $wpdb->get_results( $wpdb->prepare( "
+			SELECT 
+				{$prefix}failed_attempts.id AS id_failed_attempts, 
+				{$prefix}failed_attempts.ip, 
+				{$prefix}failed_attempts.email, 
+				{$prefix}failed_attempts.block AS blocked, 
+				{$prefix}failed_attempts.block_by, 
+				{$prefix}failed_attempts.failed_attempts, 
+				{$prefix}failed_attempts.block_quantity,
+				{$prefix}failed_attempts.block_till,
+				{$prefix}failed_attempts.last_failed_attempt,
+				{$prefix}all_failed_attempts.id AS id_failed_attempts_statistics,
+				{$prefix}all_failed_attempts.failed_attempts AS stat_attempts_number,
+				{$prefix}all_failed_attempts.block_quantity AS stat_block_quantity,
+				{$prefix}blacklist.id AS in_blacklist,
+				{$prefix}whitelist.id AS in_whitelist
+			FROM 
+				{$prefix}failed_attempts
+			LEFT JOIN 
+				{$prefix}all_failed_attempts ON 
+				{$prefix}all_failed_attempts.ip_int = {$prefix}failed_attempts.ip_int
+			LEFT JOIN 
+				{$prefix}blacklist ON 
+				{$prefix}blacklist.ip = '$ip'
+			LEFT JOIN 
+				{$prefix}whitelist ON 
+				{$prefix}whitelist.ip = '$ip'
+			WHERE 
+				{$prefix}failed_attempts.email = %s OR
+				{$prefix}failed_attempts.ip = %d
+		", $email, $ip ), ARRAY_A );
+
+		$email_info = ( $email_info ) ? end( $email_info ) : '';
+
+		// get some additional data from query
+		$id_failed_attempts		= ( isset( $email_info['id_failed_attempts'] ) ) ? $email_info['id_failed_attempts'] : '1';
+		$id_failed_attempts_statistics	= ( isset( $email_info['id_failed_attempts_statistics'] ) ) ? $email_info['id_failed_attempts_statistics'] : '1';
+
+		$failed_attempts_number	= ( isset( $email_info['failed_attempts'] ) && ! is_null( $email_info['failed_attempts'] ) ) ? $email_info['failed_attempts'] : 0;
+		$blocked 				= isset( $email_info['blocked'] ) && '1' == $email_info['blocked'];
+		$block_quantity_number 	= ( isset( $email_info['block_quantity'] ) && ! is_null( $email_info['block_quantity'] ) ) ? $email_info['block_quantity'] : 0;
+		$block_till 			= ( isset( $email_info['block_till'] ) && ! empty( $email_info['block_till'] ) ) ? $email_info['block_till'] : date( 'Y-m-d H:i:s', $block_till_time );
+		$block_by 				= isset( $email_info['block_by'] ) ? $email_info['block_by'] : '';
+		$ip_in_blacklist 		= isset( $email_info['in_blacklist'] ) && ! is_null( $email_info['in_blacklist'] );
+		$email_in_blacklist 	= lmtttmpts_is_email_in_table( $email, 'blacklist_email' );
+		$ip_in_whitelist 		= isset( $email_info['in_whitelist'] ) && ! is_null( $email_info['in_whitelist'] );
+		$stat_attempts_number 	= ! isset( $email_info['stat_attempts_number'] ) || is_null( $email_info['stat_attempts_number'] );
+		$stat_block_quantity	= ( isset( $email_info['stat_block_quantity'] ) && ! is_null( $email_info['stat_block_quantity'] ) ) ? $email_info['stat_block_quantity'] : 0;
+		$is_ip_in_table 		= lmtttmpts_is_ip_in_table( $ip, 'failed_attempts' );
+		$is_email_in_table 		= lmtttmpts_is_email_in_table( $email, 'email_list' );
+		$ip_from_list 			= ( isset( $email_info['ip'] ) ) ? $email_info['ip'] : '';
+		$email_from_list 		= ( isset( $email_info['email'] ) ) ? $email_info['email'] : '';
+
+		// count sendings from ip and email
+		$count_sendings = $wpdb->get_results( $wpdb->prepare( "
+			SELECT 
+				( 
+					SELECT 
+						COUNT( ip ) 
+					FROM 
+						{$prefix}failed_attempts 
+					WHERE 
+						ip = %s AND 
+						block = '0' 
+				) AS ip, 
+				( 
+					SELECT 
+						COUNT( email ) 
+					FROM 
+						{$prefix}failed_attempts 
+					WHERE 
+						email = %s AND 
+						block = '0' 
+				) AS email
+		", $ip, $email ), ARRAY_A );
+
+		$priority = ( $count_sendings[0]['email'] >= $count_sendings[0]['ip'] ) ? 'email' : 'ip';
+
+		$block_quantity_number = ( $block_by === $priority ) ? $block_quantity_number : 0;
+
+		// if IP or Email in blacklist
+		if ( $ip_in_blacklist || $email_in_blacklist ) {
+			$error = str_replace(
+				'%MAIL%',
+				$lmtttmpts_options['email_address'],
+				$lmtttmpts_options['blacklisted_message']
+			);
+			$error = wp_specialchars_decode( $error, ENT_COMPAT );
+
+			return $error;
+		}
+
+		// if IP or Email is blocked
+		if ( in_array( $block_by, array( 'ip', 'email' ) ) && ( $ip_from_list === $ip || $email_from_list === $email ) ) {
+			$error = str_replace(
+				array( '%DATE%', '%MAIL%' ),
+				array( lmtttmpts_block_time( $block_till ), $lmtttmpts_options['email_address'] ),
+				$lmtttmpts_options['blocked_message']
+			);
+			$error = wp_specialchars_decode( $error, ENT_COMPAT );
+
+			return $error;
+		}
+
+		// count send letter
+		if ( ! $ip_in_whitelist ) {
+
+			$failed_attempts_number += 1;
+
+			// reset countdown to clear failed attempts number
+			wp_clear_scheduled_hook( 'lmtttmpts_event_for_reset_failed_attempts', array( $ip, $email, $priority ) );
+
+			// get time of failed attempt
+			$event_time = ( $email_info ) ? strtotime( $email_info['last_failed_attempt'] ) : $timestamp;
+
+			// number of failed attempts not more than allowed one
+			if (
+				$failed_attempts_number <= $lmtttmpts_options['number_of_letters'] ||
+				( $timestamp - $event_time ) > $letters_time_interval
+			) {
+
+				// new countdown to reset number of failed attempts
+				wp_schedule_single_event( $attempts_reset_time, 'lmtttmpts_event_for_reset_failed_attempts', array( $ip, $email, $priority ) );
+
+				$block = 0;
+				$block_till	= null;
+				$block_by = null;
+
+			} elseif ( ( $timestamp - $event_time ) < $letters_time_interval ) {
+
+				// number of failed attempts more than allowed number
+				$failed_attempts_number = 0;
+				$block_quantity_number += 1;
+
+				// reset countdown to clear blocks number
+				wp_clear_scheduled_hook( 'lmtttmpts_event_for_reset_block_quantity', array( $ip, $email, $priority ) );
+
+				if ( $block_quantity_number < $lmtttmpts_options['allowed_locks'] ) {
+					// event: auto_blocked
+
+					// new countdown to reset number of blockings
+					wp_schedule_single_event( $blocks_reset_time, 'lmtttmpts_event_for_reset_block_quantity', array( $ip, $email, $priority ) );
+
+					$block = 1;
+					$block_till	= date( 'Y-m-d H:i:s', $block_till_time );
+					$block_by = $priority;
+
+					/*
+					 * clearing 'lmtttmpts_event_for_reset_block' event if current timestamp
+					 * less than time of next scheduled event and resetting event with current timestamp
+					 * */
+					$next_timestamp = $wpdb->get_row( $wpdb->prepare( "
+						SELECT 
+							block_till
+						FROM 
+							{$prefix}failed_attempts
+						WHERE 
+							block_till > %d 
+						ORDER BY 
+							block_till
+					", $current_timestamp ), ARRAY_A );
+
+					if ( ! empty( $next_timestamp ) ) {
+						$next_timestamp_unix_time = strtotime( $next_timestamp['block_till'] );
+						if (
+							$block_till_time < $next_timestamp_unix_time &&
+							wp_next_scheduled( 'lmtttmpts_event_for_reset_block' )
+						) {
+							wp_clear_scheduled_hook( 'lmtttmpts_event_for_reset_block' );
+						}
+					}
+
+					// countdown to reset
+					if ( ! wp_next_scheduled( 'lmtttmpts_event_for_reset_block' ) ) {
+						wp_schedule_single_event( $block_till_time, 'lmtttmpts_event_for_reset_block' );
+					}
+
+					// htaccess hook
+					if ( $lmtttmpts_options['block_by_htaccess'] ) {
+						do_action( 'lmtttmpts_htaccess_hook_for_block', $ip );
+					}
+
+					// send e-mail to admin
+					if ( $lmtttmpts_options['notify_email'] ) {
+						lmtttmpts_send_email(
+							$lmtttmpts_options['email_address'],
+							$lmtttmpts_options['email_subject'],
+							$lmtttmpts_options['email_blocked'],
+							$ip
+						);
+					}
+
+					// getting an error message
+					$error = str_replace(
+						array( '%DATE%', '%MAIL%' ),
+						array( lmtttmpts_block_time( $block_till ), $lmtttmpts_options['email_address'] ),
+						$lmtttmpts_options['blocked_message']
+					);
+					$error = wp_specialchars_decode( $error, ENT_COMPAT );
+
+				} else {
+					// Number of blockings more than allowed number, adding to blacklist automatically
+					// event: auto_blacklisted
+
+					$block = 0;
+					$block_quantity_number = 0;
+					$block_till = null;
+					$block_by = null;
+
+					// htaccess hook
+					if ( $lmtttmpts_options['block_by_htaccess'] ) {
+						do_action( 'lmtttmpts_htaccess_hook_for_block', $ip );
+					}
+
+					// insert blacklist of ip or email
+					$table = ( 'ip' == $priority ) ? "{$prefix}blacklist" : "{$prefix}blacklist_email";
+					$val = ( 'ip' == $priority ) ? $ip : $email;
+					$wpdb->insert(
+						$table,
+						array(
+							$priority 	=> $val,
+							'add_time' 	=> date( 'Y-m-d H:i:s', $timestamp )
+						)
+					);
+
+					// send e-mail to admin
+					if ( $lmtttmpts_options['notify_email'] ) {
+						lmtttmpts_send_email(
+							$lmtttmpts_options['email_address'],
+							$lmtttmpts_options['email_subject_blacklisted'],
+							$lmtttmpts_options['email_blacklisted'],
+							$ip
+						);
+					}
+
+					// getting an error message
+					$error = str_replace(
+						'%MAIL%',
+						$lmtttmpts_options['email_address'],
+						$lmtttmpts_options['blacklisted_message']
+					);
+					$error = wp_specialchars_decode( $error, ENT_COMPAT );
+				}
+			}
+
+			if ( empty( $email ) && 'email' == $block_by ) {
+				$block_by = 'ip';
+			}
+
+			if ( ( $is_ip_in_table && 'ip' == $priority ) || ( $is_email_in_table && 'email' == $priority ) ) {
+				$wpdb->update(
+					"{$prefix}failed_attempts",
+					array(
+						'failed_attempts'		=> $failed_attempts_number,
+						'email'					=> $email,
+						'block'					=> $block,
+						'block_quantity'		=> $block_quantity_number,
+						'block_till'			=> $block_till,
+						'block_by'				=> $block_by,
+						'last_failed_attempt'	=> date( 'Y-m-d H:i:s', $timestamp )
+					),
+					array( 'id' => $id_failed_attempts )
+				);
+			} else {
+				$wpdb->insert(
+					"{$prefix}failed_attempts",
+					array(
+						'ip'					=> $ip,
+						'ip_int'				=> $ip_int,
+						'email'					=> $email,
+						'failed_attempts'		=> $failed_attempts_number,
+						'block'					=> $block,
+						'block_quantity'		=> $block_quantity_number,
+						'block_till'			=> $block_till,
+						'block_by'				=> $block_by,
+						'last_failed_attempt'	=> date( 'Y-m-d H:i:s', $timestamp )
+					)
+				);
+			}
+
+			if ( ! $is_email_in_table && $email_info ) {
+				$id_failed_attempts = $wpdb->get_var( "
+					SELECT 
+						id
+					FROM 
+						{$prefix}failed_attempts 
+					WHERE 
+						email = '$email'
+				" );
+			}
+		}
+
+		if ( $stat_attempts_number ) {
+			$block_number = ! $ip_in_whitelist && 1 == $lmtttmpts_options['number_of_letters'] ? 1 : 0;
+			$wpdb->insert(
+				"{$prefix}all_failed_attempts",
+				array(
+					'ip' 					=> $ip,
+					'ip_int'				=> $ip_int,
+					'email'					=> $email,
+					'failed_attempts'		=> 1,
+					'block'					=> $block,
+					'block_quantity'		=> $block_number,
+					'last_failed_attempt'	=> date( 'Y-m-d H:i:s', $timestamp )
+				)
+			);
+
+			$id_failed_attempts_statistics = $wpdb->get_var( "
+				SELECT
+					id
+				FROM
+					{$prefix}all_failed_attempts
+				WHERE
+					email = '$email'
+			" );
+		} else {
+			$attempts_number = ( isset( $email_info['stat_attempts_number'] ) ) ? $email_info['stat_attempts_number'] + 1 : 1;
+			$block_number = ( ! $ip_in_whitelist && $failed_attempts_number + 1 < $lmtttmpts_options['number_of_letters'] ) ? $stat_block_quantity + 1 : $stat_block_quantity;
+			$wpdb->update(
+				"{$prefix}all_failed_attempts",
+				array(
+					'email'					=> $email,
+					'failed_attempts'		=> $attempts_number,
+					'block'					=> $block,
+					'block_quantity'		=> $block_number,
+					'last_failed_attempt'	=> date( 'Y-m-d H:i:s', $timestamp )
+				),
+				array( 'id' => $id_failed_attempts_statistics )
+			);
+		}
+
+
+		if ( ! $is_email_in_table ) {
+			$wpdb->insert(
+				"{$prefix}email_list",
+				array(
+					'id_failed_attempts' 		=> $id_failed_attempts,
+					'id_failed_attempts_statistics' 	=> $id_failed_attempts_statistics,
+					'ip' 						=> $ip,
+					'email' 					=> $email
+				)
+			);
+		}
+
+		return $error;
 	}
 }
 
@@ -547,6 +919,7 @@ if ( ! function_exists( 'lmtttmpts_display_error' ) ) {
 if ( ! function_exists( 'lmtttmpts_block_time' ) ) {
 	function lmtttmpts_block_time ( $unblock_date ) {
 		/* time difference */
+
 		$time_diff = strtotime( $unblock_date ) - time();
 
 		/* time limit for blocking has been exhausted or unidentified */
@@ -603,9 +976,38 @@ if ( ! function_exists( 'lmtttmpts_block_time' ) ) {
 	}
 }
 
+// add error to the Contact Form
+if ( ! function_exists( 'lmtttmpts_cntctfrm_check' ) ) {
+	function lmtttmpts_cntctfrm_check( $cntctfrm_error_message ) {
+		global $lmtttmpts_options;
+
+		if ( empty( $lmtttmpts_options ) ) {
+			register_lmtttmpts_settings();
+		}
+
+		if ( ! $lmtttmpts_options['contact_form_restrict_sending_emails'] ) {
+			return false;
+		}
+
+		if ( 1 == count( $cntctfrm_error_message ) ) {
+			$check_error = lmtttmpts_contact_form();
+			if ( $check_error ) {
+				$cntctfrm_error_message['error_lmtttmpts'] = $check_error;
+
+				return $cntctfrm_error_message;
+			}
+		}
+
+		return false;
+	}
+}
+
 /* handle login form */
 add_filter( 'authenticate', 'lmtttmpts_authenticate', 99999, 3 );
 add_filter( 'allow_password_reset', 'lmtttmpts_form_check', 99999 );
 add_filter( 'registration_errors', 'lmtttmpts_form_check', 99999, 1 );
 add_action( 'login_head', 'lmtttmpts_login_scripts' );
 add_action( 'signup_header', 'lmtttmpts_signup_scripts' );
+
+// for Contact Form
+add_filter( 'cntctfrm_check', 'lmtttmpts_cntctfrm_check' );

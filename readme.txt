@@ -2,9 +2,9 @@
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: add to blacklist, add to whitelist, attempts, blacklist, whitelist, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
-Requires at least: 3.9
-Tested up to: 5.2.2
-Stable tag: 1.2.6
+Requires at least: 4.5
+Tested up to: 5.4.2
+Stable tag: 1.2.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,9 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 * Manually add IP addresses to:
 	* Blacklist
 	* Whitelist
+* Compatible with [Contact Form](https://bestwebsoft.com/products/wordpress/plugins/contact-form/?k=fc7e2e440918324853c2060dbe6d9dc9):
+    * Set the time interval for letters sending
+    * Set the number of emails sent per indicated time interval
 * Hide login, register, lost password forms for blocked or blacklisted IPs
 * Add blacklisted IP address to the htaccess file with [Htaccess](https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd) to reduce your website database workload
 * Consider incorrect captcha as a failed login attempt with [Captcha](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c)
@@ -54,9 +57,8 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 > All features from Free version included plus:
 >
 > * Add IP address ranges or IP masks to black- and whitelists
-> * Add email address to the whitelist [NEW]
 > * Add certain country's IP addresses to the black- and whitelist - GeoIP database
-> * An ability to save login and password after of failed attempts added
+> * Add email address or email domain to the blacklist/whitelist
 > * Manage total number of failed attempts with blocked list additional option
 > * Manage black- and whitelists with extended options:
 > 	* Country
@@ -65,8 +67,8 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 > 	* Reason
 > * Compatible with [Captcha Pro](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c) and [Captcha Plus](https://codecanyon.net/item/captcha-plus/9656420):
 > 	* Consider the incorrect captcha input as an invalid attempt for the forms compatible with Captcha
-> * Compatible with [reCAPTCHA](https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935):
-> 	* Consider failed reCAPTCHA validation as an invalid attempt for the forms compatible with reCAPTCHA plugin
+> * Compatible with [reCaptcha](https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935):
+> 	* Consider failed reCaptcha validation as an invalid attempt for the forms compatible with reCaptcha plugin
 > * Set the option for non-existent username log in:
 > 	* According to time and login attempts set for Block- and Blacklist
 > 	* Block IP immediately
@@ -91,7 +93,7 @@ If you have a feature suggestion or idea you'd like to see in the plugin, we'd l
 
 * [[Doc] Installation](https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/)
 * [[Video] Installation Instruction](https://www.youtube.com/watch?v=BZ9WZ3G9ves)
-* [[Doc] How to Use](https://docs.google.com/document/d/1fbB5FZ8-wSxg85Huaiha5fUHjp1diEvKe9sOLzc8diQ/)
+* [[Doc] User Guide](https://docs.google.com/document/d/1fbB5FZ8-wSxg85Huaiha5fUHjp1diEvKe9sOLzc8diQ/)
 
 = Help & Support =
 
@@ -199,12 +201,19 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 4. Plugin settings in WordPress admin panel.
 5. Additional settings which allow to customize error messages in the form.
 6. Plugin additional settings which allow to customize email messages.
-7. Tab with Blocked addresses.
-8. Blacklist settings tab.
-9. Whitelist settings tab.
-10. Tab with Statistics.
+7. Tab with Blocked IP addresses.
+8. Tab with Blocked Email addresses.
+9. Blacklist with IP addresses.
+10. Blacklist with email addresses.
+11. Whitelist settings tab.
+12. Tab with Statistics.
 
 == Changelog ==
+
+= V1.2.7 - 15.07.2020 =
+* NEW : Ability to block emails sent from certain email address via Contact Form by BestWebSoft was added.
+* Bugfix : Fixed small bags.
+* Update : BWS panel section was updated.
 
 = V1.2.6 - 04.09.2019 =
 * Update : The deactivation feedback has been changed. Misleading buttons have been removed.
@@ -329,6 +338,9 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.2.7 =
+* New features added.
 
 = V1.2.6 =
 * Usability improved.
