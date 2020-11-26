@@ -1,6 +1,6 @@
 <?php
 /**
- * Display list of emails, which are in blacklist
+ * Display list of emails, which are in denylist
  * @package Limit Attempts
  * @since 1.2.6
  */
@@ -8,8 +8,8 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
-if ( ! class_exists( 'Lmtttmpts_Blacklist_Email' ) ) {
-	class Lmtttmpts_Blacklist_Email extends WP_List_Table {
+if ( ! class_exists( 'Lmtttmpts_Denylist_Email' ) ) {
+	class Lmtttmpts_Denylist_Email extends WP_List_Table {
 		public $is_geoip_exists;
 
 		function __construct() {
@@ -40,7 +40,7 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist_Email' ) ) {
 		function column_email( $item ) {
 			/* adding action to 'email' collumn */
 			$actions = array(
-				'delete'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&list=blacklist&tab-action=blacklist_email&lmtttmpts_remove_from_blacklist_email=%s', $_REQUEST['page'], $item['email'] ), 'lmtttmpts_remove_from_blacklist_email_' . $item['email'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Delete', 'limit-attempts' ) . '</a>',
+				'delete'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&list=denylist&tab-action=denylist_email&lmtttmpts_remove_from_denylist_email=%s', $_REQUEST['page'], $item['email'] ), 'lmtttmpts_remove_from_denylist_email_' . $item['email'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Delete', 'limit-attempts' ) . '</a>',
 			);
 			return sprintf( '%1$s %2$s', $item['email'], $this->row_actions( $actions ) );
 		}
@@ -48,7 +48,7 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist_Email' ) ) {
 		function get_bulk_actions() {
 			/* adding bulk action */
 			$actions = array(
-				'remove_from_blacklist_email_ips'	=> __( 'Delete', 'limit-attempts' )
+				'remove_from_denylist_email_ips'	=> __( 'Delete', 'limit-attempts' )
 			);
 			return $actions;
 		}
@@ -64,8 +64,8 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist_Email' ) ) {
 			/* preparing table items */
 			global $wpdb;
 			$prefix = $wpdb->prefix . 'lmtttmpts_';
-			/* query for total number of blacklisted Emails */
-			$query = "SELECT COUNT(*) FROM `" . $prefix . "blacklist_email`";
+			/* query for total number of denylisted Emails */
+			$query = "SELECT COUNT(*) FROM `" . $prefix . "denylist_email`";
 			/* if search */
 			if ( isset( $_REQUEST['s'] ) ) {
 				$part_email = isset( $_REQUEST['s'] ) ? trim( htmlspecialchars( $_REQUEST['s'] ) ) : '';
@@ -87,9 +87,9 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist_Email' ) ) {
 
 			$query =
 				"SELECT
-					`{$prefix}blacklist_email`.`add_time`,
-					`{$prefix}blacklist_email`.`email`
-				FROM `{$prefix}blacklist_email`";
+					`{$prefix}denylist_email`.`add_time`,
+					`{$prefix}denylist_email`.`email`
+				FROM `{$prefix}denylist_email`";
 			if ( isset( $_REQUEST['s'] ) ) {
 				$part_email = isset( $_REQUEST['s'] ) ? trim( htmlspecialchars( $_REQUEST['s'] ) ) : '';
 				$query .= " WHERE `email` LIKE '%" . $part_email . "%'";
@@ -105,7 +105,7 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist_Email' ) ) {
 			$offset  = ( $paged - 1 ) * $perpage;
 			/* add calculated values (order and pagination) to our query */
 			$query .= " ORDER BY `" . $orderby . "` " . $order . " LIMIT " . $offset . "," . $perpage;
-			/* get data from our blacklist table - list of blacklisted IPs */
+			/* get data from our denylist table - list of denylisted IPs */
 			$blacklisted_items = $wpdb->get_results( $query, ARRAY_A );
 			/* get site date and time format from DB option */
 			$columns 				= $this->get_columns();
@@ -269,17 +269,17 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist_Email' ) ) {
 			$message_list = array(
 				'notice'						=> __( 'Notice:', 'limit-attempts' ),
 				'empty_ip_list'					=> __( 'No address has been selected', 'limit-attempts' ),
-				'blacklisted_delete_done'		=> __( 'has been deleted from blacklist', 'limit-attempts' ),
-				'blacklisted_delete_done_many'	=> __( 'have been deleted from blacklist', 'limit-attempts' ),
-				'blacklisted_delete_error'		=> __( 'Error while deleting from blacklist', 'limit-attempts' )
+				'denylisted_delete_done'		=> __( 'has been deleted from deny list', 'limit-attempts' ),
+				'denylisted_delete_done_many'	=> __( 'have been deleted from deny list', 'limit-attempts' ),
+				'denylisted_delete_error'		=> __( 'Error while deleting from deny list', 'limit-attempts' )
 			);
-			if ( isset( $_REQUEST['lmtttmpts_remove_from_blacklist_email'] ) ) {
-				check_admin_referer( 'lmtttmpts_remove_from_blacklist_email_' . $_REQUEST['lmtttmpts_remove_from_blacklist_email'], 'lmtttmpts_nonce_name' );
-				$email = $_REQUEST['lmtttmpts_remove_from_blacklist_email'];
+			if ( isset( $_REQUEST['lmtttmpts_remove_from_denylist_email'] ) ) {
+				check_admin_referer( 'lmtttmpts_remove_from_denylist_email_' . $_REQUEST['lmtttmpts_remove_from_denylist_email'], 'lmtttmpts_nonce_name' );
+				$email = $_REQUEST['lmtttmpts_remove_from_denylist_email'];
 			} else {
 				if (
-					( isset( $_POST['action'] ) && $_POST['action']  == 'remove_from_blacklist_email_ips' ) ||
-					( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_blacklist_email_ips' )
+					( isset( $_POST['action'] ) && $_POST['action']  == 'remove_from_denylist_email_ips' ) ||
+					( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_denylist_email_ips' )
 				) {
 					check_admin_referer( 'bulk-' . $this->_args['plural'] );
 					$email = isset( $_POST['email'] ) ? $_POST['email'] : '';
@@ -290,12 +290,12 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist_Email' ) ) {
 					$action_message['done'] = $message_list['notice'] . '&nbsp;' . $message_list['empty_ip_list'];
 				} else {
 					$eml = is_array( $email ) ? implode( "','", $email ) : $email;
-					$wpdb->query( "DELETE FROM `{$prefix}blacklist_email` WHERE `email` IN ('{$eml}');" );
+					$wpdb->query( "DELETE FROM `{$prefix}denylist_email` WHERE `email` IN ('{$eml}');" );
 					if ( $wpdb->last_error ) {
-						$action_message['error'] = $eml . '&nbsp;-&nbsp;' . $message_list['blacklisted_delete_error'];
+						$action_message['error'] = $eml . '&nbsp;-&nbsp;' . $message_list['denylisted_delete_error'];
 					} else {
 						$done_ips = (array)$email;
-						$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? $message_list['blacklisted_delete_done'] : $message_list['blacklisted_delete_done_many'] );
+						$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? $message_list['denylisted_delete_done'] : $message_list['denylisted_delete_done_many'] );
 					}
 				}
 			}

@@ -32,7 +32,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 			/* adding action to 'ip' collumn */
 			$actions = array(
 				'reset_block'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&lmtttmpts_reset_block=%s', $_REQUEST['page'], $item['ip'] ), 'lmtttmpts_reset_block_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Reset Block', 'limit-attempts' ) . '</a>',
-				'add_to_whitelist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&lmtttmpts_add_to_whitelist=%s', $_REQUEST['page'], $item['ip'] ) , 'lmtttmpts_add_to_whitelist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Add to Whitelist', 'limit-attempts' ) . '</a>'
+				'add_to_allowlist'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&lmtttmpts_add_to_allowlist=%s', $_REQUEST['page'], $item['ip'] ) , 'lmtttmpts_add_to_allowlist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Add to Allow list', 'limit-attempts' ) . '</a>'
 			);
 			return sprintf( '%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 		}
@@ -41,7 +41,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 			/* adding bulk action */
 			$actions = array(
 				'reset_blocks'		=> __( 'Reset Block', 'limit-attempts' ),
-				'add_to_whitelist'	=> __( 'Add to Whitelist', 'limit-attempts' )
+				'add_to_allowlist'	=> __( 'Add to Allow List', 'limit-attempts' )
 			);
 			return $actions;
 		}
@@ -289,16 +289,16 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 				'empty_ip_list'					=> __( 'No address has been selected', 'limit-attempts' ),
 				'block_reset_done'				=> __( 'Block has been reset for', 'limit-attempts' ),
 				'block_reset_error'				=> __( 'Error while reseting block for', 'limit-attempts' ),
-				'single_add_to_whitelist_done'	=> __( 'IP address was added to whitelist', 'limit-attempts' ),
-				'add_to_whitelist_done'			=> __( 'IP addresses were added to whitelist', 'limit-attempts' ),
+				'single_add_to_allowlist_done'	=> __( 'IP address was added to allow list', 'limit-attempts' ),
+				'add_to_allowlist_done'			=> __( 'IP addresses were added to allow list', 'limit-attempts' ),
 			);
 			/* Realization action in table with blocked addresses */
 			if (
-                isset( $_GET['lmtttmpts_add_to_whitelist'] ) &&
-                check_admin_referer( 'lmtttmpts_add_to_whitelist_' . $_GET['lmtttmpts_add_to_whitelist'], 'lmtttmpts_nonce_name' )
+                isset( $_GET['lmtttmpts_add_to_allowlist'] ) &&
+                check_admin_referer( 'lmtttmpts_add_to_allowlist_' . $_GET['lmtttmpts_add_to_allowlist'], 'lmtttmpts_nonce_name' )
             ) {
-				if ( filter_var( $_GET['lmtttmpts_add_to_whitelist'], FILTER_VALIDATE_IP ) ) {
-					$ip = $_GET['lmtttmpts_add_to_whitelist'];
+				if ( filter_var( $_GET['lmtttmpts_add_to_allowlist'], FILTER_VALIDATE_IP ) ) {
+					$ip = $_GET['lmtttmpts_add_to_allowlist'];
 					$ip_int = sprintf( '%u', ip2long( $ip ) );
 
 					/* single IP de-block */
@@ -311,17 +311,17 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 						),
 						array( 'ip_int' => sprintf( '%u', $ip_int ) )
 					);
-					/* single IP add to whitelist */
+					/* single IP add to allow list */
 					if ( false !== $result_reset_block ) {
 						$wpdb->insert(
-							$wpdb->prefix . 'lmtttmpts_whitelist',
+							$wpdb->prefix . 'lmtttmpts_allowlist',
 							array(
 								'ip' => $ip,
 								'add_time' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) )
 							)
 						);
 
-						$action_message['done'] = $message_list['single_add_to_whitelist_done'] . ':&nbsp;' . esc_html( $ip );
+						$action_message['done'] = $message_list['single_add_to_allowlist_done'] . ':&nbsp;' . esc_html( $ip );
 
 						if ( $lmtttmpts_options['block_by_htaccess'] ) {
 							do_action( 'lmtttmpts_htaccess_hook_for_add_to_whitelist', $ip );
@@ -392,7 +392,47 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 					/* if empty IP list */
 					$action_message['done'] = $message_list['notice'] . '&nbsp;' . $message_list['empty_ip_list'];
 				}
-			}
+			} elseif ( ( ( isset( $_POST['action'] ) && $_POST['action'] == 'add_to_allowlist' ) || ( isset( $_POST['action2'] ) && $_POST['action2'] == 'add_to_allowlist' ) ) && check_admin_referer( 'bulk-' . $this->_args['plural'] ) ) {
+                $done_add_to_whitelist = array();
+                /* Realization bulk action in table with blocked addresses */
+                if ( isset( $_POST['ip'] ) ) {
+                    /* array for loop */
+                    $ips = $_POST['ip'];
+                    foreach ( $ips as $ip ) {
+                        $ip_int = sprintf( '%u', ip2long( $ip ) );
+                        $result_reset_block = $wpdb->update(
+                            $wpdb->prefix . 'lmtttmpts_failed_attempts',
+                            array( 'block' => false, 'block_till' => null, 'block_by' => null ),
+                            array( 'ip_int' => $ip_int, 'block_by' => 'ip' ),
+                            array( '%s' ),
+                            array( '%s' )
+                        );
+                        /* if success */
+                        if ( false !== $result_reset_block ) {
+                            $wpdb->insert(
+                                $wpdb->prefix . 'lmtttmpts_allowlist',
+                                array(
+                                    'ip' => $ip,
+                                    'add_time' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) )
+                                )
+                            );
+
+                            $action_message['done'] = $message_list['single_add_to_allowlist_done'] . ':&nbsp;' . esc_html( $ip );
+
+                            if ( $lmtttmpts_options['block_by_htaccess'] ) {
+                                do_action( 'lmtttmpts_htaccess_hook_for_add_to_whitelist', $ip );
+                            }
+                        }
+                    }
+                    if ( isset( $lmtttmpts_options['block_by_htaccess'] ) && ! empty( $done_add_to_whitelist ) ) {
+                        do_action( 'lmtttmpts_htaccess_hook_for_add_to_whitelist', $done_add_to_whitelist );
+                    }
+                    $action_message['done'] = $message_list['add_to_allowlist_done'] . '&nbsp;' . $done;
+                } else {
+                    /* if empty IP list */
+                    $action_message['done'] = $message_list['notice'] . '&nbsp;' . $message_list['empty_ip_list'];
+                }
+            }
 
 			if ( isset( $_REQUEST['s'] ) ) {
 				$search_request = esc_html( trim( $_REQUEST['s'] ) );

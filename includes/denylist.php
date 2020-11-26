@@ -1,14 +1,14 @@
 <?php
 /**
- * Display list of IP, which are in blacklist
+ * Display list of IP, which are in denylist
  * @package Limit Attempts
  * @since 1.1.3
  */
 if ( ! class_exists( 'WP_List_Table' ) )
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 
-if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
-	class Lmtttmpts_Blacklist extends WP_List_Table {
+if ( ! class_exists( 'Lmtttmpts_Denylist' ) ) {
+	class Lmtttmpts_Denylist extends WP_List_Table {
 		function get_columns() {
 			/* adding collumns to table and their view */
 			$columns = array(
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
 		function column_ip( $item ) {
 			/* adding action to 'ip' collumn */
 			$actions = array(
-				'delete'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&lmtttmpts_remove_from_blacklist=%s', $_REQUEST['page'], $item['ip'] ), 'lmtttmpts_remove_from_blacklist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Delete', 'limit-attempts' ) . '</a>'
+				'delete'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&lmtttmpts_remove_from_denylist=%s', $_REQUEST['page'], $item['ip'] ), 'lmtttmpts_remove_from_denylist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Delete', 'limit-attempts' ) . '</a>'
 			);
 			return sprintf( '%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 		}
@@ -39,7 +39,7 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
 		function get_bulk_actions() {
 			/* adding bulk action */
 			$actions = array(
-				'remove_from_blacklist_ips'	=> __( 'Delete', 'limit-attempts' )
+				'remove_from_denylist_ips'	=> __( 'Delete', 'limit-attempts' )
 			);
 			return $actions;
 		}
@@ -54,8 +54,8 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
 			global $wpdb;
 			$prefix = $wpdb->prefix . 'lmtttmpts_';
 			$part_ip = isset( $_REQUEST['s'] ) ? trim( htmlspecialchars( $_REQUEST['s'] ) ) : '';
-			/* query for total number of blacklisted IPs */
-			$count_query = "SELECT COUNT(*) FROM `" . $prefix . "blacklist`";
+			/* query for total number of denylisted IPs */
+			$count_query = "SELECT COUNT(*) FROM `" . $prefix . "denylist`";
 			/* if search */
 			if ( isset( $_REQUEST['s'] ) ) {
 			    $count_query .= " WHERE `ip` LIKE '%" . $part_ip . "%'";
@@ -82,7 +82,7 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
 			$offset  = ( $paged - 1 ) * $perpage;
 
 			/* general query */
-			$query = "SELECT `ip`, `add_time` FROM `" . $prefix . "blacklist`";
+			$query = "SELECT `ip`, `add_time` FROM `" . $prefix . "denylist`";
 			if ( isset( $_REQUEST['s'] ) ) {
 			    $query .= " WHERE `ip` LIKE '%" . $part_ip . "%'";
 			}
@@ -251,13 +251,13 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
 			$error_ips = $done_ips = array();
 			$prefix = "{$wpdb->prefix}lmtttmpts_";
 
-			if ( isset( $_REQUEST['lmtttmpts_remove_from_blacklist'] ) ) {
-				check_admin_referer( 'lmtttmpts_remove_from_blacklist_' . $_REQUEST['lmtttmpts_remove_from_blacklist'], 'lmtttmpts_nonce_name' );
-				$ip_list = $_REQUEST['lmtttmpts_remove_from_blacklist'];
+			if ( isset( $_REQUEST['lmtttmpts_remove_from_denylist'] ) ) {
+				check_admin_referer( 'lmtttmpts_remove_from_denylist_' . $_REQUEST['lmtttmpts_remove_from_denylist'], 'lmtttmpts_nonce_name' );
+				$ip_list = $_REQUEST['lmtttmpts_remove_from_denylist'];
 			} else {
 				if(
-					( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_blacklist_ips' ) ||
-					( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_blacklist_ips' )
+					( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_denylist_ips' ) ||
+					( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_denylist_ips' )
 				) {
 					check_admin_referer( 'bulk-' . $this->_args['plural'] );
 					$ip_list = isset( $_POST['ip'] ) ? $_POST['ip'] : '';
@@ -268,12 +268,12 @@ if ( ! class_exists( 'Lmtttmpts_Blacklist' ) ) {
 					$action_message['done'] = __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'No address has been selected', 'limit-attempts' );
 				} else {
 					$ips = is_array( $ip_list ) ? implode( "','", $ip_list ) : $ip_list;
-					$wpdb->query( "DELETE FROM `{$prefix}blacklist` WHERE `ip` IN ('{$ips}');" );
+					$wpdb->query( "DELETE FROM `{$prefix}denylist` WHERE `ip` IN ('{$ips}');" );
 					if ( $wpdb->last_error ) {
-						$action_message['error'] = $ips . '&nbsp;-&nbsp;' . __( 'Error while deleting from blacklist', 'limit-attempts' );
+						$action_message['error'] = $ips . '&nbsp;-&nbsp;' . __( 'Error while deleting from deny list', 'limit-attempts' );
 					} else {
 						$done_ips = (array)$ip_list;
-						$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? __( 'has been deleted from blacklist', 'limit-attempts' ) : __( 'have been deleted from blacklist', 'limit-attempts' ) );
+						$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? __( 'has been deleted from deny list', 'limit-attempts' ) : __( 'have been deleted from deny list', 'limit-attempts' ) );
 						if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
 							do_action( 'lmtttmpts_htaccess_hook_for_reset_block', $done_ips );
 						}

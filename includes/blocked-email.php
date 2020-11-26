@@ -347,7 +347,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
 						// get ip and id of requested email
 						$email_info = $wpdb->get_row( $wpdb->prepare( " 
 			    			SELECT 
-			    			    ip 
+			    			    ip,
 			    			    id_failed_attempts_statistics 
                             FROM 
 			    			    {$prefix}email_list 

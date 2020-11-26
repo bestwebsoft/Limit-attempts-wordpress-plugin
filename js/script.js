@@ -12,7 +12,7 @@
 
 		/* hide zero values */
 		$( '.lmtttmpts-zero-value' ).addClass( 'lmtttmpts_hidden' );
-		/* hide "block/add to blacklist" time options at the page load */
+		/* hide "block/add to denylist" time options at the page load */
 		$( '.lmtttmpts-hidden-input, .lmtttmpts-display' ).toggleClass( 'lmtttmpts_hidden' );
 
 		/* display inputs if 'Edit' was clicked*/
@@ -147,11 +147,11 @@
 			return false;
 		});
 
-		$( 'input[name="lmtttmpts_add_to_whitelist_my_ip"]' ).click( function() {
+		$( 'input[name="lmtttmpts_add_to_allowlist_my_ip"]' ).click( function() {
 			if ( $( this ).is( ':checked' ) )
-				$( 'input[name="lmtttmpts_add_to_whitelist"]' ).val( $( 'input[name="lmtttmpts_add_to_whitelist_my_ip_value"]' ).val() ).attr( 'readonly', 'readonly' );
+				$( 'input[name="lmtttmpts_add_to_allowlist"]' ).val( $( 'input[name="lmtttmpts_add_to_allowlist_my_ip_value"]' ).val() ).attr( 'readonly', 'readonly' );
 			else
-				$( 'input[name="lmtttmpts_add_to_whitelist"]' ).val( '' ).removeAttr( 'readonly' );
+				$( 'input[name="lmtttmpts_add_to_allowlist"]' ).val( '' ).removeAttr( 'readonly' );
 		});
 	});
 } )(jQuery);

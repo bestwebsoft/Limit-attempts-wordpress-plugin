@@ -14,13 +14,13 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 			update_option( 'lmtttmpts_options', $result['options'] ); ?>
 			<div class="updated fade inline"><p><strong><?php echo $result['message']; ?></strong></p></div>
 		<?php } elseif ( ! bws_hide_premium_options_check( $lmtttmpts_options ) ) { ?>
-			<form method="post" action=""<?php if ( 'whitelist' == $what || 'blacklist' == $what ) echo ' style="max-width: 610px;"'; ?>>
+			<form method="post" action=""<?php if ( 'allowlist' == $what || 'denylist' == $what ) echo ' style="max-width: 610px;"'; ?>>
 				<div class="bws_pro_version_bloc">
 					<div class="bws_pro_version_table_bloc">
 						<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'limit-attempts' ); ?>"></button>
 						<div class="bws_table_bg"></div>
 						<div style="padding: 5px;">
-							<?php if ( 'whitelist' == $what || 'blacklist' == $what ) { ?>
+							<?php if ( 'allowlist' == $what || 'denylist' == $what ) { ?>
 								<div class="lmtttmpts_edit_list_form">
 									<ul style="float: none; margin: 0; padding: 5px 0 0 5px;" class="subsubsub">
 										<li><a href="#" class="current"><?php _e( 'Add', 'limit-attempts' ); ?></a>&nbsp;|</li>
@@ -58,7 +58,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 										</tr>
 									</table>
 								</div>
-                            <?php } elseif ( 'whitelist_email' == $what ) { ?>
+                            <?php } elseif ( 'allowlist_email' == $what ) { ?>
                                 <div class="lmtttmpts_edit_list_form">
                                     <table>
                                         <tr>
@@ -210,7 +210,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 									<div class="tablenav-pages one-page"><span class="displaying-num">1 item</span></div>
 									<br class="clear">
 								</div>
-							<?php } elseif ( 'blacklist_email' == $what ) { ?>
+							<?php } elseif ( 'denylist_email' == $what ) { ?>
                                 <div class="lmtttmpts_edit_list_form">
                                     <table>
                                         <tr>

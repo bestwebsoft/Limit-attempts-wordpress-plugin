@@ -1,14 +1,14 @@
 <?php
 /**
- * Display list of IP, which are in whitelist
+ * Display list of IP, which are in allowlist
  * @package Limit Attempts
  * @since 1.1.3
  */
 if ( ! class_exists( 'WP_List_Table' ) )
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 
-if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
-	class Lmtttmpts_Whitelist extends WP_List_Table {
+if ( ! class_exists( 'Lmtttmpts_Allowlist' ) ) {
+	class Lmtttmpts_Allowlist extends WP_List_Table {
 		function get_columns() {
 			/* adding collumns to table and their view */
 			$columns = array(
@@ -31,7 +31,7 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 		function column_ip( $item ) {
 			/* adding action to 'ip' collumn */
 			$actions = array(
-				'delete'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&list=whitelist&lmtttmpts_remove_from_whitelist=%s' ,$_REQUEST['page'], $item['ip'] ) , 'lmtttmpts_remove_from_whitelist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Delete', 'limit-attempts' ) . '</a>'
+				'delete'	=> '<a href="' . wp_nonce_url( sprintf( '?page=%s&list=allowlist&lmtttmpts_remove_from_allowlist=%s' ,$_REQUEST['page'], $item['ip'] ) , 'lmtttmpts_remove_from_allowlist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Delete', 'limit-attempts' ) . '</a>'
 			);
 			return sprintf( '%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 		}
@@ -39,7 +39,7 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 		function get_bulk_actions() {
 			/* adding bulk action */
 			$actions = array(
-				'remove_from_whitelist_ips'	=> __( 'Delete', 'limit-attempts' ),
+				'remove_from_allowlist_ips'	=> __( 'Delete', 'limit-attempts' ),
 			);
 			return $actions;
 		}
@@ -56,8 +56,8 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 			global $wpdb;
 			$prefix = $wpdb->prefix . 'lmtttmpts_';
 			$part_ip = isset( $_REQUEST['s'] ) ? trim( htmlspecialchars( $_REQUEST['s'] ) ) : '';
-			/* query for total number of blacklisted IPs */
-			$count_query = "SELECT COUNT(*) FROM `" . $prefix . "whitelist`";
+			/* query for total number of denylisted IPs */
+			$count_query = "SELECT COUNT(*) FROM `" . $prefix . "allowlist`";
 			/* if search */
 			if ( isset( $_REQUEST['s'] ) ) {
 			    $count_query .= " WHERE `ip` LIKE '%" . $part_ip . "%'";
@@ -84,7 +84,7 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 			$offset = ( $paged - 1 ) * $perpage;
 
 			/* general query */
-			$query = "SELECT `ip`, `add_time` FROM `" . $prefix . "whitelist`";
+			$query = "SELECT `ip`, `add_time` FROM `" . $prefix . "allowlist`";
 			if ( isset( $_REQUEST['s'] ) ) {
 			    $query .= " WHERE `ip` LIKE '%" . $part_ip . "%'";
 			}
@@ -252,13 +252,13 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 			$error = $done = '';
 			$prefix = "{$wpdb->prefix}lmtttmpts_";
 
-			if ( isset( $_REQUEST['lmtttmpts_remove_from_whitelist'] ) ) {
-				check_admin_referer( 'lmtttmpts_remove_from_whitelist_' . $_REQUEST['lmtttmpts_remove_from_whitelist'], 'lmtttmpts_nonce_name' );
-				$ip_list = $_REQUEST['lmtttmpts_remove_from_whitelist'];
+			if ( isset( $_REQUEST['lmtttmpts_remove_from_allowlist'] ) ) {
+				check_admin_referer( 'lmtttmpts_remove_from_allowlist_' . $_REQUEST['lmtttmpts_remove_from_allowlist'], 'lmtttmpts_nonce_name' );
+				$ip_list = $_REQUEST['lmtttmpts_remove_from_allowlist'];
 			} else {
 				if(
-					( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_whitelist_ips' ) ||
-					( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_whitelist_ips' )
+					( isset( $_POST['action'] )  && $_POST['action']  == 'remove_from_allowlist_ips' ) ||
+					( isset( $_POST['action2'] ) && $_POST['action2'] == 'remove_from_allowlist_ips' )
 				) {
 					check_admin_referer( 'bulk-' . $this->_args['plural'] );
 					$ip_list = isset( $_POST['ip'] ) ? $_POST['ip'] : '';
@@ -269,12 +269,12 @@ if ( ! class_exists( 'Lmtttmpts_Whitelist' ) ) {
 					$action_message['done'] = __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'No address has been selected', 'limit-attempts' );
 				} else {
 					$ips = is_array( $ip_list ) ? implode( "','", $ip_list ) : $ip_list;
-					$wpdb->query( "DELETE FROM `{$prefix}whitelist` WHERE `ip` IN ('{$ips}');" );
+					$wpdb->query( "DELETE FROM `{$prefix}allowlist` WHERE `ip` IN ('{$ips}');" );
 					if ( $wpdb->last_error ) {
-						$action_message['error'] = $ips . '&nbsp;-&nbsp;' . __( 'Error while deleting from whitelist', 'limit-attempts' );
+						$action_message['error'] = $ips . '&nbsp;-&nbsp;' . __( 'Error while deleting from allowlist', 'limit-attempts' );
 					} else {
 						$done_ips = (array)$ip_list;
-						$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? __( 'has been deleted from whitelist', 'limit-attempts' ) : __( 'have been deleted from whitelist', 'limit-attempts' ) );
+						$action_message['done'] = implode( ', ', $done_ips ) . '&nbsp;' . ( 1 == count( $done_ips ) ? __( 'has been deleted from allow list', 'limit-attempts' ) : __( 'have been deleted from allow list', 'limit-attempts' ) );
 
 						if ( 1 == $lmtttmpts_options["block_by_htaccess"] ) {
 							do_action( 'lmtttmpts_htaccess_hook_for_delete_from_whitelist', $done_ips );

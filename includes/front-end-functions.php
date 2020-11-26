@@ -30,13 +30,13 @@ if ( ! function_exists( 'lmtttmpts_authenticate' ) ) {
 				return $user;
 
 			$error_codes = $user->get_error_codes();
-			$is_blocked  = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' ) );
+			$is_blocked  = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_denylisted', 'lmtttmpts_blocked' ) );
 
 			if ( ! $is_blocked )
 				$user = lmtttmpts_handle_error( $user );
 
 			$error_codes = is_wp_error( $user ) ? $user->get_error_codes() : false;
-			$lmtttmpts_hide_form = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' ) ) && 1 == $lmtttmpts_options['hide_login_form'];
+			$lmtttmpts_hide_form = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_denylisted', 'lmtttmpts_blocked' ) ) && 1 == $lmtttmpts_options['hide_login_form'];
 		}
 
 		return $user;
@@ -63,7 +63,7 @@ if ( ! function_exists( 'lmtttmpts_form_check' ) ) {
 
 		if ( is_wp_error( $user ) ) {
 			$error_codes  = $user->get_error_codes();
-			$ignore_codes = array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' );
+			$ignore_codes = array( 'lmtttmpts_denylisted', 'lmtttmpts_blocked' );
 			$check_ip     = ! is_array( $error_codes ) || ! array_intersect( $error_codes, $ignore_codes ) ? true : false;
 		} else {
 			$check_ip = false;
@@ -74,7 +74,7 @@ if ( ! function_exists( 'lmtttmpts_form_check' ) ) {
 
 		if ( is_wp_error( $user ) ) {
 			$error_codes = $user->get_error_codes();
-			$hide_form   = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_blacklisted', 'lmtttmpts_blocked' ) ) ? true : false;
+			$hide_form   = is_array( $error_codes ) && array_intersect( $error_codes, array( 'lmtttmpts_denylisted', 'lmtttmpts_blocked' ) ) ? true : false;
 			if ( in_array( 'lmtttmpts_error', (array)$error_codes ) && $hide_form )
 				$user->remove( 'lmtttmpts_error' );
 			$lmtttmpts_hide_form = $hide_form ? true : false;
@@ -84,7 +84,7 @@ if ( ! function_exists( 'lmtttmpts_form_check' ) ) {
 }
 
 /**
- * Check whether user`s IP in blacklist or it is blocked
+ * Check whether user`s IP in denylist or it is blocked
  * @param      mixed       an instance of class WP_Error/WP_User or null
  * @return     mixed       an instance of class WP_Error/WP_User or null
  */
@@ -100,13 +100,13 @@ if ( ! function_exists( 'lmtttmpts_check_ip' ) ) {
 		/* get user`s IP */
 		$ip = lmtttmpts_get_ip();
 
-		/* check if ip in blacklist */
-		if ( lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) ) {
+		/* check if ip in denylist */
+		if ( lmtttmpts_is_ip_in_table( $ip, 'denylist' ) ) {
 			/* create new WP_ERROR object to skip brute force */
 			$user  = new WP_Error();
-			$error = str_replace( '%MAIL%', $lmtttmpts_options['email_address'], $lmtttmpts_options['blacklisted_message'] );
+			$error = str_replace( '%MAIL%', $lmtttmpts_options['email_address'], $lmtttmpts_options['denylisted_message'] );
 			$error = wp_specialchars_decode( $error, ENT_COMPAT );
-			$user->add( 'lmtttmpts_blacklisted', $error );
+			$user->add( 'lmtttmpts_denylisted', $error );
 			return $user;
 		}
 
@@ -171,15 +171,15 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 				`{$prefix}failed_attempts`.`block_by`,
 				`{$prefix}all_failed_attempts`.`failed_attempts` AS `stat_attempts_number`,
 				`{$prefix}all_failed_attempts`.`block_quantity` AS `stat_block_quantity`,
-				`{$prefix}blacklist`.`id` AS `in_blacklist`,
-				`{$prefix}whitelist`.`id` AS `in_whitelist`
+				`{$prefix}denylist`.`id` AS `in_denylist`,
+				`{$prefix}allowlist`.`id` AS `in_allowlist`
 			FROM `{$prefix}failed_attempts`
 			LEFT JOIN `{$prefix}all_failed_attempts`
 				ON `{$prefix}all_failed_attempts`.`ip_int`=`{$prefix}failed_attempts`.`ip_int`
-			LEFT JOIN `{$prefix}blacklist`
-				ON `{$prefix}blacklist`.`ip`='{$ip}'
-			LEFT JOIN `{$prefix}whitelist`
-				ON `{$prefix}whitelist`.`ip`='{$ip}'
+			LEFT JOIN `{$prefix}denylist`
+				ON `{$prefix}denylist`.`ip`='{$ip}'
+			LEFT JOIN `{$prefix}allowlist`
+				ON `{$prefix}allowlist`.`ip`='{$ip}'
 			WHERE 
 				`{$prefix}failed_attempts`.`ip_int`={$ip_int} AND
 				`{$prefix}failed_attempts`.`block_by` = 'ip' OR 
@@ -187,15 +187,15 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 			LIMIT 1;"
 		);
 
-		$block_by = isset( $ip_info->block_by ) ? $ip_info->block_by : null;
+		$block_by = isset( $ip_info[0]->block_by ) ? $ip_info[0]->block_by : null;
 
-		/* if IP is in blacklist */
+		/* if IP is in denylist */
 		if ( isset( $ip_info[0]->in_blacklist ) && ! is_null( $ip_info[0]->in_blacklist ) ) {
-			$error = str_replace( '%MAIL%', $lmtttmpts_options['email_address'], $lmtttmpts_options['blacklisted_message'] );
+			$error = str_replace( '%MAIL%', $lmtttmpts_options['email_address'], $lmtttmpts_options['denylisted_message'] );
 			$error = wp_specialchars_decode( $error, ENT_COMPAT );
 			/* create new WP_ERROR object to skip brute force */
 			$user = new WP_Error();
-			$user->add( 'lmtttmpts_blacklisted', $error );
+			$user->add( 'lmtttmpts_denylisted', $error );
 			return $user;
 		}
 
@@ -223,7 +223,7 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 			/* event: failed_attempt */
 
 			/*
-			* skip errors handling for whitelisted ip or
+			* skip errors handling for allowlisted ip or
 			* for BWS CAPTCHA`s errors if corresponding option is disabled
 			*/
 		} else {
@@ -303,10 +303,10 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 						$user = new WP_Error();
 
 				} else {
-					/* event: auto_blacklisted */
+					/* event: auto_denylisted */
 					/* getting an error message */
-					$error_code = 'lmtttmpts_blacklisted';
-					$error      = str_replace( '%MAIL%', $lmtttmpts_options['email_address'], $lmtttmpts_options['blacklisted_message'] );
+					$error_code = 'lmtttmpts_denylisted';
+					$error      = str_replace( '%MAIL%', $lmtttmpts_options['email_address'], $lmtttmpts_options['denylisted_message'] );
 					$error      = wp_specialchars_decode( $error, ENT_COMPAT );
 
 					$block			= 0;
@@ -321,10 +321,10 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 						do_action( 'lmtttmpts_htaccess_hook_for_block', $ip );
 					}
 					/*
-					 * update blacklist
+					 * update denylist
 					 */
 					$wpdb->insert(
-						"{$prefix}blacklist",
+						"{$prefix}denylist",
 						array(
 							'ip' 			=> $ip,
 							'add_time' 		=> date( 'Y-m-d H:i:s', $timestamp )
@@ -334,8 +334,8 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 					if ( $lmtttmpts_options['notify_email'] ) {
 						lmtttmpts_send_email(
 							$lmtttmpts_options['email_address'],
-							$lmtttmpts_options['email_subject_blacklisted'],
-							$lmtttmpts_options['email_blacklisted'],
+							$lmtttmpts_options['email_subject_denylisted'],
+							$lmtttmpts_options['email_denylisted'],
 							$ip
 						);
 					}
@@ -409,7 +409,7 @@ if ( ! function_exists( "lmtttmpts_handle_error" ) ) {
 		}
 
 		if ( ! empty( $error_code ) && ! empty( $error ) ) {
-			if ( ! $wp_error || 'lmtttmpts_blacklisted' == $error_code )
+			if ( ! $wp_error || 'lmtttmpts_denylisted' == $error_code )
 				$user = new WP_Error;
 			$user->add( $error_code, $error );
 		}
@@ -456,19 +456,19 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 				{$prefix}all_failed_attempts.id AS id_failed_attempts_statistics,
 				{$prefix}all_failed_attempts.failed_attempts AS stat_attempts_number,
 				{$prefix}all_failed_attempts.block_quantity AS stat_block_quantity,
-				{$prefix}blacklist.id AS in_blacklist,
-				{$prefix}whitelist.id AS in_whitelist
+				{$prefix}denylist.id AS in_denylist,
+				{$prefix}allowlist.id AS in_allowlist
 			FROM 
 				{$prefix}failed_attempts
 			LEFT JOIN 
 				{$prefix}all_failed_attempts ON 
 				{$prefix}all_failed_attempts.ip_int = {$prefix}failed_attempts.ip_int
 			LEFT JOIN 
-				{$prefix}blacklist ON 
-				{$prefix}blacklist.ip = '$ip'
+				{$prefix}denylist ON 
+				{$prefix}denylist.ip = '$ip'
 			LEFT JOIN 
-				{$prefix}whitelist ON 
-				{$prefix}whitelist.ip = '$ip'
+				{$prefix}allowlist ON 
+				{$prefix}allowlist.ip = '$ip'
 			WHERE 
 				{$prefix}failed_attempts.email = %s OR
 				{$prefix}failed_attempts.ip = %d
@@ -485,9 +485,9 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 		$block_quantity_number 	= ( isset( $email_info['block_quantity'] ) && ! is_null( $email_info['block_quantity'] ) ) ? $email_info['block_quantity'] : 0;
 		$block_till 			= ( isset( $email_info['block_till'] ) && ! empty( $email_info['block_till'] ) ) ? $email_info['block_till'] : date( 'Y-m-d H:i:s', $block_till_time );
 		$block_by 				= isset( $email_info['block_by'] ) ? $email_info['block_by'] : '';
-		$ip_in_blacklist 		= isset( $email_info['in_blacklist'] ) && ! is_null( $email_info['in_blacklist'] );
-		$email_in_blacklist 	= lmtttmpts_is_email_in_table( $email, 'blacklist_email' );
-		$ip_in_whitelist 		= isset( $email_info['in_whitelist'] ) && ! is_null( $email_info['in_whitelist'] );
+		$ip_in_blacklist 		= isset( $email_info['in_denylist'] ) && ! is_null( $email_info['in_denylist'] );
+		$email_in_blacklist 	= lmtttmpts_is_email_in_table( $email, 'denylist_email' );
+		$ip_in_whitelist 		= isset( $email_info['in_allowlist'] ) && ! is_null( $email_info['in_allowlist'] );
 		$stat_attempts_number 	= ! isset( $email_info['stat_attempts_number'] ) || is_null( $email_info['stat_attempts_number'] );
 		$stat_block_quantity	= ( isset( $email_info['stat_block_quantity'] ) && ! is_null( $email_info['stat_block_quantity'] ) ) ? $email_info['stat_block_quantity'] : 0;
 		$is_ip_in_table 		= lmtttmpts_is_ip_in_table( $ip, 'failed_attempts' );
@@ -522,12 +522,12 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 
 		$block_quantity_number = ( $block_by === $priority ) ? $block_quantity_number : 0;
 
-		// if IP or Email in blacklist
+		// if IP or Email in denylist
 		if ( $ip_in_blacklist || $email_in_blacklist ) {
 			$error = str_replace(
 				'%MAIL%',
 				$lmtttmpts_options['email_address'],
-				$lmtttmpts_options['blacklisted_message']
+				$lmtttmpts_options['denylisted_message']
 			);
 			$error = wp_specialchars_decode( $error, ENT_COMPAT );
 
@@ -643,8 +643,8 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 					$error = wp_specialchars_decode( $error, ENT_COMPAT );
 
 				} else {
-					// Number of blockings more than allowed number, adding to blacklist automatically
-					// event: auto_blacklisted
+					// Number of blockings more than allowed number, adding to denylist automatically
+					// event: auto_denylisted
 
 					$block = 0;
 					$block_quantity_number = 0;
@@ -656,8 +656,8 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 						do_action( 'lmtttmpts_htaccess_hook_for_block', $ip );
 					}
 
-					// insert blacklist of ip or email
-					$table = ( 'ip' == $priority ) ? "{$prefix}blacklist" : "{$prefix}blacklist_email";
+					// insert denylist of ip or email
+					$table = ( 'ip' == $priority ) ? "{$prefix}denylist" : "{$prefix}denylist_email";
 					$val = ( 'ip' == $priority ) ? $ip : $email;
 					$wpdb->insert(
 						$table,
@@ -671,8 +671,8 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 					if ( $lmtttmpts_options['notify_email'] ) {
 						lmtttmpts_send_email(
 							$lmtttmpts_options['email_address'],
-							$lmtttmpts_options['email_subject_blacklisted'],
-							$lmtttmpts_options['email_blacklisted'],
+							$lmtttmpts_options['email_subject_denylisted'],
+							$lmtttmpts_options['email_denylisted'],
 							$ip
 						);
 					}
@@ -681,7 +681,7 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 					$error = str_replace(
 						'%MAIL%',
 						$lmtttmpts_options['email_address'],
-						$lmtttmpts_options['blacklisted_message']
+						$lmtttmpts_options['denylisted_message']
 					);
 					$error = wp_specialchars_decode( $error, ENT_COMPAT );
 				}
@@ -792,11 +792,11 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 
 /**
  * Send e-mails to admin
- * with notices about blocked or blacklisted IPs
+ * with notices about blocked or denylisted IPs
  * @param   string   $to        admin e-mail
  * @param   string   $subject   subject of message
  * @param   string   $message   text of message
- * @param   string   $ip        blocked/blacklisted IP
+ * @param   string   $ip        blocked/denylisted IP
  * @return  void
  */
 if ( ! function_exists( 'lmtttmpts_send_email' ) ) {
@@ -818,7 +818,7 @@ if ( ! function_exists( 'lmtttmpts_send_email' ) ) {
 }
 
 /**
- * Hide login/lostpassword/register forms for blacklisted or blocked IPs
+ * Hide login/lostpassword/register forms for denylisted or blocked IPs
  * @param  void
  * @return void
  */
@@ -857,7 +857,7 @@ if ( ! function_exists( 'lmtttmpts_login_scripts' ) ) {
 }
 
 /**
- * Hide register forms for blacklisted or blocked IPs on multisite
+ * Hide register forms for denylisted or blocked IPs on multisite
  * @param  void
  * @return void
  */

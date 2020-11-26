@@ -49,10 +49,10 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 		}
 
 		function single_row( $item ) {
-			/* add class to non 'not_blocked' rows (black-, whitelist or blocked) */
+			/* add class to non 'not_blocked' rows (deny-, allowlist or blocked) */
 			$row_class = '';
 			if ( isset( $item['row_class'] ) ) {
-				/* if IP is black-, whitelisted or blocked */
+				/* if IP is deny-, allowlisted or blocked */
 				$row_class = ' class="' . $item['row_class'] . '"';
 			}
 
@@ -141,12 +141,12 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 
 					$statistic['email'] = ( $get_email_arr ) ? implode( '<br />', $get_email_arr ) : 'N/A';
 
-					if ( lmtttmpts_is_ip_in_table( $statistic['ip'], 'blacklist' ) ) {
-						$statistic['status'] = '<a href="?page=' . $_REQUEST['page'] . '&action=blacklist&s=' . $statistic['ip'] . '">' . __( 'blacklisted', 'limit-attempts' ) . '</a>';
-						$statistic['row_class'] = 'lmtttmpts_blacklist';
-					} elseif ( lmtttmpts_is_ip_in_table( $statistic['ip'], 'whitelist' ) ) {
-						$statistic['status'] = '<a href="?page=' . $_REQUEST['page'] . '&action=whitelist&s=' . $statistic['ip'] . '">' . __( 'whitelisted', 'limit-attempts' ) . '</a>';
-						$statistic['row_class'] = 'lmtttmpts_whitelist';
+					if ( lmtttmpts_is_ip_in_table( $statistic['ip'], 'denylist' ) ) {
+						$statistic['status'] = '<a href="?page=' . $_REQUEST['page'] . '&action=denylist&s=' . $statistic['ip'] . '">' . __( 'denylisted', 'limit-attempts' ) . '</a>';
+						$statistic['row_class'] = 'lmtttmpts_denylist';
+					} elseif ( lmtttmpts_is_ip_in_table( $statistic['ip'], 'allowlist' ) ) {
+						$statistic['status'] = '<a href="?page=' . $_REQUEST['page'] . '&action=allowlist&s=' . $statistic['ip'] . '">' . __( 'allowlisted', 'limit-attempts' ) . '</a>';
+						$statistic['row_class'] = 'lmtttmpts_allowlist';
 					} elseif ( lmtttmpts_is_blocked( $statistic['ip'], $get_email_arr ) ) {
 						$statistic['status'] = '<a href="?page=' . $_REQUEST['page'] . '&action=blocked&s=' . $statistic['ip'] . '">' . __( 'blocked', 'limit-attempts' ) . '</a>';
 						$statistic['row_class'] = 'lmtttmpts_blocked';

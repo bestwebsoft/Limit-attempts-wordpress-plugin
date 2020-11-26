@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.2.7
+Version: 1.2.8
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
@@ -66,10 +66,10 @@ if ( ! function_exists( 'lmtttmpts_add_admin_menu' ) ) {
 
 		add_submenu_page(
             'limit-attempts.php',
-            __( 'Limit Attempts Black- & Whitelisted', 'limit-attempts' ),
-            __( 'Black- & Whitelisted', 'limit-attempts' ),
+            __( 'Limit Attempts Deny & Allow List', 'limit-attempts' ),
+            __( 'Deny & Allow List', 'limit-attempts' ),
             'manage_options',
-            'limit-attempts-black-and-whitelist.php',
+            'limit-attempts-deny-and-allowlist.php',
             'lmtttmpts_settings_page'
         );
 
@@ -140,7 +140,7 @@ if ( ! function_exists( 'lmtttmpts_plugin_init' ) ) {
 		$lmtttmpts_page = array(
 			'limit-attempts.php',
 			'limit-attempts-blocked.php',
-			'limit-attempts-black-and-whitelist.php',
+			'limit-attempts-deny-and-allowlist.php',
 			'limit-attempts-log.php',
 			'limit-attempts-statistics.php'
 		);
@@ -221,12 +221,12 @@ if ( ! function_exists( 'lmtttmpts_get_default_messages' ) ) {
 			/* Error Messages */
 			'failed_message'						=> sprintf( __( 'Retries before lock: %s.', 'limit-attempts' ), '%ATTEMPTS%' ),
 			'blocked_message'						=> sprintf( __( 'Too many retries. You have been blocked for %s.', 'limit-attempts' ), '%DATE%' ),
-			'blacklisted_message'					=> __( "You've been added to blacklist. Please contact administrator to resolve this problem.", 'limit-attempts' ),
+			'denylisted_message'					=> __( "You've been added to deny list. Please contact administrator to resolve this problem.", 'limit-attempts' ),
 			/* Email Notifications */
 			'email_subject'							=> sprintf( __( '%s has been blocked on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
-			'email_subject_blacklisted'				=> sprintf( __( '%s has been added to the blacklist on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
+			'email_subject_denylisted'				=> sprintf( __( '%s has been added to the deny list on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
 			'email_blocked'							=> sprintf( __( 'IP %s has been blocked automatically on %s due to the excess of login attempts on your website %s.', 'limit-attempts' ), '%IP%', '%WHEN%', '<a href="%SITE_URL%">%SITE_NAME%</a>' ) . '<br/><br/>' . sprintf( __( 'Using the plugin %s', 'limit-attempts' ), '<a href="%PLUGIN_LINK%">Limit Attempts by BestWebSoft</a>' ),
-			'email_blacklisted'						=> sprintf( __( 'IP %s has been added automatically to the blacklist on %s due to the excess of locks quantity on your website %s.', 'limit-attempts' ), '%IP%', '%WHEN%', '<a href="%SITE_URL%">%SITE_NAME%</a>' ) . '<br/><br/>' . sprintf( __( 'Using the plugin %s', 'limit-attempts' ), '<a href="%PLUGIN_LINK%">Limit Attempts by BestWebSoft</a>' )
+			'email_denylisted'						=> sprintf( __( 'IP %s has been added automatically to the deny list on %s due to the excess of locks quantity on your website %s.', 'limit-attempts' ), '%IP%', '%WHEN%', '<a href="%SITE_URL%">%SITE_NAME%</a>' ) . '<br/><br/>' . sprintf( __( 'Using the plugin %s', 'limit-attempts' ), '<a href="%PLUGIN_LINK%">Limit Attempts by BestWebSoft</a>' )
 		);
 		return $default_messages;
 	}
@@ -291,12 +291,12 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
             `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
             `ip` CHAR(31) NOT NULL,
             `ip_int` BIGINT,
-            `email` TEXT,
+            `email` VARCHAR( 255 ),
             `failed_attempts` INT(3) NOT NULL DEFAULT '0',
             `block` BOOL DEFAULT FALSE,
             `block_quantity` INT(3) NOT NULL DEFAULT '0',
             `block_till` DATETIME,
-            `block_by` TEXT,
+            `block_by` VARCHAR( 255 ),
             `last_failed_attempt` TIMESTAMP,
             PRIMARY KEY (`id`)
             ) DEFAULT CHARSET=utf8;";
@@ -306,7 +306,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
             `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
             `ip` CHAR(31) NOT NULL,
             `ip_int` BIGINT,
-            `email` TEXT,
+            `email` VARCHAR( 255 ),
             `failed_attempts` INT(4) NOT NULL DEFAULT '0',
             `block` BOOL DEFAULT FALSE,
             `block_quantity` INT(3) NOT NULL DEFAULT '0',
@@ -314,16 +314,16 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
             PRIMARY KEY (`id`)
             ) DEFAULT CHARSET=utf8;";
         dbDelta( $sql );
-		/* Query for create table with whitelisted addresses */
-        $sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "whitelist` (
+		/* Query for create table with allowlisted addresses */
+        $sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "allowlist` (
             `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
             `ip` CHAR(31) NOT NULL UNIQUE,
             `add_time` DATETIME,
             PRIMARY KEY (`id`)
             ) DEFAULT CHARSET=utf8;";
         dbDelta( $sql );
-		/* Query for create table with blacklisted addresse */
-        $sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "blacklist` (
+		/* Query for create table with denylisted addresse */
+        $sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "denylist` (
             `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
             `ip` CHAR(31) NOT NULL UNIQUE,
             `add_time` DATETIME,
@@ -331,10 +331,10 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
             ) DEFAULT CHARSET=utf8;";
         dbDelta( $sql );
 
-        // Query to create table with blacklisted email addresses
-		$sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "blacklist_email` (
+        // Query to create table with denylisted email addresses
+		$sql = "CREATE TABLE IF NOT EXISTS `" . $prefix . "denylist_email` (
             `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-            `email` TEXT,
+            `email` VARCHAR( 255 ),
             `add_time` DATETIME,
             PRIMARY KEY (`id`)
             ) DEFAULT CHARSET=utf8;";
@@ -346,7 +346,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
             `id_failed_attempts` INT,
             `id_failed_attempts_statistics` INT,
             `ip` CHAR(31) NOT NULL,
-            `email` TEXT,
+            `email` VARCHAR( 255 ),
             PRIMARY KEY (`id`)
             ) DEFAULT CHARSET=utf8;";
 		dbDelta( $sql );
@@ -358,8 +358,10 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
 */
 if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 	function register_lmtttmpts_settings() {
-		global $lmtttmpts_options, $lmtttmpts_plugin_info;
-		$db_version = "1.5";
+		global $lmtttmpts_options, $lmtttmpts_plugin_info, $wpdb;
+
+		$prefix = $wpdb->prefix . 'lmtttmpts_';
+		$db_version = "1.6";
 
 		/* Install the option defaults */
 		if ( ! get_option( 'lmtttmpts_options' ) ) {
@@ -371,60 +373,29 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 		}
 		/* Get options from the database */
 		$lmtttmpts_options = get_option( 'lmtttmpts_options' );
-		/* Update options when update plugin */
-		if ( ! isset( $lmtttmpts_options['plugin_option_version'] ) || $lmtttmpts_options['plugin_option_version'] != $lmtttmpts_plugin_info["Version"] ) {
-			/* delete default messages from wp_options - since v 1.0.6 */
-			$lmtttmpts_messages_defaults = lmtttmpts_get_default_messages();
-			foreach ( $lmtttmpts_messages_defaults as $key => $value ) {
-				if ( isset( $lmtttmpts_options[ $key . '_default' ] ) )
-					unset( $lmtttmpts_options[ $key . '_default' ] );
-			}
-			/* rename hooks from 'log' to 'statistics' - since v 1.0.6 */
-			if ( isset( $lmtttmpts_options[ 'days_to_clear_log' ] ) ) {
-				$lmtttmpts_options[ 'days_to_clear_statistics' ] = $lmtttmpts_options[ 'days_to_clear_log' ];
-				/* delete old 'log' cron hook */
-				if ( wp_next_scheduled( 'lmtttmpts_daily_log_clear' ) ) {
-					wp_clear_scheduled_hook( 'lmtttmpts_daily_log_clear' );
-					if ( 0 != $lmtttmpts_options[ 'days_to_clear_statistics' ] ) {
-						$time = time() - fmod( time(), 86400 ) + 86400;
-						wp_schedule_event( $time, 'daily', 'lmtttmpts_daily_statistics_clear' );
-					}
-				}
-				unset( $lmtttmpts_options[ 'days_to_clear_log' ] );
-			}
-
-			/* check if old version of htaccess is used */
-			if ( ! empty( $lmtttmpts_options['block_by_htaccess'] ) ) {
-				if ( ! function_exists( 'get_plugins' ) )
-					require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-				$all_plugins = get_plugins();
-				if (
-					is_plugin_active( 'htaccess/htaccess.php' ) ||
-					( array_key_exists( 'htaccess/htaccess.php', $all_plugins ) && ! array_key_exists( 'htaccess-pro/htaccess-pro.php', $all_plugins ) )
-				) {
-					global $htccss_plugin_info;
-					if ( ! $htccss_plugin_info )
-						$htccss_plugin_info = get_plugin_data( plugin_dir_path( dirname( __FILE__ ) ) . 'htaccess/htaccess.php' );
-					if ( $htccss_plugin_info["Version"] < '1.6.2' ) {
-						do_action( 'lmtttmpts_htaccess_hook_for_delete_all' );
-						$lmtttmpts_options['block_by_htaccess']	== 0;
-						$lmtttmpts_options['htaccess_notice']	= sprintf( __( "Limit Attempts interaction with Htaccess was turned off since you are using an outdated Htaccess plugin version. If you want to keep using this interaction, please update Htaccess plugin at least to v%s.", 'limit-attempts' ), '1.6.2' );
-					}
-				}
-			}
-			/* show pro features */
-			$lmtttmpts_options['hide_premium_options'] = array();
-			$lmtttmpts_options[ 'blocked_message' ] = preg_replace( '|have been blocked till|', 'have been blocked for', $lmtttmpts_options[ 'blocked_message' ] );
-			$options_default = lmtttmpts_get_options_default();
-			$lmtttmpts_options = array_merge( $options_default, $lmtttmpts_options );
-			$lmtttmpts_options['plugin_option_version'] = $lmtttmpts_plugin_info["Version"];
-			$update_option = true;
-		}
 
 		if ( ! isset( $lmtttmpts_options['plugin_db_version'] ) || $lmtttmpts_options['plugin_db_version'] != $db_version ) {
-			lmtttmpts_create_table();
-			global $wpdb;
-			$prefix = $wpdb->prefix . 'lmtttmpts_';
+
+            /**
+             * @deprecated since 1.2.8
+             * @todo remove after 02.04.2021
+             */
+            if ( isset( $lmtttmpts_options['plugin_option_version'] ) && version_compare( $lmtttmpts_options['plugin_option_version'] , '1.2.8', '<' ) ) {
+
+                /* Update tables when update plugin and tables changes */
+                $wpdb->query( "RENAME TABLE `" . $prefix . "blacklist` TO `" . $prefix . "denylist`" );
+                $wpdb->query( "RENAME TABLE `" . $prefix . "blacklist_email` TO `" . $prefix . "denylist_email`" );
+                $wpdb->query( "RENAME TABLE `" . $prefix . "whitelist` TO `" . $prefix . "allowlist`" );
+
+                /*Update options_default when update plugin*/
+                $lmtttmpts_options['denylisted_message'] = $lmtttmpts_options['blacklisted_message'];
+                $lmtttmpts_options['email_subject_denylisted'] = $lmtttmpts_options['email_subject_blacklisted'];
+                $lmtttmpts_options['email_denylisted'] = $lmtttmpts_options['email_blacklisted'];
+            }
+            /* end deprecated */
+
+            lmtttmpts_create_table();
+
 			/* crop table 'all_failed_attempts' */
 			$column_exists = $wpdb->query( "SHOW COLUMNS FROM `" . $prefix . "all_failed_attempts` LIKE 'invalid_captcha_from_login_form';" );
 			/* drop columns */
@@ -467,11 +438,11 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 			}
 
 			/* update database to version 1.3 */
-			$tables = array( 'blacklist', 'whitelist', 'failed_attempts', 'all_failed_attempts' );
+			$tables = array( 'denylist', 'allowlist', 'failed_attempts', 'all_failed_attempts' );
 			foreach ( $tables as $table_name ) {
 				$table = $prefix . $table_name;
 				if ( 0 == $wpdb->query( "SHOW COLUMNS FROM {$table} LIKE 'id';" ) ) {
-					if ( in_array( $table_name, array( 'whitelist', 'blacklist' ) ) ) {
+					if ( in_array( $table_name, array( 'allowlist', 'denylist' ) ) ) {
 						$wpdb->query(
 							"ALTER TABLE {$table} DROP PRIMARY KEY,
 							ADD `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST,
@@ -495,7 +466,7 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 					}
 				}
 				/* update database to version 1.4 */
-				if ( in_array( $table_name, array( 'blacklist', 'whitelist' ) ) ) {
+				if ( in_array( $table_name, array( 'denylist', 'allowlist' ) ) ) {
 					if ( 0 != $wpdb->query( "SHOW COLUMNS FROM {$table} LIKE 'ip\_%';" ) ) {
 						$wpdb->query( "ALTER TABLE {$table}
 							DROP `ip_from`,
@@ -509,6 +480,56 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 			$lmtttmpts_options['plugin_db_version'] = $db_version;
 			$update_option = true;
 		}
+
+        /* Update options when update plugin */
+        if ( ! isset( $lmtttmpts_options['plugin_option_version'] ) || $lmtttmpts_options['plugin_option_version'] != $lmtttmpts_plugin_info["Version"] ) {
+
+            /* delete default messages from wp_options - since v 1.0.6 */
+            $lmtttmpts_messages_defaults = lmtttmpts_get_default_messages();
+            foreach ( $lmtttmpts_messages_defaults as $key => $value ) {
+                if ( isset( $lmtttmpts_options[ $key . '_default' ] ) )
+                    unset( $lmtttmpts_options[ $key . '_default' ] );
+            }
+            /* rename hooks from 'log' to 'statistics' - since v 1.0.6 */
+            if ( isset( $lmtttmpts_options[ 'days_to_clear_log' ] ) ) {
+                $lmtttmpts_options[ 'days_to_clear_statistics' ] = $lmtttmpts_options[ 'days_to_clear_log' ];
+                /* delete old 'log' cron hook */
+                if ( wp_next_scheduled( 'lmtttmpts_daily_log_clear' ) ) {
+                    wp_clear_scheduled_hook( 'lmtttmpts_daily_log_clear' );
+                    if ( 0 != $lmtttmpts_options[ 'days_to_clear_statistics' ] ) {
+                        $time = time() - fmod( time(), 86400 ) + 86400;
+                        wp_schedule_event( $time, 'daily', 'lmtttmpts_daily_statistics_clear' );
+                    }
+                }
+                unset( $lmtttmpts_options[ 'days_to_clear_log' ] );
+            }
+
+            /* check if old version of htaccess is used */
+            if ( ! empty( $lmtttmpts_options['block_by_htaccess'] ) ) {
+                if ( ! function_exists( 'get_plugins' ) )
+                    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+                $all_plugins = get_plugins();
+                if (
+                    is_plugin_active( 'htaccess/htaccess.php' ) ||
+                    ( array_key_exists( 'htaccess/htaccess.php', $all_plugins ) && ! array_key_exists( 'htaccess-pro/htaccess-pro.php', $all_plugins ) )
+                ) {
+                    global $htccss_plugin_info;
+                    if ( ! $htccss_plugin_info )
+                        $htccss_plugin_info = get_plugin_data( plugin_dir_path( dirname( __FILE__ ) ) . 'htaccess/htaccess.php' );
+                    if ( $htccss_plugin_info["Version"] < '1.6.2' ) {
+                        do_action( 'lmtttmpts_htaccess_hook_for_delete_all' );
+                        $lmtttmpts_options['htaccess_notice']	= sprintf( __( "Limit Attempts interaction with Htaccess was turned off since you are using an outdated Htaccess plugin version. If you want to keep using this interaction, please update Htaccess plugin at least to v%s.", 'limit-attempts' ), '1.6.2' );
+                    }
+                }
+            }
+            /* show pro features */
+            $lmtttmpts_options['hide_premium_options'] = array();
+            $lmtttmpts_options[ 'blocked_message' ] = preg_replace( '|have been blocked till|', 'have been blocked for', $lmtttmpts_options[ 'blocked_message' ] );
+            $options_default = lmtttmpts_get_options_default();
+            $lmtttmpts_options = array_merge( $options_default, $lmtttmpts_options );
+            $lmtttmpts_options['plugin_option_version'] = $lmtttmpts_plugin_info["Version"];
+            $update_option = true;
+        }
 
 		if ( isset( $update_option ) )
 			update_option( 'lmtttmpts_options', $lmtttmpts_options );
@@ -543,11 +564,11 @@ if ( ! function_exists( 'lmtttmpts_get_options_default' ) ) {
 			'email_address'					        => $email_address,
 			'failed_message'				        => sprintf( __( 'Retries before lock: %s.', 'limit-attempts' ), '%ATTEMPTS%' ),
 			'blocked_message'				        => sprintf( __( 'Too many retries. You have been blocked for %s.', 'limit-attempts' ), '%DATE%' ),
-			'blacklisted_message'			        => __( "You've been added to blacklist. Please contact administrator to resolve this problem.", 'limit-attempts' ),
+			'denylisted_message'			        => __( "You've been added to deny list. Please contact administrator to resolve this problem.", 'limit-attempts' ),
 			'email_subject'					        => sprintf( __( '%s has been blocked on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
-			'email_subject_blacklisted'		        => sprintf( __( '%s has been added to the blacklist on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
+			'email_subject_denylisted'		        => sprintf( __( '%s has been added to the deny list on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
 			'email_blocked'					        => sprintf( __( 'IP %s has been blocked automatically on %s due to the excess of login attempts on your website %s.', 'limit-attempts' ), '%IP%', '%WHEN%', '<a href="%SITE_URL%">%SITE_NAME%</a>' ) . '<br/><br/>' . sprintf( __( 'Using the plugin %s', 'limit-attempts' ), '<a href="%PLUGIN_LINK%">Limit Attempts by BestWebSoft</a>' ),
-			'email_blacklisted'				        => sprintf( __( 'IP %s has been added automatically to the blacklist on %s due to the excess of locks quantity on your website %s.', 'limit-attempts' ), '%IP%', '%WHEN%', '<a href="%SITE_URL%">%SITE_NAME%</a>' ) . '<br/><br/>' . sprintf( __( 'Using the plugin %s', 'limit-attempts' ), '<a href="%PLUGIN_LINK%">Limit Attempts by BestWebSoft</a>' ),
+			'email_denylisted'				        => sprintf( __( 'IP %s has been added automatically to the deny list on %s due to the excess of locks quantity on your website %s.', 'limit-attempts' ), '%IP%', '%WHEN%', '<a href="%SITE_URL%">%SITE_NAME%</a>' ) . '<br/><br/>' . sprintf( __( 'Using the plugin %s', 'limit-attempts' ), '<a href="%PLUGIN_LINK%">Limit Attempts by BestWebSoft</a>' ),
 			'htaccess_notice'				        => '',
 			'first_install'					        => strtotime( "now" ),
 			/* since v1.1.3 */
@@ -628,7 +649,7 @@ if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 					<div id="lmtttmpts_statistics" class="lmtttmpts_list">
 						<?php lmtttmpts_display_advertising( 'log' ); ?>
 					</div>
-				<?php } elseif ( 'limit-attempts-black-and-whitelist.php' == $_GET['page'] ) {
+				<?php } elseif ( 'limit-attempts-deny-and-allowlist.php' == $_GET['page'] ) {
 					require_once( dirname( __FILE__ ) . '/includes/edit-list-form.php' );
 					lmtttmpts_display_list();
 				} elseif ( 'limit-attempts-blocked.php' == $_GET['page'] ) {
@@ -759,9 +780,9 @@ if ( ! function_exists( 'lmtttmpts_is_blocked' ) ) {
 		$ip_int         = sprintf( '%u', ip2long( $ip ) );
 		$emails_list    = "'" . implode( "','", $emails ) . "'";
 
-		$info = $wpdb->get_results( "
+		$info = $wpdb->get_var( "
             SELECT
-				*
+				COUNT(*)
 			FROM
 				{$wpdb->prefix}lmtttmpts_failed_attempts
 			WHERE
@@ -824,11 +845,12 @@ if ( ! function_exists( 'lmtttmpts_remove_from_blocked_list' ) ) {
 if ( ! function_exists( 'lmtttmpts_is_ip_in_table' ) ) {
 	function lmtttmpts_is_ip_in_table( $ip, $table ) {
 		global $wpdb;
+
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
 		/* integer value for our IP */
 		$ip_int = sprintf( '%u', ip2long( $ip ) );
-		if ( 'whitelist' == $table || 'blacklist' == $table ) {
-		/* for whitelist and blacklist tables needs different method */
+		if ( 'allowlist' == $table || 'denylist' == $table ) {
+		/* for allowlist and denylist tables needs different method */
 			/* if $ip variable is ip mask */
 			$is_in = $wpdb->get_var( $wpdb->prepare(
 				"SELECT `ip` FROM `" . $prefix . $table . "` WHERE `ip` = %s;", $ip
@@ -859,50 +881,39 @@ if ( ! function_exists( 'lmtttmpts_is_email_in_table' ) ) {
 		global $wpdb;
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
 
-		if ( 'blacklist_email' == $table ) {
-			$parts  = explode( '@', $email );
-			$domain = array_pop( $parts );
-			$domain = '@' . $domain;
+		$parts  = explode( '@', $email );
+		$domain = array_pop( $parts );
+		$domain = '@' . $domain;
 
-			$result = $wpdb->get_results( $wpdb->prepare( " 
-                SELECT 
-                    email  
-                FROM 
-                    {$prefix}{$table}
-                WHERE 
-                    email IN(%s, %s) 
-            ", $email, $domain ), ARRAY_A );
-		} else {
-			$result = $wpdb->get_var( $wpdb->prepare( " 
-			    SELECT 
-			        email 
-                FROM 
-                    {$prefix}{$table}
-                WHERE 
-                    email = %s
-            ", $email ) );
-		}
+		$result = $wpdb->get_var( $wpdb->prepare( " 
+            SELECT 
+                COUNT(*)
+            FROM 
+                {$prefix}{$table}
+            WHERE 
+                email IN(%s, %s)
+        ", $email, $domain ) );
 
 		return $result;
 	}
 }
 
 /**
- * Function for adding ip to blacklist
+ * Function for adding ip to denylist
  * @param ip - (string) IP
  * @return bool true/false with the result of DB add operation
  */
-if ( ! function_exists( 'lmtttmpts_add_ip_to_blacklist' ) ) {
-	function lmtttmpts_add_ip_to_blacklist( $ip ) {
+if ( ! function_exists( 'lmtttmpts_add_ip_to_denylist' ) ) {
+	function lmtttmpts_add_ip_to_denylist( $ip ) {
 		global $wpdb, $lmtttmpts_options;
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
-		/* if IP isn't empty and isn't in blacklist already */
-		if ( '' != $ip && ! lmtttmpts_is_ip_in_table( $ip, 'blacklist' ) ) {
+		/* if IP isn't empty and isn't in denylist already */
+		if ( '' != $ip && ! lmtttmpts_is_ip_in_table( $ip, 'denylist' ) ) {
 			/* if insert single ip address */
 			if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$/', $ip ) ) {
 				/* add a new row to db */
 				$result = $wpdb->insert(
-					$prefix . 'blacklist',
+					$prefix . 'denylist',
 					array(
 						'ip'			=> $ip,
 						'add_time'		=> date( 'Y-m-d H:i:s', current_time( 'timestamp' ) )
@@ -923,21 +934,21 @@ if ( ! function_exists( 'lmtttmpts_add_ip_to_blacklist' ) ) {
 }
 
 /**
- * Function for adding ip to whitelist
+ * Function for adding ip to allowlist
  * @param ip - (string) IP
  * @return bool true/false with the result of DB add operation
  */
-if ( ! function_exists( 'lmtttmpts_add_ip_to_whitelist' ) ) {
-	function lmtttmpts_add_ip_to_whitelist( $ip ) {
+if ( ! function_exists( 'lmtttmpts_add_ip_to_allowlist' ) ) {
+	function lmtttmpts_add_ip_to_allowlist( $ip ) {
 		global $wpdb, $lmtttmpts_options;
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
-		/* if IP isn't empty and isn't in whitelist already */
-		if ( '' != $ip && ! lmtttmpts_is_ip_in_table( $ip, 'whitelist' ) ) {
+		/* if IP isn't empty and isn't in allowlist already */
+		if ( '' != $ip && ! lmtttmpts_is_ip_in_table( $ip, 'allowlist' ) ) {
 			/* if insert single ip address */
 			if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$/', $ip ) ) {
 				/* add a new row to db */
 				$result = $wpdb->insert(
-					$prefix . 'whitelist',
+					$prefix . 'allowlist',
 					array(
 						'ip'			=> $ip,
 						'add_time'		=> date( 'Y-m-d H:i:s', current_time( 'timestamp' ) )
@@ -1003,22 +1014,19 @@ if ( ! function_exists( 'lmtttmpts_clear_statistics_daily' ) ) {
  * Function to reset failed attempts
  */
 if ( ! function_exists( 'lmtttmpts_reset_failed_attempts' ) ) {
-	function lmtttmpts_reset_failed_attempts( $ip, $email = '', $priority = '' ) {
+	function lmtttmpts_reset_failed_attempts( $ip ) {
 		global $wpdb;
 
-		if ( 'ip' == $priority ) {
+		if ( ! empty( $ip ) ) {
 			$array = array( 'ip_int' => sprintf( '%u', ip2long( $ip ) ) );
-		} else {
-			$array = array( 'email' => $email );
+            $wpdb->update(
+                $prefix = $wpdb->prefix . 'lmtttmpts_failed_attempts',
+                array( 'failed_attempts' => 0 ),
+                $array,
+                array( '%d' ),
+                array( '%s' )
+            );
 		}
-
-		$wpdb->update(
-			$prefix = $wpdb->prefix . 'lmtttmpts_failed_attempts',
-			array( 'failed_attempts' => 0 ),
-			$array,
-			array( '%d' ),
-			array( '%s' )
-		);
 	}
 }
 
@@ -1125,9 +1133,9 @@ if ( ! function_exists( 'lmtttmpts_login_form_captcha_checking' ) ) {
 }
 
 /**
- * Check plugin`s "block/blacklist" options
+ * Check plugin`s "block/denylist" options
  * @param		array		$option	plugin`s options
- * @return		mixed		the minimum period of time necessary for the user`s IP to be added to the blacklist or false
+ * @return		mixed		the minimum period of time necessary for the user`s IP to be added to the denylist or false
  */
 if ( ! function_exists( 'lmtttmpts_check_block_options' ) ) {
 	function lmtttmpts_check_block_options( $option ) {
@@ -1141,7 +1149,7 @@ if ( ! function_exists( 'lmtttmpts_check_block_options' ) ) {
 			$option['allowed_retries'] * 60;
 
 		/*
-		 * The minimum period of time necessary for the user`s IP to be added to the blacklist
+		 * The minimum period of time necessary for the user`s IP to be added to the denylist
 		 */
 		$time_for_blacklist = intval(
 				(
@@ -1185,10 +1193,10 @@ if ( ! function_exists( 'lmtttmpts_restore_default_message' ) ) {
 			$default_messages = lmtttmpts_get_default_messages();
 
 			if ( 'email' == $_POST['message_option_name'] ) {
-				unset( $default_messages['failed_message'], $default_messages['blocked_message'], $default_messages['blacklisted_message'] );
+				unset( $default_messages['failed_message'], $default_messages['blocked_message'], $default_messages['denylisted_message'] );
 				$output_message = __( 'Email notifications have been restored to default.', 'limit-attempts' );
 			} else {
-				unset( $default_messages['email_subject'], $default_messages['email_subject_blacklisted'], $default_messages['email_blocked'], $default_messages['email_blacklisted'] );
+				unset( $default_messages['email_subject'], $default_messages['email_subject_denylisted'], $default_messages['email_blocked'], $default_messages['email_denylisted'] );
 				$output_message = __( 'Messages have been restored to default.', 'limit-attempts' );
 			}
 			/* set notice message, check what was changed - subject or body of the message */
@@ -1259,7 +1267,7 @@ if ( ! function_exists( 'lmtttmpts_delete_options' ) ) {
 		if ( ! $pro_version_exist ) {
 			/* delete options */
 			/* drop all tables */
-			$sql = "DROP TABLE IF EXISTS `{$prefix}all_failed_attempts`, `{$prefix}failed_attempts`, `{$prefix}email_list`, `{$prefix}blacklist`, `{$prefix}blacklist_email`, `{$prefix}whitelist`;";
+			$sql = "DROP TABLE IF EXISTS `{$prefix}all_failed_attempts`, `{$prefix}failed_attempts`, `{$prefix}email_list`, `{$prefix}denylist`, `{$prefix}denylist_email`, `{$prefix}allowlist`;";
 			/* remove IPs from .htaccess */
 			do_action( 'lmtttmpts_htaccess_hook_for_delete_all' );
 			delete_option( 'lmtttmpts_options' );
@@ -1277,7 +1285,7 @@ if ( ! function_exists( 'lmtttmpt_deactivate' ) ) {
     function lmtttmpt_deactivate() {
         $cptch_options = get_option( 'cptch_options' );
         if ( ! empty( $cptch_options )) {
-            $cptch_options['use_limit_attempts_whitelist'] = 0;
+            $cptch_options['use_limit_attempts_allowlist'] = 0;
             update_option('cptch_options' , $cptch_options );
         }
     }

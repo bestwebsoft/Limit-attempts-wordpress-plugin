@@ -2,18 +2,18 @@
 ========================
 
 <p>Limit Attempts plugin is a security solution for WordPress which protects your website from spam and brute-force attacks. Limit the number of failed login attempts per user and block user IP for a certain period of time based on your settings. This will stop automated scripts to generate a large number of different combinations and hack your website.</p>
-<p>Manage black- and whitelists, receive email notifications, hide website forms for blocked or blacklisted IPs, and other advanced features which guarantee safety of your data.</p>
+<p>Manage deny and allow lists, receive email notifications, hide website forms for blocked or added to the deny list IPs, and other advanced features which guarantee safety of your data.</p>
 <p>Secure your website today!</p>
 <p><a href="https://bestwebsoft.com/demo-for-limit-attempts/?ref=readme" rel="nofollow ugc">View Demo</a></p>
 <p><span class="embed-youtube" style="text-align:center; display: block;"></span></p>
 <h4>Free Features</h4>
 <ul>
 <li>Automatically block IP addresses that exceed limit login attempts</li>
-<li>Automatically add IP addresses that exceed blocks limit to the blacklist</li>
+<li>Automatically add IP addresses that exceed blocks limit to the deny list</li>
 <li>Manually add IP addresses to:
 <ul>
-<li>Blacklist</li>
-<li>Whitelist</li>
+<li>Deny list</li>
+<li>Allow list</li>
 </ul>
 </li>
 <li>Compatible with <a href="https://bestwebsoft.com/products/wordpress/plugins/contact-form/?k=fc7e2e440918324853c2060dbe6d9dc9" rel="nofollow ugc">Contact Form</a>:
@@ -22,8 +22,8 @@
 <li>Set the number of emails sent per indicated time interval</li>
 </ul>
 </li>
-<li>Hide login, register, lost password forms for blocked or blacklisted IPs</li>
-<li>Add blacklisted IP address to the htaccess file with <a href="https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd" rel="nofollow ugc">Htaccess</a> to reduce your website database workload</li>
+<li>Hide login, register, lost password forms for blocked or added to the deny list IPs</li>
+<li>Add denylisted IP address to the htaccess file with <a href="https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd" rel="nofollow ugc">Htaccess</a> to reduce your website database workload</li>
 <li>Consider incorrect captcha as a failed login attempt with <a href="https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c" rel="nofollow ugc">Captcha</a></li>
 <li>Manage your statistics list with:
 <ul>
@@ -37,10 +37,10 @@
 <ul>
 <li>Invalid attempt</li>
 <li>Blocked user</li>
-<li>Blacklisted user</li>
+<li>Denylisted user</li>
 </ul>
 </li>
-<li>Send customizable notifications about blocked and blacklisted users to:
+<li>Send customizable notifications about blocked and deny listed users to:
 <ul>
 <li>User email</li>
 <li>Custom email</li>
@@ -55,11 +55,11 @@
 <p><strong>Pro Features</strong></p>
 <p>All features from Free version included plus:</p>
 <ul>
-<li>Add IP address ranges or IP masks to black- and whitelists</li>
-<li>Add certain country&#8217;s IP addresses to the black- and whitelist &#8211; GeoIP database</li>
-<li>Add email address or email domain to the blacklist/whitelist</li>
+<li>Add IP address ranges or IP masks to deny and allow list</li>
+<li>Add certain country&#8217;s IP addresses to the deny and allow lists &#8211; GeoIP database</li>
+<li>Add email address or email domain to the deny and allow lists</li>
 <li>Manage total number of failed attempts with blocked list additional option</li>
-<li>Manage black- and whitelists with extended options:
+<li>Manage deny and allow lists with extended options:
 <ul>
 <li>Country</li>
 <li>Range from</li>
@@ -79,9 +79,9 @@
 </li>
 <li>Set the option for non-existent username log in:
 <ul>
-<li>According to time and login attempts set for Block- and Blacklist</li>
+<li>According to time and login attempts set for Block- and deny list</li>
 <li>Block IP immediately</li>
-<li>Blacklist IP immediately</li>
+<li>Add IP to Deny list immediately</li>
 </ul>
 </li>
 <li>Manage your log tab with:
@@ -104,9 +104,9 @@
 <p>If you have a feature suggestion or idea you&#8217;d like to see in the plugin, we&#8217;d love to hear about it! <a href="https://support.bestwebsoft.com/hc/en-us/requests/new" rel="nofollow ugc">Suggest a Feature</a></p>
 <h4>Documentation &amp; Videos</h4>
 <ul>
+<li><a href="https://docs.google.com/document/d/1fbB5FZ8-wSxg85Huaiha5fUHjp1diEvKe9sOLzc8diQ/" rel="nofollow ugc">[Doc] User Guide</a></li>
 <li><a href="https://docs.google.com/document/d/1-hvn6WRvWnOqj5v5pLUk7Awyu87lq5B_dO-Tv-MC9JQ/" rel="nofollow ugc">[Doc] Installation</a></li>
 <li><a href="https://www.youtube.com/watch?v=BZ9WZ3G9ves" rel="nofollow ugc">[Video] Installation Instruction</a></li>
-<li><a href="https://docs.google.com/document/d/1fbB5FZ8-wSxg85Huaiha5fUHjp1diEvKe9sOLzc8diQ/" rel="nofollow ugc">[Doc] User Guide</a></li>
 </ul>
 <h4>Help &amp; Support</h4>
 <p>Visit our Help Center if you have any questions, our friendly Support Team is happy to help &#8211; <a href="https://support.bestwebsoft.com/" rel="nofollow ugc">https://support.bestwebsoft.com/</a></p>

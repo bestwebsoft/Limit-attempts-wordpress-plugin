@@ -3,15 +3,15 @@
 */
 #lmtttmpts_settings,
 #lmtttmpts_blocked,
-#lmtttmpts_blacklist,
-#lmtttmpts_whitelist,
+#lmtttmpts_denylist,
+#lmtttmpts_allowlist,
 #lmtttmpts_log,
 #lmtttmpts_statistics {
 	padding-top: 15px;
 }
 #lmtttmpts_blocked + .bws-plugin-reviews,
-#lmtttmpts_blacklist + .bws-plugin-reviews,
-#lmtttmpts_whitelist + .bws-plugin-reviews,
+#lmtttmpts_denylist + .bws-plugin-reviews,
+#lmtttmpts_allowlist + .bws-plugin-reviews,
 #lmtttmpts_log + .bws-plugin-reviews,
 #lmtttmpts_statistics + .bws-plugin-reviews {
 	margin-top: 25px;
@@ -28,12 +28,12 @@
 #lmtttmpts-time-to-reset-block-display {
 	display: inline-block;
 }
-tr.lmtttmpts_whitelist,
-.striped > tbody tr.lmtttmpts_whitelist {
+tr.lmtttmpts_allowlist,
+.striped > tbody tr.lmtttmpts_allowlist {
 	background-color: #CFFED6;
 }
-tr.lmtttmpts_blacklist,
-.striped > tbody tr.lmtttmpts_blacklist {
+tr.lmtttmpts_denylist,
+.striped > tbody tr.lmtttmpts_denylist {
 	background-color: #FFD7D7;
 }
 tr.lmtttmpts_blocked,

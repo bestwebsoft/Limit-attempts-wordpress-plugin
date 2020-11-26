@@ -37,7 +37,8 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				'tabs' 				 => $tabs,
 				'wp_slug'			 => 'limit-attempts',
 				'link_key' 			 => 'fdac994c203b41e499a2818c409ff2bc',
-				'link_pn' 			 => '140'
+				'link_pn' 			 => '140',
+                'doc_link'           => 'https://docs.google.com/document/d/1fbB5FZ8-wSxg85Huaiha5fUHjp1diEvKe9sOLzc8diQ/'
 			) );
 
 			add_action( get_parent_class( $this ) . '_additional_misc_options_affected', array( $this, 'additional_misc_options_affected' ) );
@@ -93,10 +94,10 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				wp_clear_scheduled_hook( 'lmtttmpts_event_for_reset_block' );
 				lmtttmpts_reset_block();
 			}
-
 			if ( isset( $_POST["lmtttmpts_days_to_clear_statistics"] ) ) {
 				if ( $this->options["days_to_clear_statistics"] != $_POST["lmtttmpts_days_to_clear_statistics"] ) {
 					if ( $this->options["days_to_clear_statistics"] == 0 ) {
+                        $time = time() - fmod( time(), 86400 ) + 86400;
 						wp_schedule_event( $time, 'daily', "lmtttmpts_daily_statistics_clear" );
 					} elseif ( $_POST["lmtttmpts_days_to_clear_statistics"] == 0 ) {
 						wp_clear_scheduled_hook( "lmtttmpts_daily_statistics_clear" );
@@ -111,12 +112,12 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 			$htaccess_is_active = 0 < count( preg_grep( '/htaccess\/htaccess.php/', $this->active_plugins ) ) || 0 < count( preg_grep( '/htaccess-pro\/htaccess-pro.php/', $this->active_plugins ) ) ? true : false;
 			if ( isset( $_POST['lmtttmpts_block_by_htaccess'] ) ) {
 				if ( $htaccess_is_active && 0 == $this->options['block_by_htaccess'] ) {
-					$blocked_ips = $wpdb->get_col( "SELECT `ip` FROM `{$wpdb->prefix}lmtttmpts_blacklist`;" );
+					$blocked_ips = $wpdb->get_col( "SELECT `ip` FROM `{$wpdb->prefix}lmtttmpts_denylist`;" );
 					if ( is_array( $blocked_ips ) && ! empty( $blocked_ips ) ) {
 						do_action( 'lmtttmpts_htaccess_hook_for_block', $blocked_ips );
 					}
 
-					$whitelisted_ips = $wpdb->get_col( "SELECT `ip` FROM `{$wpdb->prefix}lmtttmpts_whitelist`;" );
+					$whitelisted_ips = $wpdb->get_col( "SELECT `ip` FROM `{$wpdb->prefix}lmtttmpts_allowlist`;" );
 					if ( is_array( $whitelisted_ips ) && ! empty( $whitelisted_ips ) ) {
 						do_action( 'lmtttmpts_htaccess_hook_for_add_to_whitelist', $whitelisted_ips );
 					}
@@ -138,7 +139,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 			$this->options['number_of_letters'] = ( isset( $_POST['lmtttmpts_number_of_letters'] ) ) ? absint( $_POST['lmtttmpts_number_of_letters'] ) : 1;
 
 			/* Updating options with notify by email options */
-			$this->options['notify_email'] = isset( $_POST['lmtttmpts_notify_email'] ) && ! empty( $_POST['lmtttmpts_email_blacklisted'] ) && ! empty( $_POST['lmtttmpts_email_blocked'] ) ? true : false;
+			$this->options['notify_email'] = isset( $_POST['lmtttmpts_notify_email'] ) && ! empty( $_POST['lmtttmpts_email_denylisted'] ) && ! empty( $_POST['lmtttmpts_email_blocked'] ) ? true : false;
 			if ( isset( $_POST['lmtttmpts_mailto'] ) ) {
 				$this->options['mailto'] = $_POST['lmtttmpts_mailto'];
 				if ( 'admin' == $_POST['lmtttmpts_mailto'] && isset( $_POST['lmtttmpts_user_email_address'] ) ) {
@@ -149,10 +150,10 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 			}
 			/* array for saving and restoring default messages */
 			$messages = array(
-				'failed_message', 'blocked_message', 'blacklisted_message', 'email_subject', 'email_subject_blacklisted',
-				'email_blocked', 'email_blacklisted'
+				'failed_message', 'blocked_message', 'denylisted_message', 'email_subject', 'email_subject_denylisted',
+				'email_blocked', 'email_denylisted'
 			);
-			/* Update messages when login failed, address blocked or blacklisted, email subject and text when address blocked or blacklisted */
+			/* Update messages when login failed, address blocked or denylisted, email subject and text when address blocked or denylisted */
 			foreach ( $messages as $single_message ) {
 				if ( ! empty( $_POST["lmtttmpts_{$single_message}"] ) )
 					$this->options[ $single_message ] = trim( esc_html( $_POST["lmtttmpts_{$single_message}"] ) );
@@ -162,10 +163,10 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 			if ( isset( $_POST['lmtttmpts_return_default'] ) ) {
 				$default_messages = lmtttmpts_get_default_messages();
 				if ( 'email' == $_POST['lmtttmpts_return_default'] ) {
-					unset( $default_messages['failed_message'], $default_messages['blocked_message'], $default_messages['blacklisted_message'] );
+					unset( $default_messages['failed_message'], $default_messages['blocked_message'], $default_messages['denylisted_message'] );
 					$message = __( 'Email notifications have been restored to default.', 'limit-attempts' ) . '<br />';
 				} else {
-					unset( $default_messages['email_subject'], $default_messages['email_subject_blacklisted'], $default_messages['email_blocked'], $default_messages['email_blacklisted'] );
+					unset( $default_messages['email_subject'], $default_messages['email_subject_denylisted'], $default_messages['email_blocked'], $default_messages['email_denylisted'] );
 					$message = __( 'Messages have been restored to default.', 'limit-attempts' ) . '<br />';
 				}
 				foreach ( $default_messages as $key => $value ) {
@@ -269,10 +270,10 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th><?php _e( 'Blacklist IP or Email After', 'limit-attempts' ); ?></th>
+					<th><?php _e( 'Deny List IP or Email After', 'limit-attempts' ); ?></th>
 					<td>
 						<input type="number" min="1" max="99" step="1" maxlength="2" value="<?php echo $this->options['allowed_locks']; ?>" name="lmtttmpts_allowed_locks" /> <?php echo _n( 'blocking', 'blockings', $this->options['allowed_locks'], 'limit-attempts' ); ?>
-						<div class="bws_info"><?php _e( 'Number of blocking after which the IP or Email address will be blacklisted.', 'limit-attempts' ); ?></div>
+						<div class="bws_info"><?php _e( 'Number of blocking after which the IP or Email address will be add to deny list.', 'limit-attempts' ); ?></div>
 					</td>
 				</tr>
 			</table>
@@ -297,11 +298,11 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 										</label>
 										<br />
 										<label>
-											<input disabled="disabled" type="radio" name="lmtttmpts_action_with_not_existed_user" value="blacklist" class="bws_option_affect" data-affect-show=".lmtttmpts_not_existed_user_message_blacklisted" data-affect-hide=".lmtttmpts_not_existed_user_message_block" />
-											<?php _e( 'Blacklist', 'limit-attempts' ); ?>
+											<input disabled="disabled" type="radio" name="lmtttmpts_action_with_not_existed_user" value="denylist" class="bws_option_affect" data-affect-show=".lmtttmpts_not_existed_user_message_denylisted" data-affect-hide=".lmtttmpts_not_existed_user_message_block" />
+											<?php _e( 'Deny list', 'limit-attempts' ); ?>
 										</label>
 									</fieldset>
-									<span class="bws_info"><?php _e( 'Detect login attempts for non-existing username and apply actions (default will block and/or blacklist IP addresses based on the settings above).', 'limit-attempts' ); ?></span>
+									<span class="bws_info"><?php _e( 'Detect login attempts for non-existing username and apply actions (default will block and/or added to deny list IP addresses based on the settings above).', 'limit-attempts' ); ?></span>
 								</td>
 							</tr>
                             <tr>
@@ -309,16 +310,16 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
                                 <td>
                                     <fieldset>
                                         <label>
-                                            <input disabled="disabled" type="radio" name="lmtttmpts_lists_priority" value="blacklist" checked="checked"/>
-                                            <?php _e( 'Blacklist', 'limit-attempts' ); ?>
+                                            <input disabled="disabled" type="radio" name="lmtttmpts_lists_priority" value="denylist" checked="checked"/>
+                                            <?php _e( 'Deny list', 'limit-attempts' ); ?>
                                         </label>
                                         <br />
                                         <label>
-                                            <input disabled="disabled" type="radio" name="lmtttmpts_lists_priority" value="whitelist"  class="bws_option_affect" data-affect-show=".lmtttmpts_not_existed_user_message_blacklisted" data-affect-hide=".lmtttmpts_not_existed_user_message_block" />
-                                            <?php _e( 'Whitelist', 'limit-attempts' ); ?>
+                                            <input disabled="disabled" type="radio" name="lmtttmpts_lists_priority" value="allowlist"  class="bws_option_affect" data-affect-show=".lmtttmpts_not_existed_user_message_denylisted" data-affect-hide=".lmtttmpts_not_existed_user_message_block" />
+                                            <?php _e( 'Allow list', 'limit-attempts' ); ?>
                                         </label>
                                     </fieldset>
-                                    <span class="bws_info"><?php _e( 'Choose the list which will be used if the user is in both lists (black and white).', 'limit-attempts' ); ?></span>
+                                    <span class="bws_info"><?php _e( 'Choose the list which will be used if the user is in both lists (dany and allow).', 'limit-attempts' ); ?></span>
                                 </td>
                             </tr>
                             <tr>
@@ -336,7 +337,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				<tr>
 					<th><?php _e( 'Hide Forms', 'limit-attempts' ); ?></th>
 					<td>
-						<input type="checkbox" name="lmtttmpts_hide_login_form" value="1"<?php checked( 1, $this->options['hide_login_form'] ); ?> /> <span class="bws_info"><?php _e( 'Enable to hide login, registration, reset password forms from blocked or blacklisted IP addresses.', 'limit-attempts' ); ?></span>
+						<input type="checkbox" name="lmtttmpts_hide_login_form" value="1"<?php checked( 1, $this->options['hide_login_form'] ); ?> /> <span class="bws_info"><?php _e( 'Enable to hide login, registration, reset password forms from blocked or deny listed IP addresses.', 'limit-attempts' ); ?></span>
 					</td>
 				</tr>
 				<tr>
@@ -373,7 +374,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 							<?php _e( 'Enable to reduce database workload.', 'limit-attempts' ); ?>
 							<?php echo $status_message; ?>
 						</span>
-						<?php echo bws_add_help_box( __( 'When you turn on this option, all IPs from the blocked list and from the blacklist will be added to the direction "deny from" of file .htaccess. IP addresses which will be added to the blocked list or to the blacklist after that, also will be added to the direction "deny from" of the file .htaccess automatically.', "limit-attempts" ) ); ?>
+						<?php echo bws_add_help_box( __( 'When you turn on this option, all IPs from the blocked list and from the denylist will be added to the direction "deny from" of file .htaccess. IP addresses which will be added to the blocked list or to the denylist after that, also will be added to the direction "deny from" of the file .htaccess automatically.', "limit-attempts" ) ); ?>
 					</td>
 				</tr>
 				<tr>
@@ -683,9 +684,9 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><?php _e( 'Blacklisted', 'limit-attempts' ); ?></th>
+					<th scope="row"><?php _e( 'Deny Listed', 'limit-attempts' ); ?></th>
 					<td>
-						<textarea rows="5" name="lmtttmpts_blacklisted_message"><?php echo $this->options['blacklisted_message']; ?></textarea>
+						<textarea rows="5" name="lmtttmpts_denylisted_message"><?php echo $this->options['denylisted_message']; ?></textarea>
 						<div class="bws_info">
 							<?php _e( 'Allowed Variables:', 'limit-attempts' ); ?><br/>
 							'%MAIL%' - <?php _e( 'administrator&rsquo;s email address', 'limit-attempts' ); ?>
@@ -790,20 +791,20 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					</td>
 				</tr>
 				<tr class="lmtttmpts_email_notifications">
-					<th><?php _e( 'Blacklist Notifications', 'limit-attempts' ); ?></th>
+					<th><?php _e( 'Deny List Notifications', 'limit-attempts' ); ?></th>
 					<td>
 						<p><?php _e( 'Subject', 'limit-attempts' ); ?></p>
-						<textarea rows="5" name="lmtttmpts_email_subject_blacklisted"><?php echo $this->options['email_subject_blacklisted']; ?></textarea>
+						<textarea rows="5" name="lmtttmpts_email_subject_denylisted"><?php echo $this->options['email_subject_denylisted']; ?></textarea>
 						<div class="bws_info">
 							<?php _e( 'Allowed Variables:', 'limit-attempts' ); ?><br/>
-							'%IP%' - <?php _e( 'blacklisted IP address', 'limit-attempts' ); ?><br/>
+							'%IP%' - <?php _e( 'deny listed IP address', 'limit-attempts' ); ?><br/>
 							'%SITE_NAME%' - <?php _e( 'website name', 'limit-attempts' ); ?>
 						</div>
 						<p style="margin-top: 6px;"><?php _e( 'Message', 'limit-attempts' ); ?></p>
-						<textarea rows="5" name="lmtttmpts_email_blacklisted"><?php echo $this->options['email_blacklisted']; ?></textarea>
+						<textarea rows="5" name="lmtttmpts_email_denylisted"><?php echo $this->options['email_denylisted']; ?></textarea>
 						<div class="bws_info">
 							<?php _e( 'Allowed Variables:', 'limit-attempts' ); ?><br/>
-							'%IP%' - <?php _e( 'blacklisted IP address', 'limit-attempts' ); ?><br/>
+							'%IP%' - <?php _e( 'deny listed IP address', 'limit-attempts' ); ?><br/>
 							'%PLUGIN_LINK%' - <?php _e( 'Limit Attempts plugin link', 'limit-attempts' ); ?><br/>
 							'%WHEN%' - <?php _e( 'date and time when IP address was blocked', 'limit-attempts' ); ?><br/>
 							'%SITE_NAME%' - <?php _e( 'website name', 'limit-attempts' ); ?><br/>
@@ -904,7 +905,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 								</td>
 							</tr>
 							<tr>
-								<th><?php _e( 'Update White- & Blacklist After', 'limit-attempts' ); ?></th>
+								<th><?php _e( 'Update Allow & Deny List After', 'limit-attempts' ); ?></th>
 								<td>
 									<fieldset>
 										<input disabled="disabled" type="number" min="0" max="10" step="1" name="lmtttmpts_after_updates" value="0" />&nbsp;<?php _e( 'updates of GeoIP', 'limit-attempts' ); ?>
