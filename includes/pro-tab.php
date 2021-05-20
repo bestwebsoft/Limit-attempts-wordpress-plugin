@@ -14,7 +14,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 			update_option( 'lmtttmpts_options', $result['options'] ); ?>
 			<div class="updated fade inline"><p><strong><?php echo $result['message']; ?></strong></p></div>
 		<?php } elseif ( ! bws_hide_premium_options_check( $lmtttmpts_options ) ) { ?>
-			<form method="post" action=""<?php if ( 'allowlist' == $what || 'denylist' == $what ) echo ' style="max-width: 610px;"'; ?>>
+			<form method="post" action=""<?php if ( 'allowlist' == $what || 'denylist' == $what || 'allowlist-email' == $what || 'denylist-email' == $what ) echo ' style="max-width: 610px;"'; ?>>
 				<div class="bws_pro_version_bloc">
 					<div class="bws_pro_version_table_bloc">
 						<button type="submit" name="bws_hide_premium_options" class="notice-dismiss bws_hide_premium_options" title="<?php _e( 'Close', 'limit-attempts' ); ?>"></button>
@@ -22,10 +22,6 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 						<div style="padding: 5px;">
 							<?php if ( 'allowlist' == $what || 'denylist' == $what ) { ?>
 								<div class="lmtttmpts_edit_list_form">
-									<ul style="float: none; margin: 0; padding: 5px 0 0 5px;" class="subsubsub">
-										<li><a href="#" class="current"><?php _e( 'Add', 'limit-attempts' ); ?></a>&nbsp;|</li>
-										<li><a href="#"><?php _e( 'Delete', 'limit-attempts' ); ?></a></li>
-									</ul>
 									<table>
 										<tr>
 											<td>
@@ -58,7 +54,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 										</tr>
 									</table>
 								</div>
-                            <?php } elseif ( 'allowlist_email' == $what ) { ?>
+                            <?php } elseif ( 'allowlist-email' == $what ) { ?>
                                 <div class="lmtttmpts_edit_list_form">
                                     <table>
                                         <tr>
@@ -84,12 +80,13 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
                                         </tr>
                                         <tr>
                                             <td style="position: relative;">
-                                                <input class="button-primary" type="submit" disabled="disabled" value="<?php _e( 'Save Changes', 'limit-attempts' ); ?>" />
+                                                <input class="button-primary" type="submit" disabled="disabled" value="<?php _e( 'Add New', 'limit-attempts' ); ?>" />
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
-                                <p class="search-box">
+                            <?php } elseif ( 'allowlist-email-table' == $what ) { ?>
+                            	<p class="search-box">
                                     <input disabled="disabled" type="search" name="s" />
                                     <input disabled="disabled" type="submit" value="<?php _e( 'Search Email', 'limit-attempts' ); ?>" class="button" />
                                 </p>
@@ -210,7 +207,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
 									<div class="tablenav-pages one-page"><span class="displaying-num">1 item</span></div>
 									<br class="clear">
 								</div>
-							<?php } elseif ( 'denylist_email' == $what ) { ?>
+							<?php } elseif ( 'denylist-email' == $what ) { ?>
                                 <div class="lmtttmpts_edit_list_form">
                                     <table>
                                         <tr>
@@ -231,7 +228,7 @@ if ( ! function_exists( 'lmtttmpts_display_advertising' ) ) {
                                         </tr>
                                         <tr>
                                             <td style="position: relative;">
-                                                <input class="button-primary" type="submit" disabled="disabled" value="<?php _e( 'Save Changes', 'limit-attempts' ); ?>" />
+                                                <input class="button-primary" type="submit" disabled="disabled" value="<?php _e( 'Add New', 'limit-attempts' ); ?>" />
                                             </td>
                                         </tr>
                                     </table>

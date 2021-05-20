@@ -1,10 +1,10 @@
 === Limit Attempts by BestWebSoft ===
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
-Tags: add to deny list, add to allow list, attempts, deny list, allow list, limit attempts, limit attempts plugin, limit of locks, limited attempts, login attempt, website security, login security
+Tags: login, security, limit login attempts, limit attempts, failed attempts, login attempt, hack, protection, authentication, deny list, allow list, brute force
 Requires at least: 4.5
-Tested up to: 5.5.3
-Stable tag: 1.2.8
+Tested up to: 5.7.2
+Stable tag: 1.2.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -205,10 +205,19 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 8. Tab with Blocked Email addresses.
 9. Deny list with IP addresses.
 10. Deny list with email addresses.
-11. Allow list settings tab.
-12. Tab with Statistics.
+11. Add new Ip.
+12. Allow list settings tab.
+13. Tab with Statistics.
 
 == Changelog ==
+
+= V1.2.9 - 19.05.2021 =
+* Pro : Email priority Deny and Allow lists issue has been fixed.
+* Bugfix : The issue with displaying pagination on tables has been fixed.
+* Update : Adding items to Deny and Allow lists has been moved to a separate page.
+* Update : The plugin settings page has been updated.
+* Update : BWS panel section was updated.
+* Update : All functionality was updated for WordPress 5.7.2.
 
 = V1.2.8 - 24.11.2020 =
 * Bugfix : Database queries have been optimized.
@@ -343,6 +352,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.2.9 =
+* Bugs fixed.
+* Usability improved.
+* The compatibility with new WordPress version updated.
 
 = V1.2.8 =
 * Bugs fixed.

@@ -4,14 +4,14 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.2.8
+Version: 1.2.9
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
 License: GPLv3 or later
 */
 
-/*  © Copyright 2020  BestWebSoft  ( https://support.bestwebsoft.com )
+/*  © Copyright 2021  BestWebSoft  ( https://support.bestwebsoft.com )
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -90,6 +90,14 @@ if ( ! function_exists( 'lmtttmpts_add_admin_menu' ) ) {
             'lmtttmpts_settings_page'
         );
 
+    	add_submenu_page( 
+       		'limit-attempts-create-item.php', 
+       		__( 'Add New', 'limit-attempts' ), 
+       		__( 'Add New', 'limit-attempts' ), 
+       		'manage_options', 
+       		'lmtttmpts-create-new-item.php', 
+       		'lmtttmpts_create_new_item' );
+
 		add_submenu_page(
             'limit-attempts.php',
             'BWS Panel',
@@ -142,7 +150,8 @@ if ( ! function_exists( 'lmtttmpts_plugin_init' ) ) {
 			'limit-attempts-blocked.php',
 			'limit-attempts-deny-and-allowlist.php',
 			'limit-attempts-log.php',
-			'limit-attempts-statistics.php'
+			'limit-attempts-statistics.php',
+			'lmtttmpts-create-new-item.php'
 		);
 
 		/* Call register settings function */
@@ -219,9 +228,9 @@ if ( ! function_exists( 'lmtttmpts_get_default_messages' ) ) {
 	function lmtttmpts_get_default_messages() {
 		$default_messages = array(
 			/* Error Messages */
-			'failed_message'						=> sprintf( __( 'Retries before lock: %s.', 'limit-attempts' ), '%ATTEMPTS%' ),
-			'blocked_message'						=> sprintf( __( 'Too many retries. You have been blocked for %s.', 'limit-attempts' ), '%DATE%' ),
-			'denylisted_message'					=> __( "You've been added to deny list. Please contact administrator to resolve this problem.", 'limit-attempts' ),
+			'failed_message'						=> sprintf( __( '%s attempts left before block.', 'limit-attempts' ), '%ATTEMPTS%' ),
+			'blocked_message'						=> sprintf( __( 'Too many failed attempts. You have been blocked until %s.', 'limit-attempts' ), '%DATE%' ),
+			'denylisted_message'					=> __( "You've been added to deny list. Please contact website administrator.", 'limit-attempts' ),
 			/* Email Notifications */
 			'email_subject'							=> sprintf( __( '%s has been blocked on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
 			'email_subject_denylisted'				=> sprintf( __( '%s has been added to the deny list on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
@@ -295,6 +304,7 @@ if ( ! function_exists( 'lmtttmpts_create_table' ) ) {
             `failed_attempts` INT(3) NOT NULL DEFAULT '0',
             `block` BOOL DEFAULT FALSE,
             `block_quantity` INT(3) NOT NULL DEFAULT '0',
+            `block_start` DATETIME,
             `block_till` DATETIME,
             `block_by` VARCHAR( 255 ),
             `last_failed_attempt` TIMESTAMP,
@@ -361,7 +371,7 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 		global $lmtttmpts_options, $lmtttmpts_plugin_info, $wpdb;
 
 		$prefix = $wpdb->prefix . 'lmtttmpts_';
-		$db_version = "1.6";
+		$db_version = "1.7";
 
 		/* Install the option defaults */
 		if ( ! get_option( 'lmtttmpts_options' ) ) {
@@ -377,21 +387,10 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 		if ( ! isset( $lmtttmpts_options['plugin_db_version'] ) || $lmtttmpts_options['plugin_db_version'] != $db_version ) {
 
             /**
-             * @deprecated since 1.2.8
-             * @todo remove after 02.04.2021
+             * @deprecated since 1.2.9
+             * @todo remove after 20.09.2021
              */
-            if ( isset( $lmtttmpts_options['plugin_option_version'] ) && version_compare( $lmtttmpts_options['plugin_option_version'] , '1.2.8', '<' ) ) {
-
-                /* Update tables when update plugin and tables changes */
-                $wpdb->query( "RENAME TABLE `" . $prefix . "blacklist` TO `" . $prefix . "denylist`" );
-                $wpdb->query( "RENAME TABLE `" . $prefix . "blacklist_email` TO `" . $prefix . "denylist_email`" );
-                $wpdb->query( "RENAME TABLE `" . $prefix . "whitelist` TO `" . $prefix . "allowlist`" );
-
-                /*Update options_default when update plugin*/
-                $lmtttmpts_options['denylisted_message'] = $lmtttmpts_options['blacklisted_message'];
-                $lmtttmpts_options['email_subject_denylisted'] = $lmtttmpts_options['email_subject_blacklisted'];
-                $lmtttmpts_options['email_denylisted'] = $lmtttmpts_options['email_blacklisted'];
-            }
+			$wpdb->query( "ALTER TABLE `{$prefix}failed_attempts` ADD `block_start` DATETIME AFTER `block_quantity`;" );
             /* end deprecated */
 
             lmtttmpts_create_table();
@@ -562,9 +561,9 @@ if ( ! function_exists( 'lmtttmpts_get_options_default' ) ) {
 			'notify_email'					        => false,
 			'mailto'						        => 'admin',
 			'email_address'					        => $email_address,
-			'failed_message'				        => sprintf( __( 'Retries before lock: %s.', 'limit-attempts' ), '%ATTEMPTS%' ),
-			'blocked_message'				        => sprintf( __( 'Too many retries. You have been blocked for %s.', 'limit-attempts' ), '%DATE%' ),
-			'denylisted_message'			        => __( "You've been added to deny list. Please contact administrator to resolve this problem.", 'limit-attempts' ),
+			'failed_message'				        => sprintf( __( '%s attempts left before block.', 'limit-attempts' ), '%ATTEMPTS%' ),
+			'blocked_message'				        => sprintf( __( 'Too many failed attempts. You have been blocked until %s.', 'limit-attempts' ), '%DATE%' ),
+			'denylisted_message'			        => __( "You've been added to deny list. Please contact website administrator.", 'limit-attempts' ),
 			'email_subject'					        => sprintf( __( '%s has been blocked on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
 			'email_subject_denylisted'		        => sprintf( __( '%s has been added to the deny list on %s', 'limit-attempts' ), '%IP%', '%SITE_NAME%' ),
 			'email_blocked'					        => sprintf( __( 'IP %s has been blocked automatically on %s due to the excess of login attempts on your website %s.', 'limit-attempts' ), '%IP%', '%WHEN%', '<a href="%SITE_URL%">%SITE_NAME%</a>' ) . '<br/><br/>' . sprintf( __( 'Using the plugin %s', 'limit-attempts' ), '<a href="%PLUGIN_LINK%">Limit Attempts by BestWebSoft</a>' ),
@@ -624,45 +623,173 @@ if ( ! function_exists( 'lmtttmpts_register_plugin_links' ) ) {
 	}
 }
 
+if ( ! function_exists( 'lmtttmpts_create_new_item' ) ) {
+	function lmtttmpts_create_new_item() {
+		global $wpdb, $lmtttmpts_options;
+
+		$lmtttmpts_table = $lmtttmpts_type_new_item = '';
+		require_once( dirname( __FILE__ ) . '/includes/pro-tab.php' );
+		if ( isset( $_REQUEST['type'] ) ) {
+			$lmtttmpts_table = 'denylist' == $_REQUEST['type'] || 'denylist-email' == $_REQUEST['type'] ? 'denylist' : 'allowlist';
+			$lmtttmpts_type_new_item = 'denylist' == $_REQUEST['type'] || 'allowlist' == $_REQUEST['type'] ? 'ip' : 'email'; 
+			$message = $error = '';
+
+	
+			if ( isset( $_POST['lmtttmpts_form_submit'] ) && check_admin_referer( 'limit-attempts/limit-attempts.php', 'lmtttmpts_nonce_name' ) ) {
+		 		/* save data here */
+				if ( 'allowlist' == $lmtttmpts_table ) {
+					$add_ip = isset( $_POST['lmtttmpts_add_to_allowlist_my_ip'] ) ? esc_html( trim( $_POST['lmtttmpts_add_to_allowlist_my_ip_value'] ) ) : false;
+					$add_ip = ! $add_ip && isset( $_POST['lmtttmpts_add_to_allowlist'] ) ? esc_html( trim( $_POST['lmtttmpts_add_to_allowlist'] ) ) : $add_ip;
+					if ( empty( $add_ip ) ) {
+						$error = __( 'ERROR:', 'limit-attempts' ) . '&nbsp;' . __( 'You must type IP address', 'limit-attempts' );
+					} elseif ( filter_var( $add_ip, FILTER_VALIDATE_IP ) ) {
+						if ( lmtttmpts_is_ip_in_table( $add_ip, 'allowlist' ) ) {
+							$message .= __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'This IP address has already been added to allow list', 'limit-attempts' ) . ' - ' . $add_ip;
+						} else {
+							if ( lmtttmpts_is_ip_in_table( $add_ip, 'denylist' ) ) {
+								$message .= __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'This IP address is in deny list too, please check this to avoid errors', 'limit-attempts' ) . ' - ' . $add_ip;
+								$flag = false;
+							} else {
+								$flag = true;
+							}
+
+							lmtttmpts_remove_from_blocked_list( $add_ip );
+							if ( false !== lmtttmpts_add_ip_to_allowlist( $add_ip ) ) {
+								if ( ! empty( $message ) )
+									$message .= '<br />';
+								$message .= $add_ip . '&nbsp;' . __( 'has been added to allow list', 'limit-attempts' );
+							} else {
+								if ( ! empty( $error ) )
+									$error .= '<br />';
+								$error .= $add_ip . '&nbsp;' . __( "can't be added to allow list.", 'limit-attempts' );
+							}
+						}
+					} else {
+						$error .= sprintf( __( 'Wrong format or it does not lie in range %s.', 'limit-attempts' ), '0.0.0.0 - 255.255.255.255' ) . '<br />' . $add_ip . '&nbsp;' . __( "can't be added to allow list.", 'limit-attempts' );
+					}
+			 	} 
+				else if ( 'denylist' == $lmtttmpts_table ) {
+					/* IP to add to denylist */
+					$add_to_blacklist_ip = esc_html( trim( $_POST['lmtttmpts_add_to_denylist'] ) );
+					if ( '' == $add_to_blacklist_ip ) {
+						$error = __( 'ERROR:', 'limit-attempts' ) . '&nbsp;' . __( 'You must type IP address', 'limit-attempts' );
+					} else {
+						if ( preg_match( '/^(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])){3}$/', $add_to_blacklist_ip ) ) {
+							if ( lmtttmpts_is_ip_in_table( $add_to_blacklist_ip, 'denylist' ) ) {
+								$message .= __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'This IP address has already been added to  deny list', 'limit-attempts' ) . ' - ' . $add_to_blacklist_ip;
+							} else {
+								if ( lmtttmpts_is_ip_in_table( $add_to_blacklist_ip, 'allowlist' ) ) {
+									$message .= __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'This IP address is in allowlist too, please check this to avoid errors', 'limit-attempts' ) . ' - ' . $add_to_blacklist_ip;
+								}
+
+								lmtttmpts_remove_from_blocked_list( $add_to_blacklist_ip );
+								if ( false !== lmtttmpts_add_ip_to_denylist( $add_to_blacklist_ip ) ) {
+									if ( ! empty( $message ) )
+										$message .= '<br />';
+									$message .= $add_to_blacklist_ip . '&nbsp;' . __( 'has been added to deny list', 'limit-attempts' );
+								} else {
+									if ( ! empty( $error ) )
+										$error .= '<br />';
+									$error .= $add_to_blacklist_ip . '&nbsp;' . __( "can't be added to deny list.", 'limit-attempts' );
+								}
+							}
+						} else {
+							/* wrong IP format */
+							$error .= sprintf( __( 'Wrong format or it does not lie in range %s.', 'limit-attempts' ), '0.0.0.0 - 255.255.255.255' ) . '<br />' . $add_to_blacklist_ip . '&nbsp;' . __( "can't be added to deny list.", 'limit-attempts' );
+						}
+					}
+				}
+	 		}
+
+            $page_title = sprintf( __( 'Add New %s : %s' ), 	
+	            ( 'ip' == $lmtttmpts_type_new_item ? 'Ip' : 'Email' ),
+				( 'denylist' == $lmtttmpts_table ? __( 'Denylist', 'limit-attempts' ) : __( 'Allowlist', 'limit-attempts' ) )
+			); ?>
+			<div class="wrap">
+				<h1 class="wp-heading-inline"><?php echo $page_title; ?></h1>
+            <?php  
+            if ( ! empty( $error ) ) { ?>
+				<div class="error inline"><p><?php echo $error; ?></p></div>
+			<?php }
+			if ( ! empty( $message ) ) { ?>
+				<div class="updated inline"><p><?php echo $message; ?></p></div>
+			<?php }
+
+            if ( 'ip' == $lmtttmpts_type_new_item ) { ?>
+                <form id="lmtttmpts_edit_list_form"
+                      action="admin.php?page=lmtttmpts-create-new-item.php"
+                      method="post">
+                    <input type="text" maxlength="31" name="lmtttmpts_add_to_<?php echo $lmtttmpts_table; ?>"/>
+                    <?php $my_ip = lmtttmpts_get_ip();
+                    if ( 'denylist' != $lmtttmpts_table ) { ?>
+                        <br/>
+                        <label>
+                            <input type="checkbox" name="lmtttmpts_add_to_allowlist_my_ip" value="1"/>
+                            <?php _e( 'My IP', 'limit-attempts' ); ?>
+                            <input type="hidden" name="lmtttmpts_add_to_allowlist_my_ip_value" value="<?php echo $my_ip; ?>"/>
+                        </label>
+                    <?php } ?>
+                    <div>
+                        <span class="bws_info" style="display: inline-block;margin: 10px 0;">
+                            <?php _e( "Allowed formats:", 'limit-attempts' ); ?><code>192.168.0.1</code>
+                        </span>
+                    </div>
+                    
+		            <span id="lmtttmpts_img_loader" style="display: none;position: absolute;"><img src="<?php echo plugins_url( 'images/ajax-loader.gif', dirname( __FILE__ ) ); ?>" alt=""/></span>
+ 					<input class="button-primary" type="submit" name="lmtttmpts_form_submit" value="<?php _e( 'Add New', 'limit-attempts' ); ?>" />
+                    <input type="hidden" name="lmtttmpts_table" value="<?php echo $lmtttmpts_table; ?>" />
+			        <input type="hidden" name="type" value="<?php echo $_REQUEST['type']; ?>" />
+					<?php wp_nonce_field( 'limit-attempts/limit-attempts.php', 'lmtttmpts_nonce_name' ); ?>
+                </form> <br/>
+            <?php }
+            lmtttmpts_display_advertising( $_REQUEST['type'] ); ?>
+            </div> 
+		<?php }
+	}
+}
+
 /**
  * Function for display limit attempts settings page in the admin area
  */
 if ( ! function_exists( 'lmtttmpts_settings_page' ) ) {
 	function lmtttmpts_settings_page() {
 		global $lmtttmpts_plugin_info; ?>
-		<div class="wrap">
-			<?php if ( 'limit-attempts.php' == $_GET['page'] ) { /* Showing settings tab */
-				if ( ! class_exists( 'Bws_Settings_Tabs' ) )
-					require_once( dirname( __FILE__ ) . '/bws_menu/class-bws-settings.php' );
-				require_once( dirname( __FILE__ ) . '/includes/class-lmtttmpts-settings.php' );
-				$page = new Lmtttmpts_Settings_Tabs( plugin_basename( __FILE__ ) ); ?>
+		<?php if ( 'limit-attempts.php' == $_GET['page'] ) { /* Showing settings tab */
+			if ( ! class_exists( 'Bws_Settings_Tabs' ) )
+				require_once( dirname( __FILE__ ) . '/bws_menu/class-bws-settings.php' );
+			require_once( dirname( __FILE__ ) . '/includes/class-lmtttmpts-settings.php' );
+			$page = new Lmtttmpts_Settings_Tabs( plugin_basename( __FILE__ ) ); 
+			if ( method_exists( $page,'add_request_feature' ) )
+                $page->add_request_feature(); ?>
+			<div class="wrap">
 				<h1>Limit Attempts <?php if ( is_network_admin() ) echo __( 'Network', 'limit-attempts' ) . ' '; _e( 'Settings', 'limit-attempts' ); ?></h1>
 				<noscript><div class="error below-h2"><p><strong><?php _e( "Please enable JavaScript in Your browser.", 'limit-attempts' ); ?></strong></p></div></noscript>
 				<?php if ( $page->is_network_options ) { ?>
 					<div id="lmtttmpts_network_notice" class="updated inline bws_visible"><p><strong><?php _e( "Notice:", 'limit-attempts' ); ?></strong> <?php _e( "This option will replace all current settings on separate sites.", 'limit-attempts' ); ?></p></div>
 				<?php }
 				$page->display_content();
-			} else {
-				require_once( dirname( __FILE__ ) . '/includes/pro-tab.php' );
-				if ( 'limit-attempts-log.php' == $_GET['page'] ) { ?>
-					<h1><?php echo get_admin_page_title(); ?></h1>
-					<div id="lmtttmpts_statistics" class="lmtttmpts_list">
-						<?php lmtttmpts_display_advertising( 'log' ); ?>
-					</div>
-				<?php } elseif ( 'limit-attempts-deny-and-allowlist.php' == $_GET['page'] ) {
-					require_once( dirname( __FILE__ ) . '/includes/edit-list-form.php' );
-					lmtttmpts_display_list();
-				} elseif ( 'limit-attempts-blocked.php' == $_GET['page'] ) {
-					require_once( dirname( __FILE__ ) . '/includes/edit-list-form.php' );
-					lmtttmpts_display_blocked();
-                } else {
-					preg_match( '/limit-attempts-(.*?).php/', esc_attr( $_GET['page'] ), $page_name ); ?>
-					<h1><?php echo get_admin_page_title(); ?></h1>
-					<?php if ( file_exists( dirname( __FILE__ ) . '/includes/' . $page_name[1] . '.php' ) ) {
-						require_once( dirname( __FILE__ ) . '/includes/' . $page_name[1] . '.php' );
-						call_user_func_array( 'lmtttmpts_display_' . $page_name[1], array( plugin_basename( __FILE__ ) ) );
-					}
+		} else { ?>
+			<div class="wrap">
+			<?php require_once( dirname( __FILE__ ) . '/includes/pro-tab.php' );
+			if ( 'limit-attempts-log.php' == $_GET['page'] ) { ?>	
+				<h1><?php echo get_admin_page_title(); ?></h1>
+				<div id="lmtttmpts_statistics" class="lmtttmpts_list">
+					<?php lmtttmpts_display_advertising( 'log' ); ?>
+				</div>
+			<?php } elseif ( 'limit-attempts-deny-and-allowlist.php' == $_GET['page'] ) {
+				require_once( dirname( __FILE__ ) . '/includes/edit-list-form.php' );
+				lmtttmpts_display_list();
+			} elseif ( 'limit-attempts-blocked.php' == $_GET['page'] ) {
+				require_once( dirname( __FILE__ ) . '/includes/edit-list-form.php' );
+				lmtttmpts_display_blocked();
+            } else {
+				preg_match( '/limit-attempts-(.*?).php/', esc_attr( $_GET['page'] ), $page_name ); ?>
+				<h1><?php echo get_admin_page_title(); ?></h1>
+				<?php if ( file_exists( dirname( __FILE__ ) . '/includes/' . $page_name[1] . '.php' ) ) {
+					require_once( dirname( __FILE__ ) . '/includes/' . $page_name[1] . '.php' );
+					call_user_func_array( 'lmtttmpts_display_' . $page_name[1], array( plugin_basename( __FILE__ ) ) );
 				}
+			}
 				bws_plugin_reviews_block( $lmtttmpts_plugin_info['Name'], 'limit-attempts' );
 			} ?>
 		</div>
@@ -757,15 +884,15 @@ if ( ! function_exists( 'lmtttmpts_is_ip_blocked' ) ) {
 
 		$ip_info = $wpdb->get_row( "
             SELECT
-				failed_attempts,
-				block_quantity,
-				block_till
+				`failed_attempts`,
+				`block_quantity`,
+				`block_till`
 			FROM
-				{$wpdb->prefix}lmtttmpts_failed_attempts
+				`{$wpdb->prefix}lmtttmpts_failed_attempts`
 			WHERE
-				ip_int = {$ip_int} AND 
-				block = '1' AND 
-				block_by = 'ip'
+				`ip_int` = {$ip_int} AND 
+				`block` = '1' AND 
+				`block_by` = 'ip'
         ", ARRAY_A );
 
 		return $ip_info;

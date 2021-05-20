@@ -289,7 +289,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 									<fieldset>
 										<label>
 											<input disabled="disabled" checked="checked" type="radio" name="lmtttmpts_action_with_not_existed_user" value="default" />
-											<?php _e( 'Default', 'limit-attempts' ); ?>
+											<?php _e( 'None', 'limit-attempts' ); ?>
 										</label>
 										<br />
 										<label>
@@ -302,7 +302,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 											<?php _e( 'Deny list', 'limit-attempts' ); ?>
 										</label>
 									</fieldset>
-									<span class="bws_info"><?php _e( 'Detect login attempts for non-existing username and apply actions (default will block and/or added to deny list IP addresses based on the settings above).', 'limit-attempts' ); ?></span>
+									<span class="bws_info"><?php _e( 'Detect login attempts for non-existing username and apply actions.', 'limit-attempts' ); ?></span>
 								</td>
 							</tr>
                             <tr>
@@ -341,7 +341,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th><?php _e( "Htaccess Plugin", 'limit-attempts' ); ?> </th>
+					<th>Htaccess</th>
 					<td>
 						<?php if ( array_key_exists( 'htaccess/htaccess.php', $this->all_plugins ) || array_key_exists( 'htaccess-pro/htaccess-pro.php', $this->all_plugins ) ) {
 							$htaccess_free_active = ( 0 < count( preg_grep( '/htaccess\/htaccess.php/', $this->active_plugins ) ) ) ? true : false;
@@ -352,7 +352,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 									$attr = $this->change_permission_attr;
 									if ( 1 == $this->options["block_by_htaccess"] )
 										$attr .= ' checked="checked"';
-									$status_message = ' <a href="' . network_admin_url( $htaccess_settings_link ) . '">' . sprintf( __( 'Go to %s Settings', 'limit-attempts' ), 'Htaccess' ) . '</a>';
+									$status_message = ' <a href="' . network_admin_url( $htaccess_settings_link ) . '">' . __( 'Configure Settings', 'limit-attempts' ) . '</a>';
 								} else {
 									$attr = ' disabled="disabled"';
 									if ( 1 == $this->options["block_by_htaccess"] )
@@ -378,7 +378,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th><?php _e( 'Captcha Plugin', 'limit-attempts' ); ?></th>
+					<th>Captcha</th>
 					<td>
 						<fieldset>
 							<?php if (
@@ -399,7 +399,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 											</label>
 											<div class="bws_info">
-												<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?>  <a href="<?php echo self_admin_url( 'admin.php?page=captcha_pro.php' ); ?>"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'Captcha Pro' ); ?></a>
+												<?php _e( 'Failed captcha submission for the selected forms will be considered as an invalid login attempt.', 'limit-attempts' ); ?>  <a href="<?php echo self_admin_url( 'admin.php?page=captcha_pro.php' ); ?>"><?php _e( 'Configure Settings', 'limit-attempts' ); ?></a>
 											</div>
 										<?php } else { ?>
 											<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
@@ -414,7 +414,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 											<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 										</label>
 										<div class="bws_info">
-											<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=captcha-plus.php"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'Captcha Plus' ); ?></a>
+											<?php _e( 'Failed captcha submission for the selected forms will be considered as an invalid login attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=captcha-plus.php"><?php _e( 'Configure Settings', 'limit-attempts' ); ?></a>
 										</div>
 									<?php } else {
 										if ( isset( $this->all_plugins['captcha-bws/captcha-bws.php']['Version'] ) && $this->all_plugins['captcha-bws/captcha-bws.php']['Version'] >= '5.0.0' ) { ?>
@@ -423,25 +423,25 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 											</label>
 											<div class="bws_info">
-												<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=captcha.php"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'Captcha' ); ?></a>
+												<?php _e( 'Failed captcha submission for the selected forms will be considered as an invalid login attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=captcha.php"><?php _e( 'Configure Settings', 'limit-attempts' ); ?></a>
 											</div>
 										<?php } else { ?>
 											<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
 											<span class="bws_info">
-												<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Captcha', 'v4.0.2' ); ?></a>
+												<?php _e( 'Failed captcha submission for the selected forms will be considered as an invalid login attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php printf( __( 'Update %s at least to %s', 'limit-attempts' ), 'Captcha', 'v4.0.2' ); ?></a>
 											</span>
 										<?php }
 									}
 								} else { /* if no plugin is active */ ?>
 									<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
 									<span class="bws_info">
-										<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php _e( 'Activate', 'limit-attempts' ); ?></a>
+										<?php _e( 'Failed captcha submission for the selected forms will be considered as an invalid login attempt.', 'limit-attempts' ); ?> <a href="<?php echo self_admin_url( '/plugins.php' ); ?>"><?php _e( 'Activate', 'limit-attempts' ); ?></a>
 									</span>
 								<?php }
 							} else { ?>
 								<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" />
 								<span class="bws_info">
-									<?php _e( 'Incorrect captcha for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=6edfbbf264c8ee2d45ecb91d0994c89e"><?php _e( 'Install Now', 'limit-attempts' ); ?></a>
+									<?php _e( 'Failed captcha submission for the selected forms will be considered as an invalid login attempt.', 'limit-attempts' ); ?> <a href="https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=6edfbbf264c8ee2d45ecb91d0994c89e"><?php _e( 'Install Now', 'limit-attempts' ); ?></a>
 								</span>
 							<?php }
 							if ( ! $this->hide_pro_tabs ) { ?>
@@ -482,7 +482,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th><?php _e( 'reCaptcha Plugin', 'limit-attempts' ); ?></th>
+					<th>reCaptcha</th>
 					<td>
 						<fieldset>
 							<?php if (
@@ -505,7 +505,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 											</label>
 											<div class="bws_info">
-												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?>  <a href="<?php echo self_admin_url( 'admin.php?page=google-captcha-pro.php' ); ?>"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'reCaptcha Pro' ); ?></a>
+												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?>  <a href="<?php echo self_admin_url( 'admin.php?page=google-captcha-pro.php' ); ?>"><?php _e( 'Configure Settings', 'limit-attempts' ); ?></a>
 											</div>
 										<?php } else { ?>
 											<input disabled="disabled" type="checkbox" />
@@ -523,7 +523,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 												<span><?php _e( 'Login form', 'limit-attempts' ); ?></span>
 											</label>
 											<div class="bws_info">
-												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=google-captcha.php"><?php printf( __( 'Go to %s Settings', 'limit-attempts' ), 'reCaptcha' ); ?></a>
+												<?php _e( 'Failed reCAPTCHA validation for selected forms will be considered as an invalid attempt.', 'limit-attempts' ); ?> <a href="admin.php?page=google-captcha.php"><?php _e( 'Configure Settings', 'limit-attempts' ); ?></a>
 											</div>
 										<?php } else { ?>
 											<input disabled="disabled" type="checkbox" name="lmtttmpts_login_form_captcha_check" value="1" <?php if ( isset( $this->options["login_form_captcha_check"] ) ) echo 'checked="checked"'; ?> />
@@ -704,7 +704,7 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
                                 <th scope="row"><?php _e( 'Non-Existing Username', 'limit-attempts' ); ?></th>
                                 <td>
                                     <div class="lmtttmpts_not_existed_user_message_block">
-                                        <textarea cols="10000"  rows="5" name="lmtttmpts_user_not_exists_blocked_message" disabled="disabled" ><?php _e( "You've been blocked for %DATE% because such username does not exist.", 'limit-attempts' ); ?></textarea>
+                                        <textarea cols="10000"  rows="5" name="lmtttmpts_user_not_exists_blocked_message" disabled="disabled" ><?php _e( "Such username does not exist. You've been blocked until %DATE%.", 'limit-attempts' ); ?></textarea>
                                         <div class="bws_info">
                                             <?php _e( 'Allowed Variables:', 'limit-attempts' ); ?><br/>
                                             '%DATE%' - <?php _e( 'blocking time', 'limit-attempts' ); ?><br/>
@@ -749,23 +749,23 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 					<td>
                         <fieldset>
                             <label>
-                                <input type="radio" id="lmtttmpts_user_mailto" name="lmtttmpts_mailto" value="admin" <?php checked( $this->options['mailto'], 'admin' ); ?> />
-                                <select class="lmtttmpts_email_notifications_input" name="lmtttmpts_user_email_address">
-                                    <option disabled><?php _e( "Choose a username", 'limit-attempts' ); ?></option>
-                                    <?php foreach ( $userslogin as $key => $value ) {
-                                        if ( $value->data->user_email != '' ) { ?>
-                                            <option value="<?php echo $value->data->user_email; ?>" <?php selected( $value->data->user_email, $this->options['email_address'] ); ?>><?php echo $value->data->user_login; ?></option>
-                                        <?php }
-                                    } ?>
-                                </select>
+                                <input type="radio" id="lmtttmpts_user_mailto" name="lmtttmpts_mailto" value="admin" class="bws_option_affect" data-affect-show="#lmtttmpts_user_email_address" data-affect-hide="#lmtttmpts_email_address" <?php checked( $this->options['mailto'], 'admin' ); ?> /><span class="bws_info"><?php _e( 'User', 'limit-attempts' ); ?></span>
+                                
                             </label>
                             <br/>
                             <label>
-                                <input type="radio" id="lmtttmpts_custom_mailto" name="lmtttmpts_mailto" value="custom" <?php checked( $this->options['mailto'], 'custom' ); ?> />
-                                <input type="email" class="lmtttmpts_email_notifications_input" name="lmtttmpts_email_address" maxlength="100" value="<?php if ( $this->options['mailto'] == 'custom' ) echo $this->options['email_address']; ?>" />
+                               <input type="radio" id="lmtttmpts_custom_mailto" name="lmtttmpts_mailto" value="custom" class="bws_option_affect" data-affect-show="#lmtttmpts_email_address" data-affect-hide="#lmtttmpts_user_email_address" <?php checked( $this->options['mailto'], 'custom' ); ?> /><span class="bws_info"><?php _e( 'Custom Email', 'limit-attempts' ); ?></span>
                             </label>
                         </fieldset>
-						<div class="bws_info"><?php _e( 'Select an existing administrator or a custom email.', 'limit-attempts' ); ?></div>
+                        <select id="lmtttmpts_user_email_address" class="lmtttmpts_email_notifications_input" name="lmtttmpts_user_email_address">
+	                        <option disabled><?php _e( "Choose a username", 'limit-attempts' ); ?></option>
+	                        <?php foreach ( $userslogin as $key => $value ) {
+	                            if ( $value->data->user_email != '' ) { ?>
+	                                <option value="<?php echo $value->data->user_email; ?>" <?php selected( $value->data->user_email, $this->options['email_address'] ); ?>><?php echo $value->data->user_login; ?></option>
+	                            <?php }
+	                        } ?>
+	                    </select>
+	                    <input id="lmtttmpts_email_address" type="email" class="lmtttmpts_email_notifications_input" name="lmtttmpts_email_address" maxlength="100" value="<?php if ( $this->options['mailto'] == 'custom' ) echo $this->options['email_address']; ?>" />
 					</td>
 				</tr>
 				<tr class="lmtttmpts_email_notifications">
