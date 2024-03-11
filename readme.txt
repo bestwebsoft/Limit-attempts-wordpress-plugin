@@ -1,10 +1,10 @@
-=== Limit Attempts by BestWebSoft ===
+=== Limit Attempts by BestWebSoft - WordPress Anti-Bot and Security Plugin for Login and Forms ===
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: login, security, limit login attempts, limit attempts, failed attempts, login attempt, hack, protection, authentication, deny list, allow list, brute force
-Requires at least: 4.5
-Tested up to: 5.7.2
-Stable tag: 1.2.9
+Requires at least: 5.6
+Tested up to: 6.4
+Stable tag: 1.3.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -83,6 +83,7 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 > 	* Event time
 > * Summary diagram with login attempts statistic and prevented hacking attempts in the settings page and in a dashboard widget
 > * Configure all subsites on the network
+> * You can use Limit Attempts Captcha for default forms
 > * Get answer to your support question within one business day ([Support Policy](https://bestwebsoft.com/support-policy/))
 >
 > [Upgrade to Pro Now](https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=cb8137a688618f00aad733d4b0b2d014)
@@ -210,6 +211,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 13. Tab with Statistics.
 
 == Changelog ==
+
+= V1.3.0 - 08.03.2024 =
+* Update : All functionality was updated for WordPress 6.4.
+* Update : BWS panel section was updated.
+* Pro: Limit Attempts Captcha for default forms was added.
+* Bugfix : Database queries have been optimized.
 
 = V1.2.9 - 19.05.2021 =
 * Pro : Email priority Deny and Allow lists issue has been fixed.
@@ -352,6 +359,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.3.0 =
+* The compatibility with new WordPress version updated.
+* Usability improved.
+* New features added.
+* Bugs fixed.
 
 = V1.2.9 =
 * Bugs fixed.

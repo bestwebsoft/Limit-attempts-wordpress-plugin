@@ -10,6 +10,14 @@
 			}
 		} ).trigger('change');
 
+		$( 'input[name="lmtttmpts_notify_email"]' ).change( function() {
+			if ( $( this ).is( ':checked' ) ) {
+				$( '.lmtttmpts_email_notifications' ).show();
+			} else {
+				$( '.lmtttmpts_email_notifications' ).hide();
+			}
+		} ).trigger('change');
+
 		/* hide zero values */
 		$( '.lmtttmpts-zero-value' ).addClass( 'lmtttmpts_hidden' );
 		/* hide "block/add to denylist" time options at the page load */
