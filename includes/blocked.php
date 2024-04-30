@@ -92,8 +92,8 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List' ) ) {
 				if ( 0 != $search_ip || preg_match( '/^(\.|\d)?(\.?[0-9]{1,3}?\.?){1,4}?(\.|\d)?$/i', $part_ip ) ) {
 					$and = $wpdb->prepare(
 						' AND ( ip_int = %d OR ip LIKE %s )',
-						$search_ip,
-						'%' . $part_ip . '%'
+						$wpdb->esc_like( $search_ip ),
+						'%' . $wpdb->esc_like( $part_ip ) . '%'
 					);
 				}
 			}

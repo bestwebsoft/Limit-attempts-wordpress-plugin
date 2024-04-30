@@ -99,7 +99,7 @@ if ( ! class_exists( 'Lmtttmpts_Denylist_Email' ) ) {
 				$part_email = isset( $_REQUEST['s'] ) ? trim( sanitize_text_field( wp_unslash( $_REQUEST['s'] ) ) ) : '';
 				$query .= $wpdb->prepare(
 					' WHERE `email` LIKE %s',
-					'%' . $part_email . '%'
+					'%' . $wpdb->esc_like( $part_email ) . '%'
 				);
 			}
 			/* get the total number of Emails */
@@ -125,7 +125,7 @@ if ( ! class_exists( 'Lmtttmpts_Denylist_Email' ) ) {
 				$part_email = isset( $_REQUEST['s'] ) ? trim( sanitize_text_field( wp_unslash( $_REQUEST['s'] ) ) ) : '';
 				$query .= $wpdb->prepare(
 					' WHERE `email` LIKE %s',
-					'%' . $part_email . '%'
+					'%' . $wpdb->esc_like( $part_email ) . '%'
 				);
 			}
 
@@ -202,8 +202,16 @@ if ( ! class_exists( 'Lmtttmpts_Denylist_Email' ) ) {
 				if ( empty( $email ) ) {
 					$action_message['done'] = $message_list['notice'] . '&nbsp;' . $message_list['empty_ip_list'];
 				} else {
-					$eml = is_array( $email ) ? implode( '","', array_map( 'sanitize_text_field', array_map( 'wp_unslash', $email ) ) ) : sanitize_text_field( wp_unslash( $email ) );
-					$wpdb->query( 'DELETE FROM `' . $wpdb->prefix . 'lmtttmpts_denylist_email` WHERE `email` IN ("' . $eml . '");' );
+					$eml = is_array( $email ) ? array_map( 'sanitize_text_field', array_map( 'wp_unslash', $email ) ) : sanitize_text_field( wp_unslash( $email ) );
+
+					$eml_placeholders = implode( ', ', array_fill( 0, count( (array) $eml ), '%s' ) );
+
+					$wpdb->query(
+						$wpdb->prepare(
+							'DELETE FROM `' . $wpdb->prefix . 'lmtttmpts_denylist_email` WHERE `email` IN (' . $eml_placeholders . ');',
+							(array) $eml
+						)
+					);
 					if ( $wpdb->last_error ) {
 						$action_message['error'] = $eml . '&nbsp;-&nbsp;' . $message_list['denylisted_delete_error'];
 					} else {

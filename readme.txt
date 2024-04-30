@@ -3,8 +3,8 @@ Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
 Tags: login, security, limit login attempts, limit attempts, failed attempts, login attempt, hack, protection, authentication, deny list, allow list, brute force
 Requires at least: 5.6
-Tested up to: 6.4
-Stable tag: 1.3.0
+Tested up to: 6.5
+Stable tag: 1.3.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -211,6 +211,11 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 13. Tab with Statistics.
 
 == Changelog ==
+
+= V1.3.1 - 30.04.2024 =
+* Update : Security fixes.
+* Update : BWS panel section was updated.
+* Update : All functionality was updated for WordPress 6.5.
 
 = V1.3.0 - 08.03.2024 =
 * Update : All functionality was updated for WordPress 6.4.

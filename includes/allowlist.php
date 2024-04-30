@@ -78,13 +78,12 @@ if ( ! class_exists( 'Lmtttmpts_Allowlist' ) ) {
 		 */
 		public function prepare_items() {
 			global $wpdb;
-			$prefix = $wpdb->prefix . 'lmtttmpts_';
 			$part_ip = isset( $_REQUEST['s'] ) ? trim( sanitize_text_field( wp_unslash( $_REQUEST['s'] ) ) ) : '';
 			/* query for total number of denylisted IPs */
-			$count_query = 'SELECT COUNT(*) FROM `' . $prefix . 'allowlist`';
+			$count_query = 'SELECT COUNT(*) FROM `' . $wpdb->prefix . 'lmtttmpts_allowlist`';
 			/* if search */
 			if ( isset( $_REQUEST['s'] ) ) {
-				$count_query .= " WHERE `ip` LIKE '%" . $part_ip . "%'";
+				$count_query .= $wpdb->prepare(	' WHERE `ip` LIKE %s', '%' . $wpdb->esc_like( $part_ip ) . '%' );
 			}
 			/* get the total number of IPs */
 			$totalitems = $wpdb->get_var( $count_query );
@@ -106,9 +105,9 @@ if ( ! class_exists( 'Lmtttmpts_Allowlist' ) ) {
 			$offset = ( $paged - 1 ) * $perpage;
 
 			/* general query */
-			$query = 'SELECT `ip`, `add_time` FROM `' . $prefix . 'allowlist`';
+			$query = 'SELECT `ip`, `add_time` FROM `' . $wpdb->prefix . 'lmtttmpts_allowlist`';
 			if ( isset( $_REQUEST['s'] ) ) {
-				$query .= " WHERE `ip` LIKE '%" . $part_ip . "%'";
+				$query .= $wpdb->prepare(	' WHERE `ip` LIKE %s', '%' . $wpdb->esc_like( $part_ip ) . '%' );
 			}
 			/* add calculated values (order and pagination) to our query */
 			$date_time_format  = get_option( 'date_format' ) . ' ' . get_option( 'time_format' );
@@ -171,8 +170,16 @@ if ( ! class_exists( 'Lmtttmpts_Allowlist' ) ) {
 				if ( empty( $ip_list ) ) {
 					$action_message['done'] = __( 'Notice:', 'limit-attempts' ) . '&nbsp;' . __( 'No address has been selected', 'limit-attempts' );
 				} else {
-					$ips = is_array( $ip_list ) ? implode( '","', array_map( 'sanitize_text_field', array_map( 'wp_unslash', $ip_list ) ) ) : sanitize_text_field( wp_unslash( $ip_list ) );
-					$wpdb->query( 'DELETE FROM `' . $wpdb->prefix . 'lmtttmpts_allowlist` WHERE `ip` IN ("' . $ips . '");' );
+					$ips = is_array( $ip_list ) ? array_map( 'sanitize_text_field', array_map( 'wp_unslash', $ip_list ) ) : sanitize_text_field( wp_unslash( $ip_list ) );
+
+					$ips_placeholders = implode( ', ', array_fill( 0, count( (array) $ips ), '%s' ) );
+
+					$wpdb->query(
+						$wpdb->prepare(
+							'DELETE FROM `' . $wpdb->prefix . 'lmtttmpts_allowlist` WHERE `ip` IN (' . $ips_placeholders . ');',
+							(array) $ips
+						)
+					);
 					if ( $wpdb->last_error ) {
 						$action_message['error'] = $ips . '&nbsp;-&nbsp;' . __( 'Error while deleting from allowlist', 'limit-attempts' );
 					} else {

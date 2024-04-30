@@ -100,8 +100,8 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 				if ( 0 != $search_ip || preg_match( '/^(\.|\d)?(\.?[0-9]{1,3}?\.?){1,4}?(\.|\d)?$/i', $part_ip ) ) {
 					$where = $wpdb->prepare(
 						' WHERE ip_int = %d OR ip LIKE %s ',
-						$search_ip,
-						'%' . $part_ip . '%'
+						$wpdb->esc_like( $search_ip ),
+						'%' . $wpdb->esc_like( $part_ip ) . '%'
 					);
 				}
 			}
@@ -169,7 +169,7 @@ if ( ! class_exists( 'Lmtttmpts_Statistics' ) ) {
 							WHERE 
 									id_failed_attempts_statistics = %s
 							',
-							$statistic['id']
+							$wpdb->esc_like( $statistic['id'] )
 						)
 					);
 

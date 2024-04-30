@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.3.0
+Version: 1.3.1
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
@@ -495,7 +495,7 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 							$drop = array();
 							foreach ( $indexes as $index ) {
 								if ( preg_match( '|ip_|', $index->Key_name ) && ! in_array( ' DROP INDEX ' . $index->Key_name, $drop ) ) {
-									$drop[] = ' DROP INDEX ' . $index->Key_name;
+									$drop[] = ' DROP INDEX `' . $index->Key_name . '`';
 								}
 							}
 							if ( ! empty( $drop ) ) {
@@ -1361,19 +1361,22 @@ if ( ! function_exists( 'lmtttmpts_reset_block' ) ) {
 		if ( ! empty( $blockeds ) ) {
 			foreach ( $blockeds as $blocked ) {
 				$reset_ip_in_htaccess[] = $blocked['ip'];
-				$reset_ip_db[]          = "'{$blocked['ip_int']}'";
+				$reset_ip_db[]          = $blocked['ip_int'];
 			}
 		}
-		$reset_ip_db = implode( ',', $reset_ip_db );
 
-		if ( '' != $reset_ip_db ) {
+		if ( ! empty( $reset_ip_db ) ) {
+			$reset_ip_db_placeholders = implode( ', ', array_fill( 0, count( (array) $reset_ip_db ), '%d' ) );
 			$wpdb->query(
-				'UPDATE `' . $wpdb->prefix . 'lmtttmpts_failed_attempts` 
-				SET
-					`block` = 0, 
-					`block_till` = NULL,
-					`block_by` = NULL 
-				WHERE `ip_int` IN (' . $reset_ip_db . ')'
+				$wpdb->prepare(
+					'UPDATE `' . $wpdb->prefix . 'lmtttmpts_failed_attempts` 
+					SET
+						`block` = 0, 
+						`block_till` = NULL,
+						`block_by` = NULL 
+					WHERE `ip_int` IN (' . $reset_ip_db_placeholders . ')',
+					$reset_ip_db
+				)
 			);
 		}
 

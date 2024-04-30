@@ -201,9 +201,9 @@ if ( ! function_exists( 'lmtttmpts_handle_error' ) ) {
 					(`' . $wpdb->prefix . 'lmtttmpts_failed_attempts`.`block_by` = %s OR 
 					`' . $wpdb->prefix . 'lmtttmpts_failed_attempts`.`block_by` IS NULL )
 				LIMIT 1;',
-				$ip,
-				$ip,
-				$ip_int,
+				$wpdb->esc_like( $ip ),
+				$wpdb->esc_like( $ip ),
+				$wpdb->esc_like( $ip_int ),
 				'ip'
 			)
 		);
@@ -302,7 +302,7 @@ if ( ! function_exists( 'lmtttmpts_handle_error' ) ) {
 							FROM `' . $wpdb->prefix . 'lmtttmpts_failed_attempts`
 							WHERE `block_till` > %s
 							ORDER BY `block_till`',
-							$current_timestamp
+							$wpdb->esc_like( $current_timestamp )
 						),
 						ARRAY_A
 					);
@@ -520,10 +520,10 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 					' . $wpdb->prefix . 'lmtttmpts_failed_attempts.email = %s OR
 					' . $wpdb->prefix . 'lmtttmpts_failed_attempts.ip_int = %d
 				',
-				$ip,
-				$ip,
-				$email,
-				$ip_int
+				$wpdb->esc_like( $ip ),
+				$wpdb->esc_like( $ip ),
+				$wpdb->esc_like( $email ),
+				$wpdb->esc_like( $ip_int )
 			),
 			ARRAY_A
 		);
@@ -569,8 +569,8 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 							block = 0
 					) AS email
 				',
-				$ip,
-				$email
+				$wpdb->esc_like( $ip ),
+				$wpdb->esc_like( $email )
 			),
 			ARRAY_A
 		);
@@ -662,7 +662,7 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 							ORDER BY 
 								block_till
 							',
-							$current_timestamp
+							$wpdb->esc_like( $current_timestamp )
 						),
 						ARRAY_A
 					);
@@ -796,7 +796,7 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 						WHERE 
 							email = %s
 						',
-						$email
+						$wpdb->esc_like( $email )
 					)
 				);
 			}
@@ -825,7 +825,7 @@ if ( ! function_exists( 'lmtttmpts_contact_form' ) ) {
 					WHERE 
 						email = %s
 					',
-					$email
+					$wpdb->esc_like( $email )
 				)
 			);
 		} else {

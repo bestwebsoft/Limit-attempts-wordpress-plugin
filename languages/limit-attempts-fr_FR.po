@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2024-04-30 18:32+0300\n"
-"PO-Revision-Date: 2024-04-30 18:33+0300\n"
+"POT-Creation-Date: 2024-04-30 18:35+0300\n"
+"PO-Revision-Date: 2024-04-30 18:37+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: pl_PL\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,18 +18,18 @@ msgstr ""
 #: includes/allowlist.php:25 includes/denylist.php:25
 #: includes/statistics.php:25
 msgid "Ip Address"
-msgstr "Adres IP"
+msgstr "Adresse IP"
 
 #: includes/allowlist.php:26 includes/denylist-email.php:37
 #: includes/denylist.php:26 includes/pro-tab.php:132 includes/pro-tab.php:140
 msgid "Date Added"
-msgstr "Data dodania"
+msgstr "Date d'ajout"
 
 #: includes/allowlist.php:49 includes/allowlist.php:59
 #: includes/denylist-email.php:60 includes/denylist-email.php:71
 #: includes/denylist.php:49 includes/denylist.php:59
 msgid "Delete"
-msgstr "Usuń"
+msgstr "Supprimer"
 
 #: includes/allowlist.php:171 includes/blocked-email.php:194
 #: includes/blocked.php:196 includes/denylist-email.php:183
@@ -37,154 +37,154 @@ msgstr "Usuń"
 #: limit-attempts.php:717 limit-attempts.php:747 limit-attempts.php:750
 #: limit-attempts.php:861 limit-attempts.php:912
 msgid "Notice:"
-msgstr "Powiadomienie:"
+msgstr "Remarque :"
 
 #: includes/allowlist.php:171 includes/blocked-email.php:195
 #: includes/blocked.php:197 includes/denylist-email.php:184
 #: includes/denylist.php:174 includes/statistics.php:236
 msgid "No address has been selected"
-msgstr "Nie wybrano żadnego adresu"
+msgstr "Aucune adresse n'a été sélectionnée"
 
 #: includes/allowlist.php:184
 msgid "Error while deleting from allowlist"
-msgstr "Błąd podczas usuwania z listy dozwolonych"
+msgstr "Erreur lors de la suppression d'une liste d'autorisations"
 
 #: includes/allowlist.php:187
 msgid "has been deleted from allow list"
-msgstr "został usunięty z listy dozwolonych"
+msgstr "a été supprimé de la liste des autorisations"
 
 #: includes/allowlist.php:187
 msgid "have been deleted from allow list"
-msgstr "zostały usunięte z listy dozwolonych"
+msgstr "ont été supprimés de la liste des autorisations"
 
 #: includes/allowlist.php:200 includes/blocked-email.php:342
 #: includes/blocked.php:370 includes/denylist-email.php:227
 #: includes/denylist.php:202 includes/statistics.php:286
 msgid "Search results for"
-msgstr "Wyniki wyszukiwania dla"
+msgstr "Résultats de recherche pour"
 
 #: includes/allowlist.php:202 includes/blocked.php:372
 #: includes/denylist.php:204 includes/statistics.php:288 limit-attempts.php:737
 #: limit-attempts.php:768
 #, php-format
 msgid "Wrong format or it does not lie in range %s."
-msgstr "Nieprawidłowy format lub nie mieści się w zakresie %s."
+msgstr "Mauvais format ou n'est pas compris dans l'intervalle %s."
 
 #: includes/blocked-email.php:25 includes/denylist-email.php:36
 #: includes/edit-list-form.php:172 includes/edit-list-form.php:206
 #: includes/pro-tab.php:130 includes/pro-tab.php:138 includes/pro-tab.php:191
 #: includes/pro-tab.php:204 includes/statistics.php:26
 msgid "Email"
-msgstr "Email"
+msgstr "Adresse email"
 
 #: includes/blocked-email.php:26 includes/blocked.php:26
 msgid "Date Expires"
-msgstr "Data wygaśnięcia"
+msgstr "Date d’expiration"
 
 #: includes/blocked-email.php:49 includes/blocked-email.php:59
 #: includes/blocked.php:49 includes/blocked.php:60
 msgid "Reset Block"
-msgstr "Blok resetowania"
+msgstr "Bloc de réinitialisation"
 
 #: includes/blocked-email.php:196 includes/blocked.php:198
 msgid "Block has been reset for"
-msgstr "Blok został zresetowany dla"
+msgstr "Le bloc a été réinitialisé pour"
 
 #: includes/blocked-email.php:197 includes/blocked.php:199
 msgid "Error while reseting block for"
-msgstr "Błąd podczas resetowania bloku dla"
+msgstr "Erreur lors de la réinitialisation du bloc pour"
 
 #: includes/blocked.php:25 includes/edit-list-form.php:158
 #: includes/edit-list-form.php:198
 msgid "IP Address"
-msgstr "Adres IP"
+msgstr "Adresse IP"
 
 #: includes/blocked.php:50
 msgid "Add to Allow list"
-msgstr "Dodaj do listy dozwolonych"
+msgstr "Ajouter à la liste d'autorisation"
 
 #: includes/blocked.php:61
 msgid "Add to Allow List"
-msgstr "Dodaj do listy dozwolonych"
+msgstr "Ajouter à la liste d’autorisation"
 
 #: includes/blocked.php:200
 msgid "IP address was added to allow list"
-msgstr "Adres IP został dodany do listy dozwolonych"
+msgstr "L'adresse IP a été ajoutée à la liste des adresses autorisées"
 
 #: includes/blocked.php:201
 msgid "IP addresses were added to allow list"
-msgstr "Adresy IP zostały dodane do listy dozwolonych"
+msgstr "Des adresses IP ont été ajoutées à la liste d'autorisation"
 
 #: includes/class-lmtttmpts-settings.php:27 limit-attempts.php:58
 #: limit-attempts.php:660 limit-attempts.php:680 limit-attempts.php:856
 msgid "Settings"
-msgstr "Ustawienia"
+msgstr "Réglages"
 
 #: includes/class-lmtttmpts-settings.php:28
 msgid "Errors"
-msgstr "Błędy"
+msgstr "Erreurs"
 
 #: includes/class-lmtttmpts-settings.php:29
 msgid "Notifications"
-msgstr "Powiadomienia"
+msgstr "Notifications"
 
 #: includes/class-lmtttmpts-settings.php:30
 msgid "Misc"
-msgstr "Różne"
+msgstr "Divers"
 
 #: includes/class-lmtttmpts-settings.php:31
 msgid "Custom Code"
-msgstr "Własny Kod"
+msgstr "Code personnalisé"
 
 #: includes/class-lmtttmpts-settings.php:32
 msgid "License Key"
-msgstr "Klucz licencyjny"
+msgstr "Clé de licence"
 
 #: includes/class-lmtttmpts-settings.php:170
 msgid ""
 "You need to fill in the Block Notifications and Deny List Notifications "
 "fields to activate the Email Notifications option."
 msgstr ""
-"Aby aktywować opcję Powiadomienia e-mail, należy wypełnić pola Blokuj "
-"powiadomienia i Odrzuć powiadomienia z listy."
+"Vous devez remplir les champs Bloquer les notifications et Refuser les "
+"notifications de la liste pour activer l'option Notifications par courriel."
 
 #: includes/class-lmtttmpts-settings.php:202 limit-attempts.php:1533
 msgid "Email notifications have been restored to default."
-msgstr "Przywrócono domyślne powiadomienia e-mail."
+msgstr "Les notifications par courriel ont été rétablies par défaut."
 
 #: includes/class-lmtttmpts-settings.php:205 limit-attempts.php:1536
 msgid "Messages have been restored to default."
-msgstr "Przywrócono domyślne ustawienia wiadomości."
+msgstr "Les messages ont été rétablis par défaut."
 
 #: includes/class-lmtttmpts-settings.php:214
 msgid "Settings saved."
-msgstr "Ustawienia zapisane."
+msgstr "Paramètres sauvegardés."
 
 #: includes/class-lmtttmpts-settings.php:242 limit-attempts.php:47
 #: limit-attempts.php:57
 msgid "Limit Attempts Settings"
-msgstr "Ustawienia limitu prób"
+msgstr "Paramètres de limitation des tentatives"
 
 #: includes/class-lmtttmpts-settings.php:247
 msgid "Block IP Address After"
-msgstr "Blokowanie adresu IP po"
+msgstr "Bloquer l'adresse IP après"
 
 #: includes/class-lmtttmpts-settings.php:250
 #: includes/class-lmtttmpts-settings.php:747
 #, php-format
 msgid "Number of failed attempts (default is %d)."
-msgstr "Liczba nieudanych prób (domyślnie %d)."
+msgstr "Nombre d'échecs (par défaut %d)."
 
 #: includes/class-lmtttmpts-settings.php:254
 msgid "Block IP or Email Address For"
-msgstr "Blokowanie adresu IP lub adresu e-mail dla"
+msgstr "Bloquer une adresse IP ou une adresse e-mail pour"
 
 #: includes/class-lmtttmpts-settings.php:275
 #: includes/class-lmtttmpts-settings.php:309
 #: includes/class-lmtttmpts-settings.php:343
 #: includes/class-lmtttmpts-settings.php:850
 msgid "Edit"
-msgstr "Edytuj"
+msgstr "Modifier"
 
 #: includes/class-lmtttmpts-settings.php:283
 #, php-format
@@ -192,36 +192,36 @@ msgid ""
 "Time IP or Email address will be blocked for (default is %1$d hour %2$d "
 "minutes)."
 msgstr ""
-"Czas, przez jaki adres IP lub e-mail będzie blokowany (domyślnie %1$d godzin "
-"%2$d minut)."
+"Durée pendant laquelle l'adresse IP ou l'adresse électronique sera bloquée "
+"(la valeur par défaut est %1$d heure %2$d minute)."
 
 #: includes/class-lmtttmpts-settings.php:288
 msgid "Reset Failed Attempts After"
-msgstr "Resetowanie nieudanych prób po"
+msgstr "Réinitialiser les tentatives échouées après"
 
 #: includes/class-lmtttmpts-settings.php:317
 msgid "Time after which the failed attempts will be reset."
-msgstr "Czas, po którym nieudane próby zostaną zresetowane."
+msgstr "Délai après lequel les tentatives échouées seront réinitialisées."
 
 #: includes/class-lmtttmpts-settings.php:322
 msgid "Reset Blocking After"
-msgstr "Resetowanie blokady po"
+msgstr "Réinitialiser le blocage après"
 
 #: includes/class-lmtttmpts-settings.php:351
 msgid "Time after which the blocking will be reset."
-msgstr "Czas, po którym blokada zostanie zresetowana."
+msgstr "Temps après lequel le blocage sera réinitialisé."
 
 #: includes/class-lmtttmpts-settings.php:356
 msgid "Deny List IP or Email After"
-msgstr "Odrzuć adres IP listy lub adres e-mail po"
+msgstr "Refuser l'IP ou l'e-mail de la liste après"
 
 #: includes/class-lmtttmpts-settings.php:359
 msgid ""
 "Number of blocking after which the IP or Email address will be add to deny "
 "list."
 msgstr ""
-"Liczba blokad, po której adres IP lub e-mail zostanie dodany do listy "
-"odrzuconych."
+"Nombre de blocages après lesquels l'adresse IP ou l'adresse électronique "
+"sera ajoutée à la liste de refus."
 
 #: includes/class-lmtttmpts-settings.php:366
 #: includes/class-lmtttmpts-settings.php:580
@@ -231,70 +231,71 @@ msgstr ""
 #: includes/class-lmtttmpts-settings.php:1081
 #: includes/class-lmtttmpts-settings.php:1116 includes/pro-tab.php:37
 msgid "Close"
-msgstr "Zamknij"
+msgstr "Fermer"
 
 #: includes/class-lmtttmpts-settings.php:370
 msgid "Non-Existing Username Login Attempts Action"
-msgstr "Próby logowania nieistniejącej nazwy użytkownika Działanie"
+msgstr "Tentatives de connexion de noms d'utilisateur non existants Action"
 
 #: includes/class-lmtttmpts-settings.php:375
+#, fuzzy
 msgid "None"
-msgstr "Brak"
+msgstr "Aucun"
 
 #: includes/class-lmtttmpts-settings.php:380
 msgid "Block"
-msgstr "Blok"
+msgstr "Bloquer"
 
 #: includes/class-lmtttmpts-settings.php:385
 #: includes/class-lmtttmpts-settings.php:397 includes/edit-list-form.php:87
 msgid "Deny list"
-msgstr "Lista odmów"
+msgstr "Refuser la liste"
 
 #: includes/class-lmtttmpts-settings.php:388
 msgid "Detect login attempts for non-existing username and apply actions."
 msgstr ""
-"Wykrywa próby logowania dla nieistniejącej nazwy użytkownika i stosuje "
-"odpowiednie działania."
+"Détecter les tentatives de connexion pour un nom d'utilisateur inexistant et "
+"appliquer des actions."
 
 #: includes/class-lmtttmpts-settings.php:392
 msgid "Lists Priority"
-msgstr "Listy Priorytet"
+msgstr "Listes Priorité"
 
 #: includes/class-lmtttmpts-settings.php:402 includes/edit-list-form.php:100
 msgid "Allow list"
-msgstr "Lista dozwolonych"
+msgstr "Liste autorisé"
 
 #: includes/class-lmtttmpts-settings.php:405
 msgid ""
 "Choose the list which will be used if the user is in both lists (dany and "
 "allow)."
 msgstr ""
-"Proszę wybrać listę, która będzie używana, jeśli użytkownik znajduje się na "
-"obu listach (dany i allow)."
+"Choisissez la liste qui sera utilisée si l'utilisateur figure dans les deux "
+"listes (dany et allow)."
 
 #: includes/class-lmtttmpts-settings.php:409
 msgid "Failed Login and Password"
-msgstr "Nieudany login i hasło"
+msgstr "Échec du login et du mot de passe"
 
 #: includes/class-lmtttmpts-settings.php:411
 msgid ""
 "Enable to save and display login and password that was used in the failed "
 "attempt."
 msgstr ""
-"Proszę włączyć, aby zapisać i wyświetlić login i hasło użyte podczas "
-"nieudanej próby."
+"Permet de sauvegarder et d'afficher le login et le mot de passe utilisés "
+"lors de la tentative échouée."
 
 #: includes/class-lmtttmpts-settings.php:421
 msgid "Hide Forms"
-msgstr "Ukryj formularze"
+msgstr "Cacher Formulaires"
 
 #: includes/class-lmtttmpts-settings.php:423
 msgid ""
 "Enable to hide login, registration, reset password forms from blocked or "
 "deny listed IP addresses."
 msgstr ""
-"Włącz, aby ukryć formularze logowania, rejestracji i resetowania hasła przed "
-"zablokowanymi lub odrzuconymi adresami IP."
+"Permet de masquer les formulaires de connexion, d'enregistrement et de "
+"réinitialisation du mot de passe pour les adresses IP bloquées ou refusées."
 
 #: includes/class-lmtttmpts-settings.php:440
 #: includes/class-lmtttmpts-settings.php:497
@@ -303,7 +304,7 @@ msgstr ""
 #: includes/class-lmtttmpts-settings.php:641
 #: includes/class-lmtttmpts-settings.php:667
 msgid "Configure Settings"
-msgstr "Konfiguracja ustawień"
+msgstr "Configurer les paramètres"
 
 #: includes/class-lmtttmpts-settings.php:446
 #: includes/class-lmtttmpts-settings.php:507
@@ -312,25 +313,25 @@ msgstr "Konfiguracja ustawień"
 #: includes/class-lmtttmpts-settings.php:677
 #, php-format
 msgid "Update %1$s at least to %2$s"
-msgstr "Zaktualizuj %1$s przynajmniej do %2$s"
+msgstr "Mettre à jour %1$s au moins jusqu'à %2$s"
 
 #: includes/class-lmtttmpts-settings.php:453
 #: includes/class-lmtttmpts-settings.php:564
 #: includes/class-lmtttmpts-settings.php:686
 #: includes/class-lmtttmpts-settings.php:801
 msgid "Activate"
-msgstr "Aktywuj"
+msgstr "Activer"
 
 #: includes/class-lmtttmpts-settings.php:457
 #: includes/class-lmtttmpts-settings.php:572
 #: includes/class-lmtttmpts-settings.php:694
 #: includes/class-lmtttmpts-settings.php:798
 msgid "Install Now"
-msgstr "Zainstaluj teraz"
+msgstr "Installer maintenant"
 
 #: includes/class-lmtttmpts-settings.php:462
 msgid "Enable to reduce database workload."
-msgstr "Włącz, aby zmniejszyć obciążenie bazy danych."
+msgstr "Permet de réduire la charge de travail de la base de données."
 
 #: includes/class-lmtttmpts-settings.php:465
 msgid ""
@@ -340,11 +341,11 @@ msgid ""
 "that, also will be added to the direction \"deny from\" of the file ."
 "htaccess automatically."
 msgstr ""
-"Po włączeniu tej opcji wszystkie adresy IP z listy zablokowanych i z "
-"denylist zostaną dodane do kierunku \"deny from\" pliku .htaccess. Adresy "
-"IP, które zostaną później dodane do listy zablokowanych lub do denylist, "
-"również zostaną automatycznie dodane do kierunku \"deny from\" pliku ."
-"htaccess."
+"Lorsque vous activez cette option, toutes les adresses IP de la liste "
+"bloquée et de la liste de refus sont ajoutées à la direction \"deny from\" "
+"du fichier .htaccess. Les adresses IP qui seront ajoutées à la liste bloquée "
+"ou à la liste de refus par la suite seront également ajoutées "
+"automatiquement à la direction \"deny from\" du fichier .htaccess."
 
 #: includes/class-lmtttmpts-settings.php:494
 #: includes/class-lmtttmpts-settings.php:521
@@ -353,7 +354,7 @@ msgstr ""
 #: includes/class-lmtttmpts-settings.php:664
 #: includes/class-lmtttmpts-settings.php:753 includes/pro-tab.php:222
 msgid "Login form"
-msgstr "Formularz logowania"
+msgstr "Formulaire de connexion"
 
 #: includes/class-lmtttmpts-settings.php:497
 #: includes/class-lmtttmpts-settings.php:524
@@ -365,30 +366,30 @@ msgid ""
 "Failed captcha submission for the selected forms will be considered as an "
 "invalid login attempt."
 msgstr ""
-"Nieudane przesłanie captcha dla wybranych formularzy zostanie uznane za "
-"nieprawidłową próbę logowania."
+"L'échec de la soumission captcha pour les formulaires sélectionnés sera "
+"considéré comme une tentative de connexion non valide."
 
 #: includes/class-lmtttmpts-settings.php:586
 #: includes/class-lmtttmpts-settings.php:708
 #: includes/class-lmtttmpts-settings.php:754
 msgid "Registration form"
-msgstr "Formularz rejestracji"
+msgstr "Formulaire d'enregistrement"
 
 #: includes/class-lmtttmpts-settings.php:587
 #: includes/class-lmtttmpts-settings.php:755
 msgid "Reset Password form"
-msgstr "Formularz resetowania hasła"
+msgstr "Réinitialiser le formulaire de mot de passe"
 
 #: includes/class-lmtttmpts-settings.php:588
 #: includes/class-lmtttmpts-settings.php:710
 msgid "Comments form"
-msgstr "Formularz komentarzy"
+msgstr "Formulaire de commentaires"
 
 #: includes/class-lmtttmpts-settings.php:599
 #: includes/class-lmtttmpts-settings.php:721
 #, php-format
 msgid "You also need %s to use these options."
-msgstr "Do korzystania z tych opcji potrzebne jest również %s."
+msgstr "Vous avez également besoin de %s pour utiliser ces options."
 
 #: includes/class-lmtttmpts-settings.php:641
 #: includes/class-lmtttmpts-settings.php:667
@@ -399,57 +400,57 @@ msgid ""
 "Failed reCAPTCHA validation for selected forms will be considered as an "
 "invalid attempt."
 msgstr ""
-"Nieudana walidacja reCAPTCHA dla wybranych formularzy zostanie uznana za "
-"nieprawidłową próbę."
+"L'échec de la validation reCAPTCHA pour les formulaires sélectionnés sera "
+"considéré comme une tentative non valide."
 
 #: includes/class-lmtttmpts-settings.php:709
 msgid "Reset password form"
-msgstr "Formularz resetowania hasła"
+msgstr "Réinitialisation de mot de passe"
 
 #: includes/class-lmtttmpts-settings.php:743
 msgid "Use Captcha"
-msgstr "Użyj Captcha"
+msgstr "Utiliser un Captcha"
 
 #: includes/class-lmtttmpts-settings.php:746
 msgid "Display captcha after failed"
-msgstr "Wyświetlanie captcha po niepowodzeniu"
+msgstr "Afficher le captcha en cas d'échec"
 
 #: includes/class-lmtttmpts-settings.php:746
 msgid "attempt(s)"
-msgstr "próba(y)"
+msgstr "tentative(s)"
 
 #: includes/class-lmtttmpts-settings.php:774
 msgid "Contact Form Plugin"
-msgstr "Plugin Formularz kontaktowy"
+msgstr "Formulaire de contact Plugin"
 
 #: includes/class-lmtttmpts-settings.php:812
 msgid "Enable to restrict email sending."
-msgstr "Proszę włączyć, aby ograniczyć wysyłanie wiadomości e-mail."
+msgstr "Activer pour restreindre l'envoi de courrier électronique."
 
 #: includes/class-lmtttmpts-settings.php:816
 msgid "Block Email Address After"
-msgstr "Blokowanie adresu e-mail po"
+msgstr "Bloquer l'adresse électronique après"
 
 #: includes/class-lmtttmpts-settings.php:819
 msgid ""
 "Number of the emails sent per indicated time interval. If spam comes from "
 "different emails and the same ip - ip will be blocked."
 msgstr ""
-"Liczba wiadomości e-mail wysłanych we wskazanym przedziale czasu. Jeśli spam "
-"pochodzi z różnych e-maili i tego samego adresu IP - adres IP zostanie "
-"zablokowany."
+"Nombre de courriels envoyés dans l'intervalle de temps indiqué. Si le spam "
+"provient de différents courriels et de la même adresse IP, l'adresse IP sera "
+"bloquée."
 
 #: includes/class-lmtttmpts-settings.php:823
 msgid "Time Interval"
-msgstr "Przedział czasowy"
+msgstr "Intervalle de temps"
 
 #: includes/class-lmtttmpts-settings.php:870
 msgid "Error Messages Settings"
-msgstr "Ustawienia komunikatów o błędach"
+msgstr "Messages d'erreur Paramètres"
 
 #: includes/class-lmtttmpts-settings.php:875
 msgid "Invalid Attempt"
-msgstr "Nieprawidłowa próba"
+msgstr "Tentative non valide"
 
 #: includes/class-lmtttmpts-settings.php:879
 #: includes/class-lmtttmpts-settings.php:889
@@ -460,158 +461,159 @@ msgstr "Nieprawidłowa próba"
 #: includes/class-lmtttmpts-settings.php:1018
 #: includes/class-lmtttmpts-settings.php:1025
 msgid "Allowed Variables:"
-msgstr "Dozwolone zmienne:"
+msgstr "Variables autorisées :"
 
 #: includes/class-lmtttmpts-settings.php:880
 msgid "quantity of attempts left"
-msgstr "liczba pozostałych prób"
+msgstr "nombre de tentatives restantes"
 
 #: includes/class-lmtttmpts-settings.php:885 limit-attempts.php:67
 msgid "Blocked"
-msgstr "Zablokowany"
+msgstr "Bloqué"
 
 #: includes/class-lmtttmpts-settings.php:890
 #: includes/class-lmtttmpts-settings.php:919
 msgid "blocking time"
-msgstr "czas blokowania"
+msgstr "temps de blocage"
 
 #: includes/class-lmtttmpts-settings.php:891
 #: includes/class-lmtttmpts-settings.php:901
 #: includes/class-lmtttmpts-settings.php:920
 msgid "administrator&rsquo;s email address"
-msgstr "adres e-mail administratora"
+msgstr "l'adresse électronique de l'administrateur"
 
 #: includes/class-lmtttmpts-settings.php:896
 msgid "Deny Listed"
-msgstr "Odmowa umieszczenia na liście"
+msgstr "Refuser l'inscription sur la liste"
 
 #: includes/class-lmtttmpts-settings.php:913
 msgid "Non-Existing Username"
-msgstr "Nieistniejąca nazwa użytkownika"
+msgstr "Nom d'utilisateur non existant"
 
 #: includes/class-lmtttmpts-settings.php:916
 msgid "Such username does not exist. You've been blocked until %DATE%."
-msgstr "Taka nazwa użytkownika nie istnieje. Został Pan zablokowany do %DATE%."
+msgstr ""
+"Ce nom d'utilisateur n'existe pas. Vous avez été bloqué jusqu'à %DATE%."
 
 #: includes/class-lmtttmpts-settings.php:932
 msgid "Restore Default Error Messages"
-msgstr "Przywracanie domyślnych komunikatów o błędach"
+msgstr "Rétablir les messages d'erreur par défaut"
 
 #: includes/class-lmtttmpts-settings.php:934
 msgid "Restore Error Messages"
-msgstr "Przywracanie komunikatów o błędach"
+msgstr "Restauration des messages d'erreur"
 
 #: includes/class-lmtttmpts-settings.php:948
 msgid "Email Notifications Settings"
-msgstr "Ustawienia powiadomień e-mail"
+msgstr "Paramètres de Notifications par courriel"
 
 #: includes/class-lmtttmpts-settings.php:953
 msgid "Email Notifications"
-msgstr "Powiadomienia e-mail"
+msgstr "Notifications par email"
 
 #: includes/class-lmtttmpts-settings.php:955
 msgid "Enable to receive email notifications."
-msgstr "Włącz otrzymywanie powiadomień e-mail."
+msgstr "Activer la réception de notifications par courrier électronique."
 
 #: includes/class-lmtttmpts-settings.php:959
 msgid "Send Email Notifications to"
-msgstr "Wysyłaj powiadomienia e-mail do"
+msgstr "Envoyer des notifications par courriel à"
 
 #: includes/class-lmtttmpts-settings.php:963
 msgid "User"
-msgstr "Użytkownik"
+msgstr "Utilisateur"
 
 #: includes/class-lmtttmpts-settings.php:968
 msgid "Custom Email"
-msgstr "Własny Email"
+msgstr "E-mail Personnalisé"
 
 #: includes/class-lmtttmpts-settings.php:972
 msgid "Choose a username"
-msgstr "Wybierz nazwę użytkownika"
+msgstr "Choisissez un nom d'utilisateur"
 
 #: includes/class-lmtttmpts-settings.php:991
 msgid "Block Notifications"
-msgstr "Blokowanie powiadomień"
+msgstr "Bloquer les notifications"
 
 #: includes/class-lmtttmpts-settings.php:993
 #: includes/class-lmtttmpts-settings.php:1015
 msgid "Subject"
-msgstr "Temat"
+msgstr "Sujet"
 
 #: includes/class-lmtttmpts-settings.php:997
 #: includes/class-lmtttmpts-settings.php:1004
 msgid "blocked IP address"
-msgstr "zablokowany adres IP"
+msgstr "adresse IP bloquée"
 
 #: includes/class-lmtttmpts-settings.php:998
 #: includes/class-lmtttmpts-settings.php:1007
 #: includes/class-lmtttmpts-settings.php:1020
 #: includes/class-lmtttmpts-settings.php:1029
 msgid "website name"
-msgstr "nazwa strony internetowej"
+msgstr "nom du site web"
 
 #: includes/class-lmtttmpts-settings.php:1000
 #: includes/class-lmtttmpts-settings.php:1022
 msgid "Message"
-msgstr "Wiadomość"
+msgstr "Message"
 
 #: includes/class-lmtttmpts-settings.php:1005
 #: includes/class-lmtttmpts-settings.php:1027
 msgid "Limit Attempts plugin link"
-msgstr "Link do wtyczki Limit Attempts"
+msgstr "Lien du plugin Limit Attempts"
 
 #: includes/class-lmtttmpts-settings.php:1006
 #: includes/class-lmtttmpts-settings.php:1028
 msgid "date and time when IP address was blocked"
-msgstr "data i godzina zablokowania adresu IP"
+msgstr "la date et l'heure auxquelles l'adresse IP a été bloquée"
 
 #: includes/class-lmtttmpts-settings.php:1008
 #: includes/class-lmtttmpts-settings.php:1030
 msgid "website URL"
-msgstr "adres URL witryny"
+msgstr "uRL du site web"
 
 #: includes/class-lmtttmpts-settings.php:1013
 msgid "Deny List Notifications"
-msgstr "Powiadomienia z listy odrzuconych"
+msgstr "Notifications de la liste de refus"
 
 #: includes/class-lmtttmpts-settings.php:1019
 #: includes/class-lmtttmpts-settings.php:1026
 msgid "deny listed IP address"
-msgstr "odmów wymienionemu adresowi IP"
+msgstr "refuser l'adresse IP répertoriée"
 
 #: includes/class-lmtttmpts-settings.php:1035
 msgid "Restore Default Email Notifications"
-msgstr "Przywróć domyślne powiadomienia e-mail"
+msgstr "Rétablir les notifications par courriel par défaut"
 
 #: includes/class-lmtttmpts-settings.php:1037
 msgid "Restore Email Notifications"
-msgstr "Przywróć powiadomienia e-mail"
+msgstr "Rétablir les notifications par courriel"
 
 #: includes/class-lmtttmpts-settings.php:1085
 msgid "Remove Log Entries Older Than"
-msgstr "Usuń wpisy dziennika starsze niż"
+msgstr "Supprimer les entrées de journal antérieures à"
 
 #: includes/class-lmtttmpts-settings.php:1088
 #: includes/class-lmtttmpts-settings.php:1103
 msgid "days"
-msgstr "dni"
+msgstr "jours"
 
 #: includes/class-lmtttmpts-settings.php:1089
 msgid "Set \"0\" if you do not want to clear the log."
-msgstr "Ustaw \"0\", jeśli nie chcesz czyścić dziennika."
+msgstr "Réglez \"0\" si vous ne voulez pas effacer le journal."
 
 #: includes/class-lmtttmpts-settings.php:1100
 msgid "Remove Stats Entries Older Than"
-msgstr "Usuń wpisy statystyk starsze niż"
+msgstr "Supprimer les entrées de statistiques antérieures à"
 
 #: includes/class-lmtttmpts-settings.php:1105
 msgid "Set \"0\" if you do not want to clear the statistics."
-msgstr "Ustaw \"0\", jeśli nie chcesz czyścić statystyk."
+msgstr "Réglez \"0\" si vous ne voulez pas effacer les statistiques."
 
 #: includes/class-lmtttmpts-settings.php:1107
 #, php-format
 msgid "Current size of DB table is %s"
-msgstr "Aktualny rozmiar tabeli DB to %s"
+msgstr "La taille actuelle de la table DB est %s"
 
 #: includes/class-lmtttmpts-settings.php:1107
 msgid "Mb"
@@ -619,330 +621,333 @@ msgstr "Mb"
 
 #: includes/class-lmtttmpts-settings.php:1120
 msgid "Update GeoIP Every"
-msgstr "Aktualizuj GeoIP co"
+msgstr "Mise à jour du GeoIP Chaque"
 
 #: includes/class-lmtttmpts-settings.php:1123
 #: includes/front-end-functions.php:1032
 msgid "months"
-msgstr "miesięcy"
+msgstr "mois"
 
 #: includes/class-lmtttmpts-settings.php:1125
 msgid "Set \"0\" if you do not want to update GeoIP."
-msgstr "Ustaw \"0\", jeśli nie chcesz aktualizować GeoIP."
+msgstr "Réglez \"0\" si vous ne souhaitez pas mettre à jour le GeoIP."
 
 #: includes/class-lmtttmpts-settings.php:1126
 #: includes/class-lmtttmpts-settings.php:1135
 msgid "Update Now"
-msgstr "Aktualizuj"
+msgstr "Mettre à jour maintenant"
 
 #: includes/class-lmtttmpts-settings.php:1131
 msgid "Update Allow & Deny List After"
-msgstr "Aktualizacja listy dozwolonych i odrzuconych po"
+msgstr "Mise à jour de la liste des autorisations et des refus après"
 
 #: includes/class-lmtttmpts-settings.php:1134
 msgid "updates of GeoIP"
-msgstr "aktualizacje GeoIP"
+msgstr "mises à jour de GeoIP"
 
 #: includes/denylist-email.php:185 includes/denylist.php:190
 msgid "has been deleted from deny list"
-msgstr "został usunięty z listy odrzuconych"
+msgstr "a été supprimé de la liste de refus"
 
 #: includes/denylist-email.php:186 includes/denylist.php:190
 msgid "have been deleted from deny list"
-msgstr "zostały usunięte z listy odrzuconych"
+msgstr "ont été supprimés de la liste de refus"
 
 #: includes/denylist-email.php:187 includes/denylist.php:187
 msgid "Error while deleting from deny list"
-msgstr "Błąd podczas usuwania z listy odrzuconych"
+msgstr "Erreur lors de la suppression d'une liste de refus"
 
 #: includes/edit-list-form.php:36
 msgid "IP Allow List"
-msgstr "Lista dozwolonych adresów IP"
+msgstr "Liste d'autorisation IP"
 
 #: includes/edit-list-form.php:40
 msgid "IP Deny List"
-msgstr "Lista odmów IP"
+msgstr "Liste de refus IP"
 
 #: includes/edit-list-form.php:44
 msgid "Email Deny List"
-msgstr "Lista odrzuconych wiadomości e-mail"
+msgstr "Liste de refus d'envoi d'e-mails"
 
 #: includes/edit-list-form.php:47
 msgid "Email Allow List"
-msgstr "Lista dozwolonych adresów e-mail"
+msgstr "Liste d'adresses électroniques"
 
 #: includes/edit-list-form.php:71 includes/pro-tab.php:104
 #: includes/pro-tab.php:262 limit-attempts.php:102 limit-attempts.php:103
 #: limit-attempts.php:818
 msgid "Add New"
-msgstr "Dodaj nowy"
+msgstr "Ajouter"
 
 #: includes/edit-list-form.php:119 includes/edit-list-form.php:214
 #: includes/pro-tab.php:114
 msgid "Search Email"
-msgstr "Wyszukaj e-mail"
+msgstr "Recherche email"
 
 #: includes/edit-list-form.php:121 includes/edit-list-form.php:216
 #: includes/pro-tab.php:173 includes/statistics.php:336
 msgid "Search IP"
-msgstr "Wyszukiwanie IP"
+msgstr "Rechercher IP"
 
 #: includes/front-end-functions.php:992
 msgid ""
 "some time. Try to reload the page. Perhaps, you already have been unlocked"
 msgstr ""
-"jakiś czas. Spróbuj przeładować stronę. Być może zostałeś już odblokowany"
+"un certain temps. Essayez de recharger la page. Peut-être avez-vous déjà été "
+"débloqué"
 
 #: includes/pro-tab.php:45
 msgid "Enter IP"
-msgstr "Wprowadź adres IP"
+msgstr "Saisissez l'adresse IP ou le nom de domaine"
 
 #: includes/pro-tab.php:47
 msgid "Allowed formats"
-msgstr "Dozwolone formaty"
+msgstr "Formats supportés"
 
 #: includes/pro-tab.php:48
 msgid "Allowed range"
-msgstr "Dozwolony zakres"
+msgstr "Plage autorisée"
 
 #: includes/pro-tab.php:51 includes/pro-tab.php:59 includes/pro-tab.php:84
 #: includes/pro-tab.php:92 includes/pro-tab.php:247 includes/pro-tab.php:255
 msgid "Allowed separators"
-msgstr "Dozwolone separatory"
+msgstr "Séparateurs autorisés"
 
 #: includes/pro-tab.php:51 includes/pro-tab.php:59 includes/pro-tab.php:84
 #: includes/pro-tab.php:92 includes/pro-tab.php:247 includes/pro-tab.php:255
 msgid "a comma"
-msgstr "przecinek"
+msgstr "une virgule"
 
 #: includes/pro-tab.php:51 includes/pro-tab.php:59 includes/pro-tab.php:84
 #: includes/pro-tab.php:92 includes/pro-tab.php:247 includes/pro-tab.php:255
 msgid "semicolon"
-msgstr "średnik"
+msgstr "point-virgule"
 
 #: includes/pro-tab.php:51 includes/pro-tab.php:84 includes/pro-tab.php:247
 msgid "ordinary space, tab, new line or carriage return"
-msgstr "zwykła spacja, tabulator, nowa linia lub powrót karetki"
+msgstr "espace ordinaire, tabulation, nouvelle ligne ou retour chariot"
 
 #: includes/pro-tab.php:58
 msgid "Reason for IP"
-msgstr "Powód IP"
+msgstr "Motif de la PI"
 
 #: includes/pro-tab.php:59 includes/pro-tab.php:92 includes/pro-tab.php:255
 msgid "tab, new line or carriage return"
-msgstr "tabulator, nowa linia lub powrót karetki"
+msgstr "tabulation, nouvelle ligne ou retour chariot"
 
 #: includes/pro-tab.php:66
 msgid "Select country"
-msgstr "Wybierz kraj"
+msgstr "Sélectionnez un pays"
 
 #: includes/pro-tab.php:70
 msgid "Reason for country"
-msgstr "Powód dla kraju"
+msgstr "Raison du pays"
 
 #: includes/pro-tab.php:81 includes/pro-tab.php:244
 msgid "Enter Email"
-msgstr "Wpisz adres e-mail"
+msgstr "Entrez une adresse mail"
 
 #: includes/pro-tab.php:83 includes/pro-tab.php:246
 msgid "Forbidden symbols"
-msgstr "Zakazane symbole"
+msgstr "Symboles interdits"
 
 #: includes/pro-tab.php:91 includes/pro-tab.php:254
 msgid "Reason for Email"
-msgstr "Powód wysłania wiadomości e-mail"
+msgstr "Motif de l'e-mail"
 
 #: includes/pro-tab.php:99 includes/pro-tab.php:147
 msgid "My Email"
-msgstr "Mój e-mail"
+msgstr "Mon courriel"
 
 #: includes/pro-tab.php:119 includes/pro-tab.php:155
 msgid "Bulk Actions"
-msgstr "Działania masowe"
+msgstr "Actions groupées"
 
 #: includes/pro-tab.php:131 includes/pro-tab.php:139
 msgid "Reason"
-msgstr "Powód"
+msgstr "Raison"
 
 #: includes/pro-tab.php:175
 msgid "Clear Log"
-msgstr "Wyczyść dziennik"
+msgstr "Effacer le contenu du journal de connexion"
 
 #: includes/pro-tab.php:179 includes/pro-tab.php:230
 msgid "Delete log entry"
-msgstr "Usuń wpis dziennika"
+msgstr "Supprimer l'entrée du journal"
 
 #: includes/pro-tab.php:190 includes/pro-tab.php:203
 msgid "IP address"
-msgstr "Adres IP"
+msgstr "Adresse IP"
 
 #: includes/pro-tab.php:192 includes/pro-tab.php:205
 msgid "Login"
-msgstr "Zaloguj się"
+msgstr "Connexion"
 
 #: includes/pro-tab.php:193 includes/pro-tab.php:206
 msgid "Password"
-msgstr "Hasło"
+msgstr "Mot de passe"
 
 #: includes/pro-tab.php:194 includes/pro-tab.php:207
 msgid "Hostname"
-msgstr "Nazwa hosta"
+msgstr "Nom d'hôte"
 
 #: includes/pro-tab.php:195 includes/pro-tab.php:208
 msgid "Event"
-msgstr "Wydarzenie"
+msgstr "Évènement"
 
 #: includes/pro-tab.php:196 includes/pro-tab.php:209
 msgid "Form"
-msgstr "Formularz"
+msgstr "Formulaire"
 
 #: includes/pro-tab.php:197 includes/pro-tab.php:210
 msgid "Event time"
-msgstr "Godzina wydarzenia"
+msgstr "Heure de l’événement"
 
 #: includes/pro-tab.php:221
 msgid "Failed attempt"
-msgstr "Nieudana próba"
+msgstr "Échec de la tentative"
 
 #: includes/pro-tab.php:271 limit-attempts.php:120
 msgid "Upgrade to Pro"
-msgstr "Przejdź na wersje Pro"
+msgstr "Passer à la version Pro"
 
 #: includes/pro-tab.php:282
 msgid "This tab contains Pro options only."
-msgstr "Ta karta zawiera tylko opcje Pro."
+msgstr "Cet onglet contient uniquement des options PRO."
 
 #: includes/pro-tab.php:284
 #, php-format
 msgid "%1$sChange the settings%2$s to view the Pro options."
-msgstr "%1$sZmień ustawienia%2$s, aby wyświetlić opcje Pro."
+msgstr "%1$sModifier les paramètres%2$s pour afficher les options Pro."
 
 #: includes/statistics.php:27
 msgid "Failed Attempts"
-msgstr "Nieudane próby"
+msgstr "Tentatives échouées"
 
 #: includes/statistics.php:28
 msgid "Blocks"
-msgstr "Bloki"
+msgstr "Blocs"
 
 #: includes/statistics.php:29
 msgid "Status"
-msgstr "Status"
+msgstr "Statut"
 
 #: includes/statistics.php:39
 msgid "Delete statistics entry"
-msgstr "Usuwanie wpisu statystyk"
+msgstr "Supprimer l'entrée des statistiques"
 
 #: includes/statistics.php:179
 msgid "denylisted"
-msgstr "denylisted"
+msgstr "n'est pas inscrit sur la liste"
 
 #: includes/statistics.php:182
 msgid "allowlisted"
-msgstr "allowlisted"
+msgstr "autorisé"
 
 #: includes/statistics.php:185
 msgid "blocked"
-msgstr "zablokowany"
+msgstr "bloqué"
 
 #: includes/statistics.php:188
-#, fuzzy
 msgid "not blocked"
-msgstr "Zablokowany"
+msgstr "non bloqué"
 
 #: includes/statistics.php:237
 msgid "Statistics has been cleared completely"
-msgstr "Statystyki zostały całkowicie wyczyszczone"
+msgstr "Les statistiques ont été complètement effacées"
 
 #: includes/statistics.php:238
 msgid "Statistics is already empty"
-msgstr "Statystyki są już puste"
+msgstr "Les statistiques sont déjà vides"
 
 #: includes/statistics.php:239
 msgid "Error while clearing statistics completely"
-msgstr "Błąd podczas całkowitego czyszczenia statystyk"
+msgstr "Erreur lors de l'effacement complet des statistiques"
 
 #: includes/statistics.php:240
 msgid "Selected statistics entry (entries) has been deleted"
-msgstr "Wybrany wpis (wpisy) statystyk został usunięty"
+msgstr ""
+"L'entrée (les entrées) de statistiques sélectionnée(s) a (ont) été "
+"supprimée(s)"
 
 #: includes/statistics.php:241
 msgid "Error while deleting statistics entry (entries)"
-msgstr "Błąd podczas usuwania wpisu (wpisów) statystyk"
+msgstr ""
+"Erreur lors de la suppression d'une (ou plusieurs) entrée(s) de statistiques"
 
 #: includes/statistics.php:272 includes/statistics.php:275
 msgid "Total"
-msgstr "Razem"
+msgstr "Total"
 
 #: includes/statistics.php:318
 msgid "Are you sure you want to delete all statistics entries?"
-msgstr "Czy na pewno chce Pan usunąć wszystkie wpisy statystyk?"
+msgstr "Êtes-vous sûr de vouloir supprimer toutes les entrées statistiques ?"
 
 #: includes/statistics.php:320
 msgid "Yes, delete these entries"
-msgstr "Tak, proszę usunąć te wpisy"
+msgstr "Oui, supprimer ces entrées"
 
 #: includes/statistics.php:321
 msgid "No, go back to the Statistics page"
-msgstr "Nie, proszę wrócić do strony statystyk"
+msgstr "Non, retournez à la page des statistiques"
 
 #: includes/statistics.php:341
 msgid "Clear Statistics"
-msgstr "Wyczyść statystyki"
+msgstr "Effacer toutes les statistiques"
 
 #: limit-attempts.php:66
 msgid "Limit Attempts Blocked"
-msgstr "Limit zablokowanych prób"
+msgstr "Limiter les tentatives bloquées"
 
 #: limit-attempts.php:75
 msgid "Limit Attempts Deny & Allow List"
-msgstr "Limit prób Lista odmów i zezwoleń"
+msgstr "Limiter les tentatives Liste de refus et d'autorisation"
 
 #: limit-attempts.php:76
 msgid "Deny & Allow List"
-msgstr "Lista odmów i zezwoleń"
+msgstr "Liste de refus et d'autorisation"
 
 #: limit-attempts.php:84
 msgid "Limit Attempts Logs"
-msgstr "Dzienniki limitu prób"
+msgstr "Journal des tentatives de limitation"
 
 #: limit-attempts.php:85
 msgid "Logs"
-msgstr "Logi"
+msgstr "Journaux"
 
 #: limit-attempts.php:93
 msgid "Limit Attempts Statistics"
-msgstr "Statystyki prób ograniczenia"
+msgstr "Statistiques sur les tentatives de limitation"
 
 #: limit-attempts.php:94
 msgid "Statistics"
-msgstr "Statystyki"
+msgstr "Statistiques"
 
 #: limit-attempts.php:257 limit-attempts.php:617
 #, php-format
 msgid "%s attempts left before block."
-msgstr "%s prób pozostałych do zablokowania."
+msgstr "%s tentatives restantes avant le blocage."
 
 #: limit-attempts.php:258 limit-attempts.php:618
 #, php-format
 msgid "Too many failed attempts. You have been blocked until %s."
-msgstr "Zbyt wiele nieudanych prób. Został Pan zablokowany do %s."
+msgstr "Trop de tentatives infructueuses. Vous avez été bloqué jusqu'à %s."
 
 #: limit-attempts.php:259 limit-attempts.php:619
 msgid "You've been added to deny list. Please contact website administrator."
 msgstr ""
-"Został Pan/Pani dodany do listy odrzuconych. Proszę skontaktować się z "
-"administratorem strony."
+"Vous avez été ajouté à la liste des refus. Veuillez contacter "
+"l'administrateur du site web."
 
 #: limit-attempts.php:261 limit-attempts.php:620
 #, php-format
 msgid "%1$s has been blocked on %2$s"
-msgstr "%1$s zostało zablokowane na %2$s"
+msgstr "%1$s a été bloqué sur %2$s"
 
 #: limit-attempts.php:262 limit-attempts.php:621
 #, php-format
 msgid "%1$s has been added to the deny list on %2$s"
-msgstr "%1$s zostało dodane do listy odmów w %2$s"
+msgstr "%1$s a été ajouté à la liste de refus sur %2$s"
 
 #: limit-attempts.php:263 limit-attempts.php:622
 #, php-format
@@ -950,14 +955,14 @@ msgid ""
 "IP %1$s has been blocked automatically on %2$s due to the excess of login "
 "attempts on your website %3$s."
 msgstr ""
-"Adres IP %1$s został automatycznie zablokowany w dniu %2$s z powodu "
-"nadmiernej liczby prób logowania na Państwa stronie internetowej %3$s."
+"L'IP %1$s a été bloquée automatiquement le %2$s en raison du nombre excessif "
+"de tentatives de connexion sur votre site web %3$s."
 
 #: limit-attempts.php:263 limit-attempts.php:264 limit-attempts.php:622
 #: limit-attempts.php:623
 #, php-format
 msgid "Using the plugin %s"
-msgstr "Korzystanie z wtyczki %s"
+msgstr "Utiliser le plugin %s"
 
 #: limit-attempts.php:264 limit-attempts.php:623
 #, php-format
@@ -965,8 +970,8 @@ msgid ""
 "IP %1$s has been added automatically to the deny list on %2$s due to the "
 "excess of locks quantity on your website %3$s."
 msgstr ""
-"Adres IP %1$s został automatycznie dodany do listy odmów w witrynie %2$s z "
-"powodu nadmiernej liczby blokad w witrynie %3$s."
+"L'IP %1$s a été ajoutée automatiquement à la liste de refus de %2$s en "
+"raison de la quantité excessive de verrous sur votre site web %3$s."
 
 #: limit-attempts.php:567
 #, php-format
@@ -975,9 +980,10 @@ msgid ""
 "an outdated Htaccess plugin version. If you want to keep using this "
 "interaction, please update Htaccess plugin at least to v%s."
 msgstr ""
-"Interakcja Limit Attempts z Htaccess została wyłączona, ponieważ używasz "
-"nieaktualnej wersji wtyczki Htaccess. Jeśli chcesz nadal korzystać z tej "
-"interakcji, proszę zaktualizować wtyczkę Htaccess przynajmniej do wersji v%s."
+"L'interaction Limiter les tentatives avec Htaccess a été désactivée car vous "
+"utilisez une version obsolète du plugin Htaccess. Si vous souhaitez "
+"continuer à utiliser cette interaction, veuillez mettre à jour le plugin "
+"Htaccess au moins à la version v%s."
 
 #: limit-attempts.php:682
 msgid "FAQ"
@@ -985,84 +991,85 @@ msgstr "FAQ"
 
 #: limit-attempts.php:683
 msgid "Support"
-msgstr "Wsparcie"
+msgstr "Support"
 
 #: limit-attempts.php:711 limit-attempts.php:743
 msgid "ERROR:"
-msgstr "BŁĄD:"
+msgstr "ERREUR :"
 
 #: limit-attempts.php:711 limit-attempts.php:743
 msgid "You must type IP address"
-msgstr "Należy wpisać adres IP"
+msgstr "Vous devez saisir l'adresse IP"
 
 #: limit-attempts.php:714
 msgid "This IP address has already been added to allow list"
-msgstr "Ten adres IP został już dodany do listy dozwolonych"
+msgstr "Cette adresse IP a déjà été ajoutée à la liste d'autorisation"
 
 #: limit-attempts.php:717
 msgid "This IP address is in deny list too, please check this to avoid errors"
 msgstr ""
-"Ten adres IP również znajduje się na liście odrzuconych, sprawdź to, aby "
-"uniknąć błędów"
+"Cette adresse IP figure également dans la liste des adresses refusées ; "
+"vérifiez-la pour éviter les erreurs"
 
 #: limit-attempts.php:728
 msgid "has been added to allow list"
-msgstr "został dodany do listy dozwolonych"
+msgstr "a été ajouté à la liste des autorisations"
 
 #: limit-attempts.php:733 limit-attempts.php:737
 msgid "can't be added to allow list."
-msgstr "nie można dodać do listy dozwolonych."
+msgstr "ne peut pas être ajouté à la liste des autorisations."
 
 #: limit-attempts.php:747
 msgid "This IP address has already been added to  deny list"
-msgstr "Ten adres IP został już dodany do listy odrzuconych"
+msgstr "Cette adresse IP a déjà été ajoutée à la liste de refus"
 
 #: limit-attempts.php:750
 msgid "This IP address is in allowlist too, please check this to avoid errors"
 msgstr ""
-"Ten adres IP również znajduje się na liście dozwolonych, sprawdź to, aby "
-"uniknąć błędów"
+"Cette adresse IP figure également dans la liste des adresses autorisées, "
+"veuillez la vérifier pour éviter les erreurs"
 
 #: limit-attempts.php:758
 msgid "has been added to deny list"
-msgstr "został dodany do listy odrzuconych"
+msgstr "a été ajouté à la liste de refus"
 
 #: limit-attempts.php:763 limit-attempts.php:768
 msgid "can't be added to deny list."
-msgstr "nie można dodać do listy odmowy."
+msgstr "ne peut être ajouté à la liste des refus."
 
 #: limit-attempts.php:775
 #, php-format
 msgid "Add New %1$s : %2$s"
-msgstr "Dodaj nowy %1$s : %2$s"
+msgstr "Ajouter un nouveau %1$s : %2$s"
 
 #: limit-attempts.php:777
 msgid "Denylist"
-msgstr "Lista odmów"
+msgstr "Liste de refus"
 
 #: limit-attempts.php:777
 msgid "Allowlist"
-msgstr "Lista dozwolonych"
+msgstr "Liste d’autorisées"
 
 #: limit-attempts.php:807
 msgid "My IP"
-msgstr "Mój adres IP"
+msgstr "Mon IP"
 
 #: limit-attempts.php:813
 msgid "Allowed formats:"
-msgstr "Dozwolone formaty:"
+msgstr "Formats autorisés :"
 
 #: limit-attempts.php:855
 msgid "Network"
-msgstr "Sieć"
+msgstr "Réseau"
 
 #: limit-attempts.php:859
 msgid "Please enable JavaScript in Your browser."
-msgstr "Proszę włączyć JavaScript w przeglądarce."
+msgstr "Veuillez activer JavaScript dans votre navigateur."
 
 #: limit-attempts.php:861
 msgid "This option will replace all current settings on separate sites."
-msgstr "Ta opcja zastąpi wszystkie bieżące ustawienia w oddzielnych witrynach."
+msgstr ""
+"Cette option remplacera tous les paramètres actuels sur des sites distincts."
 
 #: limit-attempts.php:912
 msgid ""
@@ -1072,28 +1079,28 @@ msgid ""
 "login attempts at the same time may lead to undesirable behaviour on your WP "
 "site."
 msgstr ""
-"Wtyczka Limit Login Attempts jest aktywowana w Twojej witrynie, podobnie jak "
-"wtyczka Limit Attempts. Należy pamiętać, że Limit Attempts zapewnia "
-"maksymalne bezpieczeństwo, gdy nie są aktywowane żadne podobne wtyczki. "
-"Korzystanie z innych wtyczek, które ograniczają próby logowania użytkownika "
-"w tym samym czasie, może prowadzić do niepożądanego zachowania w witrynie WP."
+"Le plugin Limit Login Attempts est activé sur votre site, ainsi que le "
+"plugin Limit Attempts. Veuillez noter que Limit Attempts garantit une "
+"sécurité maximale lorsqu'aucun plugin similaire n'est activé. L'utilisation "
+"d'autres plugins qui limitent les tentatives de connexion des utilisateurs "
+"en même temps peut entraîner un comportement indésirable sur votre site WP."
 
 #: limit-attempts.php:937
 msgid "ATTENTION!"
-msgstr "UWAGA!"
+msgstr "ATTENTION !"
 
 #: limit-attempts.php:940
 msgid "Read and Understood"
-msgstr "Przeczytane i zrozumiane"
+msgstr "Lire et comprendre"
 
 #: limit-attempts.php:1066
 msgid "Addresses per page"
-msgstr "Adresy na stronę"
+msgstr "Adresses par page"
 
 #: limit-attempts.php:1539
 msgid "Notice"
-msgstr "Powiadomienie"
+msgstr "Avis"
 
 #: limit-attempts.php:1539
 msgid "Changes are not saved."
-msgstr "Zmiany nie są zapisywane."
+msgstr "Les modifications ne sont pas enregistrées."

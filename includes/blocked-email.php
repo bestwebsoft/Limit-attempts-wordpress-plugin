@@ -87,7 +87,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
 				$search_email = trim( sanitize_text_field( wp_unslash( $_REQUEST['s'] ) ) );
 				$and = $wpdb->prepare(
 					' AND email LIKE %s',
-					'%' . $search_email . '%'
+					'%' . $wpdb->esc_like( $search_email ) . '%'
 				);
 			} else {
 				$and = '';
@@ -215,7 +215,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
 						WHERE 
 							email = %s
 						',
-						sanitize_text_field( wp_unslash( $_REQUEST['tab-action'] ) )
+						$wpdb->esc_like( sanitize_text_field( wp_unslash( $_REQUEST['tab-action'] ) ) )
 					),
 					ARRAY_A
 				);
@@ -281,7 +281,7 @@ if ( ! class_exists( 'Lmtttmpts_Blocked_List_Email' ) ) {
 								WHERE 
 									email = %s
             		',
-								$email
+								$wpdb->esc_like( $email )
 							),
 							ARRAY_A
 						);

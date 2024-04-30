@@ -237,7 +237,8 @@ if ( ! class_exists( 'Lmtttmpts_Settings_Tabs' ) ) {
 				} else {
 					$this->active_plugins = get_option( 'active_plugins' );
 				}
-			} ?>
+			}
+			?>
 			<h3 class="bws_tab_label"><?php esc_html_e( 'Limit Attempts Settings', 'limit-attempts' ); ?></h3>
 			<?php $this->help_phrase(); ?>
 			<hr>
