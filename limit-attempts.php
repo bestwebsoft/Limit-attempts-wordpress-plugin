@@ -4,7 +4,7 @@ Plugin Name: Limit Attempts by BestWebSoft
 Plugin URI: https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/
 Description: Protect WordPress website against brute force attacks. Limit rate of login attempts.
 Author: BestWebSoft
-Version: 1.3.1
+Version: 1.3.2
 Text Domain: limit-attempts
 Domain Path: /languages
 Author URI: https://bestwebsoft.com/
@@ -195,6 +195,177 @@ if ( ! function_exists( 'lmtttmpts_plugin_admin_init' ) ) {
 			}
 		}
 
+		if ( isset( $_POST['lmtttmpts_export_submit'] ) ) {
+			lmtttmpts_ip_to_csv();
+		} elseif ( isset( $_POST['lmtttmpts_import_submit'] ) ) {
+			lmtttmpts_ip_from_csv();
+		}
+	}
+}
+
+if ( ! function_exists( 'lmtttmpts_ip_to_csv' ) ) {
+	function lmtttmpts_ip_to_csv() {
+		global $lmtttmpts_options, $lmtttmpts_export_errors, $wp_filesystem, $wpdb;
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$lmtttmpts_export_errors[] = __( 'You don\'t have permission to perform this action', 'limit-attempts' );
+		}
+		if ( isset( $_POST['lmtttmpts_export_import_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['lmtttmpts_export_import_nonce'] ) ), 'lmtttmpts_export_import' ) ) {
+			WP_Filesystem();
+
+			$upload_dir = wp_upload_dir();
+			$file_name  = wp_tempnam( 'tmp', $upload_dir['path'] . '/' );
+			if ( ! $file_name ) {
+				return false;
+			}
+
+			$export_str  = '';
+			$export_date = isset( $_POST['lmtttmpts_export_date'] ) && '1' === sanitize_text_field( wp_unslash( $_POST['lmtttmpts_export_date'] ) ) ? 1 : 0;
+			if ( isset( $_POST['lmtttmpts_export'] ) ) {
+				$export_type = sanitize_text_field( wp_unslash( $_POST['lmtttmpts_export'] ) );
+				switch( $export_type ) {
+					case 'deny':
+						$query = 'SELECT `ip`, `add_time` AS "date" FROM `' . $wpdb->prefix . 'lmtttmpts_denylist` ORDER BY `add_time` DESC';
+						break;
+					case 'allow':
+						$query = 'SELECT `ip`, `add_time` AS "date" FROM `' . $wpdb->prefix . 'lmtttmpts_allowlist` ORDER BY `add_time` DESC';
+						break;
+					default:
+						$export_type = 'blocked';
+						$query = 'SELECT `ip`, `block_till` AS "date"
+							FROM `' . $wpdb->prefix . 'lmtttmpts_failed_attempts`
+							WHERE 
+								block = TRUE AND 
+								block_by = "ip"
+							ORDER BY `block_till` ASC';
+						break;
+				}
+			}
+
+			if ( 1 === $export_date ) {
+				$export_str = $wpdb->prepare( '%s;%s;' . PHP_EOL, array( 'IP', 'Date' ) );
+			} else {
+				$export_str = $wpdb->prepare( '%s;' . PHP_EOL, array( 'IP' ) );
+			}
+
+			$csv_items = $wpdb->get_results( $query, ARRAY_A );
+
+			foreach ( $csv_items as $item ) {
+				if ( 1 === $export_date ) {
+					$export_str .= $wpdb->prepare( '%s;%s' . PHP_EOL, array( $item['ip'], $item['date'] ) );
+				} else {
+					$export_str .= $wpdb->prepare( '%s;' . PHP_EOL, array( $item['ip'] ) );
+				}
+			}
+
+			$result = $wp_filesystem->put_contents( $file_name, $export_str );
+			if ( ! $result ) {
+				return false;
+			}
+
+			header( 'Content-Type: application/octet-stream' );
+			if ( 1 === $export_date ) {
+				header( 'Content-Disposition: attachment; filename="limit_attempts_export_' . $export_type . '_ips_dates_' . time() . '.csv"' );
+			} else {
+				header( 'Content-Disposition: attachment; filename="limit_attempts_export_' . $export_type . '_ips_' . time() . '.csv"' );
+			}
+			echo wp_kses_post( $wp_filesystem->get_contents( $file_name ) );
+			unlink( $file_name );
+			exit();
+		} else {
+			$lmtttmpts_export_errors[] = __( 'Nonce verification failed', 'limit-attempts' );
+		}
+	}
+}
+
+if ( ! function_exists( 'lmtttmpts_ip_from_csv' ) ) {
+	function lmtttmpts_ip_from_csv() {
+		global $lmtttmpts_options, $lmtttmpts_import_errors, $wp_filesystem, $wpdb;
+		if ( ! current_user_can( 'manage_options' ) ) {
+			$lmtttmpts_import_errors[] = __( 'You don\'t have permission to perform this action', 'limit-attempts' );
+		}
+		if ( isset( $_POST['lmtttmpts_export_import_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['lmtttmpts_export_import_nonce'] ) ), 'lmtttmpts_export_import' ) ) {
+
+			if ( empty( $_FILES['lmtttmpts_csv_file']['tmp_name'] ) ) {
+				$lmtttmpts_import_errors[] = __( 'Select a file to import data', 'limit-attempts' );
+				return;
+			}
+			$file_name     = sanitize_text_field( wp_unslash( $_FILES['lmtttmpts_csv_file']['name'] ) );
+			$ile_type      = sanitize_text_field( wp_unslash( $_FILES['lmtttmpts_csv_file']['type'] ) );
+			$file_tmp_name = sanitize_text_field( wp_unslash( $_FILES['lmtttmpts_csv_file']['tmp_name'] ) );
+			$import_type   = sanitize_text_field( wp_unslash( $_POST['lmtttmpts_import'] ) );
+
+			$validate_file_type = wp_check_filetype( $file_name );
+
+			$import_flag = true;
+			WP_Filesystem();
+
+			if ( false === $validate_file_type['type'] || false === $validate_file_type['ext'] ) {
+				$lmtttmpts_import_errors[] = __( 'File type is not allowed.', 'limit-attempts' ) . '<br />';
+			} else {
+				$csv_as_array = $wp_filesystem->get_contents( $file_tmp_name );
+				$csv_as_array = explode( PHP_EOL, $csv_as_array );
+				foreach( $csv_as_array as $key => $value ) {
+					$csv_as_array[ $key ] = explode( ';', trim( $value, "';\"" ) );
+				}
+				if ( isset( $csv_as_array[0] ) && isset( $csv_as_array[0][0] ) && 'IP' == $csv_as_array[0][0] ) {
+					unset( $csv_as_array[0] );
+				}
+				
+				foreach( $csv_as_array as $csv_string ) {
+					if ( empty( $csv_string[0] ) ) {
+						continue;
+					}
+					$ip   = $csv_string[0];
+					$date = isset( $csv_string[1] ) ? $csv_string[1] : date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
+					switch( $import_type ) {
+						case 'deny':
+							$result = $wpdb->insert(
+								$wpdb->prefix . 'lmtttmpts_denylist',
+								array(
+									'ip'       => $ip,
+									'add_time' => $date,
+								)
+							);
+							break;
+						case 'allow':
+							$result = $wpdb->insert(
+								$wpdb->prefix . 'lmtttmpts_allowlist',
+								array(
+									'ip'       => $ip,
+									'add_time' => $date,
+								)
+							);
+							break;
+						default:
+							$last_failed_attempt = strtotime( $date ) - $lmtttmpts_options['minutes_to_reset'] * 60 - $lmtttmpts_options['hours_to_reset'] * 3600 - $lmtttmpts_options['days_to_reset'] * 86400;
+							$date                = isset( $csv_string[1] ) ? $csv_string[1] : date( 'Y-m-d 23:59:59', current_time( 'timestamp' ) );
+							$result = $wpdb->insert(
+								$wpdb->prefix . 'lmtttmpts_failed_attempts',
+								array(
+									'ip'                  => $ip,
+									'ip_int'              => sprintf( '%u', ip2long( $ip ) ),
+									'email'               => '',
+									'failed_attempts'     => 0,
+									'block'               => 1,
+									'block_quantity'      => 1,
+									'block_till'          => $date,
+									'block_by'            => 'ip',
+									'last_failed_attempt' => date( 'Y-m-d H:i:s', $last_failed_attempt ),
+								)
+							);
+							break;
+					}
+					if ( false === $result ) {
+						$import_flag = false;
+					}
+				}
+				if ( false === $import_flag ) {
+					$lmtttmpts_import_errors[] = __( 'An error occurred during import, not all data was transferred', 'limit-attempts' );
+				}
+			}
+		} else {
+			$lmtttmpts_import_errors[] = __( 'Nonce verification failed', 'limit-attempts' );
+		}
 	}
 }
 
@@ -425,8 +596,10 @@ if ( ! function_exists( 'register_lmtttmpts_settings' ) ) {
 			 * @deprecated since 1.2.9
 			 * @todo remove after 20.09.2021
 			 */
-
-			$wpdb->query( 'ALTER TABLE `' . $wpdb->prefix . 'lmtttmpts_failed_attempts` ADD `block_start` DATETIME AFTER `block_quantity`;' );
+			$column_exists = $wpdb->query( 'SHOW COLUMNS FROM `' . $wpdb->prefix . 'lmtttmpts_failed_attempts` LIKE "block_start";' );
+			if ( empty( $column_exists ) ) {
+				$wpdb->query( 'ALTER TABLE `' . $wpdb->prefix . 'lmtttmpts_failed_attempts` ADD `block_start` DATETIME AFTER `block_quantity`;' );
+			}
 			/* end deprecated */
 
 			lmtttmpts_create_table();

@@ -1,22 +1,22 @@
 === Limit Attempts by BestWebSoft - WordPress Anti-Bot and Security Plugin for Login and Forms ===
 Contributors: bestwebsoft
 Donate link: https://bestwebsoft.com/donate/
-Tags: login, security, limit login attempts, limit attempts, failed attempts, login attempt, hack, protection, authentication, deny list, allow list, brute force
-Requires at least: 5.6
-Tested up to: 6.5
-Stable tag: 1.3.1
+Tags: login, security, limit login attempts, limit attempts, failed attempts
+Requires at least: 6.2
+Tested up to: 6.8.2
+Stable tag: 1.3.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Protect WordPress website against brute force attacks. Limit rate of login attempts.
+Protect your WordPress website from brute force attacks by limiting the number of failed login attempts. Improve security and stop bots.
 
 == Description ==
 
-Limit Attempts plugin is a security solution for WordPress which protects your website from spam and brute-force attacks. Limit the number of failed login attempts per user and block user IP for a certain period of time based on your settings. This will stop automated scripts to generate a large number of different combinations and hack your website.
+Limit Attempts is a powerful WordPress security plugin that protects your site from brute-force attacks and bot logins. It limits the number of failed login attempts per user and blocks IP addresses for a configurable time period based on your settings.
 
-Manage deny and allow lists, receive email notifications, hide website forms for blocked or added to the deny list IPs, and other advanced features which guarantee safety of your data.
+You can manage deny and allow lists, receive email alerts, and hide login or contact forms from blocked users. This plugin offers seamless protection without the need for coding and is compatible with other BestWebSoft security tools.
 
-Secure your website today!
+Shield your site against automated attacks and unauthorized access today.
 
 [View Demo](https://bestwebsoft.com/demo-for-limit-attempts/?ref=readme)
 
@@ -24,29 +24,31 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 
 = Free Features =
 
-* Automatically block IP addresses that exceed limit login attempts
-* Automatically add IP addresses that exceed blocks limit to the deny list
+* Automatically block IP addresses after exceeding allowed login attempts
+* Add IPs that exceed block limit to deny list automatically
 * Manually add IP addresses to:
 	* Deny list
 	* Allow list
 * Compatible with [Contact Form](https://bestwebsoft.com/products/wordpress/plugins/contact-form/?k=fc7e2e440918324853c2060dbe6d9dc9):
-    * Set the time interval for letters sending
-    * Set the number of emails sent per indicated time interval
-* Hide login, register, lost password forms for blocked or added to the deny list IPs
-* Add denylisted IP address to the htaccess file with [Htaccess](https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd) to reduce your website database workload
-* Consider incorrect captcha as a failed login attempt with [Captcha](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c)
-* Manage your statistics list with:
+    * Set email sending interval
+    * Set number of emails allowed per interval
+* Hide login, register, and lost password forms for blocked or denylisted IPs
+* Add denylisted IPs to `.htaccess` file with [Htaccess](https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd) to reduce database load
+* Treat incorrect captcha as a failed login with [Captcha](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c)
+* View detailed login attempt statistics:
 	* IP address
-	* Number of failed attempts
-	* Number of blockings
+	* Failed attempts
+	* Block count
 	* Status
 * Customize error messages for:
-	* Invalid attempt
-	* Blocked user
-	* Denylisted user
-* Send customizable notifications about blocked and deny listed users to:
+	* Failed login
+	* Blocked users
+	* Denylisted users
+* Send email alerts for blocked and denylisted users to:
 	* User email
 	* Custom email
+* Limit Attempts Captcha for default forms
+* Limit Attempts export/import
 * Compatible with latest WordPress version
 * Incredibly simple settings for fast setup without modifying code
 * Detailed step-by-step documentation and videos
@@ -54,41 +56,40 @@ https://www.youtube.com/watch?v=xZCTEjVfu4Q
 
 > **Pro Features**
 >
-> All features from Free version included plus:
+> All Free features included, plus:
 >
-> * Add IP address ranges or IP masks to deny and allow list
-> * Add certain country's IP addresses to the deny and allow lists - GeoIP database
-> * Add email address or email domain to the deny and allow lists
-> * Manage total number of failed attempts with blocked list additional option
-> * Manage deny and allow lists with extended options:
-> 	* Country
-> 	* Range from
-> 	* Range to
-> 	* Reason
-> * Compatible with [Captcha Pro](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c) and [Captcha Plus](https://codecanyon.net/item/captcha-plus/9656420):
-> 	* Consider the incorrect captcha input as an invalid attempt for the forms compatible with Captcha
-> * Compatible with [reCaptcha](https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935):
-> 	* Consider failed reCaptcha validation as an invalid attempt for the forms compatible with reCaptcha plugin
-> * Set the option for non-existent username log in:
-> 	* According to time and login attempts set for Block- and deny list
-> 	* Block IP immediately
-> 	* Add IP to Deny list immediately
-> * Manage your log tab with:
-> 	* IP address
->	* Username
->	* Password
-> 	* Internet Hostname
-> 	* Event
-> 	* Form
-> 	* Event time
-> * Summary diagram with login attempts statistic and prevented hacking attempts in the settings page and in a dashboard widget
-> * Configure all subsites on the network
-> * You can use Limit Attempts Captcha for default forms
-> * Get answer to your support question within one business day ([Support Policy](https://bestwebsoft.com/support-policy/))
+> * Add IP ranges and masks to deny/allow list
+> * Block IPs by country using GeoIP database
+> * Deny or allow access by email address or domain
+> * Control total failed attempts before block
+> * Manage deny/allow lists with:
+>     * Country
+>     * IP range
+>     * Reason
+> * Compatible with:
+>     * [Captcha Pro](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c)
+>     * [Captcha Plus](https://codecanyon.net/item/captcha-plus/9656420)
+>     * [reCaptcha](https://bestwebsoft.com/products/wordpress/plugins/google-captcha/?k=fd764017a5f3f57d9c307ef96b4b9935)
+> * Configure rules for non-existent usernames:
+>     * Use standard block settings
+>     * Immediate IP block
+>     * Immediate deny list
+> * Log tab includes:
+>     * IP address
+>     * Username
+>     * Password
+>     * Hostname
+>     * Event type
+>     * Form source
+>     * Timestamp
+> * Login statistics and brute-force attempts chart in settings and dashboard widget
+> * Multisite network settings support
+> * Use plugin's captcha on default forms
+> * Priority support within 1 business day ([Support Policy](https://bestwebsoft.com/support-policy/))
 >
 > [Upgrade to Pro Now](https://bestwebsoft.com/products/wordpress/plugins/limit-attempts/?k=cb8137a688618f00aad733d4b0b2d014)
 
-If you have a feature suggestion or idea you'd like to see in the plugin, we'd love to hear about it! [Suggest a Feature](https://support.bestwebsoft.com/hc/en-us/requests/new)
+Got a feature request? We want to hear it: [Suggest a Feature](https://support.bestwebsoft.com/hc/en-us/requests/new)
 
 = Documentation & Videos =
 
@@ -98,101 +99,93 @@ If you have a feature suggestion or idea you'd like to see in the plugin, we'd l
 
 = Help & Support =
 
-Visit our Help Center if you have any questions, our friendly Support Team is happy to help - <https://support.bestwebsoft.com/>
+Need help? Visit our Help Center - <https://support.bestwebsoft.com/>
 
 = Translation =
 
-* Polish (pl_PL) (thanks to [Damian Dąbrowski](mailto:dabek1812@gmail.com))
+* Polish (pl_PL) – thanks to [Damian Dąbrowski](mailto:dabek1812@gmail.com)
 * Russian (ru_RU)
 * Ukrainian (uk)
+* Italian (it_IT)
+* Portuguese (pt_PT)
+* Arabic (ar)
+* German (de_DE)
+* Spanish (es_ES)
+* French (fr_FR)
 
-Some of these translations are not complete. We are constantly adding new features which should be translated. If you would like to create your own language pack or update the existing one, you can send [the text of PO and MO files](http://codex.wordpress.org/Translating_WordPress) to [BestWebSoft](https://support.bestwebsoft.com/hc/en-us/requests/new) and we'll add it to the plugin. You can download the latest version of the program for work with PO and MO [files Poedit](http://www.poedit.net/download.php).
+Help us improve translations! Send PO/MO files via [Support Form](https://support.bestwebsoft.com/hc/en-us/requests/new) or use [Poedit](http://www.poedit.net/download.php).
 
 = Recommended Plugins =
 
-* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=1babc7691c564636f8fddb7698f8f43e) - Automatically check and update WordPress website core with all installed plugins and themes to the latest versions.
-* [Captcha](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c) - #1 super security anti-spam captcha plugin for WordPress forms.
-* [Htaccess](https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd) - Protect WordPress website - allow and deny access for certain IP addresses, hostnames, etc.
+* [Updater](https://bestwebsoft.com/products/wordpress/plugins/updater/?k=1babc7691c564636f8fddb7698f8f43e) – Auto-update WordPress, plugins, and themes.
+* [Captcha](https://bestwebsoft.com/products/wordpress/plugins/captcha/?k=4866b64ad8a5a969edaa66a4a688b46c) – Anti-spam captcha plugin for WordPress forms.
+* [Htaccess](https://bestwebsoft.com/products/wordpress/plugins/htaccess/?k=0792e5d1f813e0de1fe113076b7706fd) – Allow/deny access by IP, hostname, etc.
 
 == Installation ==
 
-1. Upload the `limit-attempts` folder to the `/wp-content/plugins/` directory.
-2. Activate the plugin using the 'Plugins' menu in your WordPress admin panel.
-3. You can adjust the necessary settings using your WordPress admin panel in "Limit Attempts".
-4. Set your own options or use defaults, create, if you need, allow  or/and deny list.
+1. Upload `limit-attempts` to `/wp-content/plugins/`.
+2. Activate via the "Plugins" menu in WordPress admin.
+3. Go to "Limit Attempts" in admin to adjust settings.
+4. Configure allow/deny lists or use defaults.
 
-[View a Step-by-step Instruction on Limit Attempts Installation](https://docs.google.com/document/d/1zBn8PxGMR7v6hWJgT2vogwzP_rzJ6IipbxACnmuNa6E/)
+[Step-by-step Installation Guide](https://docs.google.com/document/d/1zBn8PxGMR7v6hWJgT2vogwzP_rzJ6IipbxACnmuNa6E/)
 
 https://www.youtube.com/watch?v=BZ9WZ3G9ves
 
 == Frequently Asked Questions ==
 
-= What can the options on the "Settings" tab be used for? =
+= What are the "Settings" tab options? =
 
-The "Settings" tab includes all the basic plugin settings that allow blocking addresses, displaying notifications and interacting with other BestWebSoft plugins.
-"Lock options:". This block includes settings for automatic blocking of the user's IP address for a certain period ( "Block address for 'x' days 'y' hours 'z' minutes" ), after a certain number of failed login attempts ( "after 'x' failed attempts" ) within a specified time frame ( "per 'x' days 'y' hours 'z' minutes" ).
-"Block options:". Here you can find settings for automatic adding of the user's IP address to the deny list after a certain number of blocks ( "Add to the deny list after 'x' blocks" ) within a specified period of time ( "per 'x' days 'y' hours 'z' minutes" ).
-"Show additional options for block message." This block includes fields for customizing messages displayed in the login form. To display certain variables, you can use their names, which can be found to the left of the field itself.
-"Send mail with notify to administrator". This option enables sending messages to the administrator concerning users recently blocked or added to the deny list. Also, you can specify the email address these notifications will be sent from.
-"Show additional options for email message". Here you can find fields for customizing email messages concerning the blocking of a user. Similar to "Show additional options for block message" block, you can use the names to display certain variables, which are located to the left of the field itself.
-"Htaccess plugin". This block enables the interaction with Htaccess plugin. All deny list and blocking data is copied to the .htaccess file, which reduces your website's workload and improves site security.
-"Captcha". This option enables the interaction with Captcha plugin. Also, this is where you can specify whether incorrect captcha input should be considered a failed login attempt.
+These control how and when to block users, send notifications, and integrate with other plugins:
+* "Lock options": Set how long IPs are blocked and after how many failed attempts.
+* "Block options": Add IPs to deny list after multiple blocks.
+* "Block message": Customize messages shown to blocked users.
+* "Send mail": Enable email alerts to admins.
+* "Email message": Customize email templates.
+* "Htaccess plugin": Sync deny list with `.htaccess`.
+* "Captcha": Consider incorrect captcha as failed login.
 
-= Where can I find the list of the blocked users? =
+= Where can I find blocked users? =
 
-All blocked users are listed on the "Blocked addresses" tab. Also, this is where the time a block will be removed is displayed. However, there is also an option to remove the block manually.
+Under the "Blocked addresses" tab, along with unblock time and manual unblock option.
 
-= How do I add users to the deny or allow list? =
+= How do I add IPs to deny or allow list? =
 
-Both "Deny list" and "allow list" tabs have separate fields for address input. Also, there is an option to add a range of addresses or subnets with the help of various masks.
+Use the "Deny list" or "Allow list" tabs. You can input single IPs, ranges, or masks.
 
-= There is a lot of entries in my allow and deny lists, mostly masks, how can I find out whether a certain IP address is on one of these lists?  =
+= How do I check if an IP is in the lists? =
 
-To do so, you need to enter the necessary IP address in the search field. When done, all entries related to the sought-for address will be displayed in the chart.
+Use the search field in the respective list tab to find related entries.
 
-= Where can I find failed login attempts statistics?  =
+= Where are failed login stats shown? =
 
-The statistics of IP addresses of users who failed to enter login data correctly at least once is displayed on the "Log" tab. Also, this tab is a place to search for the number of failed login attempts and blocks, as well as the current status of this IP address.
+Go to the "Log" tab. You’ll see IPs, failed attempts, blocks, and current status.
 
-= How can I unblock a user manually? =
+= How to manually unblock an IP? =
 
-To unblock a certain user, go to the "Blocked addresses" tab on the plugin's page and search for the necessary address in the "IP adress" column. This done, a "Reset block" option will appear when you move the cursor to the user's address. Click on this caption and the IP address will be unblocked. To unblock a group of users, you can use "Bulk Actions": mark the addresses that have to be unblocked, choose the "Reset block" action and click "Apply."
+Go to the "Blocked addresses" tab, hover over the IP, and click "Reset block." For multiple IPs, use bulk action.
 
-= What will happen if I add a user to both the allow and deny lists?  =
+= What if an IP is in both allow and deny list? =
 
-In case it happened so that a user is on both the deny and allow list, the deny list will have a higher priority.
+Deny list takes priority and the user will be blocked.
 
-= I accidentally added my address to the deny list, how can I fix that?  =
+= I blocked myself. How can I fix it? =
 
-There are several ways to fix this issue:
+1. Log in from another IP and remove yours.
+2. Use a proxy/VPN to access and unblock.
+3. Use database access to remove your IP from the `lmtttmpts_blacklist` table (advanced users only).
 
-1. Log in to your account from another computer with a different ip address and remove your ip address from the deny list.
-2. Log in to your account through Proxy Avoidance program or website and remove your ip address from the deny list.
-3. If you have access to the database, find the datasheet with the ip addresses on the deny list (it ends with "lmtttmpts_blacklist") and remove your ip address from this datasheet. However, this method should only be used at the very outside, as, chances are, the plugin will not function properly as a result.
+= Why am I not receiving notification emails? =
 
-= I do not receive email notifications about blocked ip addresses, what shall I do?  =
+Check:
+* Notifications are enabled in settings
+* Correct email entered
+* Emails aren’t going to spam
+* Hosting isn’t blocking outgoing mail
 
-First off, make sure you have selected the option to send email notifications to the administrator on the plugins settings page. Also, make sure your email is entered correctly.
-If you have checked all of the above-mentioned and everything seems to be correct, it is possible that the mail out was blocked or delayed significantly by your hosting. Also, it is likely that your emails are automatically moved to the spam box, so you might want to check it.
+= Why is blocking delayed? =
 
-= I've noticed a short delay with automatic blocking of a user. Did I do something wrong?  =
-
-This may happen when you enable sending email notifications. No need to worry, your site's and your plugin's performance will not be affected whatsoever.
-
-= I saw the message "With such ... options` settings the user`s IP will never get into the deny list..." when saving plugin settings. What does it means? =
-
-This means that you put wrong values in "Block address" and "Add to the deny list" options. You have to change them so that they correspond to the formula:
-
-`{"Add to the deny list per" option} < {"Block address for" option} * {"Add to the deny list after" option}`
-
-= I have some problems with the plugin's work. What Information should I provide to receive proper support? =
-
-Please make sure that the problem hasn't been discussed yet on our forum (<https://support.bestwebsoft.com>). If no, please provide the following data along with your problem's description:
-
-1. the link to the page where the problem occurs
-2. the name of the plugin and its version. If you are using a pro version - your order number.
-3. the version of your WordPress installation
-4. copy and paste into the message your system status report. Please read more here: [Instruction on System Status](https://docs.google.com/document/d/1Wi2X8RdRGXk9kMszQy1xItJrpN0ncXgioH935MaBKtc/edit)
+This may happen when sending emails is enabled. It doesn't affect plugin performance.
 
 == Screenshots ==
 
@@ -211,6 +204,12 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 13. Tab with Statistics.
 
 == Changelog ==
+
+= V1.3.2 - 04.08.2025 =
+* Update : BWS panel section was updated.
+* Update : All functionality was updated for WordPress 6.8.2.
+* New: Limit Attempts export/import was added.
+* Bugfix : Fixed small bags.
 
 = V1.3.1 - 30.04.2024 =
 * Update : Security fixes.
@@ -364,6 +363,15 @@ Please make sure that the problem hasn't been discussed yet on our forum (<https
 * NEW : Added messages in login form.
 
 == Upgrade Notice ==
+
+= V1.3.2 =
+* The compatibility with new WordPress version updated.
+* Usability improved.
+* New features added.
+* Bugs fixed.
+
+= V1.3.1 =
+* Bugs fixed.
 
 = V1.3.0 =
 * The compatibility with new WordPress version updated.

@@ -1059,13 +1059,14 @@ if ( ! function_exists( 'lmtttmpts_cntctfrm_check' ) ) {
 			return false;
 		}
 
-		if ( 1 == count( $cntctfrm_error_message ) ) {
+		if ( $lmtttmpts_options['contact_form_restrict_sending_emails'] ) {
 			$check_error = lmtttmpts_contact_form();
-			if ( $check_error ) {
-				$cntctfrm_error_message['error_lmtttmpts'] = $check_error;
+		}
 
-				return $cntctfrm_error_message;
-			}
+		if ( $check_error ) {
+			$cntctfrm_error_message['error_lmtttmpts'] = $check_error;
+
+			return $cntctfrm_error_message;
 		}
 
 		return false;

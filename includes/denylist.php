@@ -46,7 +46,7 @@ if ( ! class_exists( 'Lmtttmpts_Denylist' ) ) {
 		 */
 		public function column_ip( $item ) {
 			$actions = array(
-				'delete'    => '<a href="' . wp_nonce_url( sprintf( '?page=limit-attempts-deny-and-allowlist.php&lmtttmpts_remove_from_denylist=%s', $item['ip'] ), 'lmtttmpts_remove_from_denylist_' . $item['ip'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Delete', 'limit-attempts' ) . '</a>',
+				'delete'    => '<a href="' . wp_nonce_url( sprintf( '?page=limit-attempts-deny-and-allowlist.php&lmtttmpts_remove_from_denylist=%s', $item['id'] ), 'lmtttmpts_remove_from_denylist_' . $item['id'], 'lmtttmpts_nonce_name' ) . '">' . __( 'Delete', 'limit-attempts' ) . '</a>',
 			);
 			return sprintf( '%1$s %2$s', $item['ip'], $this->row_actions( $actions ) );
 		}
@@ -67,7 +67,7 @@ if ( ! class_exists( 'Lmtttmpts_Denylist' ) ) {
 		 * @param array $item Row item.
 		 */
 		public function column_cb( $item ) {
-			return sprintf( '<input type="checkbox" name="ip[]" value="%s" />', $item['ip'] );
+			return sprintf( '<input type="checkbox" name="ip[]" value="%s" />', $item['id'] );
 		}
 
 		/**
@@ -105,7 +105,7 @@ if ( ! class_exists( 'Lmtttmpts_Denylist' ) ) {
 			$offset  = ( $paged - 1 ) * $perpage;
 
 			/* general query */
-			$query = 'SELECT `ip`, `add_time` FROM `' . $wpdb->prefix . 'lmtttmpts_denylist`';
+			$query = 'SELECT `id`, `ip`, `add_time` FROM `' . $wpdb->prefix . 'lmtttmpts_denylist`';
 			if ( isset( $_REQUEST['s'] ) ) {
 				$query .= $wpdb->prepare(
 					' WHERE `ip` LIKE %s',
@@ -179,7 +179,7 @@ if ( ! class_exists( 'Lmtttmpts_Denylist' ) ) {
 	
 					$wpdb->query(
 						$wpdb->prepare(
-							'DELETE FROM `' . $wpdb->prefix . 'lmtttmpts_denylist` WHERE `ip` IN (' . $ips_placeholders . ');',
+							'DELETE FROM `' . $wpdb->prefix . 'lmtttmpts_denylist` WHERE `id` IN (' . $ips_placeholders . ');',
 							(array) $ips
 						)
 					);
